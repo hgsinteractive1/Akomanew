@@ -116,12 +116,11 @@ EditorControllerMixin = Ember.Mixin.create({
         if (arguments.length > 1) {
             return value;
         }
-
         var model = this.get('model'),
-            markdown = model.get('markdown'),
+            markdown = model.get('markdown').trim(),
             title = model.get('title'),
             titleScratch = model.get('titleScratch'),
-            scratch = this.get('editor').getValue(),
+            scratch = this.get('editor').getValue().trim(),
             changedAttributes;
 
         if (!this.tagNamesEqual()) {
