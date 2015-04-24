@@ -54,6 +54,8 @@ UploadUi = function ($dropzone, settings) {
                 $img.one('load', function () {
                     animateDropzone($img);
                 }).attr('src', result);
+
+                $(".preview-image").src(result);
             }
             preLoadImage();
         },

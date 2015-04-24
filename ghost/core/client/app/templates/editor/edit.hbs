@@ -11,12 +11,14 @@
         </section>
     </header>
 
+
     <section class="entry-markdown js-entry-markdown {{unless isPreview 'active'}}">
         <section id="entry-markdown-content" class="entry-markdown-content">
             {{gh-ed-editor classNames="markdown-editor js-markdown-editor" tabindex="1" spellcheck="true" value=model.scratch
             scrollInfo=view.editorScrollInfo focus=shouldFocusEditor focusCursorAtEnd=model.isDirty
             setEditor="setEditor" openModal="openModal" onFocusIn="autoSaveNew"}}
         </section>
+        <img class="preview-image" src='{{model.image}}' />
     </section>
 
     {{partial "publish-bar"}}
