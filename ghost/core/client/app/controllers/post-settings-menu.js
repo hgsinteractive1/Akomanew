@@ -118,6 +118,7 @@ var PostSettingsMenuController = Ember.Controller.extend(SettingsMenuMixin, {
 
     metaTitleScratch: boundOneWay('model.meta_title'),
     metaDescriptionScratch: boundOneWay('model.meta_description'),
+    metaKeywordsScratch: boundOneWay('model.meta_keywords'),
 
     seoTitle: Ember.computed('model.titleScratch', 'metaTitleScratch', function () {
         var metaTitle = this.get('metaTitleScratch') || '';
@@ -404,6 +405,28 @@ var PostSettingsMenuController = Ember.Controller.extend(SettingsMenuMixin, {
             }
 
             this.set('model.meta_description', metaDescription);
+
+            // If this is a new post.  Don't save the model.  Defer the save
+            // to the user pressing the save button
+            if (this.get('model.isNew')) {
+                return;
+            }
+
+            this.get('model').save().catch(function (errors) {
+                self.showErrors(errors);
+            });
+        },
+
+        setMetaKeywords: function (metaKeywords) {
+            var self = this,
+                currentKeywords = this.get('model.meta_keywords') || '';
+
+            // Only update if the description has changed
+            if (currentKeywords === metaKeywords) {
+                return;
+            }
+
+            this.set('model.meta_keywords', metaKeywords);
 
             // If this is a new post.  Don't save the model.  Defer the save
             // to the user pressing the save button

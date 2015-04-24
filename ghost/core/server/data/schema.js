@@ -13,6 +13,8 @@ var db = {
             language: {type: 'string', maxlength: 6, nullable: false, defaultTo: 'en_US'},
             meta_title: {type: 'string', maxlength: 150, nullable: true},
             meta_description: {type: 'string', maxlength: 200, nullable: true},
+            meta_keywords: {type: 'text', maxlength: 16777215, nullable: true },
+            abstract: {type: 'text', maxlength: 16777215, nullable: true },
             author_id: {type: 'integer', nullable: false},
             created_at: {type: 'dateTime', nullable: false},
             created_by: {type: 'integer', nullable: false},

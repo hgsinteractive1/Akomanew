@@ -17,13 +17,13 @@
                 {{gh-url-preview slug=slugValue tagName="p" classNames="description"}}
             </div>
 
-            <div class="form-group">
+{{!--             <div class="form-group">
                 <label for="post-setting-date">Publish Date</label>
                 <span class="input-icon icon-calendar">
                     {{gh-input class="post-setting-date" id="post-setting-date" value=publishedAtValue name="post-setting-date" focus-out="setPublishedAt" stopEnterKeyDownPropagation="true"}}
                 </span>
             </div>
-
+ --}}
             {{#unless session.user.isAuthor}}
             <div class="form-group for-select">
                 <label for="author-list">Author</label>
@@ -50,18 +50,25 @@
                 {{/gh-tab}}
             </ul>
 
+            <div class="form-group">
+                <label for="meta-keywords">Keywords</label>
+                {{gh-textarea class="post-setting-meta-keywords" id="meta-keywords" value=metaKeywordsScratch name="post-setting-meta-keywords" focus-out="setMetaKeywords" stopEnterKeyDownPropagation="true"}}
+                <p>Recommended: <b>156</b> characters. You’ve used {{gh-count-down-characters metaKeywordsScratch 156}}</p>
+            </div>
+
             <div class="form-group for-checkbox">
-                <label class="checkbox" for="static-page" {{action "togglePage" bubbles="false"}}>
+                {{!-- <label class="checkbox" for="static-page" {{action "togglePage" bubbles="false"}}>
                     {{input type="checkbox" name="static-page" id="static-page" class="post-setting-static-page" checked=model.page}}
                     <span class="input-toggle-component"></span>
                     <p>Turn this post into a static page</p>
-                </label>
-
-                <label class="checkbox" for="featured" {{action "toggleFeatured" bubbles="false"}}>
-                    {{input type="checkbox" name="featured" id="featured" class="post-setting-featured" checked=model.featured}}
-                    <span class="input-toggle-component"></span>
-                    <p>Feature this post</p>
-                </label>
+                </label> --}}
+                {{#unless session.user.isAuthor}}
+                    <label class="checkbox" for="featured" {{action "toggleFeatured" bubbles="false"}}>
+                        {{input type="checkbox" name="featured" id="featured" class="post-setting-featured" checked=model.featured}}
+                        <span class="input-toggle-component"></span>
+                        <p>Feature this post</p>
+                    </label>
+                {{/unless}}
             </div>
 
             </form>

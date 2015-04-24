@@ -20,7 +20,11 @@ excerpt = function (options) {
     });
 
     /*jslint regexp:true */
-    excerpt = String(this.markdown);
+    if(this.abstract && this.abstract.trim().length) {
+        excerpt = String(this.abstract);    
+    } else {
+        excerpt = String(this.markdown);
+    }
     // Strip inline and bottom footnotes
     excerpt = excerpt.replace(/<a href="#fn.*?rel="footnote">.*?<\/a>/gi, '');
     excerpt = excerpt.replace(/<div class="footnotes"><ol>.*?<\/ol><\/div>/, '');
@@ -30,7 +34,7 @@ excerpt = function (options) {
     /*jslint regexp:false */
 
     if (!truncateOptions.words && !truncateOptions.characters) {
-        truncateOptions.words = 50;
+        truncateOptions.words = 100;
     }
 
     return new hbs.handlebars.SafeString(
