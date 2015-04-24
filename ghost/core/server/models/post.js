@@ -136,6 +136,7 @@ Post = ghostBookshelf.Model.extend({
 
         // Sanitize the markdown for script tags etc...
         this.set('markdown', this.get('markdown').replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, ""));
+        this.set('markdown', this.get('markdown').replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, ""));
         this.set('html', converter.makeHtml(this.get('markdown')));
 
         // disabling sanitization until we can implement a better version
