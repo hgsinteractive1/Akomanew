@@ -1,0 +1,61 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+
+/************************************************************
+*	CREATE GLOBAL VARS
+*/
+
+
+
+/************************************************************
+*	CREATE MAIN RESPONSIVE MIXIN
+*/
+
+@mixin respond-to($media) {
+   @if $media == tablet {
+    @media only screen and (max-width: 1024px) { @content; }
+  }
+  @else if $media == handhelds {
+    @media only screen and (max-width: 768px) { @content; }
+  }
+
+   @else if $media == smallPhone {
+    @media only screen and (max-width: 320px) { @content; }
+  }
+
+  /*example of mixin use
+  	@include respond-to(handhelds) {
+			//write sass here
+		}
+	*/
+
+/************************************************************
+*	GLOBAL BODY STYLES
+*/
+
+	body {
+	
+	}
+
+/************************************************************
+*	CREATE MAIN NAMESPACE
+*/
+
+	#aKoma {
+
+		//apply font smoothing
+		 -webkit-font-smoothing: antialiased;
+
+	}
+
+
+/************************************************************
+*	CREATE MAIN NAMESPACE
+*/
+
+
+}
