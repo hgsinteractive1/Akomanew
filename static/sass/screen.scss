@@ -8,7 +8,8 @@
 /************************************************************
 *	CREATE GLOBAL VARS
 */
-
+	$rule-color : #D8D8D8;
+	$Lato : Lato, helvetica, arial, san-serif;
 
 
 /************************************************************
@@ -27,6 +28,7 @@
     @media only screen and (max-width: 320px) { @content; }
   }
 
+}
   /*example of mixin use
   	@include respond-to(handhelds) {
 			//write sass here
@@ -34,28 +36,237 @@
 	*/
 
 /************************************************************
-*	GLOBAL BODY STYLES
+*	GLOBAL BODY STYLES/UTILITY CLASSES
 */
 
 	body {
-	
-	}
-
-/************************************************************
-*	CREATE MAIN NAMESPACE
-*/
-
-	#aKoma {
-
 		//apply font smoothing
 		 -webkit-font-smoothing: antialiased;
+	}
 
+	div.relative {
+		height:100%;
+		width:100%;
 	}
 
 
 /************************************************************
-*	CREATE MAIN NAMESPACE
+*	BEGIN PRIMARY NAVIGATION
 */
+	#primary-nav {
+		height:87px;
+		border-bottom: 1px solid $rule-color;
+		width:100%;
+		position:fixed;
+		top:0px;
+		left:0px;
+
+		@include respond-to(handhelds) {
+			height:50px;	
+		}
+
+		a#logo {
+			width:96px;
+			height:26px;
+			display:block;
+			position:absolute;
+			left:50%;
+			margin-left: -48px;
+			top:30px;
+			background-position: 0 0;
+			background: url(../images/aKoma_logo.png) no-repeat;
+			background-size:100%;
+
+			@include respond-to(handhelds) {
+				width:64px;
+				height:24px;
+				top:15px;
+				left:44px;
+				margin-left:0px;	
+			}
+
+			/* 1.5 dpr */
+			@media(-webkit-min-device-pixel-ratio: 1.5), 
+			(min-resolution: 144dpi){ 
+			    background: url(../images/aKoma_logo@2x.png) top left no-repeat;
+			    background-size:100%;
+			}
+		}
+
+		a#menu {
+			width:50px;
+			height:50px;
+			position:absolute;
+			display:block;
+			left:20px;
+			top:18px;
+
+			@include respond-to(handhelds) {
+				height:40px;
+				width:40px;
+				left:0px;
+				top:5px;	
+			}
+
+			div.menu-bar {
+				width:35px;
+				height:2px;
+				position:absolute;
+				left:7px;
+				background:#000;
+
+					@include respond-to(handhelds) {
+						width:27px;
+					}
+
+					
+				&.one {
+					top:15px;
+					@include respond-to(handhelds) {
+						top:13px;
+					}
+				}
+
+				&.two {
+					top:24px;
+					@include respond-to(handhelds) {
+						top:19px;
+					}
+				}
+
+				&.three {
+					top:33px;
+					@include respond-to(handhelds) {
+						top:25px;
+					}
+				}
+
+			}
+
+		}
+
+		a#write-story {
+			width:204px;
+			height:40px;
+			position:absolute;
+			top: 23px;
+			right: 87px;
+			border:1px solid #000;
+			-webkit-border-radius: 20px;
+			-moz-border-radius: 20px;
+			border-radius: 20px;
+			overflow: hidden;
+			text-decoration: none;
+
+				@include respond-to(handhelds) {
+					height:30px;
+					width:30px;
+					border-radius:50%;
+					top:10px;
+					right:65px;
+					
+				}
+
+			p {
+				position:absolute;
+				width: 100%;
+				height:30px;
+				top:8px;
+				text-align: center;
+				font-family: $Lato;
+				font-size: 20px;
+				font-weight:200;
+				color:#000;
+
+				@include respond-to(handhelds) {
+					display:none;	
+				}
+			}
+
+			#compose-icon {
+				height:14px;
+				width:14px;
+				background:url(../images/compose_story.png) no-repeat;
+				position:absolute;
+				display:none;
+				top:8px;
+				left:8px;
+				overflow: hidden;
+				background-position: 0 0;
+
+				/* 1.5 dpr */
+				@media(-webkit-min-device-pixel-ratio: 1.5), 
+				(min-resolution: 144dpi){ 
+				    background: url(../images/compose_story@2x.png) no-repeat;
+				    background-size:100%;
+				}
+
+				@include respond-to(handhelds) {
+					display:block;
+					
+				}
+
+				
+				
+			}
+
+		}
+
+		a#log-in {
+			height:42px;
+			width:42px;
+			border-radius: 50%;
+			border: 1px solid #000;
+			position:absolute;
+			top: 23px;
+			right: 30px;
+			overflow: hidden;
+
+				@include respond-to(handhelds) {
+					height:30px;
+					width:30px;
+					border-radius:50%;
+					top:10px;
+					right:14px;
+					
+				}
+
+			#logged-out-icon {
+				width:24px;
+				height:33px;
+				position:absolute;
+				background-position: 0 0;
+				background: url(../images/log_in.png) no-repeat;
+				background-size:100%;
+				top:10px;
+				left:9px;
+
+				@include respond-to(handhelds) {
+					width:18px;
+					height:24px;
+					top:7px;
+					left:6px;
+					
+				}
 
 
-}
+				/* 1.5 dpr */
+				@media(-webkit-min-device-pixel-ratio: 1.5), 
+				(min-resolution: 144dpi){ 
+				    background: url(../images/log_in@2x.png) no-repeat;
+				    background-size:100%;
+				}
+			}
+
+
+
+		}
+
+	}
+
+
+
+
+
+
+
