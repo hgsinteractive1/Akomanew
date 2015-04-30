@@ -9,7 +9,7 @@ var EditorAPI = Ember.Mixin.create({
      * @returns {String}
      */
     getValue: function () {
-        return $(".content", this.$()).html();
+        return $(".content", this.$()).html().trim();
     },
 
     /**

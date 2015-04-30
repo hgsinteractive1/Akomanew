@@ -81,7 +81,7 @@
     .entry-preview {
         width: 100%;
         padding: 15px;
-        position: absolute;
+        position: relative;
         bottom: 40px; // height of the publish bar
         top: 60px; // height of the post title + margin
         border-top: $lightbrown 1px solid;
@@ -184,7 +184,7 @@
 
 .editor {
     .entry-markdown-content {
-        position: absolute;
+        position: relative;
         top: 0;
         right: 0;
         bottom: 0;
@@ -192,7 +192,7 @@
     }
 
     .markdown-editor {
-        position: absolute;
+        position: relative;
         top: 0;
         right: 0;
         bottom: 0;

@@ -15,16 +15,16 @@ var EditorViewMixin = Ember.Mixin.create({
 
     // all child views will have rendered when this fires
     afterRenderEvent: function () {
-        var $previewViewPort = this.$('.js-entry-preview-content');
+        // var $previewViewPort = this.$('.js-entry-preview-content');
 
-        // cache these elements for use in other methods
-        this.set('$previewViewPort', $previewViewPort);
-        this.set('$previewContent', this.$('.js-rendered-markdown'));
+        // // cache these elements for use in other methods
+        // this.set('$previewViewPort', $previewViewPort);
+        // this.set('$previewContent', this.$('.js-rendered-markdown'));
 
-        $previewViewPort.on('scroll', Ember.run.bind($previewViewPort, setScrollClassName, {
-            target: this.$('.js-entry-preview'),
-            offset: 10
-        }));
+        // $previewViewPort.on('scroll', Ember.run.bind($previewViewPort, setScrollClassName, {
+        //     target: this.$('.js-entry-preview'),
+        //     offset: 10
+        // }));
     },
 
     removeScrollHandlers: function () {
