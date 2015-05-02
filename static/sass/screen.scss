@@ -151,6 +151,52 @@
 
 		}
 
+	div.story-meta {
+		width : 100%;
+
+		div.tags {
+			height: 20px;
+			float:left;
+
+			p {
+				height:20px;
+				float: left;
+				display:block;
+				font-size: 14px;
+				padding-top:3px;
+				color: $light-grey;
+				margin-right: 6px;
+			}
+
+			ul {
+				height: 20px;
+				float:left;
+
+				li {
+					height: 20px;
+					margin-right: 4px;
+					float: left;
+					a.tag {
+						display:block;
+						height: 17px;
+						padding-top:3px;
+						width: 60px;
+						border-radius: 6px;
+						background: #C4c4c4;
+						text-align: center;
+						color: #FFF;
+						font-size: 13px;
+						font-weight: 400;
+						text-decoration: none;
+						
+					}
+
+				}
+			}
+
+		}
+	}
+
 
 /************************************************************
 *	BEGIN PRIMARY NAVIGATION
@@ -689,44 +735,8 @@
 				div.tags {
 					height: 20px;
 					float:left;
-
-					p {
-						height:20px;
-						float: left;
-						display:block;
-						font-size: 14px;
-						padding-top:3px;
-						color: $light-grey;
-						margin-right: 6px;
-					}
-
-					ul {
-						height: 20px;
-						float:left;
-
-						li {
-							height: 20px;
-							margin-right: 4px;
-							float: left;
-							a.tag {
-								display:block;
-								height: 17px;
-								padding-top:3px;
-								width: 60px;
-								border-radius: 6px;
-								background: #C4c4c4;
-								text-align: center;
-								color: #FFF;
-								font-size: 13px;
-								font-weight: 400;
-								text-decoration: none;
-								
-							}
-
-						}
-					}
-
 				}
+			}
 
 				div.read-length {
 					float:right;
@@ -734,7 +744,7 @@
 					color : $light-grey;
 					margin-top:5px;
 				}
-			}
+			
 
 		}
 
@@ -774,28 +784,241 @@
 *	STORY DETAIL PAGE
 */
 
+	#story-detail {
+		#story-intro {
+			width: 700px;
+			margin: 0 auto;
 
-	#story-intro {
-		width: 700px;
-		margin: 0 auto;
+			@include respond-to(handhelds) {
+				width: 90%;	
+			}
 
-		h2 {
-			font-size: 45px;
-			color: #000;
-			margin-top:40px;
-			line-height: 55px;
-			margin-bottom: 20px;
+			h2 {
+				font-size: 45px;
+				color: #000;
+				margin-top:40px;
+				line-height: 55px;
+				margin-bottom: 20px;
+
+				@include respond-to(handhelds) {
+					font-size: 24px;
+					line-height: 30px;
+					margin-top: 0px;
+				}
+			}
+
+			//float author info left
+			div.author {
+				float:left;
+			}
+
+			//float recommend button right
+			div.recommend {
+				float:right;
+				margin-top:10px;
+			}
 		}
 
-		//float author info left
-		div.author {
-			float:left;
+		#story-image {
+			margin-top:20px;
+			margin-bottom: 50px;
+			img {
+				width: 100%;
+			}
 		}
 
-		//float recommend button right
-		div.recommend {
-			float:right;
+		#story-body {
+			width: 700px;
+			margin: 0 auto;
+			@include respond-to(handhelds) {
+				width: 90%;	
+			}
+
+			p {
+				font-size: 18px;
+				line-height: 34px;
+				margin-bottom: 40px;
+			}
 		}
+
+		#story-footer {
+			padding-bottom: 25px;
+			border-bottom: 1px solid $rule-color;
+			width: 700px;
+			margin: 0 auto;
+
+			#social {
+				width: 100%;
+
+				ul#main-share {
+					height: 40px;
+					float: left;
+
+					li {
+						float: left;
+						height: 40px;
+						margin-right: 7px;
+
+						div.plus {
+							height: 40px;
+							width: 40px;
+							background: #C4C3C3;
+							border-radius: 50%;
+							cursor: pointer;
+							position:relative;
+
+							span.vr {
+								position:absolute;
+								width: 20px;
+								height: 2px;
+								left:10px;
+								top:19px;
+								background: #FFF;
+							}
+
+							span.hr {
+								position:absolute;
+								width: 2px;
+								height: 20px;
+								left:19px;
+								top:10px;
+								background: #FFF;
+							}
+
+						}
+
+						a.share-button {
+							width: 120px;
+							height: 26px;
+							background: #000;
+							display:block;
+							border-radius: 40px;
+							color: #FFF;
+							font-size: 12px;
+							padding-top:14px;
+							padding-left:38px;
+							text-decoration: none;
+							font-weight: 600;
+
+							@include respond-to(handhelds) {
+								width: 80px;
+								font-size: 14px;
+								padding-top:12px;
+								height:28px;
+								padding-left:40px;
+								width: 75px;
+							}
+
+							span.share-lang {
+								@include respond-to(handhelds) {
+									display:none;
+								}
+							}
+
+							&.facebook {
+								background: url(../images/facebook_share.png) no-repeat #3A5795;
+								background-position: 16px 9px;
+
+								/* 1.5 dpr */
+								@media(-webkit-min-device-pixel-ratio: 1.5), 
+								(min-resolution: 144dpi) { 
+								    background: url(../images/facebook_share@2x.png) no-repeat #3A5795;
+								    background-position: 18px 12px;
+								    background-size:8%;
+								}
+
+							}
+
+							&.twitter {
+								background: url(../images/twitter_share.png) no-repeat #55ACEE;
+								background-position: 14px 11px;
+
+								/* 1.5 dpr */
+								@media(-webkit-min-device-pixel-ratio: 1.5), 
+								(min-resolution: 144dpi) { 
+								    background: url(../images/twitter_share@2x.png) no-repeat #55ACEE;
+								    background-position: 14px 14px;
+								    background-size:14%;
+								}
+							}
+						}
+					}
+				}
+
+				a.recommend-button {
+					font-weight: 600;
+					float: right;
+					width: 105px;
+					height: 26px;
+					border: 2px solid $light-grey;
+					display:block;
+					border-radius: 40px;
+					color: $light-grey;
+					font-size: 12px;
+					padding-top:14px;
+					padding-left:50px;
+					text-decoration: none;
+					background: url(../images/heart_recommend.png) no-repeat;
+					background-position: 12px 10px;
+				}
+
+				ul#secondary-share {
+					height: 40px;
+					display:block;
+					width: 100%;
+					margin-top:2px;
+
+					li {
+						float: left;
+						height: 40px;
+						margin-right: 7px;
+
+						a.share-button {
+							width: 74px;
+							height: 40px;
+							border-radius: 40px;
+							display: block;
+							background-position: center;
+
+
+							&.google-plus {
+								background-image: url(../images/google_plus_share.png);
+								background-repeat: no-repeat;
+								background-color: #C14A33;
+							}
+
+
+							&.google-plus {
+								background-image: url(../images/google_plus_share.png);
+								background-repeat: no-repeat;
+								background-color: #C14A33;
+							}
+
+							&.linkedIn {
+								background-image: url(../images/linkedIn_share.png);
+								background-repeat: no-repeat;
+								background-color: #0076B7;
+							}
+
+
+							&.email {
+								background-image: url(../images/email_share.png);
+								background-repeat: no-repeat;
+								background-color: #7FA1B4;
+							}
+							
+						}
+					}
+				}
+			}
+
+			div.story-meta {
+				width: 100%;
+				margin-top:25px;
+			}
+
+		} 
+
 	}
 
 
