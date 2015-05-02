@@ -7,7 +7,18 @@
 
 /************************************************************
 *	CREATE GLOBAL VARS
-*/
+*/	
+
+	//COLOR SCHEME
+	$aKoma-yellow : #F0950C;
+	$aKoma-blue : #1B8CD5;
+	$light-grey : #979797;
+	$mid-grey : #666666;
+	$dark : #000;
+
+	//horizontal rule
+	$rule-color : #D8D8D8;
+
 	$rule-color : #D8D8D8;
 	$Lato : Lato, helvetica, arial, san-serif;
 
@@ -42,24 +53,124 @@
 	body {
 		//apply font smoothing
 		 -webkit-font-smoothing: antialiased;
+		 font-family: $Lato;
+
+		 &.detail {
+		 	padding-top: 88px;
+		 }
+
+
+		 &.full-bleed {
+		 	padding-top: 0px;
+		 }
 	}
 
 	div.relative {
 		height:100%;
 		width:100%;
+		position:relative;
 	}
+
+	div.clear {
+		clear: both;
+	}
+
+	img { 
+		display:block;
+	}
+
+/************************************************************
+*	GLOBAL ELEMENTS
+*/
+	//recommend button
+	div.recommend {
+		width: 55px;
+		height: 27px;
+		cursor: pointer;
+
+		div.heart {
+			height: 27px;
+			width: 27px;
+			background: url(../images/heart.png) top left no-repeat;
+			float:left;
+
+				/* 1.5 dpr */
+			@media(-webkit-min-device-pixel-ratio: 1.5), 
+			(min-resolution: 144dpi){ 
+			    background: url(../images/heart@2x.png) top left no-repeat;
+			    background-size:100%;
+			}
+		}
+
+		div.count {
+			width: 25px;
+			float:right;
+			font-size: 13px;
+			color: $light-grey;
+			padding-top: 5px;
+		}
+	}
+
+	//author
+	div.author {
+		width:230px;
+
+			div.author-image {
+				height:50px;
+				width:50px;
+				border-radius:50%;
+				background:#ccc;
+				background: url(../images/default_profile.jpg) top left no-repeat;
+				background-size: 100%;
+				float:left;
+
+			}
+
+			div.byline {
+				width:170px;
+				float: right;
+
+				p {
+					font-size: 15px;
+					font-weight: 400;
+					color: $aKoma-blue;
+					margin-top:11px;
+
+					span {
+						font-size:13px;
+						display:block;
+						color: $light-grey;
+						margin-top:2px;
+					
+					}
+
+				}
+
+
+			}
+
+		}
 
 
 /************************************************************
 *	BEGIN PRIMARY NAVIGATION
-*/
+*/	
+
+	//basic namespace provides UI in black state
+	// .is-white provides styles for fixed overlay state
 	#primary-nav {
 		height:87px;
 		border-bottom: 1px solid $rule-color;
 		width:100%;
-		position:fixed;
+		//position:fixed;
+		position:absolute;
 		top:0px;
 		left:0px;
+
+		&.is-white {
+			border-bottom: none;
+			position:absolute;
+		}
 
 		@include respond-to(handhelds) {
 			height:50px;	
@@ -80,7 +191,7 @@
 			@include respond-to(handhelds) {
 				width:64px;
 				height:24px;
-				top:15px;
+				top:16px;
 				left:44px;
 				margin-left:0px;	
 			}
@@ -92,6 +203,17 @@
 			    background-size:100%;
 			}
 		}
+
+		&.is-white {
+			a#logo {
+				background-position: 0 -26px;
+					/* 1.5 dpr */
+				@include respond-to(handhelds) {
+					background-position: 0 -18px;	
+				}
+			}	
+		}
+
 
 		a#menu {
 			width:50px;
@@ -145,6 +267,15 @@
 
 		}
 
+		&.is-white {
+			a#menu {
+				div.menu-bar {
+					background:#FFF;
+				}
+			}
+				
+		}
+
 		a#write-story {
 			width:204px;
 			height:40px;
@@ -173,7 +304,6 @@
 				height:30px;
 				top:8px;
 				text-align: center;
-				font-family: $Lato;
 				font-size: 20px;
 				font-weight:200;
 				color:#000;
@@ -210,6 +340,20 @@
 				
 			}
 
+		}
+
+		&.is-white {
+			a#write-story {
+				border:1px solid #FFF;
+
+				p {
+					color:#FFF;
+				}
+
+				#compose-icon {
+					background-position: 0 -14px;
+				}
+			}
 		}
 
 		a#log-in {
@@ -262,6 +406,396 @@
 
 		}
 
+		&.is-white {
+			a#log-in {
+				border: 1px solid #FFF;
+
+				#logged-out-icon {
+					background-position: 0 -33px;
+
+					@include respond-to(handhelds) {
+						background-position: 0 -25px;
+					}
+				}
+			}
+		}
+	}
+
+/************************************************************
+*	BEGIN FOOTER
+*/
+	#footer {
+		height: 90px;
+		width: 100%;
+		background: #EFEFEF;
+		margin-top: 200px;
+
+		@include respond-to(handhelds) {
+			height: 125px;
+		}
+
+		div.center {
+			width: 600px;
+			margin: 0 auto;
+
+			@include respond-to(handhelds) {
+				width: 100%;
+				margin: none;
+			}
+
+			ul.links {
+				height: 20px;
+				padding-top:37px;
+				float:left;
+
+				@include respond-to(handhelds) {
+					padding-top:15px;
+					width: 310px;
+					margin: 0 auto;
+					float:none;
+				}
+
+				li {
+					height: 20px;
+					float:left;
+					margin-right:20px;
+
+					a.footer-link {
+						font-size: 14px;
+						color: $light-grey;
+						text-decoration: none;
+
+						@include respond-to(handhelds) {
+							font-size: 12px;
+						}
+					}
+				}
+			}
+
+			div.follow {
+				height: 40px;
+				float:right;
+				width: 145px;
+				padding-top:24px;
+
+				@include respond-to(handhelds) {
+					float: none;
+					margin: 0 auto;
+				}
+
+				p {
+					float:left;
+					font-size: 14px;
+					color: $light-grey;
+					display: block;
+					height: 25px;
+					padding-top:15px;
+				}
+
+				ul.follow-links {
+					height: 40px;
+					float: right;
+
+					li {
+						float:right;
+						margin-left:5px;
+						a.sm-follow {
+							display:block;
+							height: 40px;
+							width: 40px;
+							border-radius: 50%;
+							border: 1px solid $aKoma-blue;
+
+							&.twitter {
+								background: url(../images/twitter_footer.png) no-repeat;
+								background-position: 10px 12px;
+
+									/* 1.5 dpr */
+									@media(-webkit-min-device-pixel-ratio: 1.5), 
+									(min-resolution: 144dpi){ 
+									    background: url(../images/twitter_footer@2x.png) no-repeat;
+									    background-size:48%;
+									    background-position: 11px 13px;
+									}
+							}
+
+							&.facebook {
+								background: url(../images/facebook_footer.png) no-repeat;
+								background-position: 14px 10px;
+
+									/* 1.5 dpr */
+									@media(-webkit-min-device-pixel-ratio: 1.5), 
+									(min-resolution: 144dpi){ 
+									    background: url(../images/facebook_footer@2x.png) no-repeat;
+									    background-size:25%;
+									    background-position: 14px 11px;
+									}
+							}
+						}
+
+					}
+				}
+			}
+		}
+
+	}
+
+
+
+
+
+/************************************************************
+*	CATEGORY HERO AREA
+*/
+
+	#category-hero {
+		width:100%;
+		position:relative;
+		height: auto;
+		margin-bottom:15px;
+		overflow:hidden;
+
+		#image-area {
+			width:100%;
+			position:relative;
+
+			#tint {
+				position : absolute;
+				top:0px;
+				left:0px;
+				background: #000;
+				height: 100%;
+				width: 100%;
+				opacity: 0.7;
+			}
+
+			img {
+				width: 100%;
+				border: 0px;
+				padding: 0px;
+				margin:0px;
+			}
+		}
+
+		#headline {
+			//category page title
+			width:700px;
+			position:absolute;
+			bottom: 50px;
+			left:50%;
+			margin-left: -300px;
+
+			h3 {
+				font-size:20px;
+				font-weight:600;
+				text-transform: uppercase;
+				color: $aKoma-yellow;
+				margin-bottom:8px;
+
+				span.circle-decoration {
+					height: 4px;
+					width: 4px;
+					border-radius: 2px;
+					position : relative;
+					top: -5px;
+					display: inline-block;
+					background-color: $aKoma-yellow;
+					margin-left:4px;
+					margin-right:4px;
+				}
+
+				span.cat-descrip {
+					font-weight: 400;
+					text-transform: none;
+				}
+			}
+
+			h4 {
+				font-size:45px;
+				line-height: 55px;
+				color:#FFF;
+			}
+		}
+	}
+
+/************************************************************
+*	MAIN STORY LIST
+*/
+
+	#main-story-feed {
+		width: 600px;
+		margin: 0 auto;
+
+		@include respond-to(handhelds) {
+			width: 90%;
+				
+		}
+
+		div.story {
+			padding-bottom:25px;
+			margin-top:25px;
+			width:100%;
+			border-bottom: 1px solid $rule-color;
+
+			div.story-top {
+				width : 100%;
+				margin-bottom: 15px;
+
+				div.author {
+					float:left;
+				}
+
+				div.recommend {
+					margin-top:12px;
+					float:right;
+				}
+			}
+
+			div.story-body {
+				width : 100%;
+				margin-bottom:20px;
+
+				img {
+					width:100%;
+					margin-bottom: 20px;
+				}
+
+				h4 {
+					color: $dark;
+					font-size: 32px;
+					line-height: 40px;
+					font-weight: 400;
+					margin-bottom: 10px;
+				}
+
+				p {
+					color: $mid-grey;
+					font-size: 18px;
+					line-height: 26px;
+					font-weight: 200;
+					margin-bottom: 15px;
+				}
+
+				a.read-more {
+					font-size: 20px;
+					color: $aKoma-blue;
+					text-decoration: none;
+				}
+			}
+
+			div.story-meta {
+				width : 100%;
+
+				div.tags {
+					height: 20px;
+					float:left;
+
+					p {
+						height:20px;
+						float: left;
+						display:block;
+						font-size: 14px;
+						padding-top:3px;
+						color: $light-grey;
+						margin-right: 6px;
+					}
+
+					ul {
+						height: 20px;
+						float:left;
+
+						li {
+							height: 20px;
+							margin-right: 4px;
+							float: left;
+							a.tag {
+								display:block;
+								height: 17px;
+								padding-top:3px;
+								width: 60px;
+								border-radius: 6px;
+								background: #C4c4c4;
+								text-align: center;
+								color: #FFF;
+								font-size: 13px;
+								font-weight: 400;
+								text-decoration: none;
+								
+							}
+
+						}
+					}
+
+				}
+
+				div.read-length {
+					float:right;
+					font-size: 14px;
+					color : $light-grey;
+					margin-top:5px;
+				}
+			}
+
+		}
+
+		div.load-more-button {
+			cursor: pointer;
+			width: 100%;
+			height: 40px;
+			background: #EFEFEF;
+			border-radius: 6px;
+			text-align: center;
+			font-size: 21px;
+			color: $aKoma-blue;
+			padding-top:15px;
+			margin-top:30px;
+			display:block;
+
+			div.arrow {
+				height: 31px;
+				width: 31px;
+				background: url(../images/load_more_arrow.png) top left no-repeat;
+				position:absolute;
+				top:-3px;
+				left:200px;
+
+				/* 1.5 dpr */
+				@media(-webkit-min-device-pixel-ratio: 1.5), 
+				(min-resolution: 144dpi){ 
+				    background: url(../images/load_more_arrow@2x.png) no-repeat;
+				    background-size:100%;
+				}
+			}
+		}
+
+	}
+
+/************************************************************
+*	STORY DETAIL PAGE
+*/
+
+
+	#story-intro {
+		width: 700px;
+		margin: 0 auto;
+
+		h2 {
+			font-size: 45px;
+			color: #000;
+			margin-top:40px;
+			line-height: 55px;
+			margin-bottom: 20px;
+		}
+
+		//float author info left
+		div.author {
+			float:left;
+		}
+
+		//float recommend button right
+		div.recommend {
+			float:right;
+		}
 	}
 
 

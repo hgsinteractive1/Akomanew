@@ -10,11 +10,21 @@
 
 
 </head>
-<body>
+<body class="full-bleed">
+<!--BEGIN HERO STORY-->
+<?php include('includes/category_hero.php') ?>
+<!--END HERO STORY-->
 
+<!--BEGIN HERO STORY-->
+<?php include('includes/main_story_feed.php') ?>
+<!--END HERO STORY-->
 
 <!--MAIN NAVIGATION-->
-<?php include('includes/nav_bar.php') ?>
+<?php include('includes/footer.php') ?>
+<!--END-->
+
+<!--MAIN NAVIGATION-->
+<?php include('includes/nav_bar_white.php') ?>
 <!--END-->
 
 <!--INCLUDE REQUIRE/INIT MAIN SCRIPTS-->
