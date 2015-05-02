@@ -1,8 +1,13 @@
-<header class="page-header">
+<style type="text/css">
+    b {font-weight: bold;}
+    i {font-style: italic;}
+</style>
+
+{{!-- <header class="page-header">
     <button class="menu-button js-menu-button" {{action "toggleGlobalMobileNav"}}><span class="sr-only">Menu</span></button>
     <h2 class="page-title">Editor</h2>
 </header>
-
+ --}}
 <div class="page-content">
     <header>
         <section class="box entry-title">
@@ -10,7 +15,11 @@
             tabindex="1" focus=shouldFocusTitle}}
         </section>
     </header>
+    
 
+    <div class="settings-menu-content">
+    {{gh-uploader uploaded="setCoverImage" canceled="clearCoverImage" description="Add post image" image=model.image uploaderReference=uploaderReference tagName="section"}}
+    </div>
 
     <section class="entry-markdown js-entry-markdown {{unless isPreview 'active'}}">
         <section id="entry-markdown-content" class="entry-markdown-content">
@@ -18,7 +27,6 @@
             scrollInfo=view.editorScrollInfo focus=shouldFocusEditor focusCursorAtEnd=model.isDirty
             setEditor="setEditor" openModal="openModal" onFocusIn="autoSaveNew"}}
         </section>
-        <img class="preview-image" src='{{model.image}}' />
     </section>
 
     {{partial "publish-bar"}}

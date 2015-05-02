@@ -1,5 +1,5 @@
 <div class='editor g-body'>
-    <article class="content">
+    <article class="content" contenteditable="true">
     	{{#if value}}
         	{{{value}}}
         {{else}}
@@ -11,5 +11,5 @@
 
 
 <script type="text/javascript">
-  grande.bind(document.querySelectorAll("article"));
+  grande.bind($("article.content"));
 </script>

@@ -226,6 +226,45 @@ EditorControllerMixin = Ember.Mixin.create({
     shouldFocusEditor: Ember.computed.not('model.isNew'),
 
     actions: {
+
+        setCoverImage: function (image) {
+            var self = this;
+
+            this.set('model.image', image);
+
+            if (this.get('model.isNew')) {
+                return;
+            }
+
+            this.get('model').save().catch(function (errors) {
+                self.showErrors(errors);
+                self.get('model').rollback();
+            });
+        },
+
+        clearCoverImage: function () {
+            var self = this;
+
+            this.set('model.image', '');
+
+            if (this.get('model.isNew')) {
+                return;
+            }
+
+            this.get('model').save().catch(function (errors) {
+                self.showErrors(errors);
+                self.get('model').rollback();
+            });
+        },
+
+        resetUploader: function () {
+            var uploader = this.get('uploaderReference');
+
+            if (uploader && uploader[0]) {
+                uploader[0].uploaderUi.reset();
+            }
+        },
+        
         save: function (options) {
             var status = this.get('willPublish') ? 'published' : 'draft',
                 prevStatus = this.get('model.status'),
@@ -328,6 +367,7 @@ EditorControllerMixin = Ember.Mixin.create({
         // Match the uploaded file to a line in the editor, and update that line with a path reference
         // ensuring that everything ends up in the correct place and format.
         handleImgUpload: function (e, resultSrc) {
+            console.log("HANDLE UPLAOD");
             var editor = this.get('editor'),
                 editorValue = editor.getValue(),
                 replacement = imageManager.getSrcRange(editorValue, e.target),

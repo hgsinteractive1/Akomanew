@@ -17,8 +17,7 @@ adminControllers = {
                 var apiConfig = _.omit(data.configuration, function (value) {
                     return _.contains(['environment', 'database', 'mail', 'version'], value.key);
                 });
-
-                res.render('default', {
+                res.render('akoma', {
                     skip_google_fonts: config.isPrivacyDisabled('useGoogleFonts'),
                     configuration: apiConfig
                 });
