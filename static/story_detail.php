@@ -76,18 +76,20 @@
 	<!--BEGIN STORY-->
 	<div id="story-footer">
 		<div id="social">
-			<ul id="main-share">
-				<li><a href="#" class="share-button facebook">Share <span class="share-lang">on Facebook</span></a></li>
-				<li><a href="#" class="share-button twitter">Share <span class="share-lang">on Twitter</span></a></li>
-				<li><div class="plus"><span class="vr"></span><span class="hr"></span></div></li>
-			</ul>
+			<div id="share-tools">
+				<ul id="main-share">
+					<li><a href="#" class="share-button facebook">Share <span class="share-lang">on Facebook</span></a></li>
+					<li><a href="#" class="share-button twitter">Share <span class="share-lang">on Twitter</span></a></li>
+					<li><div class="plus" id="expand-shares"><span class="vr"></span><span class="hr"></span></div></li>
+				</ul>
+				<div class="clear"></div>
+				<ul id="secondary-share">
+					<li><a href="#" class="share-button google-plus"></a></li>
+					<li><a href="#" class="share-button linkedIn"></a></li>
+					<li><a href="#" class="share-button email"></a></li>
+				</ul>
+			</div>
 			<a href="#" class="recommend-button">Recommend</a>
-			<div class="clear"></div>
-			<ul id="secondary-share">
-				<li><a href="#" class="share-button google-plus"></a></li>
-				<li><a href="#" class="share-button linkedIn"></a></li>
-				<li><a href="#" class="share-button email"></a></li>
-			</ul>
 			<div class="clear"></div>
 		</div>
 		<!--STORY META-->

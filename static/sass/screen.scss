@@ -769,12 +769,18 @@
 				top:-3px;
 				left:200px;
 
+				@include respond-to(handhelds) {
+					left:80px;
+				}
+
 				/* 1.5 dpr */
 				@media(-webkit-min-device-pixel-ratio: 1.5), 
 				(min-resolution: 144dpi){ 
 				    background: url(../images/load_more_arrow@2x.png) no-repeat;
 				    background-size:100%;
 				}
+
+				
 			}
 		}
 
@@ -847,102 +853,185 @@
 			width: 700px;
 			margin: 0 auto;
 
+			@include respond-to(handhelds) {
+				width: 90%;	
+			}
+
 			#social {
 				width: 100%;
 
-				ul#main-share {
-					height: 40px;
-					float: left;
+					//expanded state
+					&.expanded {
 
-					li {
-						float: left;
-						height: 40px;
-						margin-right: 7px;
-
-						div.plus {
-							height: 40px;
-							width: 40px;
-							background: #C4C3C3;
-							border-radius: 50%;
-							cursor: pointer;
-							position:relative;
-
-							span.vr {
-								position:absolute;
-								width: 20px;
-								height: 2px;
-								left:10px;
-								top:19px;
-								background: #FFF;
-							}
-
-							span.hr {
-								position:absolute;
-								width: 2px;
-								height: 20px;
-								left:19px;
-								top:10px;
-								background: #FFF;
+						#share-tools {
+							ul#main-share {
+								li {
+									div.plus {
+										span.hr {
+											display:none;
+										}
+									}
+								}
 							}
 
 						}
+					}
 
-						a.share-button {
-							width: 120px;
-							height: 26px;
-							background: #000;
-							display:block;
-							border-radius: 40px;
-							color: #FFF;
-							font-size: 12px;
-							padding-top:14px;
-							padding-left:38px;
-							text-decoration: none;
-							font-weight: 600;
+				#share-tools {
 
-							@include respond-to(handhelds) {
-								width: 80px;
-								font-size: 14px;
-								padding-top:12px;
-								height:28px;
-								padding-left:40px;
-								width: 75px;
+					float:left;
+
+					@include respond-to(handhelds) {
+						float: none;	
+					}
+
+					ul#main-share {
+						height: 40px;
+						float: left;
+
+
+
+						li {
+							float: left;
+							height: 40px;
+							margin-right: 7px;
+
+							div.plus {
+								height: 40px;
+								width: 40px;
+								background: #C4C3C3;
+								border-radius: 50%;
+								cursor: pointer;
+								position:relative;
+
+								span.vr {
+									position:absolute;
+									width: 20px;
+									height: 2px;
+									left:10px;
+									top:19px;
+									background: #FFF;
+								}
+
+								span.hr {
+									position:absolute;
+									width: 2px;
+									height: 20px;
+									left:19px;
+									top:10px;
+									background: #FFF;
+								}
+
 							}
 
-							span.share-lang {
+							a.share-button {
+								width: 120px;
+								height: 26px;
+								background: #000;
+								display:block;
+								border-radius: 40px;
+								color: #FFF;
+								font-size: 12px;
+								padding-top:14px;
+								padding-left:38px;
+								text-decoration: none;
+								font-weight: 600;
+
 								@include respond-to(handhelds) {
-									display:none;
-								}
-							}
-
-							&.facebook {
-								background: url(../images/facebook_share.png) no-repeat #3A5795;
-								background-position: 16px 9px;
-
-								/* 1.5 dpr */
-								@media(-webkit-min-device-pixel-ratio: 1.5), 
-								(min-resolution: 144dpi) { 
-								    background: url(../images/facebook_share@2x.png) no-repeat #3A5795;
-								    background-position: 18px 12px;
-								    background-size:8%;
+									width: 80px;
+									font-size: 14px;
+									padding-top:12px;
+									height:28px;
+									padding-left:40px;
+									width: 75px;
 								}
 
-							}
+								span.share-lang {
+									@include respond-to(handhelds) {
+										display:none;
+									}
+								}
 
-							&.twitter {
-								background: url(../images/twitter_share.png) no-repeat #55ACEE;
-								background-position: 14px 11px;
+								&.facebook {
+									background: url(../images/facebook_share.png) no-repeat #3A5795;
+									background-position: 16px 9px;
 
-								/* 1.5 dpr */
-								@media(-webkit-min-device-pixel-ratio: 1.5), 
-								(min-resolution: 144dpi) { 
-								    background: url(../images/twitter_share@2x.png) no-repeat #55ACEE;
-								    background-position: 14px 14px;
-								    background-size:14%;
+									/* 1.5 dpr */
+									@media(-webkit-min-device-pixel-ratio: 1.5), 
+									(min-resolution: 144dpi) { 
+									    background: url(../images/facebook_share@2x.png) no-repeat #3A5795;
+									    background-position: 18px 12px;
+									    background-size:8%;
+									}
+
+								}
+
+								&.twitter {
+									background: url(../images/twitter_share.png) no-repeat #55ACEE;
+									background-position: 14px 11px;
+
+									/* 1.5 dpr */
+									@media(-webkit-min-device-pixel-ratio: 1.5), 
+									(min-resolution: 144dpi) { 
+									    background: url(../images/twitter_share@2x.png) no-repeat #55ACEE;
+									    background-position: 14px 14px;
+									    background-size:14%;
+									}
 								}
 							}
 						}
 					}
+
+					ul#secondary-share {
+						height: 40px;
+						display:block;
+						width: 100%;
+						margin-top:2px;
+						display:none;
+
+						li {
+							float: left;
+							height: 40px;
+							margin-right: 7px;
+
+							a.share-button {
+								width: 74px;
+								height: 40px;
+								border-radius: 40px;
+								display: block;
+								background-position: center;
+
+
+								&.google-plus {
+									background-image: url(../images/google_plus_share.png);
+									background-repeat: no-repeat;
+									background-color: #C14A33;
+								}
+
+
+								&.google-plus {
+									background-image: url(../images/google_plus_share.png);
+									background-repeat: no-repeat;
+									background-color: #C14A33;
+								}
+
+								&.linkedIn {
+									background-image: url(../images/linkedIn_share.png);
+									background-repeat: no-repeat;
+									background-color: #0076B7;
+								}
+
+
+								&.email {
+									background-image: url(../images/email_share.png);
+									background-repeat: no-repeat;
+									background-color: #7FA1B4;
+								}
+								
+							}
+						}
+					}
+
 				}
 
 				a.recommend-button {
@@ -960,54 +1049,18 @@
 					text-decoration: none;
 					background: url(../images/heart_recommend.png) no-repeat;
 					background-position: 12px 10px;
+
+					@include respond-to(handhelds) {
+						float: none;
+						margin-top:6px;
+					}
 				}
 
-				ul#secondary-share {
-					height: 40px;
-					display:block;
-					width: 100%;
-					margin-top:2px;
-
-					li {
-						float: left;
-						height: 40px;
-						margin-right: 7px;
-
-						a.share-button {
-							width: 74px;
-							height: 40px;
-							border-radius: 40px;
-							display: block;
-							background-position: center;
-
-
-							&.google-plus {
-								background-image: url(../images/google_plus_share.png);
-								background-repeat: no-repeat;
-								background-color: #C14A33;
-							}
-
-
-							&.google-plus {
-								background-image: url(../images/google_plus_share.png);
-								background-repeat: no-repeat;
-								background-color: #C14A33;
-							}
-
-							&.linkedIn {
-								background-image: url(../images/linkedIn_share.png);
-								background-repeat: no-repeat;
-								background-color: #0076B7;
-							}
-
-
-							&.email {
-								background-image: url(../images/email_share.png);
-								background-repeat: no-repeat;
-								background-color: #7FA1B4;
-							}
-							
-						}
+				&.expanded {
+					#share-tools {
+					ul#secondary-share {
+						display: block;
+					}
 					}
 				}
 			}

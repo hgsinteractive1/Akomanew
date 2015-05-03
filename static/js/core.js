@@ -8,7 +8,10 @@ require.config({
 
     //PRIMARY CONTROLLERS
     // global elements and core application states
-    "main": "modules/main"
+    "main": "modules/main",
+
+     // modules and components
+    "storyShareTools": "modules/story_share"
 
     
   }
