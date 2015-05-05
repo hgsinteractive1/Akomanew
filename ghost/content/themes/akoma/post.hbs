@@ -1,0 +1,78 @@
+{{!< default}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+
+
+{{! Everything inside the #post tags pulls data from the post }}
+{{#post}}
+
+
+<div id="story-detail">
+	<!--STORY INTRO AREA-->
+	<div id="story-intro">
+		<h2>{{title}}</h2>
+		<div class="author">
+            {{!-- {{#if author.image}}<img class="author-thumb" src="{{author.image}}" alt="Author image" nopin="nopin" />{{/if}} --}}
+            <div class="author-image" {{#if author.image}}style="background-image:url({{author.image}})"{{/if}}></div>
+            <div class="byline">
+                <p>{{author}} <span>{{date timeago=true}}</span></p>
+            </div>
+        </div>
+			<div class="recommend">
+				<div class="heart"></div>
+				<div class="count">23</div>
+			</div>
+			<div class="clear"></div>
+	</div>
+	<!--END STORY INTRO AREA-->
+
+	<!--BEGIN STORY IMAGE-->
+	<div id="story-image">
+		{{#if image}}
+            <img src="{{image}}" />
+        {{/if}}
+	</div>
+	<!--END STORY IMAGE-->
+	<!--BEGIN STORY BODY-->
+	<div id="story-body">
+		{{{markdown}}}
+	</div>
+	<!--END STORY BODY-->
+	<!--BEGIN STORY-->
+	<div id="story-footer">
+		<div id="social">
+			<div id="share-tools">
+				<ul id="main-share">
+					<li><a href="#" class="share-button facebook">Share <span class="share-lang">on Facebook</span></a></li>
+					<li><a href="#" class="share-button twitter">Share <span class="share-lang">on Twitter</span></a></li>
+					<li><div class="plus" id="expand-shares"><span class="vr"></span><span class="hr"></span></div></li>
+				</ul>
+				<div class="clear"></div>
+				<ul id="secondary-share">
+					<li><a href="#" class="share-button google-plus"></a></li>
+					<li><a href="#" class="share-button linkedIn"></a></li>
+					<li><a href="#" class="share-button email"></a></li>
+				</ul>
+			</div>
+			<a href="#" class="recommend-button">Recommend</a>
+			<div class="clear"></div>
+		</div>
+		<!--STORY META-->
+			<div class="story-meta">
+				<div class="tags">
+					<p>Posted in:</p>
+					<ul>
+						<li><a href="#" class="tag">Life</a></li>
+						<li><a href="#" class="tag">Learn</a></li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+		<!--END STORY META-->
+	</div>
+	<!--END STORY FOOTER-->
+
+
+</div>
+<!--END STORY DETAIL-->
+
+{{/post}}

@@ -270,6 +270,19 @@ Post = ghostBookshelf.Model.extend({
     toJSON: function (options) {
         var attrs = ghostBookshelf.Model.prototype.toJSON.call(this, options);
 
+
+        // SET the READ TIME
+        var words = String(this.markdown);
+        // Strip inline and bottom footnotes
+        words = words.replace(/<a href="#fn.*?rel="footnote">.*?<\/a>/gi, '');
+        words = words.replace(/<div class="footnotes"><ol>.*?<\/ol><\/div>/, '');
+        // Strip other html
+        words = words.replace(/<\/?[^>]+>/gi, '');
+        words = words.replace(/(\r\n|\n|\r)+/gm, ' ');
+        words = words.split(" ").length;
+        attrs.readTime = Math.ceil(words / 250.0);
+
+
         attrs.author = attrs.author || attrs.author_id;
         attrs.url = config.urlPathForPost(attrs, permalinkSetting);
         delete attrs.author_id;
@@ -491,6 +504,7 @@ Post = ghostBookshelf.Model.extend({
                 pagination.total = totalPosts;
                 pagination.next = null;
                 pagination.prev = null;
+                console.log(postCollection);
 
                 data.posts = postCollection.toJSON(options);
                 data.meta = meta;

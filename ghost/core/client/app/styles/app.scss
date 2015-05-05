@@ -21,7 +21,7 @@
 // Patterns: Groups of Styles
 // --------------------------------------------------
 
-@import "patterns/global";
+// @import "patterns/global";
 @import "patterns/_shame"; // TODO: Remove
 @import "patterns/forms";
 @import "patterns/buttons";
@@ -63,3 +63,5 @@
 @import "layouts/about";
 @import "layouts/tags";
 @import "layouts/error";
+
+@import "./akoma";
