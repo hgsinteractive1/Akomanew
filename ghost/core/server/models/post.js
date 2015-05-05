@@ -504,7 +504,6 @@ Post = ghostBookshelf.Model.extend({
                 pagination.total = totalPosts;
                 pagination.next = null;
                 pagination.prev = null;
-                console.log(postCollection);
 
                 data.posts = postCollection.toJSON(options);
                 data.meta = meta;
