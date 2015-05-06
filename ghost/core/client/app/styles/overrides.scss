@@ -1,0 +1,30 @@
+
+
+.editor {
+	.markdown-editor {
+        position: relative;
+        padding:0px;
+    }
+
+    .entry-markdown,
+    .entry-preview {
+        position: relative;
+        top:0px;
+        bottom: 0px;
+        padding: 0px;
+        border: none;
+        background: none;
+    }
+
+    .entry-markdown-content {
+        position: relative;
+    }
+}
+
+#container {
+    position: initial;
+}
+
+#gh-main.viewport {
+    position: relative;
+}
