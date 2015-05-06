@@ -13,14 +13,11 @@
         <!--REMOVE not-edited-yet class when user starts editing-->
         <!--This will remove the default grey-->
         <h2>
-            {{!-- <section class="box entry-title">
-                {{textarea id="entry-title" placeholder="Your Post Title" value=model.titleScratch
-                tabindex="1" focus=shouldFocusTitle}}
-            </section> --}}
+            {{gh-trim-focus-input type="hidden" id="entry-title" placeholder="Your Post Title" value=model.titleScratch tabindex="1" focus=shouldFocusTitle}}
             {{#if model.titleScratch}}
-                <div class="editable-wrapper" contenteditable="true" id="entry-title">{{model.titleScratch}}</div>
+                <div class="editable-wrapper" contenteditable="true" id="entry-title-visible">{{model.titleScratch}}</div>
             {{else}}
-                <div class="editable-wrapper not-edited-yet" contenteditable="true" id="entry-title">Enter Story Title...</div>
+                <div class="editable-wrapper not-edited-yet" contenteditable="true" id="entry-title-visible">Enter Story Title...</div>
             {{/if}}
         </h2>
     </div>
@@ -65,7 +62,10 @@
 
     <script type="text/javascript">
         $("[contenteditable=true]").on("keyup", function(){ $(this).closest(".not-edited-yet").removeClass("not-edited-yet"); });
+        $("#entry-title-visible").on("keyup", function(){ $("#entry-title").val($(this).text()); $("#entry-title").change(); });
     </script>
+
+    {{view "editor-save-button" id="entry-actions" classNameBindings="model.isNew:unsaved"}}
 
 </div>
 <!--END STORY DETAIL-->
