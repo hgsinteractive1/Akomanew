@@ -13,7 +13,7 @@
         <!--REMOVE not-edited-yet class when user starts editing-->
         <!--This will remove the default grey-->
         <h2>
-            {{gh-trim-focus-input type="hidden" id="entry-title" placeholder="Your Post Title" value=model.titleScratch tabindex="1" focus=shouldFocusTitle}}
+            {{gh-trim-focus-input type="hidden" id="entry-title" value=model.titleScratch tabindex="1" focus=shouldFocusTitle}}
             {{#if model.titleScratch}}
                 <div class="editable-wrapper" contenteditable="true" id="entry-title-visible">{{model.titleScratch}}</div>
             {{else}}
@@ -69,6 +69,21 @@
 
 </div>
 <!--END STORY DETAIL-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 {{!-- <header class="page-header">
     <button class="menu-button js-menu-button" {{action "toggleGlobalMobileNav"}}><span class="sr-only">Menu</span></button>
