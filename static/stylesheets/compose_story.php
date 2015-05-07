@@ -52,10 +52,6 @@
 <?php include('includes/nav_bar_compose.php') ?>
 <!--END-->
 
-<!--MAIN NAVIGATION-->
-<?php include('includes/compose_finish_overlay.php') ?>
-<!--END-->
-
 <!--INCLUDE REQUIRE/INIT MAIN SCRIPTS-->
 <script src="js/require.js" data-main="js/core"></script>
 <!--END-->
