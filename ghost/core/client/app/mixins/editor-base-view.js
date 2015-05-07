@@ -25,6 +25,9 @@ var EditorViewMixin = Ember.Mixin.create({
         //     target: this.$('.js-entry-preview'),
         //     offset: 10
         // }));
+
+        var controller = this.get("controller");
+        this.$().on("keyup", function(){ setTimeout(function(){ controller.send("type"); }, 100); });
     },
 
     removeScrollHandlers: function () {

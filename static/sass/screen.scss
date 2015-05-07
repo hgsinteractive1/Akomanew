@@ -21,7 +21,7 @@
 
 	$rule-color : #D8D8D8;
 	$Lato : Lato, helvetica, arial, san-serif;
-	$assets_path: "../";
+	$assets_path: "./";
 
 
 /************************************************************
@@ -213,7 +213,7 @@
 		left:-50px;
 		cursor: pointer;
 		border-radius: 5px;
-		background: url(../images/edit_story_icon.png) no-repeat #D8D8D8;
+		background: url(#{$assets_path}images/edit_story_icon.png) no-repeat #D8D8D8;
 		background-position: 11px 7px;
 
 		/* 1.5 dpr */
@@ -930,6 +930,8 @@
 		position:fixed;
 		top:0px;
 		left: 0px;
+		z-index: 1000;
+		display:none;
 
 			div.relative {
 
@@ -1124,13 +1126,13 @@
 									}
 
 									&.continue-editing {
-										background: url(../images/continue_editing_icon.png) no-repeat;
+										background: url(#{$assets_path}images/continue_editing_icon.png) no-repeat;
 										background-position: 12px 9px;
 
 										/* 1.5 dpr */
 										@media(-webkit-min-device-pixel-ratio: 1.5), 
 										(min-resolution: 144dpi) { 
-										  	 background: url(../images/continue_editing_icon@2x.png) no-repeat;
+										  	 background: url(#{$assets_path}images/continue_editing_icon@2x.png) no-repeat;
 										    background-position: 12px 10px;
 										    background-size:10%;
 										}
@@ -1144,13 +1146,13 @@
 									}
 
 									&.save-to-drafts {
-										background: url(../images/save_to_drafts.png) no-repeat;
+										background: url(#{$assets_path}images/save_to_drafts.png) no-repeat;
 										background-position: 16px 9px;
 
 										/* 1.5 dpr */
 										@media(-webkit-min-device-pixel-ratio: 1.5), 
 										(min-resolution: 144dpi) { 
-										  	background: url(../images/save_to_drafts@2x.png) no-repeat;
+										  	background: url(#{$assets_path}images/save_to_drafts@2x.png) no-repeat;
 										    background-position: 14px 10px;
 										    background-size:10%;
 										}
@@ -1162,13 +1164,13 @@
 										border: none;
 										padding-left:0px;
 										color: #FFF;
-										background: url(../images/publish_checkmark.png) no-repeat #40D047;
+										background: url(#{$assets_path}images/publish_checkmark.png) no-repeat #40D047;
 										background-position: 17px 9px;
 
 										/* 1.5 dpr */
 										@media(-webkit-min-device-pixel-ratio: 1.5), 
 										(min-resolution: 144dpi) { 
-										  	background: url(../images/publish_checkmark@2x.png) no-repeat #40D047;
+										  	background: url(#{$assets_path}images/publish_checkmark@2x.png) no-repeat #40D047;
 										    background-position: 15px 11px;
 										    background-size:10%;
 										}

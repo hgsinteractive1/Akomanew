@@ -1,12 +1,14 @@
 
+<li><a href="#" {{action "saveWithType" "draft"}} class="action-button save-to-drafts">{{view.draftText}}</a></li>
+<li class="last"><a {{action "saveWithType" "publish"}} href="#" class="action-button publish">{{view.publishText}}</a></li>
 
-<button type="button" {{action "saveWithType" "draft"}} class="btn btn-sm js-publish-button {{if view.isDangerous 'btn-red' 'btn-blue'}}">{{view.draftText}}</button>
+{{!-- <button type="button" {{action "saveWithType" "draft"}} class="btn btn-sm js-publish-button {{if view.isDangerous 'btn-red' 'btn-blue'}}">{{view.draftText}}</button>
 <button type="button" {{action "saveWithType" "publish"}} class="btn btn-sm js-publish-button {{if view.isDangerous 'btn-red' 'btn-blue'}}">{{view.publishText}}</button>
-
-{{#unless model.isNew}}
+ --}}
+{{!-- {{#unless model.isNew}}
     <button type="button" {{action "openModal" "delete-post" this}} class="btn btn-sm js-publish-button btn-red">{{view.deleteText}}</button>
 {{/unless}}
-
+ --}}
 
 
 {{!-- {{#gh-dropdown-button dropdownName="post-save-menu" classNameBindings=":btn :btn-sm view.isDangerous:btn-red:btn-blue btnopen:active :dropdown-toggle :up"}}

@@ -265,6 +265,10 @@ EditorControllerMixin = Ember.Mixin.create({
             }
         },
         
+        type: function(){
+            this.set("model.copy", this.get('editor').getValue());
+        },
+
         save: function (options) {
             var status = this.get('willPublish') ? 'published' : 'draft',
                 prevStatus = this.get('model.status'),
@@ -275,7 +279,7 @@ EditorControllerMixin = Ember.Mixin.create({
                 psmController = this.get('controllers.post-settings-menu'),
                 promise;
 
-                console.log("SAVING...", this.get('editor').getValue())
+                console.log("SAVING...");
             options = options || {};
 
             if (autoSaveId) {

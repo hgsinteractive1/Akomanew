@@ -110,6 +110,7 @@ var EditorBaseRoute = Ember.Mixin.create(styleBody, ShortcutsRoute, loadingIndic
     },
 
     setupController: function (controller, model) {
+        model.set('copy', model.get('markdown'));
         model.set('scratch', model.get('markdown'));
         model.set('titleScratch', model.get('title'));
 

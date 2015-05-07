@@ -60,28 +60,87 @@
     </div>
     <!--END STORY BODY-->
 
-    <script type="text/javascript">
-        $("[contenteditable=true]").on("keyup", function(){ $(this).closest(".not-edited-yet").removeClass("not-edited-yet"); });
-        $("#entry-title-visible").on("keyup", function(){ $("#entry-title").val($(this).text()); $("#entry-title").change(); });
-        $("#entry-title-visible").on("change", function(){ $("#entry-title-visible").html($(this).val()); });
-    </script>
-
-    {{view "editor-save-button" id="entry-actions" classNameBindings="model.isNew:unsaved"}}
+    <hr />
+    <br />
+    {{render 'post-tags-input'}}
+    
 
 </div>
 <!--END STORY DETAIL-->
 
 
 
+<div id="finish-overlay">
+    <div class="relative">
+        <div id="content">
+            
+            <!--TOP DIRECTIONS-->
+            <div id="top-directions">
+                <h4>Done Editing?</h4>
+                <p>Change your story’s title, subtitle and add relevant tags.</p>
+            </div>
+            <!--END TOP DIRECTIONS-->
+            <!--BEGIN SUMMARY DETAILS-->
+            <div id="summary-details">
+                <div class="story-info">
+                    <h4 class='summary-title'>{{model.title}}</h4>
+                    <hr/ >
+                    <div class="summary">
+                        <div contenteditable="true">
+                            {{gh-excerpt model.abstract model.copy}}
+                        </div>
+                        <div class="edit-icon"></div>
+                    </div>
+                    <ul class="tag-list">
+                        <li class="label"><h4>Tag your story:</h4></li>
+                        <li class="tag"><a href="#">Life</a></li>
+                        <li class="tag"><a href="#" class="active">Ideas</a></li>
+                        <li class="tag"><a href="#">Rants</a></li>
+                        <li class="tag"><a href="#">Learn</a></li>
+                    </ul>
+                    <p class="tag-descrip">Stories may have multiple tags</p>
+                </div>
+            </div>
+            <!--END SUMMARY DETAILS-->
+            <!--BEGIN ACTION AREA/BUTTONS -->
+            <div id="action-area">
+                <ul class="action-list">
+                    <li><a href="#" class="action-button continue-editing">Continue Editing</a></li>
+                    {{view "editor-save-button" id="entry-actions" classNameBindings="model.isNew:unsaved"}}
+                </ul>
+            </div>
+            <!--END ACTION AREA-->
+        </div>
+    </div>
+</div>
 
 
+<!-- TODO: Remove this. -->
+<script type="text/javascript">
+    // Remove the "not-edited-yet" class when edits are made to divs.
+    $("[contenteditable=true]").on("keyup", function(){ $(this).closest(".not-edited-yet").removeClass("not-edited-yet"); });
 
+    // Update a hidden input with the changes made to the editable div.
+    // This is so the header text saves correctly.
+    $("#entry-title-visible").on("keyup", function(){ $("#entry-title").val($(this).text()); $("#entry-title").change(); });
+    $("#entry-title-visible").on("change", function(){ $("#entry-title-visible").html($(this).val()); });
 
+    // Bind the finish editing button, this should show the modal
+    $("#finish-writing-story").on("click", function(e){
+        e.preventDefault();
+        
+        // Copy the title
+        $(".summary-title").html($("#entry-title").val());
 
+        $("#finish-overlay").fadeIn("fast");
+    });
 
-
-
-
+    // Bind the continue editing button, this just dismisses the modal.
+    $("#finish-overlay #action-area .continue-editing").on("click", function(e){
+        e.preventDefault();
+        $("#finish-overlay").fadeOut("fast");
+    });
+</script>
 
 
 
