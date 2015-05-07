@@ -9,7 +9,7 @@ var watchedProps,
 
 // this array will hold properties we need to watch
 // to know if the model has been changed (`controller.isDirty`)
-watchedProps = ['model.scratch', 'model.titleScratch', 'model.isDirty', 'model.tags.[]'];
+watchedProps = ['model.scratch', 'model.titleScratch', 'model.isDirty', 'model.tags.[]', 'model.abstract'];
 
 PostModel.eachAttribute(function (name) {
     watchedProps.push('model.' + name);
@@ -51,6 +51,7 @@ EditorControllerMixin = Ember.Mixin.create({
      * can the post's status change.
      */
     willPublish: boundOneWay('model.isPublished'),
+    abstract: boundOneWay('model.abstract'),
 
     // Make sure editor starts with markdown shown
     isPreview: false,
@@ -279,7 +280,7 @@ EditorControllerMixin = Ember.Mixin.create({
                 psmController = this.get('controllers.post-settings-menu'),
                 promise;
 
-                console.log("SAVING...");
+                console.log("SAVING...", this.get('model.abstract'), this.get('abstract'));
             options = options || {};
 
             if (autoSaveId) {

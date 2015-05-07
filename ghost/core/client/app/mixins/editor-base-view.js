@@ -27,7 +27,14 @@ var EditorViewMixin = Ember.Mixin.create({
         // }));
 
         var controller = this.get("controller");
-        this.$().on("keyup", function(){ setTimeout(function(){ controller.send("type"); }, 100); });
+        this.$().on("keyup", function(){ 
+            if($("input#entity-abstract").val().trim() === "") {
+                setTimeout(function(){ 
+                    controller.send("type");
+                    $("input#entity-abstract").val("");
+                }, 100); 
+            }
+        });
     },
 
     removeScrollHandlers: function () {

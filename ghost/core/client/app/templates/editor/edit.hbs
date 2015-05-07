@@ -86,8 +86,9 @@
                     <h4 class='summary-title'>{{model.title}}</h4>
                     <hr/ >
                     <div class="summary">
-                        <div contenteditable="true">
-                            {{gh-excerpt model.abstract model.copy}}
+                        {{gh-input name="post-setting-abstract" type="hidden" id="entity-abstract" value=model.abstract action="setAbstract"}}
+                        <div contenteditable="true" id='abstract-editor'>
+                            {{{gh-excerpt model.abstractScratch model.copy}}}
                         </div>
                         <div class="edit-icon"></div>
                     </div>
@@ -117,6 +118,13 @@
 
 <!-- TODO: Remove this. -->
 <script type="text/javascript">
+    // If they edit the abstract, create an input (if there isnt already one) to store it in so that we save the abstract value.
+    $("#abstract-editor").on("keyup", function(){
+        var input = $("input#entity-abstract", $(this).closest(".summary"));
+        input.val($("#abstract-editor").html());
+        input.change();
+    });
+
     // Remove the "not-edited-yet" class when edits are made to divs.
     $("[contenteditable=true]").on("keyup", function(){ $(this).closest(".not-edited-yet").removeClass("not-edited-yet"); });
 
@@ -140,6 +148,7 @@
         e.preventDefault();
         $("#finish-overlay").fadeOut("fast");
     });
+
 </script>
 
 
