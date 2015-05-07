@@ -28,7 +28,7 @@ var EditorViewMixin = Ember.Mixin.create({
     },
 
     removeScrollHandlers: function () {
-        this.get('$previewViewPort').off('scroll');
+        // this.get('$previewViewPort').off('scroll');
     }.on('willDestroyElement'),
 
     // updated when gh-ed-editor component scrolls
