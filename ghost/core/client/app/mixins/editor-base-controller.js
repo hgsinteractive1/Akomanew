@@ -367,7 +367,6 @@ EditorControllerMixin = Ember.Mixin.create({
         // Match the uploaded file to a line in the editor, and update that line with a path reference
         // ensuring that everything ends up in the correct place and format.
         handleImgUpload: function (e, resultSrc) {
-            console.log("HANDLE UPLAOD");
             var editor = this.get('editor'),
                 editorValue = editor.getValue(),
                 replacement = imageManager.getSrcRange(editorValue, e.target),

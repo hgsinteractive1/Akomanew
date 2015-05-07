@@ -1,8 +1,4 @@
-<a class="sr-only sr-only-focusable" href="#gh-main">Skip to main content</a>
-
-{{#unless hideNav}}
-    {{partial "navbar"}}
-{{/unless}}
+{{!-- <a class="sr-only sr-only-focusable" href="#gh-main">Skip to main content</a> --}}
 
 {{gh-notifications location="top" notify="topNotificationChange"}}
 
@@ -10,8 +6,13 @@
     {{outlet}}
 </main>
 
+
 {{gh-notifications location="bottom"}}
 
 {{outlet "modal"}}
 
 {{!-- {{outlet "settings-menu"}} --}}
+
+{{#unless hideNav}}
+    {{partial "navbar"}}
+{{/unless}}

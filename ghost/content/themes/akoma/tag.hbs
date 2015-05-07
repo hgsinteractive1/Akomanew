@@ -1,0 +1,21 @@
+{{!< featured}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+<!--BEGIN CATEGORY HERO AREA-->
+<div id="category-hero">
+	<div id="image-area">
+		<img src="/ghost/images/default_hero.jpg" />
+		<div id="tint"></div>
+	</div>
+	<div id="headline">
+		<h3>{{tag.name}}
+		{{#if tag.description}}
+			<span class="circle-decoration"></span>
+			<span class="cat-descrip">{{tag.description}}</span></h3>
+		{{/if}}
+		<h4>Featured story title!</h4>
+	</div>
+</div>
+<!--END CATEGORY HERO AREA-->
+
+
+{{> "loop"}}

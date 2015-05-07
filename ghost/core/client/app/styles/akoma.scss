@@ -181,6 +181,7 @@
 					height: 20px;
 					margin-right: 4px;
 					float: left;
+					
 					a.tag {
 						display:block;
 						height: 17px;
@@ -206,272 +207,8 @@
 /************************************************************
 *	BEGIN PRIMARY NAVIGATION
 */	
+	@import "./includes/nav";
 
-	//basic namespace provides UI in black state
-	// .is-white provides styles for fixed overlay state
-	#primary-nav {
-		height:87px;
-		border-bottom: 1px solid $rule-color;
-		width:100%;
-		//position:fixed;
-		position:absolute;
-		top:0px;
-		left:0px;
-
-		&.is-white {
-			border-bottom: none;
-			position:absolute;
-		}
-
-		@include respond-to(handhelds) {
-			height:50px;	
-		}
-
-		a#logo {
-			width:96px;
-			height:26px;
-			display:block;
-			position:absolute;
-			left:50%;
-			margin-left: -48px;
-			top:30px;
-			background-position: 0 0;
-			background: url(#{$assets_path}images/aKoma_logo.png) no-repeat;
-			background-size:100%;
-
-			@include respond-to(handhelds) {
-				width:64px;
-				height:24px;
-				top:16px;
-				left:44px;
-				margin-left:0px;	
-			}
-
-			/* 1.5 dpr */
-			@media(-webkit-min-device-pixel-ratio: 1.5), 
-			(min-resolution: 144dpi){ 
-			    background: url(#{$assets_path}images/aKoma_logo@2x.png) top left no-repeat;
-			    background-size:100%;
-			}
-		}
-
-		&.is-white {
-			a#logo {
-				background-position: 0 -26px;
-					/* 1.5 dpr */
-				@include respond-to(handhelds) {
-					background-position: 0 -18px;	
-				}
-			}	
-		}
-
-
-		a#menu {
-			width:50px;
-			height:50px;
-			position:absolute;
-			display:block;
-			left:20px;
-			top:18px;
-
-			@include respond-to(handhelds) {
-				height:40px;
-				width:40px;
-				left:0px;
-				top:5px;	
-			}
-
-			div.menu-bar {
-				width:35px;
-				height:2px;
-				position:absolute;
-				left:7px;
-				background:#000;
-
-					@include respond-to(handhelds) {
-						width:27px;
-					}
-
-					
-				&.one {
-					top:15px;
-					@include respond-to(handhelds) {
-						top:13px;
-					}
-				}
-
-				&.two {
-					top:24px;
-					@include respond-to(handhelds) {
-						top:19px;
-					}
-				}
-
-				&.three {
-					top:33px;
-					@include respond-to(handhelds) {
-						top:25px;
-					}
-				}
-
-			}
-
-		}
-
-		&.is-white {
-			a#menu {
-				div.menu-bar {
-					background:#FFF;
-				}
-			}
-				
-		}
-
-		a#write-story {
-			width:204px;
-			height:40px;
-			position:absolute;
-			top: 23px;
-			right: 87px;
-			border:1px solid #000;
-			-webkit-border-radius: 20px;
-			-moz-border-radius: 20px;
-			border-radius: 20px;
-			overflow: hidden;
-			text-decoration: none;
-
-				@include respond-to(handhelds) {
-					height:30px;
-					width:30px;
-					border-radius:50%;
-					top:10px;
-					right:65px;
-					
-				}
-
-			p {
-				position:absolute;
-				width: 100%;
-				height:30px;
-				top:8px;
-				text-align: center;
-				font-size: 20px;
-				font-weight:200;
-				color:#000;
-				margin-top: 0px;
-
-				@include respond-to(handhelds) {
-					display:none;	
-				}
-			}
-
-			#compose-icon {
-				height:14px;
-				width:14px;
-				background:url(#{$assets_path}images/compose_story.png) no-repeat;
-				position:absolute;
-				display:none;
-				top:8px;
-				left:8px;
-				overflow: hidden;
-				background-position: 0 0;
-
-				/* 1.5 dpr */
-				@media(-webkit-min-device-pixel-ratio: 1.5), 
-				(min-resolution: 144dpi){ 
-				    background: url(#{$assets_path}images/compose_story@2x.png) no-repeat;
-				    background-size:100%;
-				}
-
-				@include respond-to(handhelds) {
-					display:block;
-					
-				}
-
-				
-				
-			}
-
-		}
-
-		&.is-white {
-			a#write-story {
-				border:1px solid #FFF;
-
-				p {
-					color:#FFF;
-				}
-
-				#compose-icon {
-					background-position: 0 -14px;
-				}
-			}
-		}
-
-		a#log-in {
-			height:42px;
-			width:42px;
-			border-radius: 50%;
-			border: 1px solid #000;
-			position:absolute;
-			top: 23px;
-			right: 30px;
-			overflow: hidden;
-
-				@include respond-to(handhelds) {
-					height:30px;
-					width:30px;
-					border-radius:50%;
-					top:10px;
-					right:14px;
-					
-				}
-
-			#logged-out-icon {
-				width:24px;
-				height:33px;
-				position:absolute;
-				background-position: 0 0;
-				background: url(#{$assets_path}images/log_in.png) no-repeat;
-				background-size:100%;
-				top:10px;
-				left:9px;
-
-				@include respond-to(handhelds) {
-					width:18px;
-					height:24px;
-					top:7px;
-					left:6px;
-					
-				}
-
-
-				/* 1.5 dpr */
-				@media(-webkit-min-device-pixel-ratio: 1.5), 
-				(min-resolution: 144dpi){ 
-				    background: url(#{$assets_path}images/log_in@2x.png) no-repeat;
-				    background-size:100%;
-				}
-			}
-
-
-
-		}
-
-		&.is-white {
-			a#log-in {
-				border: 1px solid #FFF;
-
-				#logged-out-icon {
-					background-position: 0 -33px;
-
-					@include respond-to(handhelds) {
-						background-position: 0 -25px;
-					}
-				}
-			}
-		}
-	}
 
 /************************************************************
 *	BEGIN FOOTER
@@ -794,13 +531,68 @@
 	}
 
 /************************************************************
-*	STORY DETAIL PAGE
+*	STORY DETAIL PAGE / COMPOSE STORY / PREVIEW STORY
 */
 
 	#story-detail {
+
+			// placed in the story intro
+			// and the story body
+			// in compose mode
+			div.edit-icon {
+				position: absolute;
+				width: 40px;
+				height: 36px;
+				left:-50px;
+				cursor: pointer;
+				border-radius: 5px;
+				background: url(#{$assets_path}images/edit_story_icon.png) no-repeat #D8D8D8;
+				background-position: 11px 7px;
+
+				/* 1.5 dpr */
+				@media(-webkit-min-device-pixel-ratio: 1.5), 
+				(min-resolution: 144dpi){ 
+				    background: url(#{$assets_path}images/edit_story_icon@2x.png) no-repeat #D8D8D8;
+				    background-size:40%;
+				    background-position: 12px 8px;
+				}
+
+				@include respond-to(handhelds) {
+					left:0px;
+					height:23px;
+					width:21px;
+					background-size:60%;
+					background-position: 5px 5px;
+				}
+
+			}
+
+			// placed in the story intro
+			// and the story body
+			// in compose mode
+			div.editable-wrapper {
+				
+				&:focus {
+				 	outline: none;
+				}
+
+				@include respond-to(handhelds) {
+					padding-left:30px;
+				}
+			}
+
 		#story-intro {
 			width: 700px;
 			margin: 0 auto;
+			position:relative;
+
+			div.edit-icon {
+				top: 9px;
+
+				@include respond-to(handhelds) {
+					top:5px;
+				}
+			}
 
 			@include respond-to(handhelds) {
 				width: 90%;	
@@ -818,7 +610,17 @@
 					line-height: 30px;
 					margin-top: 0px;
 				}
+
+				div.editable-wrapper {
+					&.not-edited-yet {
+						color:#999;
+					}
+			
+				}
+
 			}
+
+			
 
 			//float author info left
 			div.author {
@@ -834,15 +636,46 @@
 
 		#story-image {
 			margin-top:20px;
-			margin-bottom: 50px;
+			margin-bottom: 35px;
+
+			@include respond-to(handhelds) {
+				margin-bottom: 20px;	
+			}
+
 			img {
 				width: 100%;
 			}
+
+			#upload-container, .image-uploader {
+				width: 700px;
+				margin: 0 auto;
+				height: 165px;
+				border-radius: 7px;
+				background: #efefef;
+				cursor:pointer;
+				padding:0px;
+				border: 2px dotted #979797;
+
+				@include respond-to(handhelds) {
+					width: 90%;
+				}
+			}
+
 		}
 
 		#story-body {
 			width: 700px;
 			margin: 0 auto;
+			position: relative;
+
+			div.edit-icon {
+				top: -2px;
+
+				@include respond-to(handhelds) {
+					top:5px;
+				}
+			}
+
 			@include respond-to(handhelds) {
 				width: 90%;	
 			}
@@ -851,6 +684,14 @@
 				font-size: 18px;
 				line-height: 34px;
 				margin-bottom: 40px;
+			}
+
+			div.editable-wrapper {
+				&.not-edited-yet {
+					p {
+						color:#999;
+					}
+				}
 			}
 		}
 
