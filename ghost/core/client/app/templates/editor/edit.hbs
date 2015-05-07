@@ -63,6 +63,7 @@
     <script type="text/javascript">
         $("[contenteditable=true]").on("keyup", function(){ $(this).closest(".not-edited-yet").removeClass("not-edited-yet"); });
         $("#entry-title-visible").on("keyup", function(){ $("#entry-title").val($(this).text()); $("#entry-title").change(); });
+        $("#entry-title-visible").on("change", function(){ $("#entry-title-visible").html($(this).val()); });
     </script>
 
     {{view "editor-save-button" id="entry-actions" classNameBindings="model.isNew:unsaved"}}

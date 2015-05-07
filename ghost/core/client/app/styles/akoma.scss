@@ -646,13 +646,14 @@
 				width: 100%;
 			}
 
-			#upload-container {
+			#upload-container, .image-uploader {
 				width: 700px;
 				margin: 0 auto;
 				height: 165px;
 				border-radius: 7px;
 				background: #efefef;
 				cursor:pointer;
+				padding:0px;
 				border: 2px dotted #979797;
 
 				@include respond-to(handhelds) {

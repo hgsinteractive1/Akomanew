@@ -28,3 +28,16 @@
 #gh-main.viewport {
     position: relative;
 }
+
+#story-detail #story-image #upload-container, #story-detail #story-image .image-uploader {
+    padding-top:40px!important;
+    height:145px!important;
+}
+
+.image-uploader .media:before {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
