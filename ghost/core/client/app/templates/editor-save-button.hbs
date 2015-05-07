@@ -1,5 +1,14 @@
-<button type="button" {{action "save"}} class="btn btn-sm js-publish-button {{if view.isDangerous 'btn-red' 'btn-blue'}}">{{view.saveText}}</button>
-{{#gh-dropdown-button dropdownName="post-save-menu" classNameBindings=":btn :btn-sm view.isDangerous:btn-red:btn-blue btnopen:active :dropdown-toggle :up"}}
+
+
+<button type="button" {{action "saveWithType" "draft"}} class="btn btn-sm js-publish-button {{if view.isDangerous 'btn-red' 'btn-blue'}}">{{view.draftText}}</button>
+<button type="button" {{action "saveWithType" "publish"}} class="btn btn-sm js-publish-button {{if view.isDangerous 'btn-red' 'btn-blue'}}">{{view.publishText}}</button>
+{{!-- <button type="button" {{action "saveWithType" "save"}} class="btn btn-sm js-publish-button {{if view.isDangerous 'btn-red' 'btn-blue'}}">{{view.deleteText}}</button> --}}
+
+
+
+
+
+{{!-- {{#gh-dropdown-button dropdownName="post-save-menu" classNameBindings=":btn :btn-sm view.isDangerous:btn-red:btn-blue btnopen:active :dropdown-toggle :up"}}
     <i class="options"></i>
     <span class="sr-only">Toggle Settings Menu</span>
 {{/gh-dropdown-button}}
@@ -17,3 +26,4 @@
         </li>
     </ul>
 {{/gh-dropdown}}
+ --}}

@@ -338,6 +338,12 @@ EditorControllerMixin = Ember.Mixin.create({
             return promise;
         },
 
+        // aKoma: ADDED THIS
+        saveWithType: function(type) {
+            this.send("setSaveType", type);
+            this.send("save");
+        },
+
         setSaveType: function (newType) {
             if (newType === 'publish') {
                 this.set('willPublish', true);
