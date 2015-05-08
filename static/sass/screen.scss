@@ -1032,12 +1032,22 @@
 								height: 30px;
 								margin-bottom: 15px;
 
+							@include respond-to(handhelds) {
+								display: block;
+								height: auto;
+							}
+
 							li {
 								float:left;
 								height: 35px;
 
 								&.label {
 									margin-right: 12px;
+									
+									@include respond-to(handhelds) {
+										float: none;
+										display: block;
+									}
 
 									h4 {
 										font-size: 22px;
@@ -1075,6 +1085,10 @@
 						p.tag-descrip {
 							font-size: 13px;
 							color: $light-grey;
+
+							@include respond-to(handhelds) {
+								margin-top:20px;
+							}
 						}	
 					}
 
@@ -1083,12 +1097,15 @@
 						height:40px;
 
 						@include respond-to(handhelds) {
-							width: 90%;
+							height: auto;
 						}
 
 						ul.action-list {
 							width: 100%;
 							height: 40px;
+							@include respond-to(handhelds) {
+								height: auto;
+							}
 
 							li {
 								float: left;
@@ -1102,6 +1119,7 @@
 									width: 100%;
 									margin-top:0px;
 									float:none;
+									display:block;
 								}
 
 								a.action-button {
@@ -1116,6 +1134,7 @@
 									color: #000;
 									text-decoration: none;
 									padding-top:10px;
+									position:relative;
 
 									@include respond-to(handhelds) {
 										width: 100%;
@@ -1123,36 +1142,47 @@
 										padding-left:0px;
 									}
 
-									&.continue-editing {
+									div.continue-editing-icon {
 										background: url(../images/continue_editing_icon.png) no-repeat;
-										background-position: 12px 9px;
+										background-position: 0 0;
+										width: 18px;
+										height: 17px;
+										top:10px;
+										left:12px;
+										position:absolute;
 
 										/* 1.5 dpr */
 										@media(-webkit-min-device-pixel-ratio: 1.5), 
 										(min-resolution: 144dpi) { 
-										  	 background: url(../images/continue_editing_icon@2x.png) no-repeat;
-										    background-position: 12px 10px;
-										    background-size:10%;
+										  	background: url(../images/continue_editing_icon@2x.png) no-repeat;
+										    background-size:100%;
 										}
 
 										@include respond-to(handhelds) {
-											width: 100%;
-											margin-top:10px;
+											left:30px;
 										}
 
 
 									}
 
-									&.save-to-drafts {
+									div.save-to-drafts-icon {
 										background: url(../images/save_to_drafts.png) no-repeat;
-										background-position: 16px 9px;
+										background-position: 0 0;
+										width: 21px;
+										height: 20px;
+										top:10px;
+										left:13px;
+										position:absolute;
 
 										/* 1.5 dpr */
 										@media(-webkit-min-device-pixel-ratio: 1.5), 
 										(min-resolution: 144dpi) { 
 										  	background: url(../images/save_to_drafts@2x.png) no-repeat;
-										    background-position: 14px 10px;
-										    background-size:10%;
+										    background-size:100%;
+										}
+
+										@include respond-to(handhelds) {
+											left:30px;
 										}
 									}
 
@@ -1162,19 +1192,38 @@
 										border: none;
 										padding-left:0px;
 										color: #FFF;
-										background: url(../images/publish_checkmark.png) no-repeat #40D047;
-										background-position: 17px 9px;
+										background:#40D047;
+						
 
 										/* 1.5 dpr */
 										@media(-webkit-min-device-pixel-ratio: 1.5), 
 										(min-resolution: 144dpi) { 
-										  	background: url(../images/publish_checkmark@2x.png) no-repeat #40D047;
-										    background-position: 15px 11px;
-										    background-size:10%;
+										    background-size:100%;
 										}
 
 										@include respond-to(handhelds) {
 											width: 100%;
+										}
+
+										div.publish-icon {
+											background: url(../images/publish_checkmark.png) no-repeat;
+											background-position: 0 0;
+											width: 21px;
+											height: 20px;
+											top:10px;
+											left:14px;
+											position:absolute;
+
+											/* 1.5 dpr */
+											@media(-webkit-min-device-pixel-ratio: 1.5), 
+											(min-resolution: 144dpi) { 
+											  	background: url(../images/publish_checkmark@2x.png) no-repeat;
+											    background-size:100%;
+											}
+
+											@include respond-to(handhelds) {
+												left:30px;
+											}
 										}
 
 									}
