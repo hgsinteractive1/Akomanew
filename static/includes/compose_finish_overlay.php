@@ -23,6 +23,7 @@
 						<li class="tag"><a href="#">Test</a></li>
 						<li class="tag"><a href="#">Test</a></li>
 					</ul>
+					<div class="clear"></div>
 					<p class="tag-descrip">Stories may have multiple tags</p>
 				</div>
 			</div>
@@ -30,10 +31,11 @@
 			<!--BEGIN ACTION AREA/BUTTONS -->
 			<div id="action-area">
 				<ul class="action-list">
-					<li><a href="#" class="action-button continue-editing">Continue Editing</a></li>
-					<li><a href="#" class="action-button save-to-drafts">Save to Drafts</a></li>
-					<li class="last"><a href="#" class="action-button publish">Publish</a></li>
+					<li><a href="#" class="action-button">Continue Editing<div class="continue-editing-icon"></div></a></li>
+					<li><a href="#" class="action-button">Save to Drafts<div class="save-to-drafts-icon"></div></a></li>
+					<li class="last"><a href="#" class="action-button publish">Publish<div class="publish-icon"></div></a></li>
 				</ul>
+				<div class="clear"></div>
 			</div>
 			<!--END ACTION AREA-->
 		</div>

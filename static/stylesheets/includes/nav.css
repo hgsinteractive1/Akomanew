@@ -10,7 +10,7 @@ Error: Undefined variable: "$rule-color".
 8: 		border-bottom: 1px solid $rule-color;
 9: 		width:100%;
 10: 		//position:fixed;
-11: 		position:absolute;
+11: 		position:fixed;
 12: 		top:0px;
 13: 		left:0px;
 
@@ -74,4 +74,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$rule-color\".\A         on line 8 of /Users/roberthanley/Desktop/H+K/Akoma/akoma-source/static/sass/includes/nav.scss\A \A 3: 	// .is-white provides styles for fixed overlay state\A 4: 	// .compose-story provides styles for story composition\A 5: \A 6: 	#primary-nav {\A 7: 		height:87px;\A 8: 		border-bottom: 1px solid $rule-color;\A 9: 		width:100%;\A 10: 		//position:fixed;\A 11: 		position:absolute;\A 12: 		top:0px;\A 13: 		left:0px;"; }
+  content: "Error: Undefined variable: \"$rule-color\".\A         on line 8 of /Users/roberthanley/Desktop/H+K/Akoma/akoma-source/static/sass/includes/nav.scss\A \A 3: 	// .is-white provides styles for fixed overlay state\A 4: 	// .compose-story provides styles for story composition\A 5: \A 6: 	#primary-nav {\A 7: 		height:87px;\A 8: 		border-bottom: 1px solid $rule-color;\A 9: 		width:100%;\A 10: 		//position:fixed;\A 11: 		position:fixed;\A 12: 		top:0px;\A 13: 		left:0px;"; }

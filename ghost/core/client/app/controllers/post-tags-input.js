@@ -1,4 +1,15 @@
 import Ember from 'ember';
+
+function getTagByName(name, tagList) {
+    var found = false;
+    for(var i = 0 ; i < tagList.length ; i++) {
+        if(tagList[i].get('name') === name) {
+            return tagList[i];
+        }
+    }
+    return found;
+}
+
 var PostTagsInputController = Ember.Controller.extend({
     tagEnteredOrder: Ember.A(),
 
@@ -28,8 +39,19 @@ var PostTagsInputController = Ember.Controller.extend({
 
     suggestions: null,
     newTagText: null,
+    displayTagNames: ["Life", "Ideas", "Rants", "Learn"],
 
     actions: {
+        toggleTag: function(tag){
+            if(this.hasTag(tag)) {
+                var tag = getTagByName(tag, this.get('tags').toArray());
+                this.send("deleteTag", tag);
+            } else {
+                this.set("newTagText", tag);
+                this.send("addNewTag");
+            }
+        },
+
         // triggered when the view is inserted so that later store.all('tag')
         // queries hit a full store cache and we don't see empty or out-of-date
         // suggestion lists

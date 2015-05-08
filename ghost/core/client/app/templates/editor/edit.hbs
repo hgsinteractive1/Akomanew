@@ -59,12 +59,6 @@
        {{/if}}
     </div>
     <!--END STORY BODY-->
-
-    <hr />
-    <br />
-    {{render 'post-tags-input'}}
-    
-
 </div>
 <!--END STORY DETAIL-->
 
@@ -92,13 +86,8 @@
                         </div>
                         <div class="edit-icon"></div>
                     </div>
-                    <ul class="tag-list">
-                        <li class="label"><h4>Tag your story:</h4></li>
-                        <li class="tag"><a href="#">Life</a></li>
-                        <li class="tag"><a href="#" class="active">Ideas</a></li>
-                        <li class="tag"><a href="#">Rants</a></li>
-                        <li class="tag"><a href="#">Learn</a></li>
-                    </ul>
+                    {{render 'post-tags-input'}}
+                    <div class="clear"></div>
                     <p class="tag-descrip">Stories may have multiple tags</p>
                 </div>
             </div>
@@ -106,7 +95,7 @@
             <!--BEGIN ACTION AREA/BUTTONS -->
             <div id="action-area">
                 <ul class="action-list">
-                    <li><a href="#" class="action-button continue-editing">Continue Editing</a></li>
+                    <li><a href="#" class="action-button continue-editing">Continue Editing<div class="continue-editing-icon"></div></a></li>
                     {{view "editor-save-button" id="entry-actions" classNameBindings="model.isNew:unsaved"}}
                 </ul>
             </div>

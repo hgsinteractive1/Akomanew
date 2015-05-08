@@ -27,6 +27,7 @@
 
 #gh-main.viewport {
     position: relative;
+    overflow: inherit;
 }
 
 #story-detail #story-image #upload-container, #story-detail #story-image .image-uploader {
@@ -44,4 +45,15 @@
 
 .label {
   padding:0px;
+}
+
+#entry-tags .tag {
+    padding:0px;
+    background: inherit;
+    border-radius:inherit;
+    box-shadow:none;
+}
+
+#container {
+    overflow: inherit;
 }
