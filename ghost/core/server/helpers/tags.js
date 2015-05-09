@@ -20,6 +20,7 @@ tags = function (options) {
         separator = options.hash && _.isString(options.hash.separator) ? options.hash.separator : ', ',
         prefix = options.hash && _.isString(options.hash.prefix) ? options.hash.prefix : '',
         suffix = options.hash && _.isString(options.hash.suffix) ? options.hash.suffix : '',
+        css_class = options.hash && _.isString(options.hash.css_class) ? options.hash.css_class : '',
         output = '';
 
     function createTagList(tags) {
@@ -27,9 +28,10 @@ tags = function (options) {
 
         if (autolink) {
             return _.map(tags, function (tag) {
-                return utils.linkTemplate({
+                return utils.linkTemplateWithClass({
                     url: config.urlFor('tag', {tag: tag}),
-                    text: _.escape(tag.name)
+                    text: _.escape(tag.name),
+                    css_class:_.escape(css_class)
                 });
             }).join(separator);
         }
