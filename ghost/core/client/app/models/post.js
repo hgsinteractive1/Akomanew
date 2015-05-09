@@ -37,6 +37,10 @@ var Post = DS.Model.extend(NProgressSaveMixin, ValidationEngine, {
         return this.get('ghostPaths.url').join(blogUrl, postUrl);
     }),
 
+    date: Ember.computed('published_at', function () {
+        return moment(this.get('published_at')).fromNow();
+    }),
+
     scratch: null,
     titleScratch: null,
 

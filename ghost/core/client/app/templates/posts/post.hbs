@@ -1,3 +1,38 @@
+<!--STORY INTRO AREA-->
+<div id="story-intro">
+    <h2>{{model.title}}</h2>
+</div>
+<!--END STORY INTRO AREA-->
+
+<!--INSERT MANAGE STORY ACTIONS-->
+<div id="manage-story-actions">
+    <ul class="actions">
+        <li>
+            {{#link-to "editor.edit" model class="post-edit action"}} Edit<div class="edit-story-icon"></div>{{/link-to}}
+        </li>
+        {{!-- <li><a href="#" class="action">Hide <div class="hide-story-icon"></div></a></li> --}}
+        {{!-- <li><a href="#" class="action">Delete<div class="delete-story-icon"></div></a></li> --}}
+        {{!-- <li class="last"><a href="#" class="action">Feature<div class="feature-story-icon"></div></a></li> --}}
+
+    </ul>
+</div>
+
+<!--END MANAGE STORY ACTIONS-->
+
+<!--BEGIN STORY IMAGE-->
+<div id="story-image">
+    {{#if model.image}}
+        <img src="{{model.image}}" />
+    {{/if}}
+</div>
+<!--END STORY IMAGE-->
+<!--BEGIN STORY BODY-->
+<div id="story-body">
+    {{{model.markdown}}}
+</div>
+<!--END STORY BODY-->
+
+{{!-- 
 <header class="post-preview-header clearfix">
     {{#link-to "posts" tagName="button" class="btn btn-default btn-back"}}Back{{/link-to}}
     <h2 class="page-title">Preview</h2>
@@ -26,3 +61,4 @@
         {{{model.markdown}}}
     </div>
 {{/view}}
+ --}}
