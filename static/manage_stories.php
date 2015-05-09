@@ -41,14 +41,16 @@
 					</div>
 				</li>
 				<li>
-					<h4>Thousands March in Memory of Those Lost to Boko Haram</h4>
-					<div class="author">
-						<div class="author-image"></div>
-						<div class="byline">
-							<p>Timothy Johnson <span>2 hours ago</span></p>
+					<a href="#">
+						<h4>Thousands March in Memory of Those Lost to Boko Haram</h4>
+						<div class="author">
+							<div class="author-image"></div>
+							<div class="byline">
+								<p>Timothy Johnson <span>2 hours ago</span></p>
+							</div>
+							<div class="clear"></div>
 						</div>
-						<div class="clear"></div>
-					</div>
+					</a>
 					<div class="sort-up-arrow"></div>
 					<div class="sort-down-arrow"></div>
 					<div class="is-visible"></div>
@@ -155,8 +157,22 @@
 
 					</ul>
 				</div>
-
 				<!--END MANAGE STORY ACTIONS-->
+
+				<!--MANAGE STORIES TAGS-->
+				<div id="manage-stories-tags">
+					<ul class="tags">
+						<li><p>Update Tags</p></li>
+						<li><a href="#" class="tag">Tag</a></li>
+						<li><a href="#" class="tag active">Tag</a></li>
+						<li><a href="#" class="tag">Tag</a></li>
+						<li><a href="#" class="tag active">Tag</a></li>
+						<li><a href="#" class="tag">Tag</a></li>
+						<li><a href="#" class="tag">Tag</a></li>
+						<li><a href="#" class="tag">Tag</a></li>
+					</ul>
+				</div>
+				<!--END MANAGE STORIES TAGS-->
 
 				<!--BEGIN STORY IMAGE-->
 				<div id="story-image">
