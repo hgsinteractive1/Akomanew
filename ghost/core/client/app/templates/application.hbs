@@ -11,7 +11,9 @@
 
 {{outlet "modal"}}
 
-{{!-- {{outlet "settings-menu"}} --}}
+{{#if showSettingsMenu}}
+	{{outlet "settings-menu"}}
+{{/if}}
 
 {{#unless hideNav}}
     {{partial "navbar"}}

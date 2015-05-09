@@ -57,3 +57,19 @@
 #container {
     overflow: inherit;
 }
+
+body.settings {
+    padding-top: 88px;
+
+    #gh-main.viewport {
+        position:absolute;
+    }
+
+    .settings-nav {
+        top: 30px;
+    }
+
+    .settings-menu-container .settings-menu-pane {
+        top: 100px;
+    }
+}

@@ -21,6 +21,7 @@ EditorControllerMixin = Ember.Mixin.create({
     autoSaveId: null,
     timedSaveId: null,
     editor: null,
+    showSettingsMenu: false,
 
     init: function () {
         var self = this;
