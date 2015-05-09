@@ -1,15 +1,10 @@
 <div id="manage-stories-container">
     <!--BEGIN LIFT COLUMN MANAGE LIST-->
     <div id="left-column">
-{{!--         <div id="filter-selector-wrapper">
+        <div id="filter-selector-wrapper">
             <h3>View all stories in</h3>
-            <select>
-                <option value="one">one</option>
-                <option value="two">two</option>
-                <option value="three">three</option>
-                <option value="four">four</option>
-            </select>
-        </div> --}}
+            {{view "select" value=selectedFilter content=filterOptions}}
+        </div>
         {{#view "paginated-scroll-box" tagName="section" classNames="content-list-content js-content-scrollbox"}}
             <ul id="stories-list">
                 {{#each post in controller itemController="posts/post" itemView="post-item-view" itemTagName="li"}}
@@ -26,11 +21,10 @@
                             </div>
                             <div class="clear"></div>
                         </div>
-                       {{!--  <div class="sort-up-arrow"></div>
-                        <div class="sort-down-arrow"></div>
-                        <div class="is-visible"></div>
-                         --}}
                     {{/link-to}}
+                    {{!-- <div class="sort-up-arrow"></div>
+                    <div class="sort-down-arrow"></div>
+                    <div class="is-visible"></div> --}}
                 {{/each}}
             </ul>
         {{/view}}

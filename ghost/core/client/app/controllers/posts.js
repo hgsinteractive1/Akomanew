@@ -26,6 +26,12 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
     postContentFocused: Ember.computed.equal('keyboardFocus', 'postContent'),
     // this will cause the list to re-sort when any of these properties change on any of the models
     sortProperties: ['status', 'published_at', 'updated_at'],
+    filterOptions: ["All", "Faves", "Life", "Ideas", "Rants", "Learn"],
+    selectedFilter: "All",
+
+    watchFilter: function() {  
+        this.get("target").send("filter", this.get("selectedFilter"));
+    }.observes('selectedFilter'),
 
     // override Ember.SortableMixin
     //

@@ -62,6 +62,10 @@ var Post = DS.Model.extend(NProgressSaveMixin, ValidationEngine, {
 
     isAuthoredByUser: function (user) {
         return parseInt(user.get('id'), 10) === parseInt(this.get('author_id'), 10);
+    },
+    
+    hasTag: function (tagName) {
+        return this.get('tags').mapBy('name').contains(tagName);
     }
 
 });
