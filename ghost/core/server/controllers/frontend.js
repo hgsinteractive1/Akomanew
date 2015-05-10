@@ -9,6 +9,7 @@ var moment      = require('moment'),
     _           = require('lodash'),
     Promise     = require('bluebird'),
     api         = require('../api'),
+    dataProvider         = require('../models'),
     config      = require('../config'),
     filters     = require('../filters'),
     template    = require('../helpers/template'),
@@ -31,7 +32,19 @@ function getPostPage(options) {
             options.limit = postsPerPage;
         }
         options.include = 'author,tags,fields';
-        return api.posts.browse(options);
+        return api.posts.browse(options).then(function(results){
+            return dataProvider.Tag.findAll().then(function(data){
+                var tags = {};
+                for(var i in data.models) {
+                    tags[data.models[i].get("name")] = (data.models[i]);
+                }
+
+                results.allTags = tags;
+                return results;
+            });
+        }).then(function(results){
+            return results;
+        });
     });
 }
 
@@ -42,9 +55,9 @@ function getPostPage(options) {
  */
 function formatPageResponse(posts, page, extraValues) {
     extraValues = extraValues || {};
-
     var resp = {
         posts: posts,
+        allTags:page.allTags,
         pagination: page.meta.pagination
     };
     return _.extend(resp, extraValues);
@@ -359,6 +372,16 @@ frontendControllers = {
 
             // Query database to find post
             return api.posts.read(postLookup);
+        }).then(function(results){
+            return dataProvider.Tag.findAll().then(function(data){
+                var tags = {};
+                for(var i in data.models) {
+                    tags[data.models[i].get("name")] = (data.models[i]);
+                }
+
+                results.allTags = tags;
+                return results;
+            });
         }).then(function (result) {
             var post = result.posts[0],
                 slugDate = [],
@@ -387,7 +410,7 @@ frontendControllers = {
                         console.log(template);
                         var view = template.getThemeViewForPost(paths, post),
                             response = formatResponse(post);
-
+                        response.allTags = result.allTags;
                         setResponseContext(req, res, response);
 
                         res.render(view, response);
