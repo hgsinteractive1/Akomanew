@@ -73,3 +73,11 @@ body.settings {
         top: 100px;
     }
 }
+
+
+#entry-tags .tag {
+    margin-right: 0px;
+}
+#entry-tags .tag:after { 
+    content:'';
+}

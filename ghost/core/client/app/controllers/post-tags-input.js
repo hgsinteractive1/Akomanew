@@ -39,7 +39,15 @@ var PostTagsInputController = Ember.Controller.extend({
 
     suggestions: null,
     newTagText: null,
-    displayTagNames: ["Life", "Ideas", "Rants", "Learn"],
+    displayTagNames: Ember.computed(function () {
+        var baseTagNames = ["Life", "Ideas", "Rants", "Learn"];
+        var pc = this.get("parentController");
+        var pathname = pc.get("target").get("location").get("location").pathname;
+        if(!this.get("session.user").get('isAuthor') && pathname.indexOf("/editor/") < 0) {
+            baseTagNames.unshift("Faves");
+        }
+        return baseTagNames;
+    }),
 
     actions: {
         toggleTag: function(tag){
