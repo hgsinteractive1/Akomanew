@@ -81,3 +81,14 @@ body.settings {
 #entry-tags .tag:after { 
     content:'';
 }
+
+body.manage, body.settings {
+    #primary-nav {
+        a#write-story {
+            display: block;
+        }
+        a#finish-writing-story {
+            display: none;
+        }
+    }
+}
