@@ -29,7 +29,13 @@ require(['jquery','main'], function($, main) {
 
   //application runs after requiring main
   $(document).ready(function() {
-    main.init();    
+    main.init();
   });
+
+  if($("body").attr("data-lazy-load-ghost")) {
+    window.main = main;
+    $("body").append("<script src='/ghost/vendor.js'></script>");
+    $("body").append("<script src='/ghost/ghost.js'></script>");
+  }
   
 });

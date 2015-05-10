@@ -1,0 +1,244 @@
+#main-menu-wrapper {
+
+	position: fixed;
+	top: 0px;
+	left:0px;
+	width: 100%;
+	height: 100%;
+	overflow-y:scroll;
+	-webkit-opacity: 0;
+  	-moz-opacity: 0;
+  	opacity: 0;
+	-webkit-transition: opacity 0.3s ease-out;
+    -moz-transition: opacity 0.3s ease-out;
+    -o-transition: opacity 0.3s ease-out;
+    z-index: 1000;
+
+
+    &.fadedIn {
+    	-webkit-opacity: 1.0;
+  		-moz-opacity: 1.0;
+  		opacity: 1.0;
+		height: 100%;
+		overflow-y:scroll;
+
+		#overlay-background {
+			height:100%;
+		}
+
+		#menu-content {
+			height: 360px;
+
+			@include respond-to(handhelds) {
+				height: 500px;
+			}
+		}
+    }
+
+    
+    &.hidden {
+		height: 0;
+		overflow:hidden;
+
+		#overlay-background {
+			height:0;
+		}
+
+		#menu-content {
+			height: 0;
+
+			@include respond-to(handhelds) {
+				height: 0;
+			}
+		}
+    }
+
+
+	#overlay-background {
+		position: fixed;
+		width: 100%;
+		height:100%;
+		background: #000;
+		opacity: 0.97;
+	}
+
+	#menu-content {
+		width: 560px;
+		height: 360px;
+		position: absolute;
+		left: 50%;
+		top:50%;
+		margin-left: -280px;
+		margin-top: -200px;
+
+		@include respond-to(handhelds) {
+			width: 300px;
+			height: 500px;
+			margin-left: -150px;
+			margin-top: -250px;
+
+		}
+
+
+		div.eyebrow {
+			width: 100%;
+			text-align: center;
+			color: #F0950C;
+			font-size: 20px;
+			margin-bottom: 20px;
+		}
+
+		ul#filter-nav {
+			height: 40px;
+			width: 375px;
+			margin: 0 auto;
+			margin-bottom: 40px;
+
+
+			@include respond-to(handhelds) {
+				margin-bottom: 30px;
+				width:300px;
+			}
+
+			li {
+				float:left;
+				margin-right: 25px;
+
+				@include respond-to(handhelds) {
+					margin-right: 18px;
+		
+				}
+
+				&.last {
+					margin-right: none;
+				}
+
+				a.filter-nav-link {
+					display:block;
+					position:relative;
+					font-size: 18px;
+					color: #777777;
+					text-decoration: none;
+					padding-left:35px;
+					height:32px;
+					padding-top:8px;
+					text-transform: uppercase;
+
+					@include respond-to(handhelds) {
+						font-size: 13px;
+					}
+
+					&.popular {
+						padding-left:30px;
+					}
+
+					div.filter-nav-icon {
+						position:absolute;
+
+						&.faves {
+							width:30px;
+							height: 28px;
+							background: url(#{$assets_path}images/filter_nav_star_icon.png);
+							background-position: 0 0;
+							top:0px;
+							left:0px;
+
+							/* 1.5 dpr */
+							@media(-webkit-min-device-pixel-ratio: 1.5), 
+							(min-resolution: 144dpi){ 
+							    background: url(#{$assets_path}images/filter_nav_star_icon@2x.png) no-repeat;
+							    background-size:100%;
+							}
+						}
+
+						&.latest {
+							width:26px;
+							height: 23px;
+							background: url(#{$assets_path}images/filter_latest_icon.png);
+							background-position: 0 0;
+							top:5px;
+							left:0px;
+
+							/* 1.5 dpr */
+							@media(-webkit-min-device-pixel-ratio: 1.5), 
+							(min-resolution: 144dpi){ 
+							    background: url(#{$assets_path}images/filter_latest_icon@2x.png) no-repeat;
+							    background-size:100%;
+							}
+						}
+
+						&.popular {
+							width:22px;
+							height: 21px;
+							background: url(#{$assets_path}images/filter_popular_icon.png);
+							background-position: 0 0;
+							top:5px;
+							left:0px;
+
+							/* 1.5 dpr */
+							@media(-webkit-min-device-pixel-ratio: 1.5), 
+							(min-resolution: 144dpi){ 
+							    background: url(#{$assets_path}images/filter_popular_icon@2x.png) no-repeat;
+							    background-size:100%;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		ul#primary-menu {
+			width: 100%;
+
+			li {
+				height: 110px;
+				width: 240px;
+				float:left;
+				margin-right: 80px;
+				margin-bottom: 40px;
+				
+
+					@include respond-to(handhelds) {
+						margin-right: 0px;
+						width: 100%;
+						display: block;
+						height: auto;
+						margin-bottom: 30px;
+						text-align: center;
+					}
+
+
+
+				&.margin-rt-none {
+					margin-right: 0px;
+				}
+
+				a.primary-menu-link {
+					font-size: 52px;
+					text-decoration: none;
+					text-transform: uppercase;
+					color:#FFF;
+					font-weight: 200;
+
+					@include respond-to(handhelds) {
+						font-size: 40px;
+					}
+
+					span {
+						color: #5A5858;
+						font-size: 20px;
+						display: block;
+						text-transform: none;
+						margin-top:8px;
+
+						@include respond-to(handhelds) {
+							font-size: 16px;
+						}
+
+					}
+				}
+			}
+		}
+	}
+
+}
