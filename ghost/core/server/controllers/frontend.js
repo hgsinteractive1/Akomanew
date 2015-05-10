@@ -128,8 +128,12 @@ frontendControllers = {
         // Parse the page number
         var pageParam = req.params.page !== undefined ? parseInt(req.params.page, 10) : 1,
             options = {
-                page: pageParam
+                page: pageParam,
             };
+        
+        if(config.homeTag) {
+            options["tag"] = config.homeTag;
+        }
 
         // No negative pages, or page 1
         if (isNaN(pageParam) || pageParam < 1 || (pageParam === 1 && req.route.path === '/page/:page/')) {

@@ -138,7 +138,7 @@
 						&.faves {
 							width:30px;
 							height: 28px;
-							background: url(../images/filter_nav_star_icon.png);
+							background: url(#{$assets_path}images/filter_nav_star_icon.png);
 							background-position: 0 0;
 							top:0px;
 							left:0px;
@@ -154,7 +154,7 @@
 						&.latest {
 							width:26px;
 							height: 23px;
-							background: url(../images/filter_latest_icon.png);
+							background: url(#{$assets_path}images/filter_latest_icon.png);
 							background-position: 0 0;
 							top:5px;
 							left:0px;
@@ -170,7 +170,7 @@
 						&.popular {
 							width:22px;
 							height: 21px;
-							background: url(../images/filter_popular_icon.png);
+							background: url(#{$assets_path}images/filter_popular_icon.png);
 							background-position: 0 0;
 							top:5px;
 							left:0px;
