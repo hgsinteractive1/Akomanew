@@ -1,4 +1,5 @@
-<div id="main-menu-wrapper">
+<!--MENU OVERLAY-->
+<div id="main-menu-wrapper" class="hidden">
 	<div id="overlay-background"></div>
 	<div class="relative">
 		<div id="menu-content">
@@ -36,3 +37,4 @@
 		</div>
 	</div>	
 </div>
+<!--END MENU OVERLAY-->

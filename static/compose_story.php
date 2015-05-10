@@ -52,6 +52,20 @@
 <?php include('includes/nav_bar_compose.php') ?>
 <!--END-->
 
+<!--MAIN MENU OVERLAY-->
+<?php include('includes/main_menu.php') ?>
+<!--END-->
+
+<!--MAIN MENU ICON-->
+<a href="#" id="menu-icon">
+	<div id="relative">
+		<div class="menu-bar one"></div>
+		<div class="menu-bar two"></div>
+		<div class="menu-bar three"></div>
+	</div>
+</a>
+<!--END MENU-->
+
 <!--MAIN NAVIGATION-->
 <?php include('includes/compose_finish_overlay.php') ?>
 <!--END-->

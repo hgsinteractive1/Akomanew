@@ -24,6 +24,14 @@
 				</div>
 			</a>
 		<!--END WRITE-->
+		<!--FINISH WRITING STORY-->
+		<a href="#" id="finish-writing-story">
+			<div class="relative">
+				<div id="compose-icon"></div>
+				<p>Finish</p>
+			</div>
+		</a>
+	<!--END FINISH WRITING-->
 		<!--BEGIN ACCOUNT DROPDOWN/LOG IN-->
 			<a href="#" id="log-in">
 				<div id="relative">

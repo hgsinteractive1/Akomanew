@@ -12,7 +12,9 @@ define(['jquery'], function($) {
 	//main member vars
 	var nav;
 	var menu;
+	var menuIcon;
 	var shouldCheckNavState;
+	var menuIsOpen = false;
 
 	//scroll nav vars
 	var scrollDistance;
@@ -20,12 +22,25 @@ define(['jquery'], function($) {
 
 
 /**************************************************************************
-* BIND EVENTS
+* HIDE/SHOW MAIN MENU
 */
-	function bindEvents() {
+
+	function showMenu() {
+		menu.removeClass('hidden');
+		menu.addClass('fadedIn');
+		menuIcon.addClass('menu-is-open');
 	
 	}
 
+	function hideMenu() {
+		menuIcon.removeClass('menu-is-open');
+		menu.removeClass('fadedIn');
+		menu.on("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend",
+        function(event) {
+   			$(this).addClass('hidden');
+   			$(this).off("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend");
+  		});
+	}
 
 /**************************************************************************
 * INIT NAV STATE
@@ -67,14 +82,30 @@ define(['jquery'], function($) {
 
 		if(scrollDistance >= scrollChange) {
 			nav.removeClass('is-white');
+			menuIcon.removeClass('is-white');
 
 		} else {
 			nav.addClass('is-white');
+			menuIcon.addClass('is-white');
 
 		}
 	}
 
-
+/**************************************************************************
+* BIND EVENTS
+*/
+	function bindEvents() {
+		menuIcon.click(function(e) {
+			e.preventDefault();
+			if(menuIsOpen == false) {
+				showMenu();
+				menuIsOpen = true;
+			} else {
+				hideMenu()
+				menuIsOpen = false;
+			}
+		});
+	}
 
 
 /**************************************************************************
@@ -85,6 +116,7 @@ define(['jquery'], function($) {
 		console.log('init nav');
 		nav = $('#primary-nav');
 		menu = $('#main-menu-wrapper');
+		menuIcon = $('#menu-icon');
 		checkInitNavState();
 		bindEvents();
 	}

@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$rule-color".
-        on line 23 of /Users/roberthanley/Desktop/H+K/Akoma/akoma-source/static/sass/includes/nav.scss
+        on line 24 of /Users/roberthanley/Desktop/H+K/Akoma/akoma-source/static/sass/includes/nav.scss
 
-18: 		//background for animting in white layer
-19: 		#nav-background {
-20: 			height: 100%;
-21: 			width: 100%;
-22: 			position: absolute;
-23: 			border-bottom: 1px solid $rule-color;
-24: 			top: 0px;
-25: 			left: 0px;
-26: 			background: #FFF;
-27: 			opacity: 1;
-28: 			-webkit-transition: all 0.25s ease-out;
+19: 		//background for animting in white layer
+20: 		#nav-background {
+21: 			height: 100%;
+22: 			width: 100%;
+23: 			position: absolute;
+24: 			border-bottom: 1px solid $rule-color;
+25: 			top: 0px;
+26: 			left: 0px;
+27: 			background: #FFF;
+28: 			opacity: 1;
+29: 			-webkit-transition: all 0.25s ease-out;
 
 Backtrace:
-/Users/roberthanley/Desktop/H+K/Akoma/akoma-source/static/sass/includes/nav.scss:23
+/Users/roberthanley/Desktop/H+K/Akoma/akoma-source/static/sass/includes/nav.scss:24
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.13/lib/sass/script/tree/variable.rb:49:in `_perform'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.13/lib/sass/script/tree/node.rb:50:in `perform'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.13/lib/sass/script/tree/list_literal.rb:63:in `block in _perform'
@@ -85,4 +85,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$rule-color\".\A         on line 23 of /Users/roberthanley/Desktop/H+K/Akoma/akoma-source/static/sass/includes/nav.scss\A \A 18: 		//background for animting in white layer\A 19: 		#nav-background {\A 20: 			height: 100%;\A 21: 			width: 100%;\A 22: 			position: absolute;\A 23: 			border-bottom: 1px solid $rule-color;\A 24: 			top: 0px;\A 25: 			left: 0px;\A 26: 			background: #FFF;\A 27: 			opacity: 1;\A 28: 			-webkit-transition: all 0.25s ease-out;"; }
+  content: "Error: Undefined variable: \"$rule-color\".\A         on line 24 of /Users/roberthanley/Desktop/H+K/Akoma/akoma-source/static/sass/includes/nav.scss\A \A 19: 		//background for animting in white layer\A 20: 		#nav-background {\A 21: 			height: 100%;\A 22: 			width: 100%;\A 23: 			position: absolute;\A 24: 			border-bottom: 1px solid $rule-color;\A 25: 			top: 0px;\A 26: 			left: 0px;\A 27: 			background: #FFF;\A 28: 			opacity: 1;\A 29: 			-webkit-transition: all 0.25s ease-out;"; }

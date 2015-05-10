@@ -9,6 +9,7 @@
 		position:fixed;
 		top:0px;
 		left:0px;
+		z-index:1000;
 	
 		&.is-white {
 			border-bottom: none;
@@ -68,7 +69,7 @@
 				width:64px;
 				height:24px;
 				top:16px;
-				left:44px;
+				left:49px;
 				margin-left:0px;	
 			}
 
@@ -88,69 +89,6 @@
 					background-position: 0 -18px;	
 				}
 			}	
-		}
-
-
-		a#menu {
-			width:50px;
-			height:50px;
-			position:absolute;
-			display:block;
-			left:20px;
-			top:18px;
-			z-index: 1500;
-
-			@include respond-to(handhelds) {
-				height:40px;
-				width:40px;
-				left:0px;
-				top:5px;	
-			}
-
-			div.menu-bar {
-				width:35px;
-				height:2px;
-				position:absolute;
-				left:7px;
-				background:#000;
-
-					@include respond-to(handhelds) {
-						width:27px;
-					}
-
-					
-				&.one {
-					top:15px;
-					@include respond-to(handhelds) {
-						top:13px;
-					}
-				}
-
-				&.two {
-					top:24px;
-					@include respond-to(handhelds) {
-						top:19px;
-					}
-				}
-
-				&.three {
-					top:33px;
-					@include respond-to(handhelds) {
-						top:25px;
-					}
-				}
-
-			}
-
-		}
-
-		&.is-white {
-			a#menu {
-				div.menu-bar {
-					background:#FFF;
-				}
-			}
-				
 		}
 
 		a#write-story {
@@ -317,6 +255,7 @@
 			border-radius: 20px;
 			overflow: hidden;
 			text-decoration: none;
+			display: none;
 
 				@include respond-to(handhelds) {
 					height:30px;
@@ -344,6 +283,12 @@
 				}
 			}
 
+		}
+
+		&.compose-story {
+			a#finish-writing-story {
+				display: block;
+			}
 		}
 
 	}

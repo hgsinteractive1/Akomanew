@@ -31,6 +31,16 @@
 <?php include('includes/main_menu.php') ?>
 <!--END-->
 
+<!--MAIN MENU ICON-->
+<a href="#" id="menu-icon" class="is-white">
+	<div id="relative">
+		<div class="menu-bar one"></div>
+		<div class="menu-bar two"></div>
+		<div class="menu-bar three"></div>
+	</div>
+</a>
+<!--END MENU-->
+
 <!--INCLUDE REQUIRE/INIT MAIN SCRIPTS-->
 <script src="js/require.js" data-main="js/core"></script>
 <!--END-->

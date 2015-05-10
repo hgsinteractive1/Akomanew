@@ -1,5 +1,6 @@
 <div id="primary-nav">
 	<div class="relative">
+	<div id="nav-background"></div>
 
 	<!--BEGN NAV CONTENT-->
 	<div id="nav-content">
@@ -23,6 +24,14 @@
 				</div>
 			</a>
 		<!--END WRITE-->
+		<!--FINISH WRITING STORY-->
+		<a href="#" id="finish-writing-story">
+			<div class="relative">
+				<div id="compose-icon"></div>
+				<p>Finish</p>
+			</div>
+		</a>
+		<!--END FINISH WRITING-->
 		<!--BEGIN ACCOUNT DROPDOWN/LOG IN-->
 			<a href="#" id="log-in">
 				<div id="relative">
@@ -30,8 +39,8 @@
 				</div>
 			</a>
 		<!--END ACCOUNT-->
-	</div>
-	<!--END NAV CONTENT-->
+		</div>
+		<!--END NAV CONTENT-->
 
 	</div>
 </div>
