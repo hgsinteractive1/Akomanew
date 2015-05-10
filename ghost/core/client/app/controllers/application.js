@@ -22,6 +22,15 @@ var ApplicationController = Ember.Controller.extend({
         return (name) ? name + '\'s profile picture' : 'Profile picture';
     }),
 
+    tagsForMenu: Ember.computed(function(){
+        var ret = {};
+        var allTags = this.store.all('tag');
+        allTags.forEach(function(item){
+            ret[item.get('name')] = item;
+        });
+        return ret;
+    }),
+
     actions: {
         topNotificationChange: function (count) {
             this.set('topNotificationCount', count);
