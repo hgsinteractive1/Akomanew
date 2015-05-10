@@ -27,6 +27,10 @@
 <?php include('includes/nav_bar_white.php') ?>
 <!--END-->
 
+<!--MAIN MENU OVERLAY-->
+<?php include('includes/main_menu.php') ?>
+<!--END-->
+
 <!--INCLUDE REQUIRE/INIT MAIN SCRIPTS-->
 <script src="js/require.js" data-main="js/core"></script>
 <!--END-->

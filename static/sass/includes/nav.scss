@@ -5,20 +5,48 @@
 
 	#primary-nav {
 		height:87px;
-		border-bottom: 1px solid $rule-color;
 		width:100%;
-		//position:fixed;
 		position:fixed;
 		top:0px;
 		left:0px;
-		background: #FFF;
-		z-index: 1000;
-
+	
 		&.is-white {
 			border-bottom: none;
-			position:absolute;
 			background: none;
 		}
+
+		//background for animting in white layer
+		#nav-background {
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			border-bottom: 1px solid $rule-color;
+			top: 0px;
+			left: 0px;
+			background: #FFF;
+			opacity: 1;
+			-webkit-transition: all 0.25s ease-out;
+    		-moz-transition: all 0.25s ease-out;
+    		-o-transition: all 0.25s ease-out;
+		}
+
+		&.is-white {
+			#nav-background {
+				height: 0;
+				opacity: 0;
+			}
+		}
+
+		//content nested into this layer
+		#nav-content {
+			height: 100%;
+			width: 100%;
+			position:absolute;
+			top:0px;
+			left:0px;
+		}
+
+
 
 		@include respond-to(handhelds) {
 			height:50px;	
@@ -70,6 +98,7 @@
 			display:block;
 			left:20px;
 			top:18px;
+			z-index: 1500;
 
 			@include respond-to(handhelds) {
 				height:40px;
@@ -316,6 +345,5 @@
 			}
 
 		}
-
 
 	}
