@@ -10,6 +10,7 @@ var hbs             = require('express-hbs'),
     _               = require('lodash'),
     config          = require('../config'),
     utils           = require('./utils'),
+    dataProvider = require('../models'),
     tags;
 
 tags = function (options) {
@@ -41,7 +42,6 @@ tags = function (options) {
     if (this.tags && this.tags.length) {
         output = prefix + createTagList(this.tags) + suffix;
     }
-
     return new hbs.handlebars.SafeString(output);
 };
 

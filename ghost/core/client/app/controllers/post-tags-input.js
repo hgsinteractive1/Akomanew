@@ -39,7 +39,15 @@ var PostTagsInputController = Ember.Controller.extend({
 
     suggestions: null,
     newTagText: null,
-    displayTagNames: ["Life", "Ideas", "Rants", "Learn"],
+    displayTagNames: Ember.computed('parentController.target', function () {
+        var baseTagNames = ["Life", "Ideas", "Rants", "Learn"];
+        var pc = this.get("parentController");
+        var pathname = pc.get("target").get("location").get("location").pathname;
+        if(!this.get("session.user").get('isAuthor') && pathname.indexOf("/editor/") < 0) {
+            baseTagNames.unshift("Faves");
+        }
+        return baseTagNames;
+    }),
 
     actions: {
         toggleTag: function(tag){
@@ -49,6 +57,13 @@ var PostTagsInputController = Ember.Controller.extend({
             } else {
                 this.set("newTagText", tag);
                 this.send("addNewTag");
+            }
+
+            // If this is not the the editor view, save immediately
+            var pc = this.get("parentController");
+            var pathname = pc.get("target").get("location").get("location").pathname;
+            if(pathname.indexOf("/editor/") < 0) {
+                this.get("parentController.model").save();
             }
         },
 

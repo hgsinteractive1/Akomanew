@@ -36,6 +36,7 @@ frontendRoutes = function () {
         res.redirect(301, subdir + '/rss/');
     });
 
+
     // Tags
     router.get('/' + config.routeKeywords.tag + '/:slug/rss/', frontend.rss);
     router.get('/' + config.routeKeywords.tag + '/:slug/rss/:page/', frontend.rss);
@@ -47,6 +48,9 @@ frontendRoutes = function () {
     router.get('/' + config.routeKeywords.author + '/:slug/rss/:page/', frontend.rss);
     router.get('/' + config.routeKeywords.author + '/:slug/' + config.routeKeywords.page + '/:page/', frontend.author);
     router.get('/' + config.routeKeywords.author + '/:slug/', frontend.author);
+
+    // Dynamic filters
+    router.get('/latest', frontend.latest);
 
     // Default
     router.get('/' + config.routeKeywords.page + '/:page/', frontend.homepage);

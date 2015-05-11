@@ -73,3 +73,22 @@ body.settings {
         top: 100px;
     }
 }
+
+
+#entry-tags .tag {
+    margin-right: 0px;
+}
+#entry-tags .tag:after { 
+    content:'';
+}
+
+body.manage, body.settings {
+    #primary-nav {
+        a#write-story {
+            display: block;
+        }
+        a#finish-writing-story {
+            display: none;
+        }
+    }
+}

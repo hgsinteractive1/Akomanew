@@ -5,20 +5,49 @@
 
 	#primary-nav {
 		height:87px;
-		border-bottom: 1px solid $rule-color;
 		width:100%;
-		//position:fixed;
 		position:fixed;
 		top:0px;
 		left:0px;
-		background: #FFF;
-		z-index: 1000;
-
+		z-index:1000;
+	
 		&.is-white {
 			border-bottom: none;
-			position:absolute;
 			background: none;
 		}
+
+		//background for animting in white layer
+		#nav-background {
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			border-bottom: 1px solid $rule-color;
+			top: 0px;
+			left: 0px;
+			background: #FFF;
+			opacity: 1;
+			-webkit-transition: all 0.25s ease-out;
+    		-moz-transition: all 0.25s ease-out;
+    		-o-transition: all 0.25s ease-out;
+		}
+
+		&.is-white {
+			#nav-background {
+				height: 0;
+				opacity: 0;
+			}
+		}
+
+		//content nested into this layer
+		#nav-content {
+			height: 100%;
+			width: 100%;
+			position:absolute;
+			top:0px;
+			left:0px;
+		}
+
+
 
 		@include respond-to(handhelds) {
 			height:50px;	
@@ -40,7 +69,7 @@
 				width:64px;
 				height:24px;
 				top:16px;
-				left:44px;
+				left:49px;
 				margin-left:0px;	
 			}
 
@@ -60,68 +89,6 @@
 					background-position: 0 -18px;	
 				}
 			}	
-		}
-
-
-		a#menu {
-			width:50px;
-			height:50px;
-			position:absolute;
-			display:block;
-			left:20px;
-			top:18px;
-
-			@include respond-to(handhelds) {
-				height:40px;
-				width:40px;
-				left:0px;
-				top:5px;	
-			}
-
-			div.menu-bar {
-				width:35px;
-				height:2px;
-				position:absolute;
-				left:7px;
-				background:#000;
-
-					@include respond-to(handhelds) {
-						width:27px;
-					}
-
-					
-				&.one {
-					top:15px;
-					@include respond-to(handhelds) {
-						top:13px;
-					}
-				}
-
-				&.two {
-					top:24px;
-					@include respond-to(handhelds) {
-						top:19px;
-					}
-				}
-
-				&.three {
-					top:33px;
-					@include respond-to(handhelds) {
-						top:25px;
-					}
-				}
-
-			}
-
-		}
-
-		&.is-white {
-			a#menu {
-				div.menu-bar {
-					background:#FFF;
-				}
-			}
-				
 		}
 
 		a#write-story {
@@ -288,6 +255,7 @@
 			border-radius: 20px;
 			overflow: hidden;
 			text-decoration: none;
+			display: none;
 
 				@include respond-to(handhelds) {
 					height:30px;
@@ -317,5 +285,10 @@
 
 		}
 
+		&.compose-story {
+			a#finish-writing-story {
+				display: block;
+			}
+		}
 
 	}

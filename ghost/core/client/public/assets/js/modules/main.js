@@ -1,10 +1,10 @@
 //configure paths
-define(['jquery', 'storyShareTools'], function($, storyShareTools) {
+define(['jquery', 'mainNav', 'storyShareTools'], function($, mainNav, storyShareTools) {
  	
 /**************************************************************************
 * DECLARE SCOPE
 */
-	obj = this;
+	var obj = {};
 
 /**************************************************************************
 * DECLARE APPLICATION VARS
@@ -17,6 +17,9 @@ define(['jquery', 'storyShareTools'], function($, storyShareTools) {
 * INIT APPLICATION
 */
 	function initGlobalComponents() {
+		console.log('global components');
+		//init main nav
+		mainNav.init();
 
 	}
 
@@ -33,12 +36,13 @@ define(['jquery', 'storyShareTools'], function($, storyShareTools) {
 
 /**************************************************************************
 * DECLARE APPLICATION VARS
-*/
-
- 	$(document).ready(function() {
+*/	
+	obj.init = function() {
+		console.log('init main app');
  		initApplication();
- 	});
+	}
 
+	return obj;
  
 });
 

@@ -13,7 +13,7 @@
         <!--REMOVE not-edited-yet class when user starts editing-->
         <!--This will remove the default grey-->
         <h2>
-            {{gh-trim-focus-input type="hidden" id="entry-title" value=model.titleScratch tabindex="1" focus=shouldFocusTitle}}
+            {{gh-trim-focus-input type="hidden" id="entry-title" value=model.titleScratch}}
             {{#if model.titleScratch}}
                 <div class="editable-wrapper" contenteditable="true" id="entry-title-visible">{{model.titleScratch}}</div>
             {{else}}
@@ -115,12 +115,14 @@
     });
 
     // Remove the "not-edited-yet" class when edits are made to divs.
-    $("[contenteditable=true]").on("keyup", function(){ $(this).closest(".not-edited-yet").removeClass("not-edited-yet"); });
+    $("[contenteditable=true]").on("keyup", function(){ 
+        $(this).closest(".not-edited-yet").removeClass("not-edited-yet"); 
+    });
 
     // Update a hidden input with the changes made to the editable div.
     // This is so the header text saves correctly.
-    $("#entry-title-visible").on("keyup", function(){ $("#entry-title").val($(this).text()); $("#entry-title").change(); });
-    $("#entry-title-visible").on("change", function(){ $("#entry-title-visible").html($(this).val()); });
+    $("#story-intro h2").on("keyup", "#entry-title-visible", function(){ $("#entry-title").val($(this).text()); $("#entry-title").change(); });
+    // $("#entry-title").on("change", function(){ $("#entry-title-visible").html($(this).val()); });
 
     // Bind the finish editing button, this should show the modal
     $("#finish-writing-story").on("click", function(e){

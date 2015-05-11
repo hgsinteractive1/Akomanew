@@ -26,9 +26,9 @@ var EditorBaseRoute = Ember.Mixin.create(styleBody, ShortcutsRoute, loadingIndic
         // The actual functionality is implemented in utils/ed-editor-shortcuts
         editorShortcut: function (options) {
             // Only fire editor shortcuts when the editor has focus.
-            if (this.get('controller.editor').$().is(':focus')) {
-                this.get('controller.editor').shortcut(options.type);
-            }
+            // if (this.get('controller.editor').$().is(':focus')) {
+            //     this.get('controller.editor').shortcut(options.type);
+            // }
         },
 
         willTransition: function (transition) {

@@ -9,6 +9,7 @@ var moment      = require('moment'),
     _           = require('lodash'),
     Promise     = require('bluebird'),
     api         = require('../api'),
+    dataProvider         = require('../models'),
     config      = require('../config'),
     filters     = require('../filters'),
     template    = require('../helpers/template'),
@@ -31,7 +32,19 @@ function getPostPage(options) {
             options.limit = postsPerPage;
         }
         options.include = 'author,tags,fields';
-        return api.posts.browse(options);
+        return api.posts.browse(options).then(function(results){
+            return dataProvider.Tag.findAll().then(function(data){
+                var tags = {};
+                for(var i in data.models) {
+                    tags[data.models[i].get("name")] = (data.models[i]);
+                }
+
+                results.allTags = tags;
+                return results;
+            });
+        }).then(function(results){
+            return results;
+        });
     });
 }
 
@@ -42,9 +55,9 @@ function getPostPage(options) {
  */
 function formatPageResponse(posts, page, extraValues) {
     extraValues = extraValues || {};
-
     var resp = {
         posts: posts,
+        allTags:page.allTags,
         pagination: page.meta.pagination
     };
     return _.extend(resp, extraValues);
@@ -81,6 +94,9 @@ function setResponseContext(req, res, data) {
         contexts.push('index');
     } else if (req.route.path === '/') {
         contexts.push('home');
+        contexts.push('index');
+    } else if (req.route.path === '/latest') {
+        contexts.push('latest');
         contexts.push('index');
     } else if (/\/rss\/(:page\/)?$/.test(req.route.path)) {
         contexts.push('rss');
@@ -124,12 +140,55 @@ function getActiveThemePaths() {
 }
 
 frontendControllers = {
+
+    // Latest behaves like the old index page...
+    latest: function(req, res, next){
+        // Parse the page number
+        var pageParam = req.params.page !== undefined ? parseInt(req.params.page, 10) : 1,
+            options = {
+                page: pageParam,
+            };
+
+        // No negative pages, or page 1
+        if (isNaN(pageParam) || pageParam < 1 || (pageParam === 1 && req.route.path === '/page/:page/')) {
+            return res.redirect(config.paths.subdir + '/');
+        }
+
+        return getPostPage(options).then(function (page) {
+            // If page is greater than number of pages we have, redirect to last page
+            if (pageParam > page.meta.pagination.pages) {
+                return res.redirect(page.meta.pagination.pages === 1 ? config.paths.subdir + '/' : (config.paths.subdir + '/page/' + page.meta.pagination.pages + '/'));
+            }
+
+            setReqCtx(req, page.posts);
+
+            // Render the page of posts
+            filters.doFilter('prePostsRender', page.posts).then(function (posts) {
+                getActiveThemePaths().then(function (paths) {
+                    var view = paths.hasOwnProperty('home.hbs') ? 'home' : 'index';
+
+                    // If we're on a page then we always render the index
+                    // template.
+                    if (pageParam > 1) {
+                        view = 'index';
+                    }
+
+                    setResponseContext(req, res);
+                    res.render(view, formatPageResponse(posts, page));
+                });
+            });
+        }).catch(handleError(next));
+    },
     homepage: function (req, res, next) {
         // Parse the page number
         var pageParam = req.params.page !== undefined ? parseInt(req.params.page, 10) : 1,
             options = {
-                page: pageParam
+                page: pageParam,
             };
+
+        if(config.homeTag) {
+            options["tag"] = config.homeTag;
+        }
 
         // No negative pages, or page 1
         if (isNaN(pageParam) || pageParam < 1 || (pageParam === 1 && req.route.path === '/page/:page/')) {
@@ -313,6 +372,16 @@ frontendControllers = {
 
             // Query database to find post
             return api.posts.read(postLookup);
+        }).then(function(results){
+            return dataProvider.Tag.findAll().then(function(data){
+                var tags = {};
+                for(var i in data.models) {
+                    tags[data.models[i].get("name")] = (data.models[i]);
+                }
+
+                results.allTags = tags;
+                return results;
+            });
         }).then(function (result) {
             var post = result.posts[0],
                 slugDate = [],
@@ -341,7 +410,7 @@ frontendControllers = {
                         console.log(template);
                         var view = template.getThemeViewForPost(paths, post),
                             response = formatResponse(post);
-
+                        response.allTags = result.allTags;
                         setResponseContext(req, res, response);
 
                         res.render(view, response);

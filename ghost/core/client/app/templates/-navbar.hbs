@@ -13,7 +13,7 @@
 	</a>
 	<!--END MENU-->
 	<!--WRITE STORY-->
-		<a href="#" id="write-story">
+		<a href="/ghost/editor" id="write-story">
 			<div class="relative">
 				<div id="compose-icon"></div>
 				<p>Write a story</p>
@@ -41,3 +41,51 @@
 
 	</div>
 </div>
+
+<!--MENU OVERLAY-->
+<div id="main-menu-wrapper" class="hidden">
+	<div id="overlay-background"></div>
+	<div class="relative">
+		<div id="menu-content">
+			<div class="eyebrow">on aKoma</div>
+			<!--BEGIN FILTER NAV-->
+			<ul id="filter-nav">
+				<li><a href="/" class="filter-nav-link">FAVES<div class="filter-nav-icon faves"></div></a></li>
+				<li><a href="/latest" class="filter-nav-link">LATEST<div class="filter-nav-icon latest"></div></a></li>
+				<li class="last"><a href="/popular" class="filter-nav-link popular">POPULAR<div class="filter-nav-icon popular"></div></a></li>
+			</ul>
+			<!--END FILTER NAV-->
+			<ul id="primary-menu">
+				<li>
+					<a href="/tag/{{tagsForMenu.Life.slug}}" class="primary-menu-link">Life
+					<span>{{tagsForMenu.Life.description}}</span>
+					</a>
+				</li>
+				<li class="margin-rt-none">
+					<a href="/tag/{{tagsForMenu.Ideas.slug}}" class="primary-menu-link">Ideas
+					<span>{{tagsForMenu.Ideas.description}}</span>
+					</a>
+				</li>
+				<li>
+					<a href="/tag/{{tagsForMenu.Rants.slug}}" class="primary-menu-link">Rants
+					<span>{{tagsForMenu.Rants.description}}</span>
+					</a>
+				</li>
+				<li class="margin-rt-none">
+					<a href="/tag/{{tagsForMenu.Learn.slug}}" class="primary-menu-link">Learn
+					<span>{{tagsForMenu.Learn.description}}</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>	
+</div>
+<!--END MENU OVERLAY-->
+
+<a href="#" id="menu-icon">
+	<div id="relative">
+		<div class="menu-bar one"></div>
+		<div class="menu-bar two"></div>
+		<div class="menu-bar three"></div>
+	</div>
+</a>
