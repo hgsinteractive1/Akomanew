@@ -33,11 +33,20 @@
 		</a>
 		<!--END FINISH WRITING-->
 		<!--BEGIN ACCOUNT DROPDOWN/LOG IN-->
-			<a href="#" id="log-in">
-				<div id="relative">
+			<div id="account-icon-wrapper">
+				<a href="#" id="log-in">
+					
+			
 					<div id="logged-out-icon"></div>
-				</div>
-			</a>
+
+					<!--BEGIN LOGEED IN ACTIONS-->
+					<div id="logged-in-actions">
+
+					</div>
+					<!--END LOGGED IN ACTIONS-->
+					
+				</a>
+			</div>
 		<!--END ACCOUNT-->
 		</div>
 		<!--END NAV CONTENT-->

@@ -9,17 +9,77 @@ define(['jquery'], function($) {
 /**************************************************************************
 * DECLARE APPLICATION VARS
 */
-	//main member vars
+	//vars to store scope
 	var nav;
 	var menu;
 	var menuIcon;
+	var actionsMenu;
+	var profileIcon;
+
+	//main member vars
 	var shouldCheckNavState;
 	var menuIsOpen = false;
+	var actionsMenuIsOpen = false;
+	var bodyClickActionHandler;
+	var isInteractingWithActionsMenu = false;
 
 	//scroll nav vars
 	var scrollDistance;
 	var scrollChange = 50;
 
+
+
+/**************************************************************************
+* HIDE/SHOW LOG IN OVERLAY
+*/
+
+	function showLogInOverlay() {
+		console.log('show log in');
+	}
+
+/**************************************************************************
+* HIDE/SHOW LOGGED IN ACTIONS NAV
+*/
+	function showActionsMenu() {
+
+		actionsMenu.removeClass('hidden');
+		actionsMenu.addClass('fadedIn');
+		actionsMenu.on("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend",
+        function(event) {
+        	$(this).off("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend");
+   			bindBodyClickDetection();
+  		});
+		
+	}
+
+	function hideActionsMenu() {
+		unbindBodyClickDetection();
+		actionsMenu.removeClass('fadedIn');
+		actionsMenu.on("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend",
+        function(event) {
+   			$(this).addClass('hidden');
+   			$(this).off("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend");
+   			actionsMenuIsOpen = false;
+   			isInteractingWithActionsMenu = false;
+   			
+  		});
+	}
+
+	function bindBodyClickDetection() {
+
+		bodyClickActionHandler = function() {
+			if(isInteractingWithActionsMenu == false) {
+				console.log('here');
+				hideActionsMenu();
+			}	
+		}
+
+		$('body,html').bind("click", bodyClickActionHandler);
+	}
+
+	function unbindBodyClickDetection() {
+		$('body,html').unbind("click", bodyClickActionHandler);
+	}
 
 /**************************************************************************
 * HIDE/SHOW MAIN MENU
@@ -95,16 +155,47 @@ define(['jquery'], function($) {
 * BIND EVENTS
 */
 	function bindEvents() {
+		
+		//hide or show main menu
 		menuIcon.click(function(e) {
 			e.preventDefault();
+
 			if(menuIsOpen == false) {
 				showMenu();
 				menuIsOpen = true;
 			} else {
-				hideMenu()
+				hideMenu();
 				menuIsOpen = false;
 			}
 		});
+
+		//hide or show actions menui
+		profileIcon.click(function(e) {
+			e.preventDefault();
+
+			console.log(actionsMenuIsOpen);
+
+			if(actionsMenuIsOpen == false) {
+
+				showActionsMenu();
+				actionsMenuIsOpen = true;
+			} else {
+				hideActionsMenu();
+				actionsMenuIsOpen = false;
+			}
+		});
+
+		//check if is interacting with actions menu
+		actionsMenu.mouseenter(function() {
+			isInteractingWithActionsMenu = true;
+		});
+
+		actionsMenu.mouseleave(function() {
+			isInteractingWithActionsMenu = false;
+		});
+
+
+
 	}
 
 
@@ -117,6 +208,8 @@ define(['jquery'], function($) {
 		nav = $('#primary-nav');
 		menu = $('#main-menu-wrapper');
 		menuIcon = $('#menu-icon');
+		profileIcon = $('#account-icon-wrapper').find('#log-in') //NEED TO CHANGE THIS!;
+		actionsMenu = $('#logged-in-actions');
 		checkInitNavState();
 		bindEvents();
 	}
