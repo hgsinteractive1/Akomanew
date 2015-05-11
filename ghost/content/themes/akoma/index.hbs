@@ -4,7 +4,9 @@
 <!--BEGIN CATEGORY HERO AREA-->
 <div id="category-hero">
 	<div id="image-area">
-		<img src="/ghost/images/default_hero.jpg" />
+		{{#if @blog.cover}}
+			<img src="{{@blog.cover}}" />
+		{{/if}}
 		<div id="tint"></div>
 	</div>
 	<div id="headline">
