@@ -20,7 +20,6 @@ Editor = Ember.Component.extend(EditorAPI, EditorShortcuts, {
      * Check if the textarea should have focus, and set it if necessary
      */
     setFocus: function () {
-        console.log("set focus");
         if (this.get('focus')) {
             this.$().val(this.$().val()).focus();
         }

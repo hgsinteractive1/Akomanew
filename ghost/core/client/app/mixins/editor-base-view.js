@@ -15,26 +15,15 @@ var EditorViewMixin = Ember.Mixin.create({
 
     // all child views will have rendered when this fires
     afterRenderEvent: function () {
-        // var $previewViewPort = this.$('.js-entry-preview-content');
-
-        // // cache these elements for use in other methods
-        // this.set('$previewViewPort', $previewViewPort);
-        // this.set('$previewContent', this.$('.js-rendered-markdown'));
-
-        // $previewViewPort.on('scroll', Ember.run.bind($previewViewPort, setScrollClassName, {
-        //     target: this.$('.js-entry-preview'),
-        //     offset: 10
-        // }));
-
-        var controller = this.get("controller");
-        this.$().on("keyup", function(){ 
-            if($("input#entity-abstract").val().trim() === "") {
-                setTimeout(function(){ 
-                    controller.send("type");
-                    $("input#entity-abstract").val("");
-                }, 100); 
-            }
-        });
+        // var controller = this.get("controller");
+        // this.$().on("keyup", function(){ 
+        //     if($("input#entity-abstract").val().trim() === "") {
+        //         setTimeout(function(){ 
+        //             controller.send("type");
+        //             $("input#entity-abstract").val("");
+        //         }, 100); 
+        //     }
+        // });
     },
 
     removeScrollHandlers: function () {

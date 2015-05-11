@@ -313,13 +313,12 @@ EditorControllerMixin = Ember.Mixin.create({
             this.set('model.meta_title', psmController.get('metaTitleScratch'));
             this.set('model.meta_description', psmController.get('metaDescriptionScratch'));
 
-            if (!this.get('model.slug')) {
+            // if (!this.get('model.slug')) {
                 // Cancel any pending slug generation that may still be queued in the
                 // run loop because we need to run it before the post is saved.
                 Ember.run.cancel(psmController.get('debounceId'));
-
                 psmController.generateAndSetSlug('model.slug');
-            }
+            // }
 
             promise = Ember.RSVP.resolve(psmController.get('lastPromise')).then(function () {
                 return self.get('model').save(options).then(function (model) {
