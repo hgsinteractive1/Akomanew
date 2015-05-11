@@ -342,7 +342,7 @@
 								left:18px;
 								height: 30px;
 								width: 22px;
-								background: url(../images/manage_site_content.png) no-repeat;
+								background: url(#{$assets_path}images/manage_site_content.png) no-repeat;
 								background-size: 100%;
 							}
 
@@ -351,7 +351,7 @@
 								left:15px;
 								height: 31px;
 								width: 35px;
-								background: url(../images/new_story.png) no-repeat;
+								background: url(#{$assets_path}images/new_story.png) no-repeat;
 								background-size: 100%;
 							}
 
@@ -361,7 +361,7 @@
 								left:15px;
 								height: 27px;
 								width: 26px;
-								background: url(../images/drafts_and_stories.png) no-repeat;
+								background: url(#{$assets_path}images/drafts_and_stories.png) no-repeat;
 								background-size: 100%;
 							}
 
@@ -370,7 +370,7 @@
 								left:21px;
 								height: 22px;
 								width: 17px;
-								background: url(../images/action_profile.png) no-repeat;
+								background: url(#{$assets_path}images/action_profile.png) no-repeat;
 								background-size: 100%;
 							}
 
@@ -379,7 +379,7 @@
 								left:12px;
 								height: 23px;
 								width: 26px;
-								background: url(../images/sign_out.png) no-repeat;
+								background: url(#{$assets_path}images/sign_out.png) no-repeat;
 								background-size: 100%;
 							}
 						}

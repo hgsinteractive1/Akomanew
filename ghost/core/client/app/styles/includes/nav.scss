@@ -178,65 +178,230 @@
 			}
 		}
 
-		a#log-in {
+		#account-icon-wrapper {
 			height:42px;
 			width:42px;
-			border-radius: 50%;
-			border: 1px solid #000;
 			position:absolute;
 			top: 23px;
 			right: 30px;
-			overflow: hidden;
 
-				@include respond-to(handhelds) {
-					height:30px;
-					width:30px;
-					border-radius:50%;
-					top:10px;
-					right:14px;
-					
-				}
-
-			#logged-out-icon {
-				width:24px;
-				height:33px;
-				position:absolute;
-				background-position: 0 0;
-				background: url(#{$assets_path}images/log_in.png) no-repeat;
-				background-size:100%;
+			@include respond-to(handhelds) {
+				height:30px;
+				width:30px;
 				top:10px;
-				left:9px;
-
-				@include respond-to(handhelds) {
-					width:18px;
-					height:24px;
-					top:7px;
-					left:6px;
-					
-				}
-
-
-				/* 1.5 dpr */
-				@media(-webkit-min-device-pixel-ratio: 1.5), 
-				(min-resolution: 144dpi){ 
-				    background: url(#{$assets_path}images/log_in@2x.png) no-repeat;
-				    background-size:100%;
-				}
+				right:16px;	
 			}
 
+			a#log-in {
+				height:42px;
+				width:42px;
+				border-radius: 50%;
+				border: 1px solid #000;
+				display: block;
+				overflow: hidden;
+				position:relative;
+				-webkit-backface-visibility: hidden;
+				-webkit-transform: translateX(0);
 
+	
+					
+
+					@include respond-to(handhelds) {
+						height:30px;
+						width:30px;
+						border-radius:50%;
+					}
+
+					#logged-out-icon {
+						width:24px;
+						height:33px;
+						position:absolute;
+						background-position: 0 0;
+						background: url(#{$assets_path}images/log_in.png) no-repeat;
+						background-size:100%;
+						top:10px;
+						left:9px;
+
+						@include respond-to(handhelds) {
+							width:18px;
+							height:24px;
+							top:7px;
+							left:6px;
+							
+						}
+
+
+						/* 1.5 dpr */
+						@media(-webkit-min-device-pixel-ratio: 1.5), 
+						(min-resolution: 144dpi){ 
+						    background: url(#{$assets_path}images/log_in@2x.png) no-repeat;
+						    background-size:100%;
+						}
+					}
+
+			
+
+			}
 
 		}
 
+		//later to be nested in
+		//the logged in icon
+		#logged-in-actions {
+			width: 250px;
+			height: auto;
+			background: #FFF;
+			border: 1px solid $rule-color;
+			position: absolute;
+			top: 50px;
+			right: -3px;
+			opacity:0;
+			-webkit-box-shadow: 0px 0px 28px -5px rgba(0,0,0,0.28);
+			-moz-box-shadow: 0px 0px 28px -5px rgba(0,0,0,0.28);
+			box-shadow: 0px 0px 28px -5px rgba(0,0,0,0.28);
+
+			-webkit-transition: opacity 0.25s ease-out;
+    		-moz-transition: opacity 0.25s ease-out;
+    		-o-transition: opacity 0.25s ease-out;
+
+    		@include respond-to(handhelds) {
+				position:fixed;
+				height: 100%;
+				width: 100%;
+				top:0px;
+				left: 0px;			
+			}
+
+
+    		&.fadedIn {
+    			opacity:1;
+    		}
+
+    		&.hidden {
+    			height:0px;
+    			overflow:hidden;
+    		}
+
+			&:after, &:before {
+				bottom: 100%;
+				right: 12px;
+				border: solid transparent;
+				content: " ";
+				height: 0;
+				width: 0;
+				position: absolute;
+				pointer-events: none;
+			}
+
+			&:after {
+				border-color: rgba(255, 255, 255, 0);
+				border-bottom-color: #FFF;
+				border-width: 10px;
+				margin-left: -10px;
+			}
+			&:before {
+				border-color: rgba(194, 225, 245, 0);
+				border-bottom-color: #c2e1f5;
+				border-width: 11px;
+				margin-left: -11px;
+			}
+
+			ul#logged-in-actions-list {
+				width: 100%;
+				padding-top:18px;
+				height: auto;
+
+				li {
+					width: 100%;
+					height: 35px;
+					margin-bottom:8px;
+
+					&.last {
+						margin-bottom: 0px;
+					}
+
+					a.logged-in-action {
+						font-size: 14px;
+						color: #000;
+						height: 100%;
+						display: block;
+						position:relative;
+						padding-left: 60px;
+						text-decoration: none;
+
+
+						&.grey-text {
+							color: $light-grey;
+						}
+
+						div.action-icon {
+							position:absolute;
+
+							&.manage-site-content {
+								top:-8px;
+								left:18px;
+								height: 30px;
+								width: 22px;
+								background: url(#{$assets_path}images/manage_site_content.png) no-repeat;
+								background-size: 100%;
+							}
+
+							&.new-story {
+								top:-9px;
+								left:15px;
+								height: 31px;
+								width: 35px;
+								background: url(#{$assets_path}images/new_story.png) no-repeat;
+								background-size: 100%;
+							}
+
+
+							&.drafts-and-stories {
+								top:-2px;
+								left:15px;
+								height: 27px;
+								width: 26px;
+								background: url(#{$assets_path}images/drafts_and_stories.png) no-repeat;
+								background-size: 100%;
+							}
+
+							&.view-profile {
+								top:-3px;
+								left:21px;
+								height: 22px;
+								width: 17px;
+								background: url(#{$assets_path}images/action_profile.png) no-repeat;
+								background-size: 100%;
+							}
+
+							&.sign-out {
+								top:-4px;
+								left:12px;
+								height: 23px;
+								width: 26px;
+								background: url(#{$assets_path}images/sign_out.png) no-repeat;
+								background-size: 100%;
+							}
+						}
+					}
+				}
+			}
+
+			
+		}
+
+
 		&.is-white {
-			a#log-in {
-				border: 1px solid #FFF;
+			#account-icon-wrapper {
+				a#log-in {
+					border: 1px solid #FFF;
 
-				#logged-out-icon {
-					background-position: 0 -33px;
+					#logged-out-icon {
+						background-position: 0 -33px;
 
-					@include respond-to(handhelds) {
-						background-position: 0 -25px;
+						@include respond-to(handhelds) {
+							background-position: 0 -25px;
+						}
 					}
 				}
 			}
