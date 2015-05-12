@@ -47,6 +47,12 @@
 						<li><a href="#" class="logged-in-action">Profile<div class="view-profile action-icon"></div></a></li>
 						<li class="last"><a href="#" class="logged-in-action grey-text">Sign Out<div class="sign-out action-icon"></div></a></li>
 					</ul>
+					<div id="close-handheld-overlay">
+						<div class="relative">
+							<div class="line-one"></div>
+							<div class="line-two"></div>
+						</div>
+					</div>
 				</div>
 				<!--END LOGGED IN ACTIONS-->
 					
