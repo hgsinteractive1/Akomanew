@@ -52,8 +52,6 @@ var ApplicationView = Ember.View.extend({
 
         if(window.main) {
             window.main.init();
-        } else {
-            console.log("NO MAIN");
         }
     },
 
