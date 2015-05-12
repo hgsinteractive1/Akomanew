@@ -151,7 +151,8 @@
 				<div id="manage-story-actions">
 					<ul class="actions">
 						<li><a href="#" class="action">Edit<div class="edit-story-icon"></div></a></li>
-						<li><a href="#" class="action">Hide <div class="hide-story-icon"></div></a></li>
+						<!--<li><a href="#" class="action">Hide <div class="hide-story-icon"></div></a></li>-->
+						<li><a href="#" class="action">Hide <div class="show-story-icon"></div></a></li>
 						<li><a href="#" class="action">Delete<div class="delete-story-icon"></div></a></li>
 						<li class="last"><a href="#" class="action">Feature<div class="feature-story-icon"></div></a></li>
 

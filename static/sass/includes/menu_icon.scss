@@ -7,11 +7,17 @@ a#menu-icon {
 	top:18px;
 	z-index: 2500;
 
+	&.tool-tip-active {
+		@include respond-to(handhelds) {
+			display:none;
+		}
+	}
+
 	@include respond-to(handhelds) {
 		height:40px;
 		width:40px;
 		left:5px;
-		top:5px;	
+		top:5px;
 	}
 
 	div.menu-bar {

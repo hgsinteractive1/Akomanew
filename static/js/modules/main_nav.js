@@ -21,6 +21,7 @@ akomadefine(['jquery'], function($) {
 	var shouldCheckNavState;
 	var menuIsOpen = false;
 	var actionsMenuIsOpen = false;
+	var actionsMenuIsAnimating = false;
 	var bodyClickActionHandler;
 	var isInteractingWithActionsMenu = false;
 
@@ -42,26 +43,32 @@ akomadefine(['jquery'], function($) {
 * HIDE/SHOW LOGGED IN ACTIONS NAV
 */
 	function showActionsMenu() {
-
+		actionsMenuIsAnimating = true;
+		actionsMenuIsOpen = true;
+		menuIcon.addClass('tool-tip-active');
 		actionsMenu.removeClass('hidden');
 		actionsMenu.addClass('fadedIn');
 		actionsMenu.on("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend",
         function(event) {
         	$(this).off("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend");
    			bindBodyClickDetection();
+   			actionsMenuIsAnimating = false;
   		});
 		
 	}
 
 	function hideActionsMenu() {
 		unbindBodyClickDetection();
+		menuIcon.removeClass('tool-tip-active');
 		actionsMenu.removeClass('fadedIn');
 		actionsMenu.on("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend",
         function(event) {
    			$(this).addClass('hidden');
    			$(this).off("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend");
-   			actionsMenuIsOpen = false;
+
    			isInteractingWithActionsMenu = false;
+   			actionsMenuIsOpen = false;
+   			actionsMenuIsAnimating = false;
    			
   		});
 	}
@@ -101,6 +108,19 @@ akomadefine(['jquery'], function($) {
    			$(this).addClass('hidden');
    			$(this).off("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend");
   		});
+	}
+
+	function toggleActionsMenu() {
+		if((actionsMenuIsOpen == false) && (actionsMenuIsAnimating == false)) {
+
+			showActionsMenu();
+				
+		} 
+		if((actionsMenuIsOpen == true) && (actionsMenuIsAnimating == false)) {
+
+			hideActionsMenu();
+			
+		} 
 	}
 
 /**************************************************************************
@@ -175,15 +195,10 @@ akomadefine(['jquery'], function($) {
 			e.preventDefault();
 
 			console.log(actionsMenuIsOpen);
+			console.log(actionsMenuIsAnimating);
 
-			if(actionsMenuIsOpen == false) {
-
-				showActionsMenu();
-				actionsMenuIsOpen = true;
-			} else {
-				hideActionsMenu();
-				actionsMenuIsOpen = false;
-			}
+			toggleActionsMenu();
+			
 		});
 
 		//check if is interacting with actions menu
@@ -194,6 +209,11 @@ akomadefine(['jquery'], function($) {
 		actionsMenu.mouseleave(function() {
 			isInteractingWithActionsMenu = false;
 		});
+
+		//close actions overlay if handheld
+		actionsMenu.find('#close-handheld-overlay').click(function() {
+			toggleActionsMenu();
+		});	
 
 
 
