@@ -1,5 +1,5 @@
 //configure paths
-define(['jquery', 'mainNav', 'storyShareTools'], function($, mainNav, storyShareTools) {
+akomadefine(['jquery', 'mainNav', 'storyShareTools'], function($, mainNav, storyShareTools) {
  	
 /**************************************************************************
 * DECLARE SCOPE

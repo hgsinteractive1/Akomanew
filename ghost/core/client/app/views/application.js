@@ -49,10 +49,6 @@ var ApplicationView = Ember.View.extend({
         }));
 
         mobileQuery.addListener(this.get('closeGlobalMobileNavOnDesktop'));
-
-        if(window.main) {
-            window.main.init();
-        }
     },
 
     showGlobalMobileNavObserver: function () {

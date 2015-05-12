@@ -1,5 +1,6 @@
 //configure paths
-define(['jquery'], function($) {
+akomadefine(['jquery'], function($) {
+	$ = $ || window.$;
  	
 /**************************************************************************
 * DECLARE SCOPE
