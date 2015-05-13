@@ -58,6 +58,10 @@ body {
 
 #container {
     overflow: inherit;
+
+    #primary-nav {
+        background: white;
+    }
 }
 
 body.settings, body.ghost-login {
@@ -93,4 +97,17 @@ body.manage, body.settings {
             display: none;
         }
     }
+}
+
+#story-detail #manage-stories-tags ul.tags li.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    text-align: inherit;
+    white-space: inherit;
+    vertical-align: inherit;
+    border-radius: inherit;
 }

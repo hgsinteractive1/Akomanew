@@ -30,4 +30,5 @@ akomarequire(['jquery','main'], function($, main) {
     $(document).ready(function() {
       main.init();
     });
+    window.main = main;
 });
