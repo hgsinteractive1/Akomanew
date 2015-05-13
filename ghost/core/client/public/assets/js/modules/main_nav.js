@@ -54,10 +54,7 @@ akomadefine(['jquery'], function($) {
    			bindBodyClickDetection();
    			actionsMenuIsAnimating = false;
   		});
-		setTimeout(function(){
-			bindBodyClickDetection();
-   			actionsMenuIsAnimating = false;
-		}, 100);
+		
 	}
 
 	function hideActionsMenu() {

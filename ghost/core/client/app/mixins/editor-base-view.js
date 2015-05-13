@@ -15,15 +15,15 @@ var EditorViewMixin = Ember.Mixin.create({
 
     // all child views will have rendered when this fires
     afterRenderEvent: function () {
-        // var controller = this.get("controller");
-        // this.$().on("keyup", function(){ 
-        //     if($("input#entity-abstract").val().trim() === "") {
-        //         setTimeout(function(){ 
-        //             controller.send("type");
-        //             $("input#entity-abstract").val("");
-        //         }, 100); 
-        //     }
-        // });
+        var controller = this.get("controller");
+        this.$().on("keyup", function(){ 
+            if($("input#entity-abstract").val().trim() === "") {
+                setTimeout(function(){ 
+                    controller.send("type");
+                    $("input#entity-abstract").val("");
+                }, 100); 
+            }
+        });
     },
 
     removeScrollHandlers: function () {

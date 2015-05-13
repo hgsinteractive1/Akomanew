@@ -21,7 +21,7 @@ var formatHTML = Ember.HTMLBars.makeBoundHelper(function (arr /* hashParams */) 
     excerpt = excerpt.replace(/<\/?[^>]+>/gi, '');
     excerpt = excerpt.replace(/(\r\n|\n|\r)+/gm, ' ');
     /*jslint regexp:false */
-
+    
     return downsize(excerpt, {"words": 100});
 });
 

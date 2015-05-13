@@ -281,7 +281,7 @@ EditorControllerMixin = Ember.Mixin.create({
                 psmController = this.get('controllers.post-settings-menu'),
                 promise;
 
-                console.log("SAVING...", this.get('model.abstract'), this.get('abstract'));
+                // console.log("SAVING...", this.get('model.abstract'), this.get('abstract'));
             options = options || {};
 
             if (autoSaveId) {
