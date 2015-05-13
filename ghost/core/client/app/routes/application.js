@@ -17,6 +17,8 @@ ApplicationRoute = Ember.Route.extend(SimpleAuth.ApplicationRouteMixin, Shortcut
         if (this.get('session').isAuthenticated) {
             transition.send('loadServerNotifications');
         }
+
+        setTimeout(function(){ if(window.main) window.main.init(); }, 1000);
     },
 
     title: function (tokens) {
@@ -52,12 +54,6 @@ ApplicationRoute = Ember.Route.extend(SimpleAuth.ApplicationRouteMixin, Shortcut
 
         signedIn: function () {
             this.send('loadServerNotifications', true);
-            
-            setTimeout(function(){
-                if(window.main) {
-                    window.main.init();
-                }
-            }, 1000);
         },
 
         sessionAuthenticationFailed: function (error) {

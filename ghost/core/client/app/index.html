@@ -42,16 +42,16 @@
 
     <link rel="stylesheet" href="{{asset "vendor.css" ghost="true" minifyInProduction="true"}}" />
     <link rel="stylesheet" href="{{asset "ghost.css" ghost="true" minifyInProduction="true"}}" />
-    <script type="text/javascript" src="{{asset "js/require.js" ghost="true"}}" data-main="{{asset "js/core.js" ghost="true"}}"></script>
     
     {{content-for 'head-footer'}}
 </head>
 <body>
     {{content-for 'body'}}
-
+    
     <script src="{{asset "js/grande.js" ghost="true" minifyInProduction="true"}}"></script>
     <script src="{{asset "js/vendor.js" ghost="true" minifyInProduction="true"}}"></script>
     <script src="{{asset "js/ghost.js" ghost="true" minifyInProduction="true"}}"></script>
+    <script type="text/javascript" src="{{asset "js/require.js" ghost="true"}}" data-main="{{asset "js/akoma.js" ghost="true"}}"></script>
 
     {{content-for 'body-footer'}}
 

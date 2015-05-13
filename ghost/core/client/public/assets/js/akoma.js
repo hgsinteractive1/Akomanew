@@ -2,30 +2,21 @@
 
 akomarequire.config({
   paths: {
-
-    // //LIBRARIES
-    "jquery": "libraries/jquery-1.11.0.min",
-
      //MODULES AND COMPONENTS
     "mainNav": "modules/main_nav",
     "storyShareTools": "modules/story_share",
 
     //PRIMARY CONTROLLERS
     // global elements and core application states
-    "main": "modules/main"
-
-     
-
-    
+    "main": "modules/main",
+    "jquery": "./jqueryhack"
   }
 
   
 });
 
-
-
 //configure paths
-akomarequire(['jquery','main'], function($, main) { 
+akomarequire(['jquery', 'main'], function($, main) { 
     $ = $ || window.$;
     $(document).ready(function() {
       main.init();
