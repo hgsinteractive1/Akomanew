@@ -23,12 +23,10 @@ var ApplicationController = Ember.Controller.extend({
     }),
 
     tagsForMenu: Ember.computed(function(){
-        console.log("R", this.get("target"));
         var ret = {};
         var allTags = this.store.all('tag');
         console.log("TAG", allTags);
         allTags.forEach(function(item){
-            console.log("ITEM", item);
             ret[item.get('name')] = item;
         });
         return ret;

@@ -9,15 +9,15 @@
     <!--STORY INTRO AREA-->
     <div id="story-intro" class="editor-placeholder-wrapper">
         <div class="edit-icon"></div>
+        {{gh-trim-focus-input type="hidden" id="entry-title" value=model.titleScratch}}
 
         <!--REMOVE not-edited-yet class when user starts editing-->
         <!--This will remove the default grey-->
         <h2>
-            {{gh-trim-focus-input type="hidden" id="entry-title" value=model.titleScratch}}
             {{#if model.titleScratch}}
-                <div class="editable-wrapper" contenteditable="true" id="entry-title-visible" data-placeholder="Enter Story Title...">{{model.titleScratch}}</div>
+                <div contenteditable="true" id="entry-title-visible">{{model.titleScratch}}</div>
             {{else}}
-                <div class="editable-wrapper" contenteditable="true" id="entry-title-visible"></div>
+                <div contenteditable="true" id="entry-title-visible"></div>
             {{/if}}
             <div class='editor-placeholder {{if model.titleScratch "hidden" ""}}'>Enter Story Title...</div>
         </h2>
@@ -108,9 +108,9 @@
 
     // Update a hidden input with the changes made to the editable div.
     // This is so the header text saves correctly.
-    $("#story-intro h2").on("keyup", "#entry-title-visible", function(){ 
+    $("#story-intro h2").on("blur", "#entry-title-visible", function(){ 
         $("#entry-title").val($(this).text());
-        $("#entry-title").change(); 
+        $("#entry-title").change();
     });
 
     // Bind the finish editing button, this should show the modal
