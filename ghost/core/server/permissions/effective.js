@@ -1,6 +1,7 @@
 var _ = require('lodash'),
     Models = require('../models'),
     errors = require('../errors'),
+    Promise = require('bluebird'),
     effective;
 
 effective = {
@@ -29,9 +30,13 @@ effective = {
                         seenPerms[key] = true;
                     });
                 });
-
+                // console.log("PERMYS", {permissions: allPerms, roles: user.roles});
                 return {permissions: allPerms, roles: user.roles};
             }, errors.logAndThrowError);
+    },
+
+    guest: function(){
+        return Promise.resolve(null);
     },
 
     app: function (appName) {

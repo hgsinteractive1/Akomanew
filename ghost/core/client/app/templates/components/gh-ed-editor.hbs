@@ -1,15 +1,16 @@
-<div class='editor g-body'>
-    <article class="content" contenteditable="true">
-    	{{#if value}}
-        	{{{value}}}
-        {{else}}
-        	<p>Start writing your story here...</p>
-        {{/if}}
-    </article>
-</div>
 
-
-
-<script type="text/javascript">
-  grande.bind($("article.content"));
-</script>
+	<div class="editable-wrapper">
+		<section class="entry-markdown js-entry-markdown {{unless isPreview 'active'}}">
+		    <section id="entry-markdown-content" class="entry-markdown-content">
+		    	
+					<div class='editor g-body' id="body-editor">
+					    <article class="content" contenteditable="true">
+					    	{{#if value}}
+					        	{{{value}}}
+					        {{/if}}
+					    </article>
+					</div>
+					<div class='editor-placeholder {{if value "hidden" ""}}'>Start writing your story...</div>
+			</section>
+	    </section>
+	</div>

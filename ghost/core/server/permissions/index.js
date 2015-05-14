@@ -160,7 +160,7 @@ CanThisResult.prototype.beginCheck = function (context) {
         userPermissionLoad = effectivePerms.user(context.user);
     } else {
         // Resolve null if no context.user to prevent db call
-        userPermissionLoad = Promise.resolve(null);
+        userPermissionLoad = effectivePerms.guest();
     }
 
     // Kick off loading of effective app permissions if necessary

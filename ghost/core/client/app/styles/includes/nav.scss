@@ -326,6 +326,7 @@
     		}
 
     		&.hidden {
+    			display: inherit;
     			height:0px;
     			overflow:hidden;
 

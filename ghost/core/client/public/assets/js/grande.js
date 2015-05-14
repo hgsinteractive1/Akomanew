@@ -120,7 +120,6 @@
       imageInput.onchange = uploadImage;
       document.onmousemove = triggerOverlayStyling;
     }
-
     for (i = 0, len = editableNodes.length; i < len; i++) {
       node = editableNodes[i];
       node.contentEditable = true;

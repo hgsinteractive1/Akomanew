@@ -43,6 +43,7 @@ akomadefine(['jquery'], function($) {
 * HIDE/SHOW LOGGED IN ACTIONS NAV
 */
 	function showActionsMenu() {
+		console.log("SHOW");
 		actionsMenuIsAnimating = true;
 		actionsMenuIsOpen = true;
 		menuIcon.addClass('tool-tip-active');
@@ -54,10 +55,10 @@ akomadefine(['jquery'], function($) {
    			bindBodyClickDetection();
    			actionsMenuIsAnimating = false;
   		});
-		
 	}
 
 	function hideActionsMenu() {
+		console.log("HIDE");
 		unbindBodyClickDetection();
 		menuIcon.removeClass('tool-tip-active');
 		actionsMenu.removeClass('fadedIn');
@@ -178,7 +179,7 @@ akomadefine(['jquery'], function($) {
 	function bindEvents() {
 		
 		//hide or show main menu
-		menuIcon.click(function(e) {
+		$("body").on("click", '#menu-icon', function(e) {
 			e.preventDefault();
 
 			if(menuIsOpen == false) {
@@ -191,7 +192,7 @@ akomadefine(['jquery'], function($) {
 		});
 
 		//hide or show actions menui
-		profileIcon.click(function(e) {
+		$("body").on("click", "#log-in", function(e) {
 			e.preventDefault();
 
 			console.log(actionsMenuIsOpen);
@@ -202,20 +203,18 @@ akomadefine(['jquery'], function($) {
 		});
 
 		//check if is interacting with actions menu
-		actionsMenu.mouseenter(function() {
+		$("body").on("mouseenter", "#logged-in-actions", function() {
 			isInteractingWithActionsMenu = true;
 		});
 
-		actionsMenu.mouseleave(function() {
+		$("body").on("mouseleave", "#logged-in-actions", function() {
 			isInteractingWithActionsMenu = false;
 		});
 
 		//close actions overlay if handheld
-		actionsMenu.find('#close-handheld-overlay').click(function() {
+		$("body").on("click","#close-handheld-overlay", function() {
 			toggleActionsMenu();
 		});	
-
-
 
 	}
 

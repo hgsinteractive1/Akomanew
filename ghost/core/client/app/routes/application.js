@@ -18,12 +18,14 @@ ApplicationRoute = Ember.Route.extend(SimpleAuth.ApplicationRouteMixin, Shortcut
             transition.send('loadServerNotifications');
         }
 
-        setTimeout(function(){ if(window.main) window.main.init(); }, 1000);
+        // Load all the tags so they can be pulled into the menu
+        this.store.findAll("tag").then(function(data){ });
     },
 
     title: function (tokens) {
         return tokens.join(' - ') + ' - ' + this.get('config.blogTitle');
     },
+
 
     actions: {
         toggleGlobalMobileNav: function () {

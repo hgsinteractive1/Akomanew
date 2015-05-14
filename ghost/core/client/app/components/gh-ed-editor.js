@@ -13,7 +13,7 @@ Editor = Ember.Component.extend(EditorAPI, EditorShortcuts, {
      * Tell the controller about focusIn events, will trigger an autosave on a new document
      */
     focusIn: function () {
-        this.sendAction('onFocusIn');
+        // this.sendAction('onFocusIn');
     },
 
     /**

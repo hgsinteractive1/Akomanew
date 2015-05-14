@@ -7,7 +7,7 @@
 <!--BEGIN STORY DETAIL -->
 <div id="story-detail">
     <!--STORY INTRO AREA-->
-    <div id="story-intro">
+    <div id="story-intro" class="editor-placeholder-wrapper">
         <div class="edit-icon"></div>
 
         <!--REMOVE not-edited-yet class when user starts editing-->
@@ -15,10 +15,11 @@
         <h2>
             {{gh-trim-focus-input type="hidden" id="entry-title" value=model.titleScratch}}
             {{#if model.titleScratch}}
-                <div class="editable-wrapper" contenteditable="true" id="entry-title-visible">{{model.titleScratch}}</div>
+                <div class="editable-wrapper" contenteditable="true" id="entry-title-visible" data-placeholder="Enter Story Title...">{{model.titleScratch}}</div>
             {{else}}
-                <div class="editable-wrapper not-edited-yet" contenteditable="true" id="entry-title-visible">Enter Story Title...</div>
+                <div class="editable-wrapper" contenteditable="true" id="entry-title-visible"></div>
             {{/if}}
+            <div class='editor-placeholder {{if model.titleScratch "hidden" ""}}'>Enter Story Title...</div>
         </h2>
     </div>
     <!--END STORY INTRO AREA-->
@@ -26,37 +27,14 @@
     <!--BEGIN STORY IMAGE-->
     <div id="story-image">
         {{gh-uploader uploaded="setCoverImage" canceled="clearCoverImage" description="Add post image" image=model.image uploaderReference=uploaderReference tagName="section"}}
-
-        {{!-- <!--
-        <img src="images/placeholder_story_image.jpg">
-        -->
-        <div id="upload-container"></div> --}}
     </div>
     <!--END STORY IMAGE-->
     <!--BEGIN STORY BODY-->
-    <div id="story-body">
+    <div id="story-body" class="editor-placeholder-wrapper">
         <div class="edit-icon"></div>
-       {{#if model.scratch}}
-        <div class="editable-wrapper " contenteditable="true">
-            <section class="entry-markdown js-entry-markdown {{unless isPreview 'active'}}">
-                <section id="entry-markdown-content" class="entry-markdown-content">
-                    {{gh-ed-editor classNames="markdown-editor js-markdown-editor" tabindex="1" spellcheck="true" value=model.scratch
-                    scrollInfo=view.editorScrollInfo focus=shouldFocusEditor focusCursorAtEnd=model.isDirty
-                    setEditor="setEditor" openModal="openModal" onFocusIn="autoSaveNew"}}
-                </section>
-            </section>
-        </div>
-       {{else}}
-       <div class="editable-wrapper not-edited-yet" contenteditable="true">
-            <section class="entry-markdown js-entry-markdown {{unless isPreview 'active'}}">
-                <section id="entry-markdown-content" class="entry-markdown-content">
-                    {{gh-ed-editor classNames="markdown-editor js-markdown-editor" tabindex="1" spellcheck="true" value=model.scratch
-                    scrollInfo=view.editorScrollInfo focus=shouldFocusEditor focusCursorAtEnd=model.isDirty
-                    setEditor="setEditor" openModal="openModal" onFocusIn="autoSaveNew"}}
-                </section>
-            </section>
-        </div>
-       {{/if}}
+        {{gh-ed-editor classNames="markdown-editor js-markdown-editor" tabindex="1" spellcheck="true" value=model.scratch
+        scrollInfo=view.editorScrollInfo focus=shouldFocusEditor focusCursorAtEnd=model.isDirty
+        setEditor="setEditor" openModal="openModal" onFocusIn="autoSaveNew"}}
     </div>
     <!--END STORY BODY-->
 </div>
@@ -114,15 +92,26 @@
         input.change();
     });
 
-    // Remove the "not-edited-yet" class when edits are made to divs.
-    $("[contenteditable=true]").on("keyup", function(){ 
-        $(this).closest(".not-edited-yet").removeClass("not-edited-yet"); 
+    $("#story-detail").on("focus", "[contenteditable=true]", function(){
+        $(".editor-placeholder", $(this).closest(".editor-placeholder-wrapper")).addClass("hidden");
+    });
+
+    $("#story-detail").on("blur", "[contenteditable=true]", function(){ 
+        if($(this).text().trim().length === 0){
+            $(".editor-placeholder", $(this).closest(".editor-placeholder-wrapper")).removeClass("hidden");
+        }
+    });
+
+    $(".edit-icon").on("click", function(){
+        $("[contenteditable=true]", $(this).closest(".editor-placeholder-wrapper")).focus();
     });
 
     // Update a hidden input with the changes made to the editable div.
     // This is so the header text saves correctly.
-    $("#story-intro h2").on("keyup", "#entry-title-visible", function(){ $("#entry-title").val($(this).text()); $("#entry-title").change(); });
-    // $("#entry-title").on("change", function(){ $("#entry-title-visible").html($(this).val()); });
+    $("#story-intro h2").on("keyup", "#entry-title-visible", function(){ 
+        $("#entry-title").val($(this).text());
+        $("#entry-title").change(); 
+    });
 
     // Bind the finish editing button, this should show the modal
     $("#finish-writing-story").on("click", function(e){
@@ -140,39 +129,6 @@
         $("#finish-overlay").fadeOut("fast");
     });
 
+    grande.bind($("#body-editor"));
 </script>
-
-
-
-
-{{!-- <header class="page-header">
-    <button class="menu-button js-menu-button" {{action "toggleGlobalMobileNav"}}><span class="sr-only">Menu</span></button>
-    <h2 class="page-title">Editor</h2>
-</header>
- --}}
-{{!-- <div class="page-content">
-    <header>
-        <section class="box entry-title">
-            {{gh-trim-focus-input type="text" id="entry-title" placeholder="Your Post Title" value=model.titleScratch
-            tabindex="1" focus=shouldFocusTitle}}
-        </section>
-    </header>
-    
-
-    <div class="settings-menu-content">
-    {{gh-uploader uploaded="setCoverImage" canceled="clearCoverImage" description="Add post image" image=model.image uploaderReference=uploaderReference tagName="section"}}
-    </div>
-
-    <section class="entry-markdown js-entry-markdown {{unless isPreview 'active'}}">
-        <section id="entry-markdown-content" class="entry-markdown-content">
-            {{gh-ed-editor classNames="markdown-editor js-markdown-editor" tabindex="1" spellcheck="true" value=model.scratch
-            scrollInfo=view.editorScrollInfo focus=shouldFocusEditor focusCursorAtEnd=model.isDirty
-            setEditor="setEditor" openModal="openModal" onFocusIn="autoSaveNew"}}
-        </section>
-    </section>
-
-    {{partial "publish-bar"}}
-
-</div>
- --}}
 
