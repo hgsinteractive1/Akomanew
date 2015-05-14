@@ -108,6 +108,9 @@ body.manage, body.settings {
     }
 }
 
+#story-detail b { font-weight:bold; }
+#story-detail i {font-style: italic;}
+
 #story-detail #manage-stories-tags ul.tags li.label {
     display: inline;
     padding: .2em .6em .3em;
