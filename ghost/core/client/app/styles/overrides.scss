@@ -132,3 +132,20 @@ body.manage, body.settings {
     pointer-events: none;
     color:#999;
 }
+
+
+/**
+ * Grande overrides
+ **/
+.ui-inputs .url-input {
+    font-size:12px;
+}
+.options {
+    width:125px;
+      margin-left: 45px;
+}
+
+.options.url-mode {
+    width:200px;
+    margin-left:7px;
+}

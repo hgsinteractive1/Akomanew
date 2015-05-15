@@ -49,9 +49,11 @@
         toolbarTemplate = "<div class='options'> \
           <span class='no-overflow'> \
             <span class='ui-inputs'> \
-              <button class='bold'>b</button> \
+              <button class='bold'>B</button> \
               <button class='italic'>i</button> \
               <button class='header2'>h2</button> \
+              <button class='url useicons'>link</button> \
+              <input class='url-input' type='text' placeholder='Paste or type a link'/> \
             </span> \
           </span> \
         </div>",
@@ -112,14 +114,15 @@
     // Handle window resize events
     root.onresize = triggerTextSelection;
 
-    // urlInput.onblur = triggerUrlBlur;
-    // urlInput.onkeydown = triggerUrlSet;
+    urlInput.onblur = triggerUrlBlur;
+    urlInput.onkeydown = triggerUrlSet;
 
     if (options.allowImages) {
       imageTooltip.onmousedown = triggerImageUpload;
       imageInput.onchange = uploadImage;
       document.onmousemove = triggerOverlayStyling;
     }
+
     for (i = 0, len = editableNodes.length; i < len; i++) {
       node = editableNodes[i];
       node.contentEditable = true;
