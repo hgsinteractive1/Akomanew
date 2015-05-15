@@ -29,7 +29,7 @@ PostsRoute = AuthenticatedRoute.extend(ShortcutsRoute, styleBody, loadingIndicat
 
             // using `.filter` allows the template to auto-update when new models are pulled in from the server.
             // we just need to 'return true' to allow all models by default.
-            return self.store.filter('post', paginationSettings, function (post) {
+            var t = self.store.filter('post', paginationSettings, function (post) {
 
                 // First check the tag filter
                 // console.log(post.get("id"), post.get("tags").mapBy("name"));
@@ -43,12 +43,15 @@ PostsRoute = AuthenticatedRoute.extend(ShortcutsRoute, styleBody, loadingIndicat
 
                 return true;
             });
+
+            return t;
         });
     }.observes("tagName"),
 
     setupController: function (controller, model) {
         this._super(controller, model);
         this.setupPagination(paginationSettings);
+        paginationSettings.limit = 1000;
     },
 
     stepThroughPosts: function (step) {
@@ -90,6 +93,7 @@ PostsRoute = AuthenticatedRoute.extend(ShortcutsRoute, styleBody, loadingIndicat
 
         filter: function(filter) {
             tagName = filter;
+            paginationSettings.page = 1;
             this.model();
         },
         focusList: function () {
