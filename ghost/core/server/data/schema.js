@@ -113,12 +113,16 @@ var db = {
             created_at: {type: 'dateTime', nullable: false},
             created_by: {type: 'integer', nullable: false},
             updated_at: {type: 'dateTime', nullable: true},
-            updated_by: {type: 'integer', nullable: true}
+            updated_by: {type: 'integer', nullable: true},
+
+            sortable: {type: 'bool', nullable: false, defaultTo: false},
+            in_menu: {type: 'bool', nullable: false, defaultTo: false}
         },
         posts_tags: {
             id: {type: 'increments', nullable: false, primary: true},
             post_id: {type: 'integer', nullable: false, unsigned: true, references: 'posts.id'},
-            tag_id: {type: 'integer', nullable: false, unsigned: true, references: 'tags.id'}
+            tag_id: {type: 'integer', nullable: false, unsigned: true, references: 'tags.id'},
+            sort_position: {type: 'integer', nullable: false, unsigned: true, defaultTo: 0}
         },
         apps: {
             id: {type: 'increments', nullable: false, primary: true},

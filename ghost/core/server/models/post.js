@@ -453,6 +453,8 @@ Post = ghostBookshelf.Model.extend({
                         .query('where', 'posts_tags.tag_id', '=', tagInstance.id);
                 }
 
+                console.log(tagInstance);
+
                 if (authorInstance) {
                     postCollection
                         .query('where', 'author_id', '=', authorInstance.id);

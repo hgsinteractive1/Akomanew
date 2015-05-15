@@ -28,9 +28,20 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
     sortProperties: ['status', 'published_at', 'updated_at'],
     filterOptions: ["All", "Faves", "Life", "Ideas", "Rants", "Learn"],
     selectedFilter: "All",
+    selectedFilterIsSortable: false,
+
+    actions: {
+        movePostUp: function(post){
+            console.log("move post up", post.get("tags"));
+        },
+        movePostDown: function(post){
+            console.log("move post down", post);
+        }
+    },
 
     watchFilter: function() {  
         this.get("target").send("filter", this.get("selectedFilter"));
+        this.set("selectedFilterIsSortable", this.get("selectedFilter") === "Faves");
     }.observes('selectedFilter'),
 
     // override Ember.SortableMixin
