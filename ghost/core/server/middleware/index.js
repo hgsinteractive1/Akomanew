@@ -8,6 +8,7 @@ var api            = require('../api'),
     crypto         = require('crypto'),
     errors         = require('../errors'),
     express        = require('express'),
+    session        = require('express-session'),
     fs             = require('fs'),
     hbs            = require('express-hbs'),
     logger         = require('morgan'),
@@ -279,7 +280,16 @@ setupMiddleware = function (blogAppInstance, adminApp) {
     blogApp.use(bodyParser.json());
     blogApp.use(bodyParser.urlencoded({extended: true}));
 
+
+    // #### TWITTER ####
+    // Initialize passport "stuff"
+    // Note: express session must be initialized before passport session
+    // if reliance on passpost sessions is needed
+    blogApp.use(session({secret: 'keyboard cat', key: 'sid'}));
     blogApp.use(passport.initialize());
+    blogApp.use(passport.session());
+
+
 
     // ### Caching
     blogApp.use(middleware.cacheControl('public'));
