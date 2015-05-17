@@ -10,7 +10,7 @@ var express           =     require('express')
 // Override the HOST value with the host we want SSO provider to call back
 // e.g. http://b.akomanet.com
 // e.g. http://127.0.0.1 -- NOT localhost as Twitter barfs at it
-var APP_HOST_INTEGRATE = "http://lgr.akomanet.com:5000";
+var APP_HOST_INTEGRATE = "http://b.akomanet.com:81";
 
 var TWITTER_CONSUMER_KEY = "NRfJBexESA1fGKjXv9OidwLVd";
 var TWITTER_CONSUMER_SECRET = "MAYbbLLoiG2YSA0Tva6h4fPCs9TNAVJMxTeiwmXjIgcGK62A3F";
