@@ -51,7 +51,8 @@
             <span class='ui-inputs'> \
               <button class='bold'>B</button> \
               <button class='italic'>i</button> \
-              <button class='header2'>h2</button> \
+              <button class='header2'>h</button> \
+               <button class='quote'>&rdquo;</button> \
               <button class='url useicons'>link</button> \
               <input class='url-input' type='text' placeholder='Paste or type a link'/> \
             </span> \
