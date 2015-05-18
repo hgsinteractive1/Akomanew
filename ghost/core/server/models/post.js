@@ -128,7 +128,6 @@ Post = ghostBookshelf.Model.extend({
                     return;
                 }
             }
-
             self.myTags.push(item);
         });
 
@@ -191,55 +190,99 @@ Post = ghostBookshelf.Model.extend({
             return;
         }
 
-        return Post.forge({id: savedModel.id}).fetch({withRelated: ['tags'], transacting: options.transacting}).then(function (post) {
-            var tagOps = [];
+        // Load all the tags we currently have in the DB and compare that to the ones we want to have.
+        return this.tags().fetch().then(function(currentTags){ 
+            currentTags = currentTags.models;
+            
+            // tags that are in current and not in myTags need to be removed
+            var toRemoveTagIds = [];
+            for(var x in currentTags) {
+                var currentTag = currentTags[x];
+                var found = false;
 
-            // remove all existing tags from the post
-            // _.omit(options, 'query') is a fix for using bookshelf 0.6.8
-            // (https://github.com/tgriesser/bookshelf/issues/294)
-            tagOps.push(post.tags().detach(null, _.omit(options, 'query')));
+                for(var y in self.myTags) {
+                    var myTag = self.myTags[y];
+                    if(myTag.slug === currentTag.attributes.slug) {
+                        found = true;
+                        break ;
+                    }
+                }
 
-            if (_.isEmpty(self.myTags)) {
-                return Promise.all(tagOps);
+                if(!found) {
+                    toRemoveTagIds.push(currentTag.attributes.id);
+                }
             }
 
-            return ghostBookshelf.collection('Tags').forge().query('whereIn', 'name', _.pluck(self.myTags, 'name')).fetch(options).then(function (existingTags) {
-                var doNotExist = [],
-                    sequenceTasks = [];
+            // Tags that are in mytags and not in current need to be added
+            var toAddTags = [];
+            for(var y in self.myTags) {
+                var myTag = self.myTags[y];
+                var found = false;
 
-                existingTags = existingTags.toJSON(options);
+                for(var x in currentTags) {
+                    var currentTag = currentTags[x];
 
-                doNotExist = _.reject(self.myTags, function (tag) {
-                    return _.any(existingTags, function (existingTag) {
-                        return existingTag.name === tag.name;
-                    });
-                });
+                    if(myTag.slug === currentTag.attributes.slug) {
+                        found = true;
+                        break ;
+                    }
+                }
 
-                // Create tags that don't exist and attach to post
-                _.each(doNotExist, function (tag) {
-                    var createAndAttachOperation = function () {
-                        return ghostBookshelf.model('Tag').add({name: tag.name}, options).then(function (createdTag) {
-                            // _.omit(options, 'query') is a fix for using bookshelf 0.6.8
-                            // (https://github.com/tgriesser/bookshelf/issues/294)
-                            return post.tags().attach(createdTag.id, _.omit(options, 'query'));
+                if(!found) {
+                    toAddTags.push(myTag);
+                }
+            }
+
+            return Post.forge({id: savedModel.id}).fetch({withRelated: ['tags'], transacting: options.transacting}).then(function (post) {
+                var tagOps = [];
+
+                // remove all existing tags from the post
+                // _.omit(options, 'query') is a fix for using bookshelf 0.6.8
+                // (https://github.com/tgriesser/bookshelf/issues/294)
+                tagOps.push(post.tags().detach(toRemoveTagIds, _.omit(options, 'query')));
+                if (_.isEmpty(toAddTags)) {
+                    return Promise.all(tagOps);
+                }
+
+                return ghostBookshelf.collection('Tags').forge().query('whereIn', 'name', _.pluck(toAddTags, 'name')).fetch(options).then(function (existingTags) {
+                    var doNotExist = [],
+                        sequenceTasks = [];
+
+                    existingTags = existingTags.toJSON(options);
+
+                    doNotExist = _.reject(toAddTags, function (tag) {
+                        return _.any(existingTags, function (existingTag) {
+                            return existingTag.name === tag.name;
                         });
-                    };
+                    });
 
-                    sequenceTasks.push(createAndAttachOperation);
+                    // Create tags that don't exist and attach to post
+                    _.each(doNotExist, function (tag) {
+                        var createAndAttachOperation = function () {
+                            return ghostBookshelf.model('Tag').add({name: tag.name}, options).then(function (createdTag) {
+                                // _.omit(options, 'query') is a fix for using bookshelf 0.6.8
+                                // (https://github.com/tgriesser/bookshelf/issues/294)
+                                return post.tags().attach(createdTag.id, _.omit(options, 'query'));
+                            });
+                        };
+
+                        sequenceTasks.push(createAndAttachOperation);
+                    });
+
+                    tagOps = tagOps.concat(sequence(sequenceTasks));
+
+                    // attach the tags that already existed
+                    _.each(existingTags, function (tag) {
+                        // _.omit(options, 'query') is a fix for using bookshelf 0.6.8
+                        // (https://github.com/tgriesser/bookshelf/issues/294)
+                        tagOps.push(post.tags().attach(tag.id, _.omit(options, 'query')));
+                    });
+
+                    return Promise.all(tagOps);
                 });
-
-                tagOps = tagOps.concat(sequence(sequenceTasks));
-
-                // attach the tags that already existed
-                _.each(existingTags, function (tag) {
-                    // _.omit(options, 'query') is a fix for using bookshelf 0.6.8
-                    // (https://github.com/tgriesser/bookshelf/issues/294)
-                    tagOps.push(post.tags().attach(tag.id, _.omit(options, 'query')));
-                });
-
-                return Promise.all(tagOps);
             });
         });
+
     },
 
     // Relations
@@ -260,7 +303,7 @@ Post = ghostBookshelf.Model.extend({
     },
 
     tags: function () {
-        return this.belongsToMany('Tag');
+        return this.belongsToMany('Tag').withPivot(["sort_position"]);
     },
 
     fields: function () {
@@ -452,8 +495,6 @@ Post = ghostBookshelf.Model.extend({
                         .query('join', 'posts_tags', 'posts_tags.post_id', '=', 'posts.id')
                         .query('where', 'posts_tags.tag_id', '=', tagInstance.id);
                 }
-
-                console.log(tagInstance);
 
                 if (authorInstance) {
                     postCollection

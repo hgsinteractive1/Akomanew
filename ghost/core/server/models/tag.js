@@ -58,7 +58,7 @@ Tag = ghostBookshelf.Model.extend({
     },
 
     posts: function () {
-        return this.belongsToMany('Post');
+        return this.belongsToMany('Post').withPivot(["sort_position"]);
     },
 
     toJSON: function (options) {
