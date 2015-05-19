@@ -43,6 +43,9 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
             var posts = this.get("arrangedContent");
             for(var i = 0 ; i < posts.length ; i++) {
                 var tag_positions = posts[i].get("data.tag_positions");
+                if(!tag_positions) {
+                    tag_positions = {};
+                }
                 if(posts[i].get("id") === post.get("id")) {
                     // Move this post up
                     tag_positions[filter] = Math.max(0, i - 1);
@@ -69,7 +72,7 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
         movePostDown: function(post){
             var filter = this.get("selectedFilter");
             var posts = this.get("arrangedContent");
-            for(var i = 0 ; i < posts.length ; i++) {
+            for(var i = posts.length - 1; i >= 0 ; i--) {
                 var tag_positions = posts[i].get("data.tag_positions");
                 if(posts[i].get("id") === post.get("id")) {
                     // Move this post up
@@ -86,7 +89,7 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
                 }
                 posts[i].set("data.tag_positions", tag_positions);
             }
-
+            
             for(var i = 0 ; i < posts.length ; i++) {
                 posts[i].set("tag_positions", posts[i].get("data.tag_positions"));
                 posts[i].save(posts[i].get("data.tag_positions"));
