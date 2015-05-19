@@ -43,7 +43,10 @@ akomadefine(['jquery'], function($) {
 * HIDE/SHOW LOGGED IN ACTIONS NAV
 */
 	function showActionsMenu() {
-		console.log("SHOW");
+		if(actionsMenu.length === 0) {
+			lookupElements();
+		}
+
 		actionsMenuIsAnimating = true;
 		actionsMenuIsOpen = true;
 		menuIcon.addClass('tool-tip-active');
@@ -58,7 +61,6 @@ akomadefine(['jquery'], function($) {
 	}
 
 	function hideActionsMenu() {
-		console.log("HIDE");
 		unbindBodyClickDetection();
 		menuIcon.removeClass('tool-tip-active');
 		actionsMenu.removeClass('fadedIn');
@@ -78,7 +80,6 @@ akomadefine(['jquery'], function($) {
 
 		bodyClickActionHandler = function() {
 			if(isInteractingWithActionsMenu == false) {
-				console.log('here');
 				hideActionsMenu();
 			}	
 		}
@@ -129,9 +130,15 @@ akomadefine(['jquery'], function($) {
 */	
 	function checkState() {
 		var  hasClass = $('#primary-nav').hasClass('is-white');
-		return hasClass;
+		return hasClass;		
+	}
 
-		
+	function lookupElements() {
+		nav = $('#primary-nav');
+		menu = $('#main-menu-wrapper');
+		menuIcon = $('#menu-icon');
+		profileIcon = $('#account-icon-wrapper').find('#log-in') //NEED TO CHANGE THIS!;
+		actionsMenu = $('#logged-in-actions');
 	}
 
 	function checkInitNavState() {
@@ -194,10 +201,6 @@ akomadefine(['jquery'], function($) {
 		//hide or show actions menui
 		$("body").on("click", "#log-in", function(e) {
 			e.preventDefault();
-
-			console.log(actionsMenuIsOpen);
-			console.log(actionsMenuIsAnimating);
-
 			toggleActionsMenu();
 			
 		});
@@ -225,11 +228,7 @@ akomadefine(['jquery'], function($) {
 
 	obj.init = function() {
 		console.log('init nav');
-		nav = $('#primary-nav');
-		menu = $('#main-menu-wrapper');
-		menuIcon = $('#menu-icon');
-		profileIcon = $('#account-icon-wrapper').find('#log-in') //NEED TO CHANGE THIS!;
-		actionsMenu = $('#logged-in-actions');
+		lookupElements();
 		checkInitNavState();
 		bindEvents();
 	}

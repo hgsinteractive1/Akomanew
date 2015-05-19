@@ -51,7 +51,8 @@
             <span class='ui-inputs'> \
               <button class='bold'>B</button> \
               <button class='italic'>i</button> \
-              <button class='header2'>h2</button> \
+              <button class='header2'>h</button> \
+               <button class='quote'>&rdquo;</button> \
               <button class='url useicons'>link</button> \
               <input class='url-input' type='text' placeholder='Paste or type a link'/> \
             </span> \
@@ -89,7 +90,7 @@
 
     // Trigger on both mousedown and mouseup so that the click on the menu
     // feels more instantaneously active
-    document.onmousedown = triggerTextSelection;
+    // document.onmousedown = triggerTextSelection;
     document.onmouseup = function(event) {
       setTimeout(function() {
         triggerTextSelection(event);
@@ -126,7 +127,7 @@
     for (i = 0, len = editableNodes.length; i < len; i++) {
       node = editableNodes[i];
       node.contentEditable = true;
-      node.onmousedown = node.onkeyup = node.onmouseup = triggerTextSelection;
+      node.onkeyup = node.onmouseup = triggerTextSelection;
     }
   }
 
@@ -534,8 +535,10 @@
         target = e.target || e.srcElement;
 
     // The selected text is not editable
-    if (!target.isContentEditable) {
+    if (!target.isContentEditable || $(target).closest(".content").length === 0) {
       reloadMenuState();
+      setTextMenuPosition(EDGE, EDGE);
+      textMenu.className = "text-menu hide";
       return;
     }
 

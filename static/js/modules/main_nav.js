@@ -43,6 +43,10 @@ akomadefine(['jquery'], function($) {
 * HIDE/SHOW LOGGED IN ACTIONS NAV
 */
 	function showActionsMenu() {
+		if(actionsMenu.length === 0) {
+			lookupElements();
+		}
+
 		actionsMenuIsAnimating = true;
 		actionsMenuIsOpen = true;
 		menuIcon.addClass('tool-tip-active');
@@ -54,7 +58,6 @@ akomadefine(['jquery'], function($) {
    			bindBodyClickDetection();
    			actionsMenuIsAnimating = false;
   		});
-		
 	}
 
 	function hideActionsMenu() {
@@ -77,7 +80,6 @@ akomadefine(['jquery'], function($) {
 
 		bodyClickActionHandler = function() {
 			if(isInteractingWithActionsMenu == false) {
-				console.log('here');
 				hideActionsMenu();
 			}	
 		}
@@ -128,9 +130,15 @@ akomadefine(['jquery'], function($) {
 */	
 	function checkState() {
 		var  hasClass = $('#primary-nav').hasClass('is-white');
-		return hasClass;
+		return hasClass;		
+	}
 
-		
+	function lookupElements() {
+		nav = $('#primary-nav');
+		menu = $('#main-menu-wrapper');
+		menuIcon = $('#menu-icon');
+		profileIcon = $('#account-icon-wrapper').find('#log-in') //NEED TO CHANGE THIS!;
+		actionsMenu = $('#logged-in-actions');
 	}
 
 	function checkInitNavState() {
@@ -178,7 +186,7 @@ akomadefine(['jquery'], function($) {
 	function bindEvents() {
 		
 		//hide or show main menu
-		menuIcon.click(function(e) {
+		$("body").on("click", '#menu-icon', function(e) {
 			e.preventDefault();
 
 			if(menuIsOpen == false) {
@@ -191,31 +199,25 @@ akomadefine(['jquery'], function($) {
 		});
 
 		//hide or show actions menui
-		profileIcon.click(function(e) {
+		$("body").on("click", "#log-in", function(e) {
 			e.preventDefault();
-
-			console.log(actionsMenuIsOpen);
-			console.log(actionsMenuIsAnimating);
-
 			toggleActionsMenu();
 			
 		});
 
 		//check if is interacting with actions menu
-		actionsMenu.mouseenter(function() {
+		$("body").on("mouseenter", "#logged-in-actions", function() {
 			isInteractingWithActionsMenu = true;
 		});
 
-		actionsMenu.mouseleave(function() {
+		$("body").on("mouseleave", "#logged-in-actions", function() {
 			isInteractingWithActionsMenu = false;
 		});
 
 		//close actions overlay if handheld
-		actionsMenu.find('#close-handheld-overlay').click(function() {
+		$("body").on("click","#close-handheld-overlay", function() {
 			toggleActionsMenu();
 		});	
-
-
 
 	}
 
@@ -226,11 +228,7 @@ akomadefine(['jquery'], function($) {
 
 	obj.init = function() {
 		console.log('init nav');
-		nav = $('#primary-nav');
-		menu = $('#main-menu-wrapper');
-		menuIcon = $('#menu-icon');
-		profileIcon = $('#account-icon-wrapper').find('#log-in') //NEED TO CHANGE THIS!;
-		actionsMenu = $('#logged-in-actions');
+		lookupElements();
 		checkInitNavState();
 		bindEvents();
 	}
