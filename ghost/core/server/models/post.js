@@ -35,6 +35,7 @@ getPermalinkSetting = function (model, attributes, options) {
 Post = ghostBookshelf.Model.extend({
 
     tableName: 'posts',
+    tag_positions: null,
 
     emitChange: function (event, usePreviousResourceType) {
         var resourceType = this.get('page') ? 'page' : 'post';
@@ -126,6 +127,7 @@ Post = ghostBookshelf.Model.extend({
             i;
 
         options = options || {};
+
         // keep tags for 'saved' event and deduplicate upper/lowercase tags
         tagsToCheck = this.get('tags');
         this.myTags = [];
@@ -193,7 +195,6 @@ Post = ghostBookshelf.Model.extend({
     updateTags: function (savedModel, response, options) {
         var self = this;
         options = options || {};
-
         if (!this.myTags) {
             return;
         }
@@ -323,7 +324,7 @@ Post = ghostBookshelf.Model.extend({
 
 
         // SET the READ TIME
-        var words = String(this.markdown);
+        var words = String(this.attributes.markdown);
         // Strip inline and bottom footnotes
         words = words.replace(/<a href="#fn.*?rel="footnote">.*?<\/a>/gi, '');
         words = words.replace(/<div class="footnotes"><ol>.*?<\/ol><\/div>/, '');
@@ -331,7 +332,7 @@ Post = ghostBookshelf.Model.extend({
         words = words.replace(/<\/?[^>]+>/gi, '');
         words = words.replace(/(\r\n|\n|\r)+/gm, ' ');
         words = words.split(" ").length;
-        attrs.readTime = Math.ceil(words / 250.0);
+        attrs.readTime = Math.ceil(words / 120.0);
 
         attrs.author = attrs.author || attrs.author_id;
         attrs.url = config.urlPathForPost(attrs, permalinkSetting);
@@ -525,6 +526,7 @@ Post = ghostBookshelf.Model.extend({
                 collectionPromise = postCollection
                     .query('orderBy', 'status', 'ASC')
                     .query('orderBy', 'published_at', 'DESC')
+                    .query('orderBy', 'created_at', 'DESC')
                     .query('orderBy', 'updated_at', 'DESC')
                     .query('orderBy', 'id', 'DESC')
                     .fetch(_.omit(options, 'page', 'limit'));
@@ -669,15 +671,30 @@ Post = ghostBookshelf.Model.extend({
     edit: function (data, options) {
         var self = this;
         options = options || {};
+        options.tag_positions = data.tag_positions;
 
         return ghostBookshelf.Model.edit.call(this, data, options).then(function (post) {
-            return self.findOne({status: 'all', id: options.id}, options)
-                .then(function (found) {
-                    if (found) {
-                        // Pass along the updated attributes for checking status changes
-                        found._updatedAttributes = post._updatedAttributes;
-                        return found;
+            return post.tags().fetch().then(function(tags){
+                var tagOps = [];
+
+                for(var i in tags.models) {
+                    console.log(options.tag_positions);
+                    var sort_position_in_tag = options.tag_positions[tags.models[i].attributes.slug];
+                    if(!sort_position_in_tag) {
+                        sort_position_in_tag = 0;
                     }
+                    tagOps.push(post.tags().updatePivot({"sort_position": sort_position_in_tag}, {"query": {"where": {"tag_id":tags.models[i].attributes.id}}}));
+                }
+                return Promise.all(tagOps).then(function(){
+                    return self.findOne({status: 'all', id: options.id}, options).then(function (found) {
+
+                            if (found) {
+                                // Pass along the updated attributes for checking status changes
+                                found._updatedAttributes = post._updatedAttributes;
+                                return found;
+                            }
+                        });
+                    });
                 });
         });
     },

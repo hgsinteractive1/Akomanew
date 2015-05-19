@@ -25,7 +25,7 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
     postListFocused: Ember.computed.equal('keyboardFocus', 'postList'),
     postContentFocused: Ember.computed.equal('keyboardFocus', 'postContent'),
     // this will cause the list to re-sort when any of these properties change on any of the models
-    sortProperties: ['status', 'published_at', 'updated_at', 'data.tag_positions'],
+    sortProperties: ['status', 'published_at', 'updated_at', 'tag_positions'],
     filterOptions: [
         {"name":"All", "slug":"All"}, 
         {"name":"Faves", "slug":"faves"}, 
@@ -39,10 +39,58 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
 
     actions: {
         movePostUp: function(post){
-            console.log("move post up", post);
+            var filter = this.get("selectedFilter");
+            var posts = this.get("arrangedContent");
+            for(var i = 0 ; i < posts.length ; i++) {
+                var tag_positions = posts[i].get("data.tag_positions");
+                if(posts[i].get("id") === post.get("id")) {
+                    // Move this post up
+                    tag_positions[filter] = Math.max(0, i - 1);
+
+                    // Swap with the post above
+                    if(i > 0) {
+                        var swap_tag_positions = posts[i-1].get("data.tag_positions");
+                        swap_tag_positions[filter] = i;
+                        posts[i-1].set("data.tag_positions", swap_tag_positions);
+                    }
+                } else {
+                    tag_positions[filter] = i;
+                }
+                posts[i].set("data.tag_positions", tag_positions);
+            }
+
+            for(var i = 0 ; i < posts.length ; i++) {
+                posts[i].set("tag_positions", posts[i].get("data.tag_positions"));
+                console.log(posts[i].get("id"), posts[i].get("data.tag_positions"));
+                posts[i].save(posts[i].get("data.tag_positions"));
+            }
+
         },
         movePostDown: function(post){
-            console.log("move post down", post);
+            var filter = this.get("selectedFilter");
+            var posts = this.get("arrangedContent");
+            for(var i = 0 ; i < posts.length ; i++) {
+                var tag_positions = posts[i].get("data.tag_positions");
+                if(posts[i].get("id") === post.get("id")) {
+                    // Move this post up
+                    tag_positions[filter] = Math.min(posts.length - 1, i + 1);
+
+                    // Swap with the post above
+                    if(i < posts.length) {
+                        var swap_tag_positions = posts[i+1].get("data.tag_positions");
+                        swap_tag_positions[filter] = i;
+                        posts[i+1].set("data.tag_positions", swap_tag_positions);
+                    }
+                } else {
+                    tag_positions[filter] = i;
+                }
+                posts[i].set("data.tag_positions", tag_positions);
+            }
+
+            for(var i = 0 ; i < posts.length ; i++) {
+                posts[i].set("tag_positions", posts[i].get("data.tag_positions"));
+                posts[i].save(posts[i].get("data.tag_positions"));
+            }
         }
     },
 
