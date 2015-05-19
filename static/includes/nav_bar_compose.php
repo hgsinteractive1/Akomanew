@@ -20,7 +20,7 @@
 			<a href="#" id="write-story">
 				<div class="relative">
 					<div id="compose-icon"></div>
-					<p>Write a story</p>
+					<p>Write</p>
 				</div>
 			</a>
 		<!--END WRITE-->

@@ -1,5 +1,5 @@
 //configure paths
-akomadefine(['jquery', 'mainNav', 'storyShareTools'], function($, mainNav, storyShareTools) {
+akomadefine(['jquery', 'mainNav', 'storyShareTools', 'fullBleedHero'], function($, mainNav, storyShareTools, fullBleedHero) {
  	
 /**************************************************************************
 * DECLARE SCOPE
@@ -26,10 +26,11 @@ akomadefine(['jquery', 'mainNav', 'storyShareTools'], function($, mainNav, story
 	function initApplication() {
 
 		initGlobalComponents();
-
 		//need to check page type
 		//as we continue to build
 		storyShareTools.init();
+		fullBleedHero.init();
+
 
 	}
 
@@ -38,7 +39,6 @@ akomadefine(['jquery', 'mainNav', 'storyShareTools'], function($, mainNav, story
 * DECLARE APPLICATION VARS
 */	
 	obj.init = function() {
-		console.log('init main app');
  		initApplication();
 	}
 
