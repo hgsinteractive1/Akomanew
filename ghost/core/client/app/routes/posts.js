@@ -27,10 +27,11 @@ PostsRoute = AuthenticatedRoute.extend(ShortcutsRoute, styleBody, loadingIndicat
                 paginationSettings.author = user.get('slug');
             }
 
+            paginationSettings.filterTagName = tagName;
+
             // using `.filter` allows the template to auto-update when new models are pulled in from the server.
             // we just need to 'return true' to allow all models by default.
             var t = self.store.filter('post', paginationSettings, function (post) {
-
                 // First check the tag filter
                 // console.log(post.get("id"), post.get("tags").mapBy("name"));
                 if(!post.hasTag(tagName) && tagName !== "All") {

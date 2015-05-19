@@ -25,14 +25,21 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
     postListFocused: Ember.computed.equal('keyboardFocus', 'postList'),
     postContentFocused: Ember.computed.equal('keyboardFocus', 'postContent'),
     // this will cause the list to re-sort when any of these properties change on any of the models
-    sortProperties: ['status', 'published_at', 'updated_at'],
-    filterOptions: ["All", "Faves", "Life", "Ideas", "Rants", "Learn"],
+    sortProperties: ['status', 'published_at', 'updated_at', 'data.tag_positions'],
+    filterOptions: [
+        {"name":"All", "slug":"All"}, 
+        {"name":"Faves", "slug":"faves"}, 
+        {"name":"Life", "slug":"life"}, 
+        {"name":"Ideas", "slug":"ideas"}, 
+        {"name":"Rants", "slug":"rants"}, 
+        {"name":"Learn", "slug":"learn"}
+    ],
     selectedFilter: "All",
     selectedFilterIsSortable: false,
 
     actions: {
         movePostUp: function(post){
-            console.log("move post up", post.get("tags"));
+            console.log("move post up", post);
         },
         movePostDown: function(post){
             console.log("move post down", post);
@@ -41,7 +48,7 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
 
     watchFilter: function() {  
         this.get("target").send("filter", this.get("selectedFilter"));
-        this.set("selectedFilterIsSortable", this.get("selectedFilter") === "Faves");
+        this.set("selectedFilterIsSortable", this.get("selectedFilter") === "faves");
     }.observes('selectedFilter'),
 
     // override Ember.SortableMixin
@@ -62,6 +69,12 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
             statusResult,
             updatedAtResult,
             publishedAtResult;
+            
+        if(item1.positionInTag(this.get("selectedFilter")) > item2.positionInTag(this.get("selectedFilter"))){ 
+            return 1;
+        } else if(item1.positionInTag(this.get("selectedFilter")) < item2.positionInTag(this.get("selectedFilter"))) {
+            return -1;
+        }
 
         // when `updated_at` is undefined, the model is still
         // being written to with the results from the server
@@ -72,6 +85,7 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
         if (item2.get('isNew') || !updated2) {
             return 1;
         }
+
 
         idResult = Ember.compare(parseInt(item1.get('id')), parseInt(item2.get('id')));
         statusResult = Ember.compare(item1.get('status'), item2.get('status'));

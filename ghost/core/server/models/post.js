@@ -56,6 +56,14 @@ Post = ghostBookshelf.Model.extend({
 
         ghostBookshelf.Model.prototype.initialize.apply(this, arguments);
 
+        this.tags().fetch().then(function(tags){
+            self.tag_positions = {};
+            for(var i in tags.models) {
+                var tag = tags.models[i];
+                self.tag_positions[tag.attributes.slug] = tag.pivot ? tag.pivot.attributes.sort_position : null;
+            }
+        });
+
         this.on('saved', function (model, response, options) {
             return self.updateTags(model, response, options);
         });
@@ -325,10 +333,11 @@ Post = ghostBookshelf.Model.extend({
         words = words.split(" ").length;
         attrs.readTime = Math.ceil(words / 250.0);
 
-
         attrs.author = attrs.author || attrs.author_id;
         attrs.url = config.urlPathForPost(attrs, permalinkSetting);
         delete attrs.author_id;
+
+        attrs.tag_positions = this.tag_positions;
 
         return attrs;
     }
@@ -415,7 +424,8 @@ Post = ghostBookshelf.Model.extend({
         options = options || {};
 
         var tagInstance = options.tag !== undefined ? ghostBookshelf.model('Tag').forge({slug: options.tag}) : false,
-            authorInstance = options.author !== undefined ? ghostBookshelf.model('User').forge({slug: options.author}) : false;
+            authorInstance = options.author !== undefined ? ghostBookshelf.model('User').forge({slug: options.author}) : false,
+            filterTagInstance = (options.filterTagName && options.filterTagName !== "All") ? ghostBookshelf.model('Tag').forge({slug: options.filterTagName}) : false;
 
         if (options.limit && options.limit !== 'all') {
             options.limit = parseInt(options.limit, 10) || 15;
@@ -507,6 +517,11 @@ Post = ghostBookshelf.Model.extend({
                         .query('offset', options.limit * (options.page - 1));
                 }
 
+                // If theres a tag instance, sort by the sort position as a priority.
+                if (tagInstance) {
+                    postCollection.query("orderBy", "sort_position", "ASC");
+                }
+
                 collectionPromise = postCollection
                     .query('orderBy', 'status', 'ASC')
                     .query('orderBy', 'published_at', 'DESC')
@@ -515,7 +530,6 @@ Post = ghostBookshelf.Model.extend({
                     .fetch(_.omit(options, 'page', 'limit'));
 
                 // Find the total number of posts
-
                 qb = ghostBookshelf.knex('posts');
 
                 if (options.where) {

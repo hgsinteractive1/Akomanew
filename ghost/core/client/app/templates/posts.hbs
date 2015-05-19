@@ -3,7 +3,7 @@
     <div id="left-column">
         <div id="filter-selector-wrapper">
             <h3>View all stories in</h3>
-            {{view "select" value=selectedFilter content=filterOptions}}
+            {{view "select" value=selectedFilter content=filterOptions optionValuePath="content.slug" optionLabelPath="content.name"}}
         </div>
         {{#view "paginated-scroll-box" tagName="section" classNames="content-list-content js-content-scrollbox"}}
             <ul id="stories-list">
@@ -17,7 +17,7 @@
                                 <div class="author-image"></div>
                             {{/if}}
                             <div class="byline">
-                                <p>{{post.model.author.name}} <span>{{post.model.date}}</span></p>
+                                <p>{{post.model.author.name}} <span>{{if post.model.isPublished "published " "edited " }}{{post.model.date}}</span></p>
                             </div>
                             <div class="clear"></div>
                         </div>
@@ -26,7 +26,9 @@
                     {{#if selectedFilterIsSortable}}
                         <div class="sort-up-arrow" {{action "movePostUp" post}}></div>
                     {{/if}}
-                    {{!-- <div class="is-visible"></div> --}}
+                    {{#if post.model.isPublished}}
+                        <div class="is-visible"></div>
+                    {{/if}}
                     {{#if selectedFilterIsSortable}}
                         <div class="sort-down-arrow" {{action "movePostDown" post}}></div>
                     {{/if}}

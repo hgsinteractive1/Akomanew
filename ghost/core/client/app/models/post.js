@@ -38,7 +38,10 @@ var Post = DS.Model.extend(NProgressSaveMixin, ValidationEngine, {
     }),
 
     date: Ember.computed('published_at', function () {
-        return moment(this.get('published_at')).fromNow();
+        if(this.get("published_at")) {
+            return moment(this.get('published_at')).fromNow();
+        }
+        return moment(this.get('updated_at')).fromNow();
     }),
 
     scratch: null,
@@ -65,7 +68,11 @@ var Post = DS.Model.extend(NProgressSaveMixin, ValidationEngine, {
     },
     
     hasTag: function (tagName) {
-        return this.get('tags').mapBy('name').contains(tagName);
+        return this.get('tags').mapBy('slug').contains(tagName);
+    },
+
+    positionInTag: function(tagName) {
+        return this.get("data.tag_positions")[tagName];
     }
 
 });
