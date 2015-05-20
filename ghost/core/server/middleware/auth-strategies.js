@@ -1,4 +1,5 @@
 var passport = require('passport'),
+    config = require('../config'),
     BearerStrategy = require('passport-http-bearer').Strategy,
     ClientPasswordStrategy = require('passport-oauth2-client-password').Strategy,
     TwitterStrategy = require('passport-twitter').Strategy,
@@ -9,13 +10,13 @@ var passport = require('passport'),
 // Override the HOST value with the host we want SSO provider to call back
 // e.g. http://b.akomanet.com
 // e.g. http://127.0.0.1 -- NOT localhost as Twitter barfs at it
-var APP_HOST_INTEGRATE = "http://lgr.akomanet.com:5000";
+var APP_HOST_INTEGRATE = "http://127.0.0.1:2368";
 
 var TWITTER_CONSUMER_KEY = "NRfJBexESA1fGKjXv9OidwLVd";
 var TWITTER_CONSUMER_SECRET = "MAYbbLLoiG2YSA0Tva6h4fPCs9TNAVJMxTeiwmXjIgcGK62A3F";
 var TWITTER_CALLBACK = APP_HOST_INTEGRATE + "/auth/twitter/callback";
 
-
+//console.log("********** config = ", config);
 
 // Passport session setup.
 passport.serializeUser(function(user, done) {
@@ -24,6 +25,8 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
+
+console.log("*** Passport Strategies initialized in auth-strategies.js");
 
 // Use the TwitterStrategy within Passport.
 passport.use(new TwitterStrategy({
