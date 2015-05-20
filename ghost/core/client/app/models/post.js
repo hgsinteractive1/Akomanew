@@ -76,6 +76,10 @@ var Post = DS.Model.extend(NProgressSaveMixin, ValidationEngine, {
         if(this.get("data.tag_positions")) {
             return this.get("data.tag_positions")[tagName] ? this.get("data.tag_positions")[tagName] : 0;
         }
+    },
+
+    isFeaturedInTag: function(tagName) {
+        return this.positionInTag(tagName) === 1000000;
     }
 
 });

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 var PostController = Ember.Controller.extend({
-    needs: ['post-settings-menu'],
+    needs: ['post-settings-menu', 'posts'],
     isPublished: Ember.computed.equal('model.status', 'published'),
     classNameBindings: ['model.featured'],
 
@@ -16,7 +16,16 @@ var PostController = Ember.Controller.extend({
         return `background-image: url(${this.get('authorAvatar')})`.htmlSafe();
     }),
 
+    canFeature: Ember.computed('controllers.posts.selectedFilter', function () {
+        return this.get('controllers.posts.selectedFilter') !== "All";
+    }),
+
     actions: {
+        feature: function(data){
+            // Pass the event on to the posts controller, since it is needed to
+            // check all the other posts and access the current filter.
+            this.get("controllers.posts").send("feature", this);
+        },
         togglePublish: function(){
             var psmController = this.get('controllers.post-settings-menu');
             var options = {};
