@@ -30,6 +30,7 @@ var Post = DS.Model.extend(NProgressSaveMixin, ValidationEngine, {
     created_by: DS.attr(),
     tags: DS.hasMany('tag', {embedded: 'always'}),
     url: DS.attr('string'),
+    tag_positions: DS.attr(),
 
     absoluteUrl: Ember.computed('url', 'ghostPaths.url', 'config.blogUrl', function () {
         var blogUrl = this.get('config.blogUrl'),
@@ -38,7 +39,10 @@ var Post = DS.Model.extend(NProgressSaveMixin, ValidationEngine, {
     }),
 
     date: Ember.computed('published_at', function () {
-        return moment(this.get('published_at')).fromNow();
+        if(this.get("published_at")) {
+            return moment(this.get('published_at')).fromNow();
+        }
+        return moment(this.get('updated_at')).fromNow();
     }),
 
     scratch: null,
@@ -65,7 +69,13 @@ var Post = DS.Model.extend(NProgressSaveMixin, ValidationEngine, {
     },
     
     hasTag: function (tagName) {
-        return this.get('tags').mapBy('name').contains(tagName);
+        return this.get('tags').mapBy('slug').contains(tagName);
+    },
+
+    positionInTag: function(tagName) {
+        if(this.get("data.tag_positions")) {
+            return this.get("data.tag_positions")[tagName] ? this.get("data.tag_positions")[tagName] : 0;
+        }
     }
 
 });

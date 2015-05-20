@@ -20,7 +20,10 @@
 	$rule-color : #D8D8D8;
 
 	$rule-color : #D8D8D8;
-	$Lato : Lato, helvetica, arial, san-serif;
+	//$Lato : Lato, helvetica, arial, san-serif;
+	$akoma-fonts : Avenir, Roboto, "Helvetica Neue", Helvetica, Arial, san-serif;
+	$websafe-fonts : Helvetica, Arial, san-serif;
+	//$akoma-fonts : Avenir, 
 	$assets_path: "../";
 
 
@@ -54,10 +57,13 @@
 	body {
 		//apply font smoothing
 		 -webkit-font-smoothing: antialiased;
-		 font-family: $Lato;
+		 font-family: $websafe-fonts;
 
 		 &.detail, &.post-template, &.manage {
 		 	padding-top: 88px;
+		 	@include respond-to(handhelds) {
+		 		padding-top: 70px;
+		 	}
 		 }
 
 
@@ -168,7 +174,7 @@
 				float: left;
 				display:block;
 				font-size: 14px;
-				padding-top:3px;
+				padding-top:5px;
 				color: $light-grey;
 				margin-right: 6px;
 			}
@@ -183,17 +189,21 @@
 					float: left;
 					
 					a.tag {
+						padding:0px;
 						display:block;
 						height: 17px;
-						padding-top:3px;
 						width: 60px;
+						padding-top:5px;
 						border-radius: 6px;
 						background: #C4c4c4;
 						text-align: center;
 						color: #FFF;
 						font-size: 13px;
-						font-weight: 400;
 						text-decoration: none;
+						font-family: $akoma-fonts;
+						font-weight: 500;
+						-webkit-border-fit:border !important;
+					 	-webkit-text-size-adjust: none;
 						
 					}
 
@@ -448,11 +458,135 @@
 	}
 
 /************************************************************
+*	SCALE TEST
+*/
+	//aspect ratio is 24:10
+	#full-bleed-hero {
+		background: #000;
+		width: 100%;
+		padding-bottom:41.666%;
+		position:relative;
+		overflow: hidden;
+
+		//aspect ratio is 5:5
+		@include respond-to(handhelds) {
+			padding-bottom:100%;
+				
+		}
+
+		#fluid-image {
+			img {
+				left: 50%;
+				top:50%;
+				position:absolute;
+				opacity: 0;
+				-webkit-transition: opacity 0.8s ease-out;
+    			-moz-transition: opacity 0.8s ease-out;
+    			-o-transition: opacity 0.8s ease-out;
+
+			}
+		}
+
+		#tint {
+			position : absolute;
+			top:0px;
+			left:0px;
+			background: #000;
+			height: 100%;
+			width: 100%;
+			opacity: 0.65;
+		}
+
+		#headline {
+		//category page title
+		width:700px;
+		position:absolute;
+		bottom: 50px;
+		left:50%;
+		margin-left: -350px;
+		font-family: $akoma-fonts;
+		font-weight: 600;
+
+		@include respond-to(handhelds) {
+			width: 90%;
+			left: 5%;
+			margin-left:0px;
+		}
+
+		@include respond-to(tablet) {
+			bottom: 20px;
+		}
+
+			h3 {
+				font-size:20px;
+				font-weight:600;
+				text-transform: uppercase;
+				color: $aKoma-yellow;
+				margin-bottom:8px;
+
+				@include respond-to(tablet) {
+					font-size:18px;
+				}
+
+				span.circle-decoration {
+					height: 4px;
+					width: 4px;
+					border-radius: 2px;
+					position : relative;
+					top: -5px;
+					display: inline-block;
+					background-color: $aKoma-yellow;
+					margin-left:4px;
+					margin-right:4px;
+
+					@include respond-to(handhelds) {
+						display:none;
+					}
+				}
+
+				span.cat-descrip {
+					font-weight: 400;
+					text-transform: none;
+
+					@include respond-to(handhelds) {
+						display:none;
+					}
+				}
+			}
+
+			h4 {
+				font-size:43px;
+				line-height: 55px;
+				color:#FFF;
+
+
+				@include respond-to(tablet) {
+					float: none;
+					margin: 0 auto;
+					font-size:37px;
+					line-height: 43px;
+				}
+
+				@include respond-to(handhelds) {
+					font-size:30px;
+					line-height:36px;
+				}
+
+				@include respond-to(smallPhone) {
+					font-size:26px;
+					line-height:30px;
+				}
+
+			}
+		}
+	}
+
+/************************************************************
 *	MAIN STORY LIST
 */
 
 	#main-story-feed {
-		width: 600px;
+		width: 700px;
 		margin: 0 auto;
 
 		@include respond-to(handhelds) {
@@ -493,8 +627,20 @@
 					color: $dark;
 					font-size: 32px;
 					line-height: 40px;
-					font-weight: 400;
+					font-weight: 500;
 					margin-bottom: 10px;
+					font-family: $akoma-fonts;
+
+					@include respond-to(handhelds) {
+						font-size:30px;
+						line-height:36px;
+					}
+
+					@include respond-to(smallPhone) {
+						font-size:26px;
+						line-height:32px;
+					}
+
 
 					a {
 						text-decoration: inherit;
@@ -508,12 +654,15 @@
 					line-height: 26px;
 					font-weight: 200;
 					margin-bottom: 15px;
+
 				}
 
 				a.read-more {
 					font-size: 20px;
 					color: $aKoma-blue;
 					text-decoration: none;
+					font-family: $akoma-fonts;
+					font-weight: 500;
 				}
 			}
 
@@ -538,15 +687,17 @@
 		div.load-more-button {
 			cursor: pointer;
 			width: 100%;
-			height: 40px;
+			height: 38px;
 			background: #EFEFEF;
 			border-radius: 6px;
 			text-align: center;
 			font-size: 21px;
 			color: $aKoma-blue;
-			padding-top:15px;
+			padding-top:17px;
 			margin-top:30px;
 			display:block;
+			font-family: $akoma-fonts;
+			font-weight: 500;
 
 			div.arrow {
 				height: 31px;
@@ -554,10 +705,14 @@
 				background: url(#{$assets_path}images/load_more_arrow.png) top left no-repeat;
 				position:absolute;
 				top:-3px;
-				left:200px;
+				left:250px;
 
 				@include respond-to(handhelds) {
-					left:80px;
+					left:70px;
+				}
+
+				@include respond-to(smallPhone) {
+					left:40px;
 				}
 
 				/* 1.5 dpr */
@@ -610,11 +765,25 @@
 				margin-top:40px;
 				line-height: 55px;
 				margin-bottom: 20px;
+				font-family: $akoma-fonts;
+				font-weight: 500;
+
+				
+				@include respond-to(tablet) {
+					margin-top:30px;
+					font-size:37px;
+					line-height: 43px;
+				}
 
 				@include respond-to(handhelds) {
-					font-size: 24px;
-					line-height: 30px;
-					margin-top: 0px;
+					margin-top:0px;
+					font-size:30px;
+					line-height:36px;
+				}
+
+				@include respond-to(smallPhone) {
+					font-size:26px;
+					line-height:30px;
 				}
 
 				div.editable-wrapper {
@@ -858,6 +1027,8 @@
 				font-size: 18px;
 				line-height: 34px;
 				margin-bottom: 40px;
+				font-family: $akoma-fonts;
+				font-weight: 400;
 			}
 
 			div.editable-wrapper {
@@ -900,11 +1071,13 @@
 					}
 
 				#share-tools {
+					//font-family: $akoma-fonts;
 
 					float:left;
 
 					@include respond-to(handhelds) {
-						float: none;	
+						float: none;
+						margin-bottom: 8px;	
 					}
 
 					ul#main-share {
@@ -916,7 +1089,11 @@
 						li {
 							float: left;
 							height: 40px;
-							margin-right: 7px;
+							margin-right: 6px;
+
+							&.last {
+								margin-right: 0px;
+							}
 
 							div.plus {
 								height: 40px;
@@ -948,23 +1125,23 @@
 
 							a.share-button {
 								width: 120px;
-								height: 26px;
+								height: 25px;
 								background: #000;
 								display:block;
 								border-radius: 40px;
 								color: #FFF;
 								font-size: 12px;
-								padding-top:14px;
+								padding-top:15px;
 								padding-left:38px;
 								text-decoration: none;
 								font-weight: 600;
 
 								@include respond-to(handhelds) {
-									width: 80px;
+									width: 78px;
 									font-size: 14px;
 									padding-top:12px;
-									height:28px;
-									padding-left:40px;
+									height:26px;
+									padding-left:42px;
 									width: 75px;
 								}
 
@@ -976,21 +1153,35 @@
 
 								&.facebook {
 									background: url(#{$assets_path}images/facebook_share.png) no-repeat #3A5795;
-									background-position: 16px 9px;
+									background-position: 15px 9px;
+									padding-left: 34px;
+									width: 128px;
 
 									/* 1.5 dpr */
 									@media(-webkit-min-device-pixel-ratio: 1.5), 
 									(min-resolution: 144dpi) { 
 									    background: url(#{$assets_path}images/facebook_share@2x.png) no-repeat #3A5795;
-									    background-position: 18px 12px;
+									    background-position: 16px 10px;
 									    background-size:8%;
+									}
+
+									@include respond-to(handhelds) {
+										padding-left:42px;
+										width: 75px;
 									}
 
 								}
 
 								&.twitter {
 									background: url(#{$assets_path}images/twitter_share.png) no-repeat #55ACEE;
-									background-position: 14px 11px;
+									background-position: 14px 10px;
+									padding-left: 42px;
+									width: 120px;
+
+									@include respond-to(handhelds) {
+										padding-left:42px;
+										width: 75px;
+									}
 
 									/* 1.5 dpr */
 									@media(-webkit-min-device-pixel-ratio: 1.5), 
@@ -1065,7 +1256,7 @@
 					display:block;
 					border-radius: 40px;
 					color: $light-grey;
-					font-size: 12px;
+					font-size: 14px;
 					padding-top:14px;
 					padding-left:50px;
 					text-decoration: none;
@@ -1076,6 +1267,14 @@
 						float: none;
 						margin-top:6px;
 					}
+
+						/* 1.5 dpr */
+						@media(-webkit-min-device-pixel-ratio: 1.5), 
+						(min-resolution: 144dpi) { 
+						    background: url(#{$assets_path}images/heart_recommend@2x.png) no-repeat;
+						   	background-position: 12px 10px;
+						    background-size:14%;
+						}
 				}
 
 				&.expanded {

@@ -12,7 +12,7 @@
 </head>
 <body class="full-bleed">
 <!--BEGIN HERO STORY-->
-<?php include('includes/full_bleed_banner.php') ?>
+<?php include('includes/scale_test.php') ?>
 <!--END HERO STORY-->
 
 <!--BEGIN HERO STORY-->

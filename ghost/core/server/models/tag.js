@@ -58,7 +58,7 @@ Tag = ghostBookshelf.Model.extend({
     },
 
     posts: function () {
-        return this.belongsToMany('Post');
+        return this.belongsToMany('Post').withPivot(["sort_position"]);
     },
 
     toJSON: function (options) {
@@ -67,6 +67,9 @@ Tag = ghostBookshelf.Model.extend({
         attrs.parent = attrs.parent || attrs.parent_id;
         delete attrs.parent_id;
 
+        attrs.sort_position = this.pivot ? this.pivot.attributes.sort_position : null;
+        attrs.post_id = this.pivot ? this.pivot.attributes.post_id : null;
+        attrs.tag_id = this.pivot ? this.pivot.attributes.tag_id : null;
         return attrs;
     }
 }, {

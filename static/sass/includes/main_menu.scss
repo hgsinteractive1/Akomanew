@@ -13,12 +13,13 @@
     -moz-transition: opacity 0.3s ease-out;
     -o-transition: opacity 0.3s ease-out;
     z-index: 1000;
+    font-family: $akoma-fonts;
 
 
     &.fadedIn {
-    	-webkit-opacity: 1.0;
-  		-moz-opacity: 1.0;
-  		opacity: 1.0;
+    	-webkit-opacity: 0.96;
+  		-moz-opacity: 0.96;
+  		opacity: 0.96;
 		height: 100%;
 		overflow-y:scroll;
 
@@ -31,6 +32,10 @@
 
 			@include respond-to(handhelds) {
 				height: 500px;
+			}
+
+			@include respond-to(smallPhone) {
+				height: 450px;
 			}
 		}
     }
@@ -79,6 +84,11 @@
 
 		}
 
+		@include respond-to(smallPhone) {
+			margin-top: -200px;
+			height: 400px;
+		}
+
 
 		div.eyebrow {
 			width: 100%;
@@ -90,14 +100,18 @@
 
 		ul#filter-nav {
 			height: 40px;
-			width: 375px;
+			width: 390px;
 			margin: 0 auto;
 			margin-bottom: 40px;
 
 
 			@include respond-to(handhelds) {
 				margin-bottom: 30px;
-				width:300px;
+				width:310px;
+			}
+
+			@include respond-to(smallPhone) {
+				margin-bottom: 15px;
 			}
 
 			li {
@@ -207,6 +221,10 @@
 						text-align: center;
 					}
 
+					@include respond-to(smallPhone) {
+						margin-bottom: 23px;
+					}
+
 
 
 				&.margin-rt-none {
@@ -222,6 +240,10 @@
 
 					@include respond-to(handhelds) {
 						font-size: 40px;
+					}
+
+					@include respond-to(smallPhone) {
+						font-size: 32px;
 					}
 
 					span {

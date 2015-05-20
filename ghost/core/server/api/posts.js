@@ -50,7 +50,6 @@ posts = {
      */
     browse: function browse(options) {
         options = options || {};
-
         if (!(options.context && options.context.user)) {
             options.status = 'published';
         }
