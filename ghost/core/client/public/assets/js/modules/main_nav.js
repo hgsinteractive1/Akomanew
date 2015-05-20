@@ -96,6 +96,9 @@ akomadefine(['jquery'], function($) {
 */
 
 	function showMenu() {
+		if(!menu.length) {
+			lookupElements();
+		}
 		menu.removeClass('hidden');
 		menu.addClass('fadedIn');
 		menuIcon.addClass('menu-is-open');

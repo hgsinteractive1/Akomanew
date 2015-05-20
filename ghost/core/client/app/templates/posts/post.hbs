@@ -12,7 +12,9 @@
         </li>
         <li><a href="#" class="action" {{action "togglePublish"}}>{{if model.isPublished "Hide" "Show"}} <div class="{{if model.isPublished "hide" "show"}}-story-icon"></div></a></li>
         <li><a href="#" class="action" {{action "openModal" "delete-post" this}}>Delete<div class="delete-story-icon"></div></a></li>
-        {{!-- <li class="last"><a href="#" class="action">Feature<div class="feature-story-icon"></div></a></li> --}}
+        <li class="last">
+            <a href="#" class="action">Feature<div class="feature-story-icon"></div></a>
+        </li>
     </ul>
 </div>
 

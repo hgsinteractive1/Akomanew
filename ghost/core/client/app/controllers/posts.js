@@ -25,23 +25,81 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
     postListFocused: Ember.computed.equal('keyboardFocus', 'postList'),
     postContentFocused: Ember.computed.equal('keyboardFocus', 'postContent'),
     // this will cause the list to re-sort when any of these properties change on any of the models
-    sortProperties: ['status', 'published_at', 'updated_at'],
-    filterOptions: ["All", "Faves", "Life", "Ideas", "Rants", "Learn"],
+    sortProperties: ['status', 'published_at', 'updated_at', 'tag_positions'],
+    filterOptions: [
+        {"name":"All", "slug":"All"}, 
+        {"name":"Faves", "slug":"faves"}, 
+        {"name":"Life", "slug":"life"}, 
+        {"name":"Ideas", "slug":"ideas"}, 
+        {"name":"Rants", "slug":"rants"}, 
+        {"name":"Learn", "slug":"learn"}
+    ],
     selectedFilter: "All",
     selectedFilterIsSortable: false,
 
     actions: {
         movePostUp: function(post){
-            console.log("move post up", post.get("tags"));
+            var filter = this.get("selectedFilter");
+            var posts = this.get("arrangedContent");
+            for(var i = 0 ; i < posts.length ; i++) {
+                var tag_positions = posts[i].get("data.tag_positions");
+                if(!tag_positions) {
+                    tag_positions = {};
+                }
+                if(posts[i].get("id") === post.get("id")) {
+                    // Move this post up
+                    tag_positions[filter] = Math.max(0, i - 1);
+
+                    // Swap with the post above
+                    if(i > 0) {
+                        var swap_tag_positions = posts[i-1].get("data.tag_positions");
+                        swap_tag_positions[filter] = i;
+                        posts[i-1].set("data.tag_positions", swap_tag_positions);
+                    }
+                } else {
+                    tag_positions[filter] = i;
+                }
+                posts[i].set("data.tag_positions", tag_positions);
+            }
+
+            for(var i = 0 ; i < posts.length ; i++) {
+                posts[i].set("tag_positions", posts[i].get("data.tag_positions"));
+                console.log(posts[i].get("id"), posts[i].get("data.tag_positions"));
+                posts[i].save(posts[i].get("data.tag_positions"));
+            }
+
         },
         movePostDown: function(post){
-            console.log("move post down", post);
+            var filter = this.get("selectedFilter");
+            var posts = this.get("arrangedContent");
+            for(var i = posts.length - 1; i >= 0 ; i--) {
+                var tag_positions = posts[i].get("data.tag_positions");
+                if(posts[i].get("id") === post.get("id")) {
+                    // Move this post up
+                    tag_positions[filter] = Math.min(posts.length - 1, i + 1);
+
+                    // Swap with the post above
+                    if(i < posts.length) {
+                        var swap_tag_positions = posts[i+1].get("data.tag_positions");
+                        swap_tag_positions[filter] = i;
+                        posts[i+1].set("data.tag_positions", swap_tag_positions);
+                    }
+                } else {
+                    tag_positions[filter] = i;
+                }
+                posts[i].set("data.tag_positions", tag_positions);
+            }
+            
+            for(var i = 0 ; i < posts.length ; i++) {
+                posts[i].set("tag_positions", posts[i].get("data.tag_positions"));
+                posts[i].save(posts[i].get("data.tag_positions"));
+            }
         }
     },
 
     watchFilter: function() {  
         this.get("target").send("filter", this.get("selectedFilter"));
-        this.set("selectedFilterIsSortable", this.get("selectedFilter") === "Faves");
+        this.set("selectedFilterIsSortable", this.get("selectedFilter") === "faves");
     }.observes('selectedFilter'),
 
     // override Ember.SortableMixin
@@ -62,6 +120,12 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
             statusResult,
             updatedAtResult,
             publishedAtResult;
+            
+        if(item1.positionInTag(this.get("selectedFilter")) > item2.positionInTag(this.get("selectedFilter"))){ 
+            return 1;
+        } else if(item1.positionInTag(this.get("selectedFilter")) < item2.positionInTag(this.get("selectedFilter"))) {
+            return -1;
+        }
 
         // when `updated_at` is undefined, the model is still
         // being written to with the results from the server
@@ -72,6 +136,7 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
         if (item2.get('isNew') || !updated2) {
             return 1;
         }
+
 
         idResult = Ember.compare(parseInt(item1.get('id')), parseInt(item2.get('id')));
         statusResult = Ember.compare(item1.get('status'), item2.get('status'));
