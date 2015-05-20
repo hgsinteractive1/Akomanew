@@ -4,7 +4,9 @@ var PostItemView = Ember.View.extend({
 
     active: null,
 
-    isFeatured: Ember.computed.alias('controller.model.featured'),
+    isFeatured:  Ember.computed('controller.model', 'controller.model.tag_positions', 'controllers.posts.selectedFilter', function () {
+        return "" + this.get("controller.isFeaturedInCurrentTag") === "false" ? false : true;
+    }),
 
     isPage: Ember.computed.alias('controller.model.page'),
 

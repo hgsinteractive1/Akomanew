@@ -30,6 +30,11 @@ var PostController = Ember.Controller.extend({
             // check all the other posts and access the current filter.
             this.get("controllers.posts").send("feature", this.get("model"));
         },
+        unfeature: function(data){
+            // Pass the event on to the posts controller, since it is needed to
+            // check all the other posts and access the current filter.
+            this.get("controllers.posts").send("unfeature", this.get("model"));
+        },
         togglePublish: function(){
             var psmController = this.get('controllers.post-settings-menu');
             var options = {};
@@ -62,18 +67,6 @@ var PostController = Ember.Controller.extend({
             });
 
             psmController.set('lastPromise', promise);
-        },
-        delete: function(){
-            console.log("Delete post...");
-        },
-        toggleFeatured: function () {
-            var options = {disableNProgress: true},
-                self = this;
-
-            this.toggleProperty('model.featured');
-            this.get('model').save(options).catch(function (errors) {
-                self.notifications.showErrors(errors);
-            });
         },
         showPostContent: function () {
             this.transitionToRoute('posts.post', this.get('model'));

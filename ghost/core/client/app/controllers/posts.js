@@ -36,8 +36,27 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
     ],
     selectedFilter: "All",
     selectedFilterIsSortable: false,
-    
+
     actions: {
+        unfeature: function(post){
+            var filter = this.get("selectedFilter");
+            var posts = this.get("arrangedContent");
+            
+            for(var i = 0 ; i < posts.length ; i++) {
+                var tag_positions = posts[i].get("data.tag_positions");
+                if(!tag_positions) {
+                    tag_positions = {};
+                }
+                tag_positions[filter] = i;
+                posts[i].set("data.tag_positions", tag_positions);
+            }
+
+            for(var i = 0 ; i < posts.length ; i++) {
+                posts[i].set("tag_positions", posts[i].get("data.tag_positions"));
+                console.log(posts[i].get("id"), posts[i].get("data.tag_positions"));
+                posts[i].save(posts[i].get("data.tag_positions"));
+            }
+        },
         feature: function(post){
             var filter = this.get("selectedFilter");
             var posts = this.get("arrangedContent");

@@ -9,6 +9,10 @@
             <ul id="stories-list">
                 {{#each post in controller itemController="posts/post" itemView="post-item-view" itemTagName="li"}}
                     {{#link-to "posts.post" post.model class="permalink" alternateActive=view.active title="Edit this post"}}
+                        {{#if post.isFeaturedInCurrentTag}}
+                            <div class="featured-eyebrow"><div class="featured-eyebrow-icon"></div>Featured Story</div>
+                        {{/if}}
+                        
                         <h4>{{post.model.title}}</h4>
                         <div class="author">
                             {{#if post.model.author.image}}
