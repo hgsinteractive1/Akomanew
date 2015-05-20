@@ -20,11 +20,15 @@ var PostController = Ember.Controller.extend({
         return this.get('controllers.posts.selectedFilter') !== "All";
     }),
 
+    isFeaturedInCurrentTag: Ember.computed('model', 'model.tag_positions', 'controllers.posts.selectedFilter', function () {
+        return this.get("model").isFeaturedInTag(this.get('controllers.posts.selectedFilter'));
+    }),
+
     actions: {
         feature: function(data){
             // Pass the event on to the posts controller, since it is needed to
             // check all the other posts and access the current filter.
-            this.get("controllers.posts").send("feature", this);
+            this.get("controllers.posts").send("feature", this.get("model"));
         },
         togglePublish: function(){
             var psmController = this.get('controllers.post-settings-menu');

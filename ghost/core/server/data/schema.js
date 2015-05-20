@@ -122,7 +122,7 @@ var db = {
             id: {type: 'increments', nullable: false, primary: true},
             post_id: {type: 'integer', nullable: false, unsigned: true, references: 'posts.id'},
             tag_id: {type: 'integer', nullable: false, unsigned: true, references: 'tags.id'},
-            sort_position: {type: 'integer', nullable: false, unsigned: true, defaultTo: 0}
+            sort_position: {type: 'integer', nullable: false, defaultTo: 0}
         },
         apps: {
             id: {type: 'increments', nullable: false, primary: true},

@@ -14,7 +14,9 @@
         <li><a href="#" class="action" {{action "openModal" "delete-post" this}}>Delete<div class="delete-story-icon"></div></a></li>
         {{#if canFeature}}
             <li class="last">
-                {{#if model.isFeaturedInTag}}
+                {{#if isFeaturedInCurrentTag}}
+                    <a href="#" class="action" >Unfeature<div class="feature-story-icon"></div></a>
+                {{else}}
                     <a href="#" class="action" {{action "feature"}}>Feature<div class="feature-story-icon"></div></a>
                 {{/if}}
             </li>

@@ -79,7 +79,7 @@ var Post = DS.Model.extend(NProgressSaveMixin, ValidationEngine, {
     },
 
     isFeaturedInTag: function(tagName) {
-        return this.positionInTag(tagName) === 1000000;
+        return this.positionInTag(tagName) === -9999999;
     }
 
 });

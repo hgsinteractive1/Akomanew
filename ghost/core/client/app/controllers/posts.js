@@ -36,12 +36,11 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
     ],
     selectedFilter: "All",
     selectedFilterIsSortable: false,
-
+    
     actions: {
         feature: function(post){
             var filter = this.get("selectedFilter");
             var posts = this.get("arrangedContent");
-            console.log("FEATURE POST", post);
 
             for(var i = 0 ; i < posts.length ; i++) {
                 var tag_positions = posts[i].get("data.tag_positions");
@@ -49,9 +48,8 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
                     tag_positions = {};
                 }
                 if(posts[i].get("id") === post.get("id")) {
-                    // Move this post to 9999999
-                    console.log("GO TIME");
-                    tag_positions[filter] = 9999999;
+                    // Move this post to -9999999
+                    tag_positions[filter] = -9999999;
                 } else {
                     tag_positions[filter] = i;
                 }
