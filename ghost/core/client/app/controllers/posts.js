@@ -39,7 +39,30 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
 
     actions: {
         feature: function(post){
-            console.log("FEATURE POST", this.get("selectedFilter"), post);
+            var filter = this.get("selectedFilter");
+            var posts = this.get("arrangedContent");
+            console.log("FEATURE POST", post);
+
+            for(var i = 0 ; i < posts.length ; i++) {
+                var tag_positions = posts[i].get("data.tag_positions");
+                if(!tag_positions) {
+                    tag_positions = {};
+                }
+                if(posts[i].get("id") === post.get("id")) {
+                    // Move this post to 9999999
+                    console.log("GO TIME");
+                    tag_positions[filter] = 9999999;
+                } else {
+                    tag_positions[filter] = i;
+                }
+                posts[i].set("data.tag_positions", tag_positions);
+            }
+
+            for(var i = 0 ; i < posts.length ; i++) {
+                posts[i].set("tag_positions", posts[i].get("data.tag_positions"));
+                console.log(posts[i].get("id"), posts[i].get("data.tag_positions"));
+                posts[i].save(posts[i].get("data.tag_positions"));
+            }
         },
         movePostUp: function(post){
             var filter = this.get("selectedFilter");

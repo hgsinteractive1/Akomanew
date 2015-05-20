@@ -5,6 +5,7 @@ akomarequire.config({
      //MODULES AND COMPONENTS
     "mainNav": "modules/main_nav",
     "storyShareTools": "modules/story_share",
+    "fullBleedHero": "modules/full_bleed_hero",
 
     //PRIMARY CONTROLLERS
     // global elements and core application states

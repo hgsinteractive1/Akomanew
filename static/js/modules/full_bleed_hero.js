@@ -5,7 +5,7 @@ akomadefine(['jquery'], function($) {
 /**************************************************************************
 * DECLARE SCOPES
 */
-	obj = this;
+	obj = {};
 	var module;
 	var heroImage;
 
