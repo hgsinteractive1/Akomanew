@@ -21,16 +21,26 @@
     {{ghost_head}}
 </head>
 <body class="{{body_class}}">
+<!-- ssoUser D -->
 
-    {{! Everything else gets inserted here }}
-    {{{body}}}
+    {{#if ssoUser}}
+        {{{body}}}
 
-	<!--MAIN NAVIGATION-->
-    <div id="primary-nav">
-        {{navigation}}
-    </div>
-    {{> menu}}
-	<!--END-->
+        <!--MAIN NAVIGATION-->
+        <div id="primary-nav" class="is-white">
+            {{navigation}}
+        </div>
+        {{> menu}}
+        <!--END-->
+    {{else}}
+        <p>
+        <h2>Welcome! Please sign in</h2>
+        <p>
+        <p>
+        <p>
+        <a href="/auth/twitter"><img src="/content/images/sign-in-with-twitter-l.png"></a>
+        <p>
+    {{/if}}
 
     {{> footer}}
 

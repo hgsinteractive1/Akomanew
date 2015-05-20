@@ -14,6 +14,7 @@ var moment      = require('moment'),
     filters     = require('../filters'),
     template    = require('../helpers/template'),
     errors      = require('../errors'),
+    passport    = require('passport'),
     routeMatch  = require('path-match')(),
 
     frontendControllers,
@@ -67,10 +68,9 @@ function formatPageResponse(posts, page, extraValues) {
  * similar to formatPageResponse, but for single post pages
  * @return {Object} containing page variables
  */
-function formatResponse(post) {
-    return {
-        post: post
-    };
+function formatResponse(post, extraValues) {
+    extraValues = extraValues || {};
+    return _.extend({post: post}, extraValues);
 }
 
 function handleError(next) {
@@ -174,7 +174,7 @@ frontendControllers = {
                     }
 
                     setResponseContext(req, res);
-                    res.render(view, formatPageResponse(posts, page));
+                    res.render(view, formatPageResponse(posts, page, {ssoUser:req.user}));
                 });
             });
         }).catch(handleError(next));
@@ -185,6 +185,9 @@ frontendControllers = {
             options = {
                 page: pageParam,
             };
+
+
+console.log("** in homepage, req.user = ",req.user? req.user.displayName : "who knows?");
 
         if(config.homeTag) {
             options["tag"] = config.homeTag;
@@ -215,7 +218,7 @@ frontendControllers = {
                     }
 
                     setResponseContext(req, res);
-                    res.render(view, formatPageResponse(posts, page));
+                    res.render(view, formatPageResponse(posts, page, {ssoUser:req.user}));
                 });
             });
         }).catch(handleError(next));
@@ -261,7 +264,8 @@ frontendControllers = {
                     var view = template.getThemeViewForTag(paths, options.tag),
                     // Format data for template
                         result = formatPageResponse(posts, page, {
-                            tag: page.meta.filters.tags ? page.meta.filters.tags[0] : ''
+                            tag: page.meta.filters.tags ? page.meta.filters.tags[0] : '',
+                            ssoUser:req.user
                         });
 
                     // If the resulting tag is '' then 404.
@@ -315,7 +319,8 @@ frontendControllers = {
                     var view = paths.hasOwnProperty('author.hbs') ? 'author' : 'index',
                         // Format data for template
                         result = formatPageResponse(posts, page, {
-                            author: page.meta.filters.author ? page.meta.filters.author : ''
+                            author: page.meta.filters.author ? page.meta.filters.author : '',
+                            ssoUser: req.user
                         });
 
                     // If the resulting author is '' then 404.
@@ -409,7 +414,7 @@ frontendControllers = {
                     getActiveThemePaths().then(function (paths) {
                         console.log(template);
                         var view = template.getThemeViewForPost(paths, post),
-                            response = formatResponse(post);
+                            response = formatResponse(post, {ssoUser:req.user});
                         response.allTags = result.allTags;
                         setResponseContext(req, res, response);
 

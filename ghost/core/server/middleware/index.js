@@ -208,6 +208,7 @@ function serveSharedFile(file, type, maxAge) {
     };
 }
 
+
 setupMiddleware = function (blogAppInstance, adminApp) {
     var logging = config.logging,
         corePath = config.paths.corePath,
@@ -289,7 +290,7 @@ setupMiddleware = function (blogAppInstance, adminApp) {
     blogApp.use(passport.initialize());
     blogApp.use(passport.session());
 
-
+console.log("*** Passport initialized in index.js");
 
     // ### Caching
     blogApp.use(middleware.cacheControl('public'));

@@ -39,6 +39,8 @@ function ConfigManager(config) {
     }
 }
 
+console.log("** In config manager");
+
 // Are we using sockets? Custom socket or the default?
 ConfigManager.prototype.getSocket = function () {
     var socketConfig,
@@ -248,6 +250,8 @@ ConfigManager.prototype.load = function (configFilePath) {
     var self = this;
 
     self._config.paths.config = process.env.GHOST_CONFIG || configFilePath || self._config.paths.config;
+
+console.log("** self._config.paths.config =" + self._config.paths.config);
 
     /* Check for config file and copy from config.example.js
         if one doesn't exist. After that, start the server. */

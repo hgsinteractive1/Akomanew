@@ -1,6 +1,7 @@
 var frontend    = require('../controllers/frontend'),
     config      = require('../config'),
     express     = require('express'),
+    passport    = require('passport'),
     utils       = require('../utils'),
 
     frontendRoutes;
@@ -8,6 +9,24 @@ var frontend    = require('../controllers/frontend'),
 frontendRoutes = function () {
     var router = express.Router(),
         subdir = config.paths.subdir;
+
+
+    router.get('*', function redirect(req, res, next) {
+console.log("** in router, req.url=" + req.url);
+        // set seession here
+        next();
+    });
+
+
+    router.get('*', function redirect(req, res, next) {
+        if(!/^\/auth\/twitter/ig.test(req.url)) {
+            req.session.lastUrl = req.url;
+        }
+        console.log("LAST URLs: ", req.url, req.session.lastUrl);
+        // set seession here
+        next();
+    });
+
 
     // ### Admin routes
     router.get(/^\/(logout|signout)\/$/, function redirect(req, res) {
@@ -51,6 +70,13 @@ frontendRoutes = function () {
 
     // Dynamic filters
     router.get('/latest', frontend.latest);
+
+    // SSO Twitter filters
+    router.get('/auth/twitter', passport.authenticate('twitter'));
+    router.get('/auth/twitter/callback', passport.authenticate('twitter'),
+      function(req, res) {        
+          res.redirect(req.session.lastUrl);
+      });
 
     // Default
     router.get('/' + config.routeKeywords.page + '/:page/', frontend.homepage);
