@@ -468,7 +468,7 @@
 		position:relative;
 		overflow: hidden;
 
-		//aspect ratio is 5:4
+		//aspect ratio is 5:5
 		@include respond-to(handhelds) {
 			padding-bottom:100%;
 				
