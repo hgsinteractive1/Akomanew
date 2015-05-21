@@ -2,6 +2,7 @@ var express           =     require('express')
   , passport          =     require('passport')
   , util              =     require('util')
   , TwitterStrategy   =     require('passport-twitter').Strategy
+  , FacebookStrategy  =     require('passport-facebook').Strategy
   , session           =     require('express-session')
   , cookieParser      =     require('cookie-parser')
   , bodyParser        =     require('body-parser')
@@ -10,11 +11,16 @@ var express           =     require('express')
 // Override the HOST value with the host we want SSO provider to call back
 // e.g. http://b.akomanet.com
 // e.g. http://127.0.0.1 -- NOT localhost as Twitter barfs at it
-var APP_HOST_INTEGRATE = "http://b.akomanet.com:8081";
+var APP_HOST_INTEGRATE = "http://lgr.akomanet.com:8081";
 
 var TWITTER_CONSUMER_KEY = "NRfJBexESA1fGKjXv9OidwLVd";
 var TWITTER_CONSUMER_SECRET = "MAYbbLLoiG2YSA0Tva6h4fPCs9TNAVJMxTeiwmXjIgcGK62A3F";
 var TWITTER_CALLBACK = APP_HOST_INTEGRATE + "/auth/twitter/callback";
+
+// FB auth API Credentials
+var FB_CLIENT_ID = "802215216531320";
+var FB_CLIENT_SECRET = "ff50f138c26dd2992027ca4c506ef0fa";
+var FB_CALLBACK = APP_HOST_INTEGRATE + "/auth/facebook/callback";
 
 
 // Passport session setup.
@@ -46,6 +52,21 @@ passport.use(new TwitterStrategy({
   }
 ));
 
+// Use the FacebookStrategy within Passport.
+passport.use(new FacebookStrategy({
+    clientID: FB_CLIENT_ID,
+    clientSecret: FB_CLIENT_SECRET,
+    callbackURL: FB_CALLBACK,
+    enableProof: false
+  },
+  function(token, tokenSecret, profile, done) {
+    process.nextTick(function () {
+      console.log ("Facebook user profile for: " + profile.user);
+      return done(null, profile);
+    });
+  }  
+));
+
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
@@ -65,10 +86,17 @@ app.get('/account', ensureAuthenticated, function(req, res){
 });
 
 app.get('/auth/twitter', passport.authenticate('twitter'));
+app.get('/auth/facebook', passport.authenticate('facebook'));
 
 
 app.get('/auth/twitter/callback',
   passport.authenticate('twitter', { successRedirect : '/account', failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { successRedirect : '/account', failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
   });

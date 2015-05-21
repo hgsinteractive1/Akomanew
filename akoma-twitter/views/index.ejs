@@ -1,6 +1,8 @@
 <% if (!user) { %>
 	<h2>Welcome! Please log in.</h2>
 	<a href="/auth/twitter"><img src="sign-in-with-twitter-l.png" width="151" height="24"></a>
+	<br>
+	<a href="/auth/facebook"><img src="sign-in-with-facebook.png" width="123" height="24"></a>
 <% } else { %>
 	<h2>Hello, <%= user.displayName %>.</h2>
 	<p>

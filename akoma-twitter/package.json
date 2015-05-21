@@ -1,7 +1,7 @@
 {
-  "name": "akoma-twitter",
-  "version": "0.0.1",
-  "description" : "Twitter sign-in example",
+  "name": "akoma-twitter-facebook",
+  "version": "0.0.2",
+  "description" : "Facebook & Twitter sign-in example",
   "dependencies": 
 	{
 		"body-parser": "1.7.0",
@@ -10,6 +10,7 @@
 		"express": "4.8.7",
 		"express-session": "1.7.6",			
 		"passport": "0.2.1",
-		"passport-twitter": "1.0.4"    
+		"passport-twitter": "1.0.4",
+		"passport-facebook": "2.0.0"    
   	}
 }
