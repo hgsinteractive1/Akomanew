@@ -31,6 +31,7 @@ var Post = DS.Model.extend(NProgressSaveMixin, ValidationEngine, {
     tags: DS.hasMany('tag', {embedded: 'always'}),
     url: DS.attr('string'),
     tag_positions: DS.attr(),
+    excerpt: DS.attr("string"),
 
     absoluteUrl: Ember.computed('url', 'ghostPaths.url', 'config.blogUrl', function () {
         var blogUrl = this.get('config.blogUrl'),

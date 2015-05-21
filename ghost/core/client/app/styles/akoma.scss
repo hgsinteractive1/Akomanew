@@ -1827,6 +1827,236 @@
 
 
 	}
+
+/************************************************************
+*	STORIES AND DRAFTS
+*/
+
+	#stories-and-drafts {
+
+		width: 600px;
+		margin: 0 auto;
+		padding-top:100px;
+		padding-bottom:100px;
+
+		@include respond-to(handhelds) {
+			padding-top: 30px;
+		 	width: 90%;
+		 }
+
+		ul#toggle {
+
+			width: 400px;
+			margin: 0 auto;
+			height: 40px;
+			font-family: $akoma-fonts;
+			margin-bottom: 85px;
+
+			@include respond-to(handhelds) {
+		 		width: 310px;
+		 		margin-bottom: 65px;
+		 	}
+
+
+			li {
+				float: left;
+				text-align: center;
+				height: 100%;
+				width: 200px;
+
+				@include respond-to(handhelds) {
+		 			width: 155px;
+				}
+
+
+				&.left {
+					border-right: 1px solid $rule-color;
+					width: 199px;
+
+					@include respond-to(handhelds) {
+		 			width: 154px;
+					}
+				}
+
+				a.toggle-link {
+					display: inline-block;
+					height: 28px;
+					padding-top:12px;
+					width: 130px;
+					font-weight: 400;
+					text-transform: uppercase;
+					text-decoration: none;
+					color: #000;
+					text-align: center;
+
+					@include respond-to(handhelds) {
+		 				width: 120px;
+					}
+
+					&.active {
+						border-bottom: 5px solid #000;
+					}
+
+					span {
+						color: $light-grey;
+					}
+				}
+			}
+
+		}
+
+		ul#stories-list {
+			font-family: $akoma-fonts;
+			li.story-item {
+				width: 100%;
+				padding-bottom: 30px;
+				margin-bottom: 30px;
+				border-bottom: 1px solid $rule-color;
+
+				h3 {
+					font-size: 24px;
+					line-height: 30px;
+					font-weight: 500;
+					color: #000;
+					margin-bottom: 10px;
+				}
+
+				p {
+					font-size: 18px;
+					line-height: 24px;
+					font-weight: 200;
+					color: $mid-grey;
+					margin-bottom: 15px;
+				}
+
+				span.last-edited {
+					font-size: 15px;
+					color: $light-grey;
+				}
+			}
+
+			ul.stories-actions {
+				margin-top: 20px;
+				height: 38px;
+				width: 100%;
+
+				li.story-action {
+					height: 38px;
+					float:left;
+					margin-right:10px;
+					width: 170px;
+
+
+					@include respond-to(handhelds) {
+		 				width: 30%;
+					}
+
+					&.last {
+						margin-right : 0px;
+					}
+
+					a.story-action-button {
+						height: 25px;
+						width: 100%;
+						border-radius: 20px;
+						border: 1px solid #000;
+						display: block;
+						text-align: center;
+						position:relative;
+						font-size: 13px;
+						text-decoration: none;
+						font-weight: 500;
+						padding-top: 13px;
+						color:#000;
+						//padding-left: 10px;
+
+						@include respond-to(handhelds) {
+							width: 92%;
+							padding-left: 8%;
+						}
+
+						span.remove-mobile-text {
+
+							@include respond-to(handhelds) {
+							 	display: none;
+							 }
+
+						}
+
+						
+						&.publish {
+							border: 1px solid #1DBB25;
+							color: #1DBB25;
+							margin-right: 0px;
+
+						}
+
+						div.action-icon {
+							position:absolute;
+
+							&.continue-editing {
+								width: 16px;
+								height: 15px;
+								top:11px;
+								left: 12px;
+								background: url(#{$assets_path}images/continue_editing_icon.png) top left no-repeat;
+
+								/* 1.5 dpr */
+								@media(-webkit-min-device-pixel-ratio: 1.5), 
+								(min-resolution: 144dpi) { 
+								  	background: url(#{$assets_path}images/continue_editing_icon@2x.png) no-repeat;
+								    background-size:100%;
+								}
+							}
+
+							&.delete-draft {
+								width: 17px;
+								height: 17px;
+								top:10px;
+								left: 12px;
+								background: url(#{$assets_path}images/delete_draft_icon.png) top left no-repeat;
+
+								/* 1.5 dpr */
+								@media(-webkit-min-device-pixel-ratio: 1.5), 
+								(min-resolution: 144dpi) { 
+								  	background: url(#{$assets_path}images/delete_draft_icon@2x.png) no-repeat;
+								    background-size:100%;
+								}
+
+								@include respond-to(handhelds) {
+		 							left: 9px;
+								}
+							}
+
+							&.publish-draft {
+								width: 16px;
+								height: 16px;
+								top:11px;
+								left: 16px;
+								background: url(#{$assets_path}images/publish_draft_icon.png) top left no-repeat;
+
+								/* 1.5 dpr */
+								@media(-webkit-min-device-pixel-ratio: 1.5), 
+								(min-resolution: 144dpi) { 
+								  	background: url(#{$assets_path}images/publish_draft_icon@2x.png) no-repeat;
+								    background-size:100%;
+								}
+
+								@include respond-to(handhelds) {
+		 							left: 12px;
+								}
+							}
+
+						
+						}
+					}
+
+				}
+			}
+		}
+
+
+	}
 	
 
 

@@ -22,6 +22,39 @@ function publishedAtCompare(item1, item2) {
 
 var DraftsController = Ember.ArrayController.extend(PaginationControllerMixin, {
 
+    currentFilter: "drafts",
+
+    actions: {
+        goToPublished: function(){
+            this.set("currentFilter", "published");
+        },
+        goToDrafts: function(){
+            this.set("currentFilter", "drafts");
+        }
+    },
+    currentFilterIsDrafts: Ember.computed('currentFilter', function () {
+        return this.get("currentFilter") === "drafts";
+    }),
+    currentFilterIsPublished: Ember.computed('currentFilter', function () {
+        return this.get("currentFilter") === "published";
+    }),
+
+    postCounts: Ember.computed('@each.isPublished', function(){
+        var draftsCount = 0;
+        var publishedCount = 0;
+        var total = 0;
+        var models = this.mapBy("isPublished");
+        for(var i = 0 ; i < models.length ; i++) {
+            total++;
+            if(models[i] === true){
+                publishedCount++;
+            } else{
+                draftsCount++;
+            }
+        }
+        return {"total":total, "drafts":draftsCount, "published":publishedCount};
+    }),
+
     // override Ember.SortableMixin
     //
     // this function will keep the posts list sorted when loading individual/bulk

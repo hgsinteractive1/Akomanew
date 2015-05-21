@@ -10,8 +10,14 @@ var DeletePostController = Ember.Controller.extend({
 
             model.destroyRecord().then(function () {
                 self.get('dropdown').closeDropdowns();
-                self.transitionToRoute('posts.index');
-                self.notifications.showSuccess('Your post has been deleted.', {delayed: true});
+
+                var root = self.get("target.location._previousURL").replace(/[\/]/ig, "");
+                if(root !== "drafts") {
+                    self.transitionToRoute('posts.index');
+                    self.notifications.showSuccess('Your post has been deleted.', {delayed: true});
+                } else {
+                    self.notifications.showSuccess('Your post has been deleted.');
+                }
             }, function () {
                 self.notifications.showError('Your post could not be deleted. Please try again.');
             });

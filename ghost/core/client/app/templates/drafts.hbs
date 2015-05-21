@@ -1,9 +1,44 @@
-<br /><br /><br /><br /><br /><br /><br /><br /><br />
-<div id="story-detail">
-    This is the drafts apge...
-
-    {{#each post in controller itemController="posts/post" itemView="post-item-view" itemTagName="li"}}
-     	{{post}}
-    {{/each}}
+<!--BEGIN STORIES AND DRAFTS -->
+<div id="stories-and-drafts">
+	<!--BEGIN TOGGLE-->
+	<ul id="toggle">
+		<li class="left"><a {{action "goToDrafts"}} href="#" class="toggle-link {{if currentFilterIsDrafts 'active' ''}}">Drafts <span>{{postCounts.drafts}}</span></a></li>
+		<li><a {{action "goToPublished"}} href="#" class="toggle-link {{if currentFilterIsPublished 'active' ''}}">Published <span>{{postCounts.published}}</span></a></li>
+	</ul>
+	<!--END TOGGLE-->
+	<!--BEGIN STORIES LIST-->
+	<ul id="stories-list">
+	    {{#each post in controller itemController="posts/post" itemView="post-item-view" itemTagName="li"}}
+	    	{{#if post.showUnderDraftsFilter}}
+				<li class="story-item">
+					<h3>{{post.model.title}}</h3>
+					<p>{{post.model.excerpt}}</p>
+					<span class="last-edited">Last edited {{post.model.date}}</span>
+					<ul class="stories-actions">
+						<li class="story-action">
+							{{#link-to "editor.edit" post.model class="story-action-button"}}
+								<span class="remove-mobile-text">Continue </span>Edit<span class="remove-mobile-text">ing</span>
+								<div class="continue-editing action-icon"></div>
+							{{/link-to}}
+						</li>
+						<li class="story-action">
+							<a href="#" class="story-action-button" {{action "openModal" "delete-post" post.model}}>
+								Delete
+								<div class="delete-draft action-icon"></div>
+							</a>
+						</li>
+						<li class="story-action">
+							<a href="#" class="story-action-button publish" {{action "togglePublish"}}>
+								{{if post.model.isPublished "Unpublish" "Publish"}}
+								<div class="publish-draft action-icon"></div>
+							</a>
+						</li>
+					</ul>
+				</li>
+			{{/if}}
+	    {{/each}}
+	</ul>
+	<!--END STRIES LIST-->
 
 </div>
+<!--END STORIES AND DRAFTS -->

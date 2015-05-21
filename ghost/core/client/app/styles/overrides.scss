@@ -2,6 +2,43 @@ body {
     min-width: inherit;
 }
 
+/**
+ * Sign in modal
+ **/
+#sign-in-modal {
+    position: fixed;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:100%;
+    background: #000;
+    opacity: 0.96;
+
+    .inner {
+        $modal-inner-size: 400px;
+        text-align: center;
+        width:$modal-inner-size;
+        heifght:$modal-inner-size;
+        position:absolute;
+        top:50%;
+        left:50%;
+        margin-top: -($modal-inner-size / 2.0);
+        margin-left: -($modal-inner-size / 2.0);
+
+        h2 {
+            color:white;
+            padding:5px;
+            font-size:24px;
+            margin-bottom: 15px;
+        }
+
+        span.small {
+            font-size:12px;
+        }
+    }
+}
+
+
 #full-bleed-hero #headline a { 
     color: inherit;
     text-decoration: inherit;
@@ -157,4 +194,9 @@ body.manage, body.settings {
 
 .content blockquote {
     margin-left:30px;
+}
+
+a.load-more {
+    text-decoration: inherit;
+    color: inherit;
 }
