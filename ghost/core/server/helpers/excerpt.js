@@ -25,6 +25,7 @@ excerpt = function (options) {
     } else {
         excerpt = String(this.markdown);
     }
+
     // Strip inline and bottom footnotes
     excerpt = excerpt.replace(/<a href="#fn.*?rel="footnote">.*?<\/a>/gi, '');
     excerpt = excerpt.replace(/<div class="footnotes"><ol>.*?<\/ol><\/div>/, '');
@@ -38,7 +39,7 @@ excerpt = function (options) {
     }
 
     return new hbs.handlebars.SafeString(
-        downsize(excerpt, truncateOptions)
+        downsize(excerpt, truncateOptions).trim()
     );
 };
 

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 var PostController = Ember.Controller.extend({
-    needs: ['post-settings-menu', 'posts'],
+    needs: ['post-settings-menu', 'posts', 'drafts'],
     isPublished: Ember.computed.equal('model.status', 'published'),
     classNameBindings: ['model.featured'],
 
@@ -22,6 +22,16 @@ var PostController = Ember.Controller.extend({
 
     isFeaturedInCurrentTag: Ember.computed('model', 'model.tag_positions', 'controllers.posts.selectedFilter', function () {
         return this.get("model").isFeaturedInTag(this.get('controllers.posts.selectedFilter'));
+    }),
+
+    showUnderDraftsFilter: Ember.computed('model.isPublished', 'controllers.drafts.currentFilter', function () {
+        var isPublished = this.get("model.isPublished");
+        var currentFilter = this.get("controllers.drafts.currentFilter");
+        if(currentFilter === "drafts") {
+            return !isPublished;
+        } else {
+            return isPublished;
+        }
     }),
 
     actions: {
@@ -50,10 +60,6 @@ var PostController = Ember.Controller.extend({
 
             promise = Ember.RSVP.resolve(psmController.get('lastPromise')).then(function () {
                 return self.get('model').save(options).then(function (model) {
-                    // if (!options.silent) {
-                    //     self.showSaveNotification(prevStatus, model.get('status'), false);
-                    // }
-
                     return model;
                 });
             }).catch(function (errors) {
@@ -69,7 +75,7 @@ var PostController = Ember.Controller.extend({
             psmController.set('lastPromise', promise);
         },
         showPostContent: function () {
-            this.transitionToRoute('posts.post', this.get('model'));
+            // this.transitionToRoute('posts.post', this.get('model'));
         }
     }
 });

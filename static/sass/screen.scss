@@ -1999,7 +1999,7 @@
 								height: 15px;
 								top:11px;
 								left: 12px;
-								background: url(../images/continue_editing_icon.png) top left no-repeat;
+								background: url(#{$assets_path}images/continue_editing_icon.png) top left no-repeat;
 
 								/* 1.5 dpr */
 								@media(-webkit-min-device-pixel-ratio: 1.5), 
@@ -2014,7 +2014,7 @@
 								height: 17px;
 								top:10px;
 								left: 12px;
-								background: url(../images/delete_draft_icon.png) top left no-repeat;
+								background: url(#{$assets_path}images/delete_draft_icon.png) top left no-repeat;
 
 								/* 1.5 dpr */
 								@media(-webkit-min-device-pixel-ratio: 1.5), 
@@ -2033,7 +2033,7 @@
 								height: 16px;
 								top:11px;
 								left: 16px;
-								background: url(../images/publish_draft_icon.png) top left no-repeat;
+								background: url(#{$assets_path}images/publish_draft_icon.png) top left no-repeat;
 
 								/* 1.5 dpr */
 								@media(-webkit-min-device-pixel-ratio: 1.5), 

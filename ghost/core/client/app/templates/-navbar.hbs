@@ -1,71 +1,78 @@
 <div id="primary-nav" class="compose-story">
 	<div id="relative">
-	<!--LOGO-->
-	<a href="#" id="logo"></a>
-	<!--END LOGO-->
-	<!--MAIN MENU-->
-	<a href="#" id="menu">
-		<div id="relative">
-			<div class="menu-bar one"></div>
-			<div class="menu-bar two"></div>
-			<div class="menu-bar three"></div>
-		</div>
-	</a>
-	<!--END MENU-->
-	<!--WRITE STORY-->
-		<a href="/ghost/editor" id="write-story">
-			<div class="relative">
-				<div id="compose-icon"></div>
-				<p>Write</p>
+		<div id="nav-background"></div>
+		<div id="nav-content">
+		<!--LOGO-->
+		<a href="#" id="logo"></a>
+		<!--END LOGO-->
+		<!--MAIN MENU-->
+		<a href="#" id="menu">
+			<div id="relative">
+				<div class="menu-bar one"></div>
+				<div class="menu-bar two"></div>
+				<div class="menu-bar three"></div>
 			</div>
 		</a>
-	<!--END WRITE-->
-	<!--FINISH WRITING STORY-->
-		<a href="#" id="finish-writing-story">
-			<div class="relative">
-				<div id="compose-icon"></div>
-				<p>Finish</p>
-			</div>
-		</a>
+		<!--END MENU-->
+		<!--WRITE STORY-->
+			<a href="/ghost/editor" id="write-story">
+				<div class="relative">
+					<div id="compose-icon"></div>
+					<p>Write</p>
+				</div>
+			</a>
+		<!--END WRITE-->
+		<!--FINISH WRITING STORY-->
+			<a href="#" id="finish-writing-story">
+				<div class="relative">
+					<div id="compose-icon"></div>
+					<p>Finish</p>
+				</div>
+			</a>
 
-	<!--END FINISH WRITING-->
+		<!--END FINISH WRITING-->
 
-	<!--BEGIN ACCOUNT DROPDOWN/LOG IN-->
-		{{#if session.isAuthenticated}}
-			<div id="account-icon-wrapper">
-				<a href="#" id="log-in">
-					<div id="logged-out-icon"></div>
-				</a>														
+		<!--BEGIN ACCOUNT DROPDOWN/LOG IN-->
+			{{#if session.isAuthenticated}}
+				<div id="account-icon-wrapper">
+					<a href="#" id="log-in">
+						<div id="logged-out-icon"></div>
+					</a>														
 
-				<!--BEGIN LOGEED IN ACTIONS-->
-				<div id="logged-in-actions" class="hidden">
-					<ul id="logged-in-actions-list">
-						<li><a href="/ghost" class="logged-in-action">Manage Site Content<div class="manage-site-content action-icon"></div></a></li>
-						<li><a href="/ghost/editor" class="logged-in-action">New Story<div class="new-story action-icon"></div></a></li>
-						<li><a href="/ghost" class="logged-in-action">Drafts and Stories<div class="drafts-and-stories action-icon"></div></a></li>
-						<li><a href="#" class="logged-in-action">Profile<div class="view-profile action-icon"></div></a></li>
-						<li class="last"><a href="/ghost/signout" class="logged-in-action grey-text">Sign Out<div class="sign-out action-icon"></div></a></li>
-					</ul>
+					<!--BEGIN LOGEED IN ACTIONS-->
+					<div id="logged-in-actions" class="hidden">
+						<ul id="logged-in-actions-list">
 
-					<div id="close-handheld-overlay">
-						<div class="relative">
-							<div class="line-one"></div>
-							<div class="line-two"></div>
+							{{#if session.user.isAuthor}}
+							{{else}}
+								<li><a href="/ghost" class="logged-in-action">Manage Site Content<div class="manage-site-content action-icon"></div></a></li>						
+							{{/if}}
+							<li><a href="/ghost/editor" class="logged-in-action">New Story<div class="new-story action-icon"></div></a></li>
+							<li><a href="/ghost/drafts" class="logged-in-action">Drafts and Stories<div class="drafts-and-stories action-icon"></div></a></li>
+							<li><a href="/ghost/settings/users/{{session.user.slug}}" class="logged-in-action">Profile<div class="view-profile action-icon"></div></a></li>
+							<li class="last"><a href="/ghost/signout" class="logged-in-action grey-text">Sign Out<div class="sign-out action-icon"></div></a></li>
+						</ul>
+
+						<div id="close-handheld-overlay">
+							<div class="relative">
+								<div class="line-one"></div>
+								<div class="line-two"></div>
+							</div>
 						</div>
 					</div>
+					<!--END LOGGED IN ACTIONS-->
 				</div>
-				<!--END LOGGED IN ACTIONS-->
-			</div>
-		{{else}}
-			<div id="account-icon-wrapper">
-				<a href="/ghost/signin" id="log-in">
-					<div id="logged-out-icon"></div>
-				</a>
-			</div>
-		{{/if}}
-	<!--END ACCOUNT-->
-	
+			{{else}}
+				<div id="account-icon-wrapper">
+					<a href="/ghost/signin" id="log-in">
+						<div id="logged-out-icon"></div>
+					</a>
+				</div>
+			{{/if}}
+		<!--END ACCOUNT-->
+		
 
+		</div>
 	</div>
 </div>
 

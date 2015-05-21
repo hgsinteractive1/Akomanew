@@ -9,6 +9,8 @@ var _              = require('lodash'),
     ghostBookshelf = require('./base'),
     events         = require('../events'),
 
+    excerptHelper = require("../helpers/excerpt"),
+
     config          = require('../config'),
     permalinkSetting = '',
     getPermalinkSetting,
@@ -339,6 +341,8 @@ Post = ghostBookshelf.Model.extend({
         delete attrs.author_id;
 
         attrs.tag_positions = this.tag_positions;
+
+        attrs.excerpt = excerptHelper.call(this.attributes,{}).string;
 
         return attrs;
     }
