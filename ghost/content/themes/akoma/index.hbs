@@ -5,18 +5,35 @@
 <div id="full-bleed-hero">
 	<!--FLUID IMAGE AREA-->
 	<div id="fluid-image">
-		{{#if @blog.cover}}
-			<img src="{{@blog.cover}}" />
+		{{#if featuredPost}}
+			<img src="{{featuredPost.image}}" />
+		{{else}}
+			{{#if @blog.cover}}
+				<img src="{{@blog.cover}}" />
+			{{/if}}
 		{{/if}}
 	</div>
 	<!--END FLUID IMAGE AREA-->
 	<!-- TINT AREA -->
-	<div id="tint"></div>
+	{{#if featuredPost}}
+		{{#featuredPost}}
+			<a href="{{url}}">
+				<div id="tint"></div>
+			</a>
+		{{/featuredPost}}
+	{{else}}
+		<div id="tint"></div>
+	{{/if}}
 	<!--END TINT AREA-->
 	<!--HEADLINE AREA-->
 	<div id="headline">
-		<h3>Hits<span class="circle-decoration"></span><span class="cat-descrip">Lorem ipsum dolor</span></h3>
-		<h4>A look into a hashtag's unintended consequences in Nigeria</h4>
+		{{#if featuredPost}}
+			{{#featuredPost}}
+				<h4><a href="{{url}}">{{title}}</h4>
+			{{/featuredPost}}
+		{{else}}
+			<h4>Welcome to aKoma</h4>
+		{{/if}}
 	</div>
 	<!--END HEADLINE-->
 </div>

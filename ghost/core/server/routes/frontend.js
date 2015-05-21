@@ -10,14 +10,6 @@ frontendRoutes = function () {
     var router = express.Router(),
         subdir = config.paths.subdir;
 
-
-    router.get('*', function redirect(req, res, next) {
-//console.log("** in router, req.url=" + req.url);
-        // set seession here
-        next();
-    });
-
-
     router.get('*', function redirect(req, res, next) {
         if(!/^\/auth\/(twitter|facebook)/ig.test(req.url)) {
             req.session.lastUrl = req.url;

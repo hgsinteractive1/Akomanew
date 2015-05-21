@@ -504,7 +504,10 @@ Post = ghostBookshelf.Model.extend({
                 if (tagInstance) {
                     postCollection
                         .query('join', 'posts_tags', 'posts_tags.post_id', '=', 'posts.id')
-                        .query('where', 'posts_tags.tag_id', '=', tagInstance.id);
+                        .query('where', 'posts_tags.tag_id', '=', tagInstance.id)
+
+                        // Dont return the featured post in with the normal posts
+                        .query('where', 'posts_tags.sort_position', '>', '-9999999');
                 }
 
                 if (authorInstance) {
@@ -541,6 +544,9 @@ Post = ghostBookshelf.Model.extend({
                 if (tagInstance) {
                     qb.join('posts_tags', 'posts_tags.post_id', '=', 'posts.id');
                     qb.where('posts_tags.tag_id', '=', tagInstance.id);
+
+                    // Dont return the featured post in with the normal posts
+                    qb.where('posts_tags.sort_position', '>', '-9999999');
                 }
                 if (authorInstance) {
                     qb.where('author_id', '=', authorInstance.id);
@@ -549,7 +555,9 @@ Post = ghostBookshelf.Model.extend({
                 countPromise = qb.count('posts.id as aggregate');
 
                 return Promise.join(collectionPromise, countPromise);
-            }).then(function (results) {
+            })
+            // Take the results and construct the response
+            .then(function (results) {
                 var totalPosts = parseInt(results[1][0].aggregate, 10),
                     calcPages = Math.ceil(totalPosts / options.limit) || 0,
                     postCollection = results[0],
@@ -593,6 +601,26 @@ Post = ghostBookshelf.Model.extend({
                     }
                 }
 
+                return data;
+            })
+            // Look for a featured post if possible
+            .then(function(data){
+                data.meta.featured = null;
+                if(tagInstance) {
+                    var post = Post.forge();
+                    return post
+                        .query('join', 'posts_tags', 'posts_tags.post_id', '=', 'posts.id')
+                        .query('where', 'posts_tags.tag_id', '=', tagInstance.id)
+
+                        // Dont return the featured post in with the normal posts
+                        .query('where', 'posts_tags.sort_position', '=', '-9999999')
+                        .fetch(_.omit(options, 'page', 'limit'))
+                    .then(function(results){
+                        if(post.id)
+                            data.meta.featured = post.toJSON(options);
+                        return data;
+                    });
+                }
                 return data;
             })
             .catch(errors.logAndThrowError);

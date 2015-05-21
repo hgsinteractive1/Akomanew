@@ -23,10 +23,6 @@ PostsRoute = AuthenticatedRoute.extend(ShortcutsRoute, styleBody, loadingIndicat
     model: function () {
         var self = this;
         return this.get('session.user').then(function (user) {
-            if(user.get("isAuthor")) {
-                return self.transitionTo("drafts");
-            }
-
             if (user.get('isAuthor')) {
                 paginationSettings.author = user.get('slug');
             }

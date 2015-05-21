@@ -16,8 +16,8 @@ var PostController = Ember.Controller.extend({
         return `background-image: url(${this.get('authorAvatar')})`.htmlSafe();
     }),
 
-    canFeature: Ember.computed('controllers.posts.selectedFilter', function () {
-        return this.get('controllers.posts.selectedFilter') !== "All";
+    canFeature: Ember.computed('controllers.posts.selectedFilter', 'model.isPublished', function () {
+        return this.get('controllers.posts.selectedFilter') !== "All" && this.get("model.isPublished");
     }),
 
     isFeaturedInCurrentTag: Ember.computed('model', 'model.tag_positions', 'controllers.posts.selectedFilter', function () {
