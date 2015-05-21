@@ -6,11 +6,23 @@
 <div id="full-bleed-hero">
 	<!--FLUID IMAGE AREA-->
 	<div id="fluid-image">
-		<img src="{{tag.image}}" />
+		{{#if featuredPost}}
+			<img src="{{featuredPost.image}}" />
+		{{else}}
+			<img src="{{tag.image}}" />
+		{{/if}}
 	</div>
 	<!--END FLUID IMAGE AREA-->
 	<!-- TINT AREA -->
-	<div id="tint"></div>
+	{{#if featuredPost}}
+		{{#featuredPost}}
+			<a href="{{url}}">
+				<div id="tint"></div>
+			</a>
+		{{/featuredPost}}
+	{{else}}
+		<div id="tint"></div>
+	{{/if}}
 	<!--END TINT AREA-->
 	<!--HEADLINE AREA-->
 	<div id="headline">
@@ -18,6 +30,11 @@
 		{{#if tag.description}}
 			<span class="circle-decoration"></span>
 			<span class="cat-descrip">{{tag.description}}</span></h3>
+		{{/if}}
+		{{#if featuredPost}}
+			{{#featuredPost}}
+				<h4><a href="{{url}}">{{title}}</h4>
+			{{/featuredPost}}
 		{{/if}}
 	</div>
 	<!--END HEADLINE-->

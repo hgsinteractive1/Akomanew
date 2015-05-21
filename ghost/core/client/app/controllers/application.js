@@ -25,7 +25,6 @@ var ApplicationController = Ember.Controller.extend({
     tagsForMenu: Ember.computed(function(){
         var ret = {};
         var allTags = this.store.all('tag');
-        console.log("TAG", allTags);
         allTags.forEach(function(item){
             ret[item.get('name')] = item;
         });

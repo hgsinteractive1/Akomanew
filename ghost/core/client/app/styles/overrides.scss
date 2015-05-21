@@ -2,6 +2,11 @@ body {
     min-width: inherit;
 }
 
+#full-bleed-hero #headline a { 
+    color: inherit;
+    text-decoration: inherit;
+}
+
 .editor {
 	.markdown-editor {
         position: relative;

@@ -61,7 +61,7 @@ passport.use(new FacebookStrategy({
   },
   function(token, tokenSecret, profile, done) {
     process.nextTick(function () {
-      console.log ("Facebook user profile for: " + profile.user);
+      console.log ("Facebook user profile for: " + profile.displayName);
       return done(null, profile);
     });
   }  

@@ -59,7 +59,8 @@ function formatPageResponse(posts, page, extraValues) {
     var resp = {
         posts: posts,
         allTags:page.allTags,
-        pagination: page.meta.pagination
+        pagination: page.meta.pagination,
+        featuredPost: page.meta.featured
     };
     return _.extend(resp, extraValues);
 }
@@ -230,7 +231,7 @@ console.log("** in homepage, req.user = ",req.user? req.user.displayName : "who 
                 page: pageParam,
                 tag: req.params.slug
             };
-
+            
         // Get url for tag page
         function tagUrl(tag, page) {
             var url = config.paths.subdir + '/' + config.routeKeywords.tag  + '/' + tag + '/';

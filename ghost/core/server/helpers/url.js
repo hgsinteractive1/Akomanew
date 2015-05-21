@@ -10,7 +10,6 @@ var config          = require('../config'),
 
 url = function (options) {
     var absolute = options && options.hash.absolute;
-
     if (schema.isPost(this)) {
         return config.urlFor('post', {post: this}, absolute);
     }

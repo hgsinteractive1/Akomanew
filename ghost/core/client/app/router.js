@@ -26,6 +26,8 @@ Router.map(function () {
         this.route('post', {path: ':post_id'});
     });
 
+    this.route('drafts', {path: '/drafts'});
+
     this.resource('editor', function () {
         this.route('new', {path: ''});
         this.route('edit', {path: ':post_id'});
