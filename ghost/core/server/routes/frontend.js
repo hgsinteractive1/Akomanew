@@ -12,14 +12,14 @@ frontendRoutes = function () {
 
 
     router.get('*', function redirect(req, res, next) {
-console.log("** in router, req.url=" + req.url);
+//console.log("** in router, req.url=" + req.url);
         // set seession here
         next();
     });
 
 
     router.get('*', function redirect(req, res, next) {
-        if(!/^\/auth\/twitter/ig.test(req.url)) {
+        if(!/^\/auth\/(twitter|facebook)/ig.test(req.url)) {
             req.session.lastUrl = req.url;
         }
         console.log("LAST URLs: ", req.url, req.session.lastUrl);
@@ -71,12 +71,18 @@ console.log("** in router, req.url=" + req.url);
     // Dynamic filters
     router.get('/latest', frontend.latest);
 
-    // SSO Twitter filters
+    // SSO Social filters
     router.get('/auth/twitter', passport.authenticate('twitter'));
     router.get('/auth/twitter/callback', passport.authenticate('twitter'),
       function(req, res) {        
           res.redirect(req.session.lastUrl);
       });
+    router.get('/auth/facebook', passport.authenticate('facebook'));
+    router.get('/auth/facebook/callback', passport.authenticate('facebook'),
+      function(req, res) {
+          res.redirect(req.session.lastUrl);
+      });
+
 
     // Default
     router.get('/' + config.routeKeywords.page + '/:page/', frontend.homepage);

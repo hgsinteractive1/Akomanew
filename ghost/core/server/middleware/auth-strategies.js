@@ -3,6 +3,7 @@ var passport = require('passport'),
     BearerStrategy = require('passport-http-bearer').Strategy,
     ClientPasswordStrategy = require('passport-oauth2-client-password').Strategy,
     TwitterStrategy = require('passport-twitter').Strategy,
+    FacebookStrategy  = require('passport-facebook').Strategy,
     models  = require('../models');
 
 // THIS NEEDS to be refactored into config.js in ghost root dir and set
@@ -10,11 +11,17 @@ var passport = require('passport'),
 // Override the HOST value with the host we want SSO provider to call back
 // e.g. http://b.akomanet.com
 // e.g. http://127.0.0.1 -- NOT localhost as Twitter barfs at it
-var APP_HOST_INTEGRATE = "http://127.0.0.1:2368";
+// So it seems FB does not like any localhost variants, including the IP address. have to stick with an alias.
+var APP_HOST_INTEGRATE = "http://b.akomanet.com:2368";
 
 var TWITTER_CONSUMER_KEY = "NRfJBexESA1fGKjXv9OidwLVd";
 var TWITTER_CONSUMER_SECRET = "MAYbbLLoiG2YSA0Tva6h4fPCs9TNAVJMxTeiwmXjIgcGK62A3F";
 var TWITTER_CALLBACK = APP_HOST_INTEGRATE + "/auth/twitter/callback";
+
+// FB auth API Credentials
+var FB_CLIENT_ID = "802215216531320";
+var FB_CLIENT_SECRET = "ff50f138c26dd2992027ca4c506ef0fa";
+var FB_CALLBACK = APP_HOST_INTEGRATE + "/auth/facebook/callback";
 
 //console.log("********** config = ", config);
 
@@ -38,7 +45,7 @@ passport.use(new TwitterStrategy({
     process.nextTick(function () {
 
 //      console.log ("Twitter user profile: " + JSON.stringify(profile, null, 2));
-      console.log ("Twitter user profile for: " + profile.username);
+      console.log ("Twitter user profile for: " + profile.displayName);
 
       // MySQL user association logic can tie in with Twitter realm & profile ID
       // The user's Twitter profile can now be associated with a user database record,
@@ -49,6 +56,21 @@ passport.use(new TwitterStrategy({
   }
 ));
 
+// Use the FacebookStrategy within Passport
+// Use the FacebookStrategy within Passport.
+passport.use(new FacebookStrategy({
+    clientID: FB_CLIENT_ID,
+    clientSecret: FB_CLIENT_SECRET,
+    callbackURL: FB_CALLBACK,
+    enableProof: false
+  },
+  function(token, tokenSecret, profile, done) {
+    process.nextTick(function () {
+      console.log ("Facebook user profile for: " + profile.displayName);
+      return done(null, profile);
+    });
+  }  
+));
 
 
 /**
