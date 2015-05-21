@@ -34,15 +34,17 @@
         {{> menu}}
         <!--END-->
     {{else}}
-        <p>
-        <h2>Welcome! Please sign in</h2>
-        <p>
-        <p>
-        <p>
-        <a href="/auth/twitter"><img src="/content/images/sign-in-with-twitter-l.png"></a>
-        <p>
-        <a href="/auth/facebook"><img src="/content/images/sign-in-with-facebook.png"></a>
-        <p>
+        <div id="sign-in-modal">
+            <div class='inner'>
+                <h2>Sign in to aKoma</h2>
+                <br />
+                <a href="/auth/twitter"><img src="/content/images/sign-in-with-twitter-l.png"></a>
+                <br />
+                <a href="/auth/facebook"><img src="/content/images/sign-in-with-facebook.png"></a>
+                <br />
+                <span class='small'>We will never post to Twitter or Facebook without your permission</span>
+            </div>
+        </div>
     {{/if}}
 
     {{> footer}}
