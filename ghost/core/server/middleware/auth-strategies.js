@@ -12,7 +12,7 @@ var passport = require('passport'),
 // e.g. http://b.akomanet.com
 // e.g. http://127.0.0.1 -- NOT localhost as Twitter barfs at it
 // So it seems FB does not like any localhost variants, including the IP address. have to stick with an alias.
-var APP_HOST_INTEGRATE = "http://b.akomanet.com:2368";
+var APP_HOST_INTEGRATE = "http://b.akomanet.com";
 //var APP_HOST_INTEGRATE = "http://lgr.akomanet.com:2368";
 
 var TWITTER_CONSUMER_KEY = "NRfJBexESA1fGKjXv9OidwLVd";
