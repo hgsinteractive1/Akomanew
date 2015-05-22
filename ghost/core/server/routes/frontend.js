@@ -62,6 +62,7 @@ frontendRoutes = function () {
 
     // Dynamic filters
     router.get('/latest', frontend.latest);
+    router.get('/latest/' + config.routeKeywords.page + '/:page/', frontend.latest);
 
     // SSO Social filters
     router.get('/auth/twitter', passport.authenticate('twitter'));

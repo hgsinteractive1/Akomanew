@@ -26,6 +26,10 @@ page_url = function (context, block) {
         url += '/' + config.routeKeywords.author + '/' + this.authorSlug;
     }
 
+    if(this.latest !== undefined) {
+        url += '/latest';
+    }
+
     if (context > 1) {
         url += '/' + config.routeKeywords.page + '/' + context;
     }

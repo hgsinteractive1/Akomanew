@@ -8,6 +8,7 @@ var _               = require('lodash'),
     pagination;
 
 pagination = function (options) {
+
     /*jshint unused:false*/
     if (!_.isObject(this.pagination) || _.isFunction(this.pagination)) {
         return errors.logAndThrowError('pagination data is not an object or is a function');
@@ -29,6 +30,10 @@ pagination = function (options) {
     }
 
     var context = _.merge({}, this.pagination);
+
+    if(this.context.indexOf('latest') >= 0) {
+        context.latest = true;
+    }
 
     if (this.tag !== undefined) {
         context.tagSlug = this.tag.slug;

@@ -39,7 +39,7 @@ var DraftsController = Ember.ArrayController.extend(PaginationControllerMixin, {
         return this.get("currentFilter") === "published";
     }),
 
-    postCounts: Ember.computed('@each.isPublished', function(){
+    postCounts: Ember.computed('@each', function(){
         var draftsCount = 0;
         var publishedCount = 0;
         var total = 0;
