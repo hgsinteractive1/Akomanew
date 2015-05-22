@@ -30,7 +30,6 @@ pagination = function (options) {
     }
 
     var context = _.merge({}, this.pagination);
-
     if(this.context.indexOf('latest') >= 0) {
         context.latest = true;
     }

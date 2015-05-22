@@ -96,7 +96,7 @@ function setResponseContext(req, res, data) {
     } else if (req.route.path === '/') {
         contexts.push('home');
         contexts.push('index');
-    } else if (req.route.path === '/latest') {
+    } else if (req.route.path.indexOf('/latest') === 0) {
         contexts.push('latest');
         contexts.push('index');
     } else if (/\/rss\/(:page\/)?$/.test(req.route.path)) {
@@ -175,7 +175,11 @@ frontendControllers = {
                     }
 
                     setResponseContext(req, res);
-                    res.render(view, formatPageResponse(posts, page, {ssoUser:req.user}));
+                    if(req.query.ajax) {
+                        res.render("partials/loop", formatPageResponse(posts, page, {ssoUser:req.user}));
+                    } else {
+                        res.render(view, formatPageResponse(posts, page, {ssoUser:req.user}));
+                    }
                 });
             });
         }).catch(handleError(next));
@@ -219,7 +223,11 @@ console.log("** in homepage, req.user = ",req.user? req.user.displayName : "who 
                     }
 
                     setResponseContext(req, res);
-                    res.render(view, formatPageResponse(posts, page, {ssoUser:req.user}));
+                    if(req.query.ajax) {
+                        res.render("partials/loop", formatPageResponse(posts, page, {ssoUser:req.user}));
+                    } else {
+                        res.render(view, formatPageResponse(posts, page, {ssoUser:req.user}));
+                    }
                 });
             });
         }).catch(handleError(next));
@@ -274,7 +282,11 @@ console.log("** in homepage, req.user = ",req.user? req.user.displayName : "who 
                         return next();
                     }
                     setResponseContext(req, res);
-                    res.render(view, result);
+                    if(req.query.ajax) {
+                        res.render("partials/loop", result);
+                    } else {
+                        res.render(view, result);
+                    }
                 });
             });
         }).catch(handleError(next));
@@ -330,7 +342,11 @@ console.log("** in homepage, req.user = ",req.user? req.user.displayName : "who 
                     }
 
                     setResponseContext(req, res);
-                    res.render(view, result);
+                    if(req.query.ajax) {
+                        res.render("partials/loop", result);
+                    } else {
+                        res.render(view, result);
+                    }
                 });
             });
         }).catch(handleError(next));
@@ -413,7 +429,6 @@ console.log("** in homepage, req.user = ",req.user? req.user.displayName : "who 
 
                 filters.doFilter('prePostsRender', post).then(function (post) {
                     getActiveThemePaths().then(function (paths) {
-                        console.log(template);
                         var view = template.getThemeViewForPost(paths, post),
                             response = formatResponse(post, {ssoUser:req.user});
                         response.allTags = result.allTags;
