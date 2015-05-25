@@ -1,0 +1,218 @@
+#user-gate {
+
+	position: fixed;
+	top: 0px;
+	left:0px;
+	width: 100%;
+	height: 100%;
+	overflow-y:scroll;
+	-webkit-opacity: 0;
+  	-moz-opacity: 0;
+  	opacity: 0;
+	-webkit-transition: opacity 0.3s ease-out;
+    -moz-transition: opacity 0.3s ease-out;
+    -o-transition: opacity 0.3s ease-out;
+    z-index: 6000;
+    font-family: $akoma-fonts;
+
+
+    &.fadedIn {
+    	-webkit-opacity: 0.96;
+  		-moz-opacity: 0.96;
+  		opacity: 0.97;
+		height: 100%;
+		overflow-y:scroll;
+
+		#overlay-background {
+			height:100%;
+		}
+
+		#menu-content {
+			height: 360px;
+
+			@include respond-to(handhelds) {
+				height: 500px;
+			}
+
+			@include respond-to(smallPhone) {
+				height: 450px;
+			}
+		}
+    }
+
+    
+    &.hidden {
+		height: 0;
+		overflow:hidden;
+
+		#overlay-background {
+			height:0;
+		}
+
+		#menu-content {
+			height: 0;
+
+			@include respond-to(handhelds) {
+				height: 0;
+			}
+		}
+    }
+
+
+	#overlay-background {
+		position: fixed;
+		width: 100%;
+		height:100%;
+		background: #000;
+		opacity: 0.97;
+	}
+
+	a#gate-menu-icon {
+		width:50px;
+		height:50px;
+		position:fixed;
+		display:block;
+		left:20px;
+		top:18px;
+		z-index: 2500;
+
+	&.tool-tip-active {
+		@include respond-to(handhelds) {
+			display:none;
+		}
+	}
+
+	@include respond-to(handhelds) {
+		height:40px;
+		width:40px;
+		left:5px;
+		top:5px;
+	}
+
+	div.menu-bar {
+		width:35px;
+		height:2px;
+		position:absolute;
+		left:7px;
+		background:#FFF;
+		//-webkit-transition: all 0.2s ease-out;
+		//-moz-transition: all 0.2s ease-out;
+		//-o-transition: all 0.2s ease-out;
+
+
+			@include respond-to(handhelds) {
+				width:27px;
+			}
+
+			
+			&.one {
+					top:24px;
+					-ms-transform: rotate(45deg); /* IE 9 */
+	    			-webkit-transform: rotate(45deg); /* Safari */
+	    			transform: rotate(45deg);
+				@include respond-to(handhelds) {
+					top:24px;
+					
+				}
+			}
+
+			&.two {
+				top:24px;
+				-ms-transform: rotate(-45deg); /* IE 9 */
+	    		-webkit-transform: rotate(-45deg); /* Safari */
+	    		transform: rotate(-45deg);
+				@include respond-to(handhelds) {
+					top:24px;
+				
+				}
+			}
+
+
+		}
+
+	}
+
+
+	//begin social sigin in wrapper
+	#social-sign-in {
+		width: 450px;
+		height: 300px;
+		position: absolute;
+		left: 50%;
+		top:50%;
+		margin-left: -225px;
+		margin-top: -160px;
+
+		@include respond-to(handhelds) {
+			width: 100%;
+			margin-left: 0px;
+			left: 0%;
+		}
+
+		p.sign-in {
+			font-size: 30px;
+			color: #FFF;
+			text-align: center;
+			margin-bottom: 45px;
+			color: #FFF;
+		}
+
+		a.social-sign-in-button {
+			width: 220px;
+			height: 33px;
+			border-radius: 8px;
+			padding-left: 60px;
+			display: block;
+			font-size: 18px;
+			margin: auto;
+			margin-bottom: 15px;
+			position:relative;
+			padding-top:16px;
+			text-transform: none;
+			color: #FFF;
+			text-decoration: none;
+
+			div.icon {
+				position:absolute;
+			}
+
+			&#tw-single-sign-on {
+				background: #55ACEE;
+
+				div.icon {
+					width: 23px;
+					height: 18px;
+					background: url(../images/tw_ss_icon.png) top left no-repeat;
+					top:16px;
+					left:15px;
+				}
+			}
+
+
+			&#fb-single-sign-on {
+				background: #3A5795;
+				margin-bottom: 35px;
+
+				div.icon {
+					width: 14px;
+					height: 23px;
+					background: url(../images/fb_ss_icon.png) top left no-repeat;
+					top:12px;
+					left:17px;
+				}
+			}
+		}
+
+		p.ss-info {
+			font-size: 14px;
+			color: #FFF;
+			text-align: center;
+			margin-bottom: 45px;
+			color: #B3B3B1;
+			line-height: 18px;
+		}
+
+	}
+
+
+}
