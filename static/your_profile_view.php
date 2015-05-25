@@ -104,7 +104,7 @@
 <!--END-->
 
 <!--MAIN MENU ICON-->
-<a href="#" id="menu-icon" class="is-white">
+<a href="#" id="menu-icon">
 	<div id="relative">
 		<div class="menu-bar one"></div>
 		<div class="menu-bar two"></div>

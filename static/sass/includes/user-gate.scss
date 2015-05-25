@@ -17,9 +17,9 @@
 
 
     &.fadedIn {
-    	-webkit-opacity: 0.96;
-  		-moz-opacity: 0.96;
-  		opacity: 0.97;
+    	-webkit-opacity: 1;
+  		-moz-opacity: 1;
+  		opacity: 1;
 		height: 100%;
 		overflow-y:scroll;
 
@@ -64,7 +64,7 @@
 		width: 100%;
 		height:100%;
 		background: #000;
-		opacity: 0.97;
+		opacity: 0.92;
 	}
 
 	a#gate-menu-icon {
@@ -133,7 +133,10 @@
 	}
 
 
-	//begin social sigin in wrapper
+
+/************************************************************
+*	BEGIN SOCIAL SIGN IN 
+*/	
 	#social-sign-in {
 		width: 450px;
 		height: 300px;
@@ -215,4 +218,119 @@
 	}
 
 
+/************************************************************
+*	BEGIN REQEUST FORM
+*/	
+	#request-form {
+
+		width: 450px;
+		height: 450px;
+		position: absolute;
+		left: 50%;
+		top:50%;
+		margin-left: -225px;
+		margin-top: -225px;
+		background: #000;
+
+		p.header {
+			font-size: 26px;
+			line-height: 32px;
+			color: #FFF;
+			font-weight: 500;
+			margin-bottom: 10px;
+		}
+
+		p.subhead {
+			font-size: 16px;
+			line-height: 20px;
+			color: #B3B3B1;
+			margin-bottom: 20px;
+		}
+
+		div.input-wrapper {
+			width: 85%;
+			height: 45px;
+			background: #D8D8D8;
+			position: relative;
+			padding-left:15%;
+			margin-bottom: 15px;
+
+			input {
+				position:absolute;
+				width: 100%;
+				left: 15%;
+				top: 2px;
+				background: none;
+				border: 0px;
+				height: 90%;
+				font-size: 16px;
+				color: #777;
+
+				&:focus {
+    				outline: 0;
+				}
+			}
+
+			div.icon {
+				position:absolute;
+
+				&.name {
+					height: 24px;
+					width: 18px;
+					top:11px;
+					left: 20px;
+					background: url(../images/form_name_icon.png) top left no-repeat;
+				}
+
+				&.email {
+					height: 17px;
+					width: 24px;
+					top:14px;
+					left: 17px;
+					background: url(../images/form_email_icon.png) top left no-repeat;
+				}
+			
+			}
+		}
+
+		textarea {
+			height: 90px;
+			width: 93%;
+			background: #D8D8D8;
+			margin: 0px;
+			padding: 3%;
+			font-size: 16px;
+			color:#777777;
+			margin-bottom: 13px;
+		}
+
+		a.send-request-button {
+			width: 100%;
+			height: 36px;
+			padding-top:14px;
+			border-radius: 8px;
+			text-align: center;
+			display: block;
+			font-size: 20px;
+			color: #fff;
+			background: $aKoma-blue;
+			text-decoration: none;
+			position: relative;
+
+			div.icon {
+				background: url(../images/send_request_arrow.png) top left no-repeat;
+				left:50%;
+				margin-left: -120px;
+				top:10px;
+				height: 27px;
+				width: 30px;
+				position: absolute;
+			}
+		}
+
+	}
+
 }
+
+
+
