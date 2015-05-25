@@ -2057,6 +2057,267 @@
 
 
 	}
+
+/************************************************************
+*	USER PROFILE
+*/
+
+	#user-profile-wrapper {
+		width: 700px;
+		margin: 0 auto;
+		margin-top:175px;
+		margin-bottom: 35px;
+		font-family: $akoma-fonts;
+
+			@include respond-to(handhelds) {
+		 		width : 90%;
+		 		margin-top: 95px;
+			}
+
+		#recommended-header {
+			width: 100%;
+			margin-top: 25px;
+			font-size: 16px;
+			text-align: center;
+
+			h3 {
+				font-size: 16px;
+				color: $light-grey;
+
+				span {
+					color: #000;
+				}
+			}
+		}
+
+		#profile-overview {
+			width: 100%;
+			margin-bottom: 50px;
+
+			@include respond-to(handhelds) {
+				margin-bottom: 20px;
+			}
+
+			#avatar-wrapper {
+				float: left;
+				width: 200px;
+
+				@include respond-to(handhelds) {
+		 			float: none;
+		 			width: 100%;
+				}
+
+				#avatar {
+					width: 150px;
+					height: 150px;
+					background: url(../images/placeholder_profile.jpg) top left no-repeat;
+					background-size: 100%;
+					border-radius: 50%;
+					margin: 0 auto;
+				}
+			}
+
+			#profile-summary {
+				width: 500px;
+				float: right;
+				padding-top: 15px;
+
+				@include respond-to(handhelds) {
+		 			float: none;
+		 			width: 100%;
+		 			text-align: center;
+				}
+
+				h3 {
+					font-size: 38px;
+					font-weight: 500;
+					margin-bottom: 8px;
+
+					@include respond-to(handhelds) {
+						font-size: 24px;
+					}
+				}
+
+				p.overview {
+					font-size: 16px;
+					color: $light-grey;
+					margin-bottom: 15px;
+				}
+
+				p.bio {
+					font-size: 15px;
+					line-height: 22px;
+				}
+
+			}
+		}
+
+		#profile-stats {
+			width: 100%;
+			height: 85px;
+			border-bottom: 1px solid $rule-color;
+			padding-bottom: 10px;
+
+			@include respond-to(handhelds) {
+					height: 155px;
+			}
+
+			ul#stats-list {
+				width: 100%;
+				height: 75px;
+
+				@include respond-to(handhelds) {
+					height: 155px;
+				}
+
+				li {
+					width: 148px;
+					height: 65px;
+					float: left;
+					text-align: center;
+					padding-top:8px;
+
+					@include respond-to(handhelds) {
+						width: 33%;
+					}
+
+
+					&.social {
+						border-right: 1px solid $rule-color;
+						padding-right: 10px;
+						margin-right: 10px;
+
+						@include respond-to(handhelds) {
+							border-right: 0px;
+							padding-right: 0px;
+							margin-right: 0px;
+
+						}
+					}
+
+					h4 {
+						color: $light-grey;
+						text-transform: uppercase;
+						font-size: 16px;
+						margin-bottom: 10px;
+						font-weight: 500;
+
+						@include respond-to(handhelds) {
+							font-size: 14px;
+						}
+					}
+
+					p.stat {
+						font-size: 30px;
+					}
+
+					a#on-social-twitter {
+						width: 32px;
+						height: 24px;
+						margin-top:4px;
+						display: inline-block;
+						background: url(../images/on_social_twitter.png) top left no-repeat;
+					}
+
+					&.primary-action {
+						width: 210px;
+
+						@include respond-to(handhelds) {
+							//float: none;
+							display: block;
+							width: 100%;
+						}
+
+						a#author-action {
+							display : block;
+							margin: 0 auto;
+							cursor: pointer;
+							width: 126px;
+							height: 29px;
+							background : #EFEFEF;
+							border-radius: 6px;
+							margin-top: 10px;
+							font-size: 16px;
+							font-weight: 500;
+							padding-top:15px;
+							padding-left:13px;
+
+							@include respond-to(handhelds) {
+								//float: none;
+								display: block;
+								width: 100%;
+								padding-left: 0px;
+							}
+
+							div.icon {
+								position: absolute;
+
+								//follow icon
+								&.follow {
+									width: 15px;
+									height: 15px;
+									top:0px;
+									left: 10px;
+
+									@include respond-to(handhelds) {
+										left: 100px;
+									}
+
+									div.bar-one {
+										position: absolute;
+										width: 2px;
+										height: 16px;
+										background: #979797;
+										left: 7px;
+										top:0px;
+									}
+
+									div.bar-two {
+										position: absolute;
+										width: 16px;
+										height: 2px;
+										background: #979797;
+										left: 0px;
+										top:7px;
+									}
+
+								}
+
+								//following icon
+								&.following {
+									top: -4px;
+									left: -2px;
+									width: 22px;
+									height: 22px;
+									background: url(../images/following_author.png) top left no-repeat;
+
+									@include respond-to(handhelds) {
+										left: 90px;
+									}
+								}
+
+								//edit profile icon
+								&.edit-profile {
+									top: 0px;
+									left: -1px;
+									width: 14px;
+									height: 14px;
+									background: url(../images/edit_profile.png) top left no-repeat;
+
+									@include respond-to(handhelds) {
+										left: 90px;
+									}
+								}
+							}
+
+						}
+					}
+
+				}
+			}
+		}
+
+	}
 	
 
 

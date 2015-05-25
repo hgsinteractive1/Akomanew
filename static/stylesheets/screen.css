@@ -3007,3 +3007,282 @@ a#menu-icon.menu-is-open div.menu-bar.three {
     left: 12px;
   }
 }
+
+/************************************************************
+*	USER PROFILE
+*/
+/* line 2065, ../sass/screen.scss */
+#user-profile-wrapper {
+  width: 700px;
+  margin: 0 auto;
+  margin-top: 175px;
+  margin-bottom: 35px;
+  font-family: Avenir, Roboto, "Helvetica Neue", Helvetica, Arial, san-serif;
+}
+@media only screen and (max-width: 768px) {
+  /* line 2065, ../sass/screen.scss */
+  #user-profile-wrapper {
+    width: 90%;
+    margin-top: 95px;
+  }
+}
+/* line 2077, ../sass/screen.scss */
+#user-profile-wrapper #recommended-header {
+  width: 100%;
+  margin-top: 25px;
+  font-size: 16px;
+  text-align: center;
+}
+/* line 2083, ../sass/screen.scss */
+#user-profile-wrapper #recommended-header h3 {
+  font-size: 16px;
+  color: #979797;
+}
+/* line 2087, ../sass/screen.scss */
+#user-profile-wrapper #recommended-header h3 span {
+  color: #000;
+}
+/* line 2093, ../sass/screen.scss */
+#user-profile-wrapper #profile-overview {
+  width: 100%;
+  margin-bottom: 50px;
+}
+@media only screen and (max-width: 768px) {
+  /* line 2093, ../sass/screen.scss */
+  #user-profile-wrapper #profile-overview {
+    margin-bottom: 20px;
+  }
+}
+/* line 2101, ../sass/screen.scss */
+#user-profile-wrapper #profile-overview #avatar-wrapper {
+  float: left;
+  width: 200px;
+}
+@media only screen and (max-width: 768px) {
+  /* line 2101, ../sass/screen.scss */
+  #user-profile-wrapper #profile-overview #avatar-wrapper {
+    float: none;
+    width: 100%;
+  }
+}
+/* line 2110, ../sass/screen.scss */
+#user-profile-wrapper #profile-overview #avatar-wrapper #avatar {
+  width: 150px;
+  height: 150px;
+  background: url(../images/placeholder_profile.jpg) top left no-repeat;
+  background-size: 100%;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+/* line 2120, ../sass/screen.scss */
+#user-profile-wrapper #profile-overview #profile-summary {
+  width: 500px;
+  float: right;
+  padding-top: 15px;
+}
+@media only screen and (max-width: 768px) {
+  /* line 2120, ../sass/screen.scss */
+  #user-profile-wrapper #profile-overview #profile-summary {
+    float: none;
+    width: 100%;
+    text-align: center;
+  }
+}
+/* line 2131, ../sass/screen.scss */
+#user-profile-wrapper #profile-overview #profile-summary h3 {
+  font-size: 38px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+@media only screen and (max-width: 768px) {
+  /* line 2131, ../sass/screen.scss */
+  #user-profile-wrapper #profile-overview #profile-summary h3 {
+    font-size: 24px;
+  }
+}
+/* line 2141, ../sass/screen.scss */
+#user-profile-wrapper #profile-overview #profile-summary p.overview {
+  font-size: 16px;
+  color: #979797;
+  margin-bottom: 15px;
+}
+/* line 2147, ../sass/screen.scss */
+#user-profile-wrapper #profile-overview #profile-summary p.bio {
+  font-size: 15px;
+  line-height: 22px;
+}
+/* line 2155, ../sass/screen.scss */
+#user-profile-wrapper #profile-stats {
+  width: 100%;
+  height: 85px;
+  border-bottom: 1px solid #D8D8D8;
+  padding-bottom: 10px;
+}
+@media only screen and (max-width: 768px) {
+  /* line 2155, ../sass/screen.scss */
+  #user-profile-wrapper #profile-stats {
+    height: 155px;
+  }
+}
+/* line 2165, ../sass/screen.scss */
+#user-profile-wrapper #profile-stats ul#stats-list {
+  width: 100%;
+  height: 75px;
+}
+@media only screen and (max-width: 768px) {
+  /* line 2165, ../sass/screen.scss */
+  #user-profile-wrapper #profile-stats ul#stats-list {
+    height: 155px;
+  }
+}
+/* line 2173, ../sass/screen.scss */
+#user-profile-wrapper #profile-stats ul#stats-list li {
+  width: 148px;
+  height: 65px;
+  float: left;
+  text-align: center;
+  padding-top: 8px;
+}
+@media only screen and (max-width: 768px) {
+  /* line 2173, ../sass/screen.scss */
+  #user-profile-wrapper #profile-stats ul#stats-list li {
+    width: 33%;
+  }
+}
+/* line 2185, ../sass/screen.scss */
+#user-profile-wrapper #profile-stats ul#stats-list li.social {
+  border-right: 1px solid #D8D8D8;
+  padding-right: 10px;
+  margin-right: 10px;
+}
+@media only screen and (max-width: 768px) {
+  /* line 2185, ../sass/screen.scss */
+  #user-profile-wrapper #profile-stats ul#stats-list li.social {
+    border-right: 0px;
+    padding-right: 0px;
+    margin-right: 0px;
+  }
+}
+/* line 2198, ../sass/screen.scss */
+#user-profile-wrapper #profile-stats ul#stats-list li h4 {
+  color: #979797;
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+@media only screen and (max-width: 768px) {
+  /* line 2198, ../sass/screen.scss */
+  #user-profile-wrapper #profile-stats ul#stats-list li h4 {
+    font-size: 14px;
+  }
+}
+/* line 2210, ../sass/screen.scss */
+#user-profile-wrapper #profile-stats ul#stats-list li p.stat {
+  font-size: 30px;
+}
+/* line 2214, ../sass/screen.scss */
+#user-profile-wrapper #profile-stats ul#stats-list li a#on-social-twitter {
+  width: 32px;
+  height: 24px;
+  margin-top: 4px;
+  display: inline-block;
+  background: url(../images/on_social_twitter.png) top left no-repeat;
+}
+/* line 2222, ../sass/screen.scss */
+#user-profile-wrapper #profile-stats ul#stats-list li.primary-action {
+  width: 210px;
+}
+@media only screen and (max-width: 768px) {
+  /* line 2222, ../sass/screen.scss */
+  #user-profile-wrapper #profile-stats ul#stats-list li.primary-action {
+    display: block;
+    width: 100%;
+  }
+}
+/* line 2231, ../sass/screen.scss */
+#user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action {
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+  width: 126px;
+  height: 29px;
+  background: #EFEFEF;
+  border-radius: 6px;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  padding-top: 15px;
+  padding-left: 13px;
+}
+@media only screen and (max-width: 768px) {
+  /* line 2231, ../sass/screen.scss */
+  #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action {
+    display: block;
+    width: 100%;
+    padding-left: 0px;
+  }
+}
+/* line 2252, ../sass/screen.scss */
+#user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon {
+  position: absolute;
+}
+/* line 2256, ../sass/screen.scss */
+#user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.follow {
+  width: 15px;
+  height: 15px;
+  top: 0px;
+  left: 10px;
+}
+@media only screen and (max-width: 768px) {
+  /* line 2256, ../sass/screen.scss */
+  #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.follow {
+    left: 100px;
+  }
+}
+/* line 2266, ../sass/screen.scss */
+#user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.follow div.bar-one {
+  position: absolute;
+  width: 2px;
+  height: 16px;
+  background: #979797;
+  left: 7px;
+  top: 0px;
+}
+/* line 2275, ../sass/screen.scss */
+#user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.follow div.bar-two {
+  position: absolute;
+  width: 16px;
+  height: 2px;
+  background: #979797;
+  left: 0px;
+  top: 7px;
+}
+/* line 2287, ../sass/screen.scss */
+#user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.following {
+  top: -4px;
+  left: -2px;
+  width: 22px;
+  height: 22px;
+  background: url(../images/following_author.png) top left no-repeat;
+}
+@media only screen and (max-width: 768px) {
+  /* line 2287, ../sass/screen.scss */
+  #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.following {
+    left: 90px;
+  }
+}
+/* line 2300, ../sass/screen.scss */
+#user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.edit-profile {
+  top: 0px;
+  left: -1px;
+  width: 14px;
+  height: 14px;
+  background: url(../images/edit_profile.png) top left no-repeat;
+}
+@media only screen and (max-width: 768px) {
+  /* line 2300, ../sass/screen.scss */
+  #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.edit-profile {
+    left: 90px;
+  }
+}
