@@ -1,16 +1,90 @@
+{{!< default}}
+
 {{! Everything inside the #author tags pulls data from the author }}
 {{#author}}
 
-    <section class="author-profile inner">
-        <h1 class="author-title">{{name}}</h1>
-        {{#if bio}}
-            <h2 class="author-bio">{{bio}}</h2>
-        {{/if}}
-        <div class="author-meta">
-            {{#if location}}<span class="author-location icon-location">{{location}}</span>{{/if}}
-            {{#if website}}<span class="author-link icon-link"><a href="{{website}}">{{website}}</a></span>{{/if}}
-            <span class="author-stats"><i class="icon-stats"></i> {{plural ../pagination.total empty='No posts' singular='% post' plural='% posts'}}</span>
+    <div id="user-profile-wrapper">
+        <div id="profile-overview">
+            <div id="avatar-wrapper">
+                <div id="avatar" {{#if image}}style="background-image:url({{image}})" {{else}} style="background:#ccc;" {{/if}}></div>
+            </div>
+            <div id="profile-summary">
+                <h3>{{name}}</h3>
+                <p class="overview">
+                    {{#if location}} from {{location}} | {{/if}}
+                    {{plural ../pagination.total empty='No posts' singular='% post' plural='% posts'}}
+                </p>
+                {{#if bio}}
+                    <p class="bio">{{bio}}</p>
+                {{/if}}
+            </div>
+            <div class="clear"></div>   
         </div>
-    </section>
+        <div id="profile-stats">
+            <ul id="stats-list">
+                <li>
+                    <h4>Followers</h4>
+                    <p class="stat">27</p>
+                </li>
+                <li>
+                    <h4>Following</h4>
+                    <p class="stat">13</p>
+                </li>
+                <li class="social">
+                    <h4>On Social</h4>
+                    <a href="#" id="on-social-twitter"></a>
+                </li>
+                <li class="primary-action">
+
+                        <!--FOLLOW ICON-->
+                        
+                        <!--<a id="author-action">
+                            <div class="relative">
+                                Follow
+                                <div class="icon follow">
+                                    <div class="bar-one"></div>
+                                    <div class="bar-two"></div>
+                                </div>
+                            </div>
+                        </a>-->
+                        <!--END FOLLOW ICON-->
+
+                        <!--FOLLOWING ICON-->
+                        
+                        <!--<a id="author-action">
+                            <div class="relative">
+                                Following
+                                <div class="icon following">
+                                    
+                                </div>
+                            </div>
+                        </a>-->
+
+                        <!--END FOLLOWING ICON-->
+
+                        <!--BEGIN EDIT PROFILE ICON-->
+                        <a id="author-action" href="/ghost/settings/users/{{slug}}">
+                            <div class="relative">
+                                Edit Profile
+                                <div class="icon edit-profile">
+                                    
+                                </div>
+                            </div>
+                        </a>
+                        <!--END EDIT PROFILE ICON-->
+
+                </li>
+            </ul>
+        </div>
+        {{!-- <div id="recommended-header">
+            <h3>You've Recommended <span>24</span> stories</h3>
+        </div> --}}
+    </div>
+    <!--END-->
 {{/author}}
 
+
+    <div id="main-story-feed">
+        {{> "loop"}}
+    </div>
+    
