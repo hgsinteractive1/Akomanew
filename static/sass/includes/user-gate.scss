@@ -231,6 +231,15 @@
 		margin-left: -225px;
 		margin-top: -225px;
 		background: #000;
+		font-family: $akoma-fonts;
+
+		@include respond-to(handhelds) {
+			width: 90%;
+			margin: 0 auto;
+			height: auto;
+			position: static;
+			margin-top: 80px;
+		}
 
 		p.header {
 			font-size: 26px;
@@ -257,14 +266,16 @@
 
 			input {
 				position:absolute;
-				width: 100%;
+				width: 85%;
 				left: 15%;
 				top: 2px;
 				background: none;
 				border: 0px;
 				height: 90%;
 				font-size: 16px;
+				line-height: 16px;
 				color: #777;
+				font-family: $akoma-fonts;
 
 				&:focus {
     				outline: 0;
@@ -280,6 +291,12 @@
 					top:11px;
 					left: 20px;
 					background: url(../images/form_name_icon.png) top left no-repeat;
+
+					@media(-webkit-min-device-pixel-ratio: 1.5), 
+					(min-resolution: 144dpi){ 
+					    background: url(#{$assets_path}images/form_name_icon@2x.png) top left no-repeat;
+					    background-size:100%;
+					}
 				}
 
 				&.email {
@@ -288,6 +305,13 @@
 					top:14px;
 					left: 17px;
 					background: url(../images/form_email_icon.png) top left no-repeat;
+
+					/* 1.5 dpr */
+					@media(-webkit-min-device-pixel-ratio: 1.5), 
+					(min-resolution: 144dpi){ 
+					    background: url(#{$assets_path}images/form_email_icon@2x.png) top left no-repeat;
+					    background-size:100%;
+					}
 				}
 			
 			}
@@ -302,6 +326,7 @@
 			font-size: 16px;
 			color:#777777;
 			margin-bottom: 13px;
+			font-family: $akoma-fonts;
 		}
 
 		a.send-request-button {
@@ -325,6 +350,15 @@
 				height: 27px;
 				width: 30px;
 				position: absolute;
+
+				/* 1.5 dpr */
+				@media(-webkit-min-device-pixel-ratio: 1.5), 
+				(min-resolution: 144dpi){ 
+				    background: url(#{$assets_path}images/send_request_arrow@2x.png) top left no-repeat;
+				    background-size:100%;
+				}
+
+
 			}
 		}
 

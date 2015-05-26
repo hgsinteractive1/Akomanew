@@ -1444,8 +1444,19 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   margin-left: -225px;
   margin-top: -225px;
   background: #000;
+  font-family: Avenir, Roboto, "Helvetica Neue", Helvetica, Arial, san-serif;
 }
-/* line 235, ../sass/includes/user-gate.scss */
+@media only screen and (max-width: 768px) {
+  /* line 224, ../sass/includes/user-gate.scss */
+  #user-gate #request-form {
+    width: 90%;
+    margin: 0 auto;
+    height: auto;
+    position: static;
+    margin-top: 80px;
+  }
+}
+/* line 244, ../sass/includes/user-gate.scss */
 #user-gate #request-form p.header {
   font-size: 26px;
   line-height: 32px;
@@ -1453,14 +1464,14 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   font-weight: 500;
   margin-bottom: 10px;
 }
-/* line 243, ../sass/includes/user-gate.scss */
+/* line 252, ../sass/includes/user-gate.scss */
 #user-gate #request-form p.subhead {
   font-size: 16px;
   line-height: 20px;
   color: #B3B3B1;
   margin-bottom: 20px;
 }
-/* line 250, ../sass/includes/user-gate.scss */
+/* line 259, ../sass/includes/user-gate.scss */
 #user-gate #request-form div.input-wrapper {
   width: 85%;
   height: 45px;
@@ -1469,27 +1480,29 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   padding-left: 15%;
   margin-bottom: 15px;
 }
-/* line 258, ../sass/includes/user-gate.scss */
+/* line 267, ../sass/includes/user-gate.scss */
 #user-gate #request-form div.input-wrapper input {
   position: absolute;
-  width: 100%;
+  width: 85%;
   left: 15%;
   top: 2px;
   background: none;
   border: 0px;
   height: 90%;
   font-size: 16px;
+  line-height: 16px;
   color: #777;
+  font-family: Avenir, Roboto, "Helvetica Neue", Helvetica, Arial, san-serif;
 }
-/* line 269, ../sass/includes/user-gate.scss */
+/* line 280, ../sass/includes/user-gate.scss */
 #user-gate #request-form div.input-wrapper input:focus {
   outline: 0;
 }
-/* line 274, ../sass/includes/user-gate.scss */
+/* line 285, ../sass/includes/user-gate.scss */
 #user-gate #request-form div.input-wrapper div.icon {
   position: absolute;
 }
-/* line 277, ../sass/includes/user-gate.scss */
+/* line 288, ../sass/includes/user-gate.scss */
 #user-gate #request-form div.input-wrapper div.icon.name {
   height: 24px;
   width: 18px;
@@ -1497,15 +1510,30 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   left: 20px;
   background: url(../images/form_name_icon.png) top left no-repeat;
 }
-/* line 285, ../sass/includes/user-gate.scss */
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  /* line 288, ../sass/includes/user-gate.scss */
+  #user-gate #request-form div.input-wrapper div.icon.name {
+    background: url(../images/form_name_icon@2x.png) top left no-repeat;
+    background-size: 100%;
+  }
+}
+/* line 302, ../sass/includes/user-gate.scss */
 #user-gate #request-form div.input-wrapper div.icon.email {
   height: 17px;
   width: 24px;
   top: 14px;
   left: 17px;
   background: url(../images/form_email_icon.png) top left no-repeat;
+  /* 1.5 dpr */
 }
-/* line 296, ../sass/includes/user-gate.scss */
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  /* line 302, ../sass/includes/user-gate.scss */
+  #user-gate #request-form div.input-wrapper div.icon.email {
+    background: url(../images/form_email_icon@2x.png) top left no-repeat;
+    background-size: 100%;
+  }
+}
+/* line 320, ../sass/includes/user-gate.scss */
 #user-gate #request-form textarea {
   height: 90px;
   width: 93%;
@@ -1515,8 +1543,9 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   font-size: 16px;
   color: #777777;
   margin-bottom: 13px;
+  font-family: Avenir, Roboto, "Helvetica Neue", Helvetica, Arial, san-serif;
 }
-/* line 307, ../sass/includes/user-gate.scss */
+/* line 332, ../sass/includes/user-gate.scss */
 #user-gate #request-form a.send-request-button {
   width: 100%;
   height: 36px;
@@ -1530,7 +1559,7 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   text-decoration: none;
   position: relative;
 }
-/* line 320, ../sass/includes/user-gate.scss */
+/* line 345, ../sass/includes/user-gate.scss */
 #user-gate #request-form a.send-request-button div.icon {
   background: url(../images/send_request_arrow.png) top left no-repeat;
   left: 50%;
@@ -1539,6 +1568,14 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   height: 27px;
   width: 30px;
   position: absolute;
+  /* 1.5 dpr */
+}
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  /* line 345, ../sass/includes/user-gate.scss */
+  #user-gate #request-form a.send-request-button div.icon {
+    background: url(../images/send_request_arrow@2x.png) top left no-repeat;
+    background-size: 100%;
+  }
 }
 
 /************************************************************
@@ -3525,19 +3562,27 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   margin-top: 4px;
   display: inline-block;
   background: url(../images/on_social_twitter.png) top left no-repeat;
+  /* 1.5 dpr */
 }
-/* line 2228, ../sass/screen.scss */
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  /* line 2220, ../sass/screen.scss */
+  #user-profile-wrapper #profile-stats ul#stats-list li a#on-social-twitter {
+    background: url(../images/on_social_twitter@2x.png) top left no-repeat;
+    background-size: 100%;
+  }
+}
+/* line 2234, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action {
   width: 210px;
 }
 @media only screen and (max-width: 768px) {
-  /* line 2228, ../sass/screen.scss */
+  /* line 2234, ../sass/screen.scss */
   #user-profile-wrapper #profile-stats ul#stats-list li.primary-action {
     display: block;
     width: 100%;
   }
 }
-/* line 2237, ../sass/screen.scss */
+/* line 2243, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action {
   display: block;
   margin: 0 auto;
@@ -3553,31 +3598,26 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   padding-left: 13px;
 }
 @media only screen and (max-width: 768px) {
-  /* line 2237, ../sass/screen.scss */
+  /* line 2243, ../sass/screen.scss */
   #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action {
     display: block;
     width: 100%;
     padding-left: 0px;
   }
 }
-/* line 2258, ../sass/screen.scss */
+/* line 2264, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon {
   position: absolute;
 }
-/* line 2262, ../sass/screen.scss */
+/* line 2268, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.follow {
   width: 15px;
   height: 15px;
   top: 0px;
-  left: 10px;
+  left: 50%;
+  margin-left: -53px;
 }
-@media only screen and (max-width: 768px) {
-  /* line 2262, ../sass/screen.scss */
-  #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.follow {
-    left: 100px;
-  }
-}
-/* line 2272, ../sass/screen.scss */
+/* line 2275, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.follow div.bar-one {
   position: absolute;
   width: 2px;
@@ -3586,7 +3626,7 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   left: 7px;
   top: 0px;
 }
-/* line 2281, ../sass/screen.scss */
+/* line 2284, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.follow div.bar-two {
   position: absolute;
   width: 16px;
@@ -3595,32 +3635,38 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   left: 0px;
   top: 7px;
 }
-/* line 2293, ../sass/screen.scss */
+/* line 2296, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.following {
   top: -4px;
-  left: -2px;
+  left: 50%;
+  margin-left: -66px;
   width: 22px;
   height: 22px;
   background: url(../images/following_author.png) top left no-repeat;
+  /* 1.5 dpr */
 }
-@media only screen and (max-width: 768px) {
-  /* line 2293, ../sass/screen.scss */
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  /* line 2296, ../sass/screen.scss */
   #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.following {
-    left: 90px;
+    background: url(../images/following_author@2x.png) top left no-repeat;
+    background-size: 100%;
   }
 }
-/* line 2306, ../sass/screen.scss */
+/* line 2313, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.edit-profile {
   top: 0px;
-  left: -1px;
+  left: 50%;
+  margin-left: -65px;
   width: 14px;
   height: 14px;
   background: url(../images/edit_profile.png) top left no-repeat;
+  /* 1.5 dpr */
 }
-@media only screen and (max-width: 768px) {
-  /* line 2306, ../sass/screen.scss */
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  /* line 2313, ../sass/screen.scss */
   #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.edit-profile {
-    left: 90px;
+    background: url(../images/edit_profile@2x.png) top left no-repeat;
+    background-size: 100%;
   }
 }
 

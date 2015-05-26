@@ -101,7 +101,7 @@
 			background: url(#{$assets_path}images/heart.png) top left no-repeat;
 			float:left;
 
-				/* 1.5 dpr */
+			/* 1.5 dpr */
 			@media(-webkit-min-device-pixel-ratio: 1.5), 
 			(min-resolution: 144dpi){ 
 			    background: url(#{$assets_path}images/heart@2x.png) top left no-repeat;
@@ -2223,6 +2223,12 @@
 						margin-top:4px;
 						display: inline-block;
 						background: url(../images/on_social_twitter.png) top left no-repeat;
+						/* 1.5 dpr */
+						@media(-webkit-min-device-pixel-ratio: 1.5), 
+						(min-resolution: 144dpi){ 
+						    background: url(#{$assets_path}images/on_social_twitter@2x.png) top left no-repeat;
+						    background-size:100%;
+						}
 					}
 
 					&.primary-action {
@@ -2263,11 +2269,8 @@
 									width: 15px;
 									height: 15px;
 									top:0px;
-									left: 10px;
-
-									@include respond-to(handhelds) {
-										left: 100px;
-									}
+									left: 50%;
+									margin-left: -53px;
 
 									div.bar-one {
 										position: absolute;
@@ -2292,27 +2295,36 @@
 								//following icon
 								&.following {
 									top: -4px;
-									left: -2px;
+									left: 50%;
+									margin-left: -66px;
 									width: 22px;
 									height: 22px;
 									background: url(../images/following_author.png) top left no-repeat;
 
-									@include respond-to(handhelds) {
-										left: 90px;
+									/* 1.5 dpr */
+									@media(-webkit-min-device-pixel-ratio: 1.5), 
+									(min-resolution: 144dpi){ 
+									    background: url(#{$assets_path}images/following_author@2x.png) top left no-repeat;
+									    background-size:100%;
 									}
 								}
 
 								//edit profile icon
 								&.edit-profile {
 									top: 0px;
-									left: -1px;
+									left: 50%;
+									margin-left: -65px;
 									width: 14px;
 									height: 14px;
 									background: url(../images/edit_profile.png) top left no-repeat;
 
-									@include respond-to(handhelds) {
-										left: 90px;
+									/* 1.5 dpr */
+									@media(-webkit-min-device-pixel-ratio: 1.5), 
+									(min-resolution: 144dpi){ 
+									    background: url(#{$assets_path}images/edit_profile@2x.png) top left no-repeat;
+									    background-size:100%;
 									}
+
 								}
 							}
 
