@@ -3571,18 +3571,18 @@ a#menu-icon.menu-is-open div.menu-bar.three {
     background-size: 100%;
   }
 }
-/* line 2234, ../sass/screen.scss */
+/* line 2236, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action {
   width: 210px;
 }
 @media only screen and (max-width: 768px) {
-  /* line 2234, ../sass/screen.scss */
+  /* line 2236, ../sass/screen.scss */
   #user-profile-wrapper #profile-stats ul#stats-list li.primary-action {
     display: block;
     width: 100%;
   }
 }
-/* line 2243, ../sass/screen.scss */
+/* line 2245, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action {
   display: block;
   margin: 0 auto;
@@ -3598,18 +3598,18 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   padding-left: 13px;
 }
 @media only screen and (max-width: 768px) {
-  /* line 2243, ../sass/screen.scss */
+  /* line 2245, ../sass/screen.scss */
   #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action {
     display: block;
     width: 100%;
     padding-left: 0px;
   }
 }
-/* line 2264, ../sass/screen.scss */
+/* line 2266, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon {
   position: absolute;
 }
-/* line 2268, ../sass/screen.scss */
+/* line 2270, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.follow {
   width: 15px;
   height: 15px;
@@ -3617,7 +3617,7 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   left: 50%;
   margin-left: -53px;
 }
-/* line 2275, ../sass/screen.scss */
+/* line 2277, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.follow div.bar-one {
   position: absolute;
   width: 2px;
@@ -3626,7 +3626,7 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   left: 7px;
   top: 0px;
 }
-/* line 2284, ../sass/screen.scss */
+/* line 2286, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.follow div.bar-two {
   position: absolute;
   width: 16px;
@@ -3635,7 +3635,7 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   left: 0px;
   top: 7px;
 }
-/* line 2296, ../sass/screen.scss */
+/* line 2298, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.following {
   top: -4px;
   left: 50%;
@@ -3646,13 +3646,13 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   /* 1.5 dpr */
 }
 @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
-  /* line 2296, ../sass/screen.scss */
+  /* line 2298, ../sass/screen.scss */
   #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.following {
     background: url(../images/following_author@2x.png) top left no-repeat;
     background-size: 100%;
   }
 }
-/* line 2313, ../sass/screen.scss */
+/* line 2315, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.edit-profile {
   top: 0px;
   left: 50%;
@@ -3663,13 +3663,9 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   /* 1.5 dpr */
 }
 @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
-  /* line 2313, ../sass/screen.scss */
+  /* line 2315, ../sass/screen.scss */
   #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.edit-profile {
     background: url(../images/edit_profile@2x.png) top left no-repeat;
     background-size: 100%;
   }
 }
-
-/************************************************************
-*	SIGN IN OVERLAY STATES
-*/

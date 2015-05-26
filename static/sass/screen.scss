@@ -2116,7 +2116,7 @@
 				#avatar {
 					width: 150px;
 					height: 150px;
-					background: url(../images/placeholder_profile.jpg) top left no-repeat;
+					background: url(#{$assets_path}images/placeholder_profile.jpg) top left no-repeat;
 					background-size: 100%;
 					border-radius: 50%;
 					margin: 0 auto;
@@ -2222,6 +2222,7 @@
 						height: 24px;
 						margin-top:4px;
 						display: inline-block;
+
 						background: url(../images/on_social_twitter.png) top left no-repeat;
 						/* 1.5 dpr */
 						@media(-webkit-min-device-pixel-ratio: 1.5), 
@@ -2229,6 +2230,7 @@
 						    background: url(#{$assets_path}images/on_social_twitter@2x.png) top left no-repeat;
 						    background-size:100%;
 						}
+
 					}
 
 					&.primary-action {
@@ -2299,7 +2301,7 @@
 									margin-left: -66px;
 									width: 22px;
 									height: 22px;
-									background: url(../images/following_author.png) top left no-repeat;
+									background: url(#{$assets_path}images/following_author.png) top left no-repeat;
 
 									/* 1.5 dpr */
 									@media(-webkit-min-device-pixel-ratio: 1.5), 
@@ -2316,7 +2318,7 @@
 									margin-left: -65px;
 									width: 14px;
 									height: 14px;
-									background: url(../images/edit_profile.png) top left no-repeat;
+									background: url(#{$assets_path}images/edit_profile.png) top left no-repeat;
 
 									/* 1.5 dpr */
 									@media(-webkit-min-device-pixel-ratio: 1.5), 
@@ -2336,10 +2338,6 @@
 		}
 
 	}
-
-/************************************************************
-*	SIGN IN OVERLAY STATES
-*/
 
 
 	

@@ -50,19 +50,19 @@
 		
 	<!--BEGIN SOCIAL SIGN IN-->
 	
-	<!--<div id="social-sign-in">
+	<div id="social-sign-in">
 		<p class="sign-in">Sign in to Akoma</p>
 		<a href="#" class="social-sign-in-button" id="tw-single-sign-on">Sign in with Twitter<div class="icon"></div></a>
 		<a href="#" class="social-sign-in-button" id="fb-single-sign-on">Sign in with Facebook<div class="icon"></div></a>
 		<p class="ss-info">We will never post to Twitter or Facebook without your permission.</p>
-	</div>-->
+	</div>
 
 	<!--END SOCIAL SIGN IN-->
 
 
 	<!--BEGIN COMPOSE REQUEST PAGE-->
 
-	<div id="request-form">
+<!-- 	<div id="request-form">
 		<p class="header">Only approved users can contribute
 content during our beta launch.</p>
 		<p class="subhead">Fill out the form below if you wish to write for aKoma</p>
@@ -76,7 +76,7 @@ content during our beta launch.</p>
 		</div>
 		<textarea>Your reason for wanting to contribute...</textarea>
 		<a href="#" class="send-request-button">Send Request<div class="icon"></div></a>
-	</div>
+	</div> -->
 
 	<!--END COMPOSE REQUEST PAGE-->
 

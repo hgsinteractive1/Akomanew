@@ -42,10 +42,9 @@
 					<!--BEGIN LOGEED IN ACTIONS-->
 					<div id="logged-in-actions" class="hidden">
 						<ul id="logged-in-actions-list">
-
 							{{#if session.user.isAuthor}}
 							{{else}}
-								<li><a href="/ghost" class="logged-in-action">Manage Site Content<div class="manage-site-content action-icon"></div></a></li>						
+								<li><a href="/ghost" class="logged-in-action">Manage Site Content<div class="manage-site-content action-icon"></div></a></li>
 							{{/if}}
 							<li><a href="/ghost/editor" class="logged-in-action">New Story<div class="new-story action-icon"></div></a></li>
 							<li><a href="/ghost/drafts" class="logged-in-action">Drafts and Stories<div class="drafts-and-stories action-icon"></div></a></li>

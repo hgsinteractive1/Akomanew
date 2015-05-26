@@ -22,7 +22,7 @@
 		</a>
 	<!--END WRITE-->
 	<!--BEGIN ACCOUNT DROPDOWN/LOG IN-->
-		{{!-- <div id="account-icon-wrapper">
+		<div id="account-icon-wrapper">
 			<a href="#" id="log-in">
 				<div id="logged-out-icon"></div>
 			</a>														
@@ -30,12 +30,13 @@
 			<!--BEGIN LOGEED IN ACTIONS-->
 			<div id="logged-in-actions" class="hidden">
 				<ul id="logged-in-actions-list">
-					<li><a href="#" class="logged-in-action">Manage Site Content<div class="manage-site-content action-icon"></div></a></li>
-					<li><a href="#" class="logged-in-action">New Story<div class="new-story action-icon"></div></a></li>
-					<li><a href="#" class="logged-in-action">Drafts and Stories<div class="drafts-and-stories action-icon"></div></a></li>
-					<li><a href="#" class="logged-in-action">Profile<div class="view-profile action-icon"></div></a></li>
-					<li class="last"><a href="#" class="logged-in-action grey-text">Sign Out<div class="sign-out action-icon"></div></a></li>
+					<li><a href="/ghost" class="logged-in-action">Manage Site Content<div class="manage-site-content action-icon"></div></a></li>
+					<li><a href="/ghost/editor" class="logged-in-action">New Story<div class="new-story action-icon"></div></a></li>
+					<li><a href="/ghost/drafts" class="logged-in-action">Drafts and Stories<div class="drafts-and-stories action-icon"></div></a></li>
+					<li><a href="/ghost/settings/users/{{session.user.slug}}" class="logged-in-action">Profile<div class="view-profile action-icon"></div></a></li>
+					<li class="last"><a href="/ghost/signout" class="logged-in-action grey-text">Sign Out<div class="sign-out action-icon"></div></a></li>
 				</ul>
+
 				<div id="close-handheld-overlay">
 					<div class="relative">
 						<div class="line-one"></div>
@@ -44,7 +45,6 @@
 				</div>
 			</div>
 			<!--END LOGGED IN ACTIONS-->
-			
-		</div> --}}
+		</div>
 	<!--END ACCOUNT-->
 </div>
