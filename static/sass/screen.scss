@@ -22,6 +22,8 @@
 	$rule-color : #D8D8D8;
 	//$Lato : Lato, helvetica, arial, san-serif;
 	$akoma-fonts : Avenir, Roboto, "Helvetica Neue", Helvetica, Arial, san-serif;
+	$akoma-bodyCopy : Georgia, Times, 'Times New Roman', serif;
+
 	$websafe-fonts : Helvetica, Arial, san-serif;
 	//$akoma-fonts : Avenir, 
 	$assets_path: "../";
@@ -1036,9 +1038,18 @@
 			p {
 				font-size: 18px;
 				line-height: 34px;
-				margin-bottom: 40px;
-				font-family: $akoma-fonts;
+				margin-bottom: 30px;
+				//font-family: $akoma-fonts;
+				font-family: $akoma-bodyCopy;
 				font-weight: 400;
+			}
+
+			blockquote {
+				font-family: $akoma-bodyCopy;
+				font-size: 25px;
+				line-height: 37px;
+				margin-bottom: 30px;
+				font-weight: bold;
 			}
 
 			div.editable-wrapper {

@@ -48,6 +48,9 @@
 	that bold steps would be taken towards rescuing 
 	the country’s ailing economy.</p>
 
+	<p>Steps would be taken towards rescuing 
+	the country’s ailing economy.</p>
+
 	<p>No doubt, the new government will inherit a far 
 	more daunting tasks of tackling slowing economic growth, 
 	controlling inflation, reversing falling foreign reserves, 
@@ -55,6 +58,10 @@
 	back ineconomyto a surplus. While oil prices remain subdued 
 	it is hoped that the new leadership should conquer these 
 	challenges and bring the economy back on track.</p>
+
+	<blockquote>"No doubt, the new government will inherit a far 
+	more daunting tasks of tackling slowing economic growth, 
+	controlling inflation."</blockquote>
 
 	<p>Sunday Vanguard Business sought the views of economic experts 
 	on areas that need immediate attention from the new government . 
