@@ -640,6 +640,19 @@
 					margin-bottom: 20px;
 				}
 
+				//aspect ratio is 5:3
+				div.scale-image {
+					width: 100%;
+					padding-bottom:40%;
+					background: #333;
+					margin-bottom: 20px;
+					background-repeat: no-repeat;
+					background-position: center center;
+					-webkit-background-size: cover;
+					-moz-background-size: cover;
+					-o-background-size: cover;
+				}
+
 				h4 {
 					color: $dark;
 					font-size: 32px;
