@@ -482,6 +482,15 @@
 				
 		}
 
+		&.story-detail {
+			margin-bottom: 35px;
+
+			//aspect ratio is 5:3
+			@include respond-to(handhelds) {
+				padding-bottom:60%;	
+			}
+		}
+
 		#fluid-image {
 			img {
 				left: 50%;
@@ -754,6 +763,7 @@
 			width: 700px;
 			margin: 0 auto;
 			position:relative;
+			margin-bottom: 20px;
 
 			div.edit-icon {
 				top: 9px;
