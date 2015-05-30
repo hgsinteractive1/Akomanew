@@ -24,7 +24,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#" class="primary-menu-link">Rants
+					<a href="#" class="primary-menu-link">Rant
 					<span>Lorem ipsum dolor sit amet</span>
 					</a>
 				</li>

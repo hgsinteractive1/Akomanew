@@ -40,7 +40,7 @@ var PostTagsInputController = Ember.Controller.extend({
     suggestions: null,
     newTagText: null,
     displayTagNames: Ember.computed('parentController.target', function () {
-        var baseTagNames = ["Life", "Ideas", "Rants", "Learn"];
+        var baseTagNames = ["Life", "Ideas", "Rant", "Learn"];
         var pc = this.get("parentController");
         var pathname = pc.get("target").get("location").get("location").pathname;
         if(!this.get("session.user").get('isAuthor') && pathname.indexOf("/editor/") < 0) {
