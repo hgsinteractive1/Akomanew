@@ -1,0 +1,26 @@
+<div id="user-gate" class="fadedIn">
+    <div id="overlay-background"></div>
+    <div class="relative">
+        <div id="social-sign-in" style='margin-top:-260px;'>
+        	<form action="/user/new" method="post">
+	            <p class="sign-in">Welcome to aKoma</p>
+	            <input type='text' name='name' placeholder='Enter your name' value="{{ssoUser.name}}" /><br />
+	            <input type='text' name='email' placeholder='Enter your email' value="{{ssoUser.email}}" /><br />
+
+	            What type of user do you want to be:
+	            <br /><br />
+	            <label><input type='radio' name='type' value="reader" checked/> Reader</label>
+	            <label><input type='radio' name='type' value="author" /> Author</label>
+
+	            <br /><br /><br />
+
+	            Tell us why you would like to join aKoma:
+	            <br /><br />
+	            <textarea name="reason"></textarea>
+
+	            <hr />
+	            <input type='submit' value='Request Access' />
+	        </form>
+        </div>
+    </div>
+</div>

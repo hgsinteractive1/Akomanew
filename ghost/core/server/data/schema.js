@@ -186,6 +186,23 @@ var db = {
             user_id: {type: 'integer', nullable: false, unsigned: true, references: 'users.id'},
             client_id: {type: 'integer', nullable: false, unsigned: true, references: 'clients.id'},
             expires: {type: 'bigInteger', nullable: false}
+        },
+        sso_users: {
+            id: {type: 'increments', nullable: false, primary: true},
+            name: {type: 'string', nullable: false},
+            social_id: {type: 'string', nullable: false},
+            network: {type: 'string', nullable: false},
+            email: {type: 'string', nullable: true},
+            name: {type: 'string', nullable: false},
+            reason: {type: 'string', nullable: false},
+            type_requested: {type: 'string', nullable: false},
+            status: {type: 'string', nullable: false, defaultTo: "new"},
+            status_date: {type: 'dateTime', nullable: true},
+            created_at: {type: 'dateTime', nullable: false},
+            created_by: {type: 'integer', nullable: false},
+            updated_at: {type: 'dateTime', nullable: true},
+            updated_by: {type: 'integer', nullable: true},
+            uuid: {type: 'string', maxlength: 36, nullable: false, validations: {isUUID: true}}
         }
     };
 
