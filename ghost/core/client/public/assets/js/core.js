@@ -11,14 +11,11 @@ akomarequire.config({
     "storyShareTools": "modules/story_share",
     "fullBleedHero": "modules/full_bleed_hero",
     "pagination": "modules/pagination",
+    "ensure_auth": "modules/ensure_auth",
 
     //PRIMARY CONTROLLERS
     // global elements and core application states
-    "main": "modules/main"
-
-     
-
-    
+    "main": "modules/main"    
   }
 
   
@@ -27,7 +24,7 @@ akomarequire.config({
 
 
 //configure paths
-akomarequire(['jquery','main'], function($, main) { 
+akomarequire(['jquery','main','ensure_auth'], function($, main, ensure_auth) { 
     $ = $ || window.$;
     $(document).ready(function() {
       main.init();

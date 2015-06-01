@@ -13,14 +13,14 @@
             {{else}}
                 <div contenteditable="true" id="entry-title-visible"></div>
             {{/if}}
-            <div class='editor-placeholder {{if model.titleScratch "hidden" ""}}'>Enter Story Title...</div>
+            <div class='editor-placeholder {{if model.titleScratch "display-none" ""}}'>Enter Story Title...</div>
         </h2>
     </div>
     <!--END STORY INTRO AREA-->
 
     <!--BEGIN STORY IMAGE-->
     <div id="story-image">
-        {{gh-uploader uploaded="setCoverImage" canceled="clearCoverImage" description="Add post image" image=model.image uploaderReference=uploaderReference tagName="section"}}
+        {{gh-uploader uploaded="setCoverImage" canceled="clearCoverImage" description="Upload a Photo" image=model.image uploaderReference=uploaderReference tagName="section"}}
     </div>
     <!--END STORY IMAGE-->
     <!--BEGIN STORY BODY-->
@@ -50,11 +50,10 @@
             <div id="summary-details">
                 <div class="story-info">
                     <h4 class='summary-title'>{{model.title}}</h4>
-                    <hr/ >
-                    <div class="summary">
+                    <div class="summary editor-placeholder-wrapper">
                         {{gh-input name="post-setting-abstract" type="hidden" id="entity-abstract" value=model.abstract action="setAbstract"}}
                         <div contenteditable="true" id='abstract-editor'>
-                            {{{gh-excerpt model.abstractScratch model.copy}}}
+                            <p>{{{gh-excerpt model.abstractScratch model.copy}}}<br /></p>
                         </div>
                         <div class="edit-icon"></div>
                     </div>
@@ -79,6 +78,7 @@
 
 <!-- TODO: Remove this. -->
 <script type="text/javascript">
+
     // If they edit the abstract, create an input (if there isnt already one) to store it in so that we save the abstract value.
     $("#abstract-editor").on("keyup", function(){
         var input = $("input#entity-abstract", $(this).closest(".summary"));
@@ -87,12 +87,12 @@
     });
 
     $("#story-detail").on("focus", "[contenteditable=true]", function(){
-        $(".editor-placeholder", $(this).closest(".editor-placeholder-wrapper")).addClass("hidden");
+        $(".editor-placeholder", $(this).closest(".editor-placeholder-wrapper")).addClass("display-none");
     });
 
     $("#story-detail").on("blur", "[contenteditable=true]", function(){ 
         if($(this).text().trim().length === 0){
-            $(".editor-placeholder", $(this).closest(".editor-placeholder-wrapper")).removeClass("hidden");
+            $(".editor-placeholder", $(this).closest(".editor-placeholder-wrapper")).removeClass("display-none");
         }
     });
 

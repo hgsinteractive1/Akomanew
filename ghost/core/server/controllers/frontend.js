@@ -159,7 +159,11 @@ frontendControllers = {
 
     // Handle a social callback
     social_callback: function(req, res, next) {
-        res.render("signin");
+        if(req.user.status === "accepted") {
+            res.render("signin");
+        } else {
+            res.redirect(req.session.lastUrl);
+        }
     },
 
     // Handle a new SSO user.

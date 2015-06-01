@@ -12,6 +12,7 @@ SSOUser = ghostBookshelf.Model.extend({
         var self = this;
         this.isNewUser = function(){ return self.get("status") === "new"; };
         this.isPendingUser = function(){ return self.get("status") === "pending"; };
+        this.isAcceptedUser = function(){ return self.get("status") === "approved"; };
         this.getPassword = function(){ return config.salt + self.get("social_id") + self.get("network"); };
     },
 

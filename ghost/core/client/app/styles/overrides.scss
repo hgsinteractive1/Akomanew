@@ -100,6 +100,11 @@ body {
 }
 
 .hidden {
+    opacity: 0;
+}
+
+.image-uploader .hidden, 
+.display-none {
     display: none;
 }
 
@@ -216,4 +221,11 @@ a.load-more {
 a.load-more {
     color:inherit;
     text-decoration: inherit;
+}
+
+[contenteditable=true] {
+    &:focus {
+        border:none;
+        outline:none;
+    }
 }
