@@ -20,3 +20,9 @@
 		<div class="clear"></div>
 	</div>
 </div>
+<!-- mixpanel events start -->
+<script>
+	if (akEvents) {
+		mixpanel.track(akEvents.name, akEvents.properties);
+	}
+</script>

@@ -75,5 +75,14 @@
 
 </div>
 <!--END STORY DETAIL-->
+<!-- mixpanel events object -->
+<script>
+	akEvents.name = "Post View";
+	akEvents.properties.story_title = "{{title}}";
+	akEvents.properties.read_time = "{{readTime}}";
+    {{#if ../ssoUser}}
+		akEvents.properties.reader_id = "{{../../ssoUser.attributes.social_id}}";
+    {{/if}}
+</script>
 
 {{/post}}

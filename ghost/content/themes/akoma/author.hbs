@@ -81,6 +81,14 @@
         </div> --}}
     </div>
     <!--END-->
+<!-- mixpanel event context -->
+<script>
+    akEvents.name = "Author View";
+    akEvents.properties.author_name = "{{name}}";
+    {{#if ../ssoUser}}
+        akEvents.properties.reader_id = "{{../../ssoUser.attributes.social_id}}";
+    {{/if}}
+</script>
 {{/author}}
 
 

@@ -44,3 +44,11 @@
 <div id="main-story-feed">
 	{{> "loop"}}
 </div>
+<!-- mixpanel event context -->
+<script>
+	akEvents.name = "Category View";
+	akEvents.properties.tag = "{{tag.name}}";
+    {{#if ssoUser}}
+		akEvents.properties.reader_id = "{{ssoUser.attributes.social_id}}";
+    {{/if}}
+</script>
