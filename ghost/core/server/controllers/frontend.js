@@ -16,6 +16,7 @@ var moment      = require('moment'),
     errors      = require('../errors'),
     passport    = require('passport'),
     routeMatch  = require('path-match')(),
+    middleware = require("../middleware/middleware"),
 
     frontendControllers,
     staticPostPermalink;
@@ -141,6 +142,25 @@ function getActiveThemePaths() {
 }
 
 frontendControllers = {
+    // handle the post request fro mthe main site to set up the access token
+    signin: function(req, res, next){
+        if(req.user) {
+            if(!req.body) {
+                req.body = {};
+            }
+            req.body.grant_type = "password";
+            req.body.client_id = "ghost-admin";
+            req.body.username = req.user.get("email");
+            req.body.password = req.user.getPassword();
+        }
+        console.log(req.body);
+        next();
+    },
+
+    // Handle a social callback
+    social_callback: function(req, res, next) {
+        res.render("signin");
+    },
 
     // Handle a new SSO user.
     new_user: function(req, res, next){

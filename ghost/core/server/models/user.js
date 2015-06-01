@@ -514,7 +514,7 @@ User = ghostBookshelf.Model.extend({
             // Assign the hashed password
             if(typeof results === "string") {
                 userData.password = results;
-            } else {                
+            } else {
                 userData.password = results[1];
             }
             // LookupGravatar

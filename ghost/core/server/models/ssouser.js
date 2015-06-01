@@ -1,5 +1,6 @@
 var ghostBookshelf = require('./base'),
     uuid       = require('node-uuid'),
+    config      = require('../config'),
     SSOUser;
 
 SSOUser = ghostBookshelf.Model.extend({
@@ -11,6 +12,7 @@ SSOUser = ghostBookshelf.Model.extend({
         var self = this;
         this.isNewUser = function(){ return self.get("status") === "new"; };
         this.isPendingUser = function(){ return self.get("status") === "pending"; };
+        this.getPassword = function(){ return config.salt + self.get("social_id") + self.get("network"); };
     },
 
     defaults: function () {
@@ -25,6 +27,8 @@ SSOUser = ghostBookshelf.Model.extend({
             if(!user) {
                 return SSOUser.add({"network":network, "social_id":social_id, "status_date": new Date()}, {context: {internal: true}});
             }
+            return user;
+        }).then(function(user){
             return user;
         });
     }
