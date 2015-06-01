@@ -12,7 +12,7 @@ frontendRoutes = function () {
         subdir = config.paths.subdir;
 
     router.get('*', function redirect(req, res, next) {
-        if(!/^\/auth\/(twitter|facebook|last|user\/new)/ig.test(req.url)) {
+        if(!/^\/auth\/(twitter|facebook|last|user\/new|signout)/ig.test(req.url)) {
             req.session.lastUrl = req.url;
         }
         console.log("LAST URLs: ", req.url, req.session.lastUrl);
@@ -74,6 +74,10 @@ frontendRoutes = function () {
     router.post('/auth/user/new', frontend.new_user);
     router.get('/auth/last', function(req, res) {        
         res.redirect(req.session.lastUrl);
+    });
+    router.get('/auth/signout', function(req, res) {
+        req.session.destroy();
+        res.redirect("/ghost/signout");
     });
     router.post('/auth/user/signin', 
         frontend.signin,
