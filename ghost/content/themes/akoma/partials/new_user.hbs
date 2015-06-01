@@ -7,14 +7,14 @@
 		content during our beta launch.</p>
 				<p class="subhead">Fill out the form below if you wish to write for aKoma</p>
 				<div class="input-wrapper">
-					<input type="text" name="name" placeholder="Name" value="{{ssoUser.name}}" />
+					<input type="text" name="name" placeholder="Name" value="{{ssoUser.attributes.name}}" />
 					<div class="icon name"></div>
 				</div>
 				<div class="input-wrapper">
-					<input type="text" name="email" placeholder="Email" value="{{ssoUser.email}}" />
+					<input type="text" name="email" placeholder="Email" value="{{ssoUser.attributes.email}}" />
 					<div class="icon email"></div>
 				</div>
-				<textarea name="reason" placeholder="Your reason for wanting to contribute..."></textarea>
+				<textarea name="reason" placeholder="Your reason for wanting to contribute...">{{ssoUser.attributes.reason}}</textarea>
 				<a href="#" onclick="$(this).closest('form').submit();" class="send-request-button">Send Request<div class="icon"></div></a>
 			</div>
 		</form>

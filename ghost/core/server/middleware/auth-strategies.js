@@ -31,8 +31,7 @@ passport.serializeUser(function(user, done) {
   done(null, user);
 });
 passport.deserializeUser(function(obj, done) {
-  console.log("*********** DES", obj);
-  models.SSOUser.forge({id:obj.id}).fetch().then(function(user){ console.log("RETETETETET", user); done(null, user); });
+  models.SSOUser.forge({id:obj.id}).fetch().then(function(user){ done(null, user); });
 });
 
 console.log("*** Passport Strategies initialized in auth-strategies.js");
@@ -54,7 +53,6 @@ passport.use(new TwitterStrategy({
 ));
 
 // Use the FacebookStrategy within Passport
-// Use the FacebookStrategy within Passport.
 passport.use(new FacebookStrategy({
     clientID: FB_CLIENT_ID,
     clientSecret: FB_CLIENT_SECRET,
@@ -64,7 +62,6 @@ passport.use(new FacebookStrategy({
   function(token, tokenSecret, profile, done) {
     process.nextTick(function () {
       console.log ("Facebook user profile for: " + profile.displayName);
-
       return models.SSOUser.getWithNetworkAndSocialId("facebook", profile.id).then(function(sso_user){
         return done(null, sso_user);
       });
