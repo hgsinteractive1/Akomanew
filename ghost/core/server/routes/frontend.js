@@ -76,16 +76,20 @@ frontendRoutes = function () {
           res.redirect(req.session.lastUrl);
       });
 
-    router.post('/user/new', function(req, res) {        
+    router.post('/user/new', function(req, res) {       
+        if(!req.user) {
+            res.redirect(req.session.lastUrl);
+        }
+
         // Use the form submission to update the SSO User.
         req.user.set("name", req.body.name);
         req.user.set("email", req.body.email);
         req.user.set("reason", req.body.reason);
-        req.user.set("type_requested", req.body.type);
+        // req.user.set("type_requested", req.body.type);
         req.user.set("status", "pending");
         req.user.set("status_date", new Date());
         req.user.save(null, {context: {internal: true}});
-
+        
         res.redirect(req.session.lastUrl);
     });
 

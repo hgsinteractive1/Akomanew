@@ -1,26 +1,23 @@
 <div id="user-gate" class="fadedIn">
     <div id="overlay-background"></div>
     <div class="relative">
-        <div id="social-sign-in" style='margin-top:-260px;'>
-        	<form action="/user/new" method="post">
-	            <p class="sign-in">Welcome to aKoma</p>
-	            <input type='text' name='name' placeholder='Enter your name' value="{{ssoUser.name}}" /><br />
-	            <input type='text' name='email' placeholder='Enter your email' value="{{ssoUser.email}}" /><br />
-
-	            What type of user do you want to be:
-	            <br /><br />
-	            <label><input type='radio' name='type' value="reader" checked/> Reader</label>
-	            <label><input type='radio' name='type' value="author" /> Author</label>
-
-	            <br /><br /><br />
-
-	            Tell us why you would like to join aKoma:
-	            <br /><br />
-	            <textarea name="reason"></textarea>
-
-	            <hr />
-	            <input type='submit' value='Request Access' />
-	        </form>
-        </div>
+    	<form action="/user/new" method="post">
+	    	<div id="request-form">
+				<p class="header">Only approved users can contribute
+		content during our beta launch.</p>
+				<p class="subhead">Fill out the form below if you wish to write for aKoma</p>
+				<div class="input-wrapper">
+					<input type="text" name="name" placeholder="Name" value="{{ssoUser.name}}" />
+					<div class="icon name"></div>
+				</div>
+				<div class="input-wrapper">
+					<input type="text" name="email" placeholder="Email" value="{{ssoUser.email}}" />
+					<div class="icon email"></div>
+				</div>
+				<textarea name="reason" placeholder="Your reason for wanting to contribute..."></textarea>
+				<a href="#" onclick="$(this).closest('form').submit();" class="send-request-button">Send Request<div class="icon"></div></a>
+			</div>
+		</form>
     </div>
 </div>
+

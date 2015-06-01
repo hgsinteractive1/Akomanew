@@ -38,6 +38,13 @@ body {
     }
 }
 
+#user-gate #request-form {
+    background: none!important;
+    div.input-wrapper input {
+        padding:0px!important;
+    }
+}
+
 
 #full-bleed-hero #headline a { 
     color: inherit;

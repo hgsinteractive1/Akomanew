@@ -8,11 +8,13 @@ SSOUser = ghostBookshelf.Model.extend({
 
     initialize: function () {
         ghostBookshelf.Model.prototype.initialize.apply(this, arguments);
-        this.isNewUser = this.get("status") === "new";
-        this.isPendingUser = this.get("status") === "pending";
+        var self = this;
+        this.isNewUser = function(){ return self.get("status") === "new"; };
+        this.isPendingUser = function(){ return self.get("status") === "pending"; };
         this.name = this.get("name");
         this.email = this.get("email");
     },
+
     defaults: function () {
         return {
             uuid: uuid.v4(),

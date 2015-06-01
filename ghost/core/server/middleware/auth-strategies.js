@@ -31,7 +31,8 @@ passport.serializeUser(function(user, done) {
   done(null, user);
 });
 passport.deserializeUser(function(obj, done) {
-  models.SSOUser.forge(obj).fetch().then(function(user){ done(null, user); });
+  console.log("*********** DES", obj);
+  models.SSOUser.forge({id:obj.id}).fetch().then(function(user){ console.log("RETETETETET", user); done(null, user); });
 });
 
 console.log("*** Passport Strategies initialized in auth-strategies.js");
