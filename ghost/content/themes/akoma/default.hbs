@@ -29,6 +29,9 @@
     {{else if ssoUser.isPendingUser}}
         {{> pending}}
         <script type="text/javascript">localStorage.removeItem("ghost:session");</script>
+    {{else if ssoUser.isRejectedUser}}
+        {{> rejected}}
+        <script type="text/javascript">localStorage.removeItem("ghost:session");</script>
     {{else if ssoUser}}
         {{{body}}}
 

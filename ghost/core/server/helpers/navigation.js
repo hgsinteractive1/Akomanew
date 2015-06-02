@@ -52,7 +52,7 @@ navigation = function (options) {
         return out;
     });
 
-    context = _.merge({}, {navigation: output});
+    context = _.merge({}, {navigation: output, user:this.ssoUser});
 
     return template.execute('navigation', context, options);
 };

@@ -27,8 +27,12 @@
 							<li class="story-action">
 								<a href="#" class="story-action-button" {{action "approveReader" ssouser.model}}>
 									<span class="remove-mobile-text">
-										{{#if ssouser.model.isAuthor}}
-											Downgrade to 
+										{{#if ssouser.model.isActive}}
+											{{#if ssouser.model.isAuthor}}
+												Downgrade to 
+											{{else}}
+												Approve 
+											{{/if}}
 										{{else}}
 											Approve 
 										{{/if}}
