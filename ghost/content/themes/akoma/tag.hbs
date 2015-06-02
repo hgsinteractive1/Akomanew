@@ -52,3 +52,11 @@
 		akEvents.properties.reader_id = "{{ssoUser.attributes.social_id}}";
     {{/if}}
 </script>
+<!-- begin usabilla button id -->
+<script>
+	<!-- this will allow for different buttons on different categories -->
+	var akTags = {'rant': '62c4d50eb27b', 'life': '62c4d50eb27b', 'ideas': '62c4d50eb27b', 'learn': '62c4d50eb27b'};
+	var akUsabilla_id = akTags['{{tag.name}}'.toLowerCase()];
+</script>
+<!-- end usabilla button id -->
+
