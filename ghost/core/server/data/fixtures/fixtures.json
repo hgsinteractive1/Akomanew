@@ -48,6 +48,10 @@
         {
             "name":             "Owner",
             "description":      "Blog Owner"
+        },
+        {
+            "name":             "Reader",
+            "description":      "Content Consumers"
         }
     ],
 

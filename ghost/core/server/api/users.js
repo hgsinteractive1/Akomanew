@@ -169,7 +169,7 @@ users = {
                     }
 
                     return dataProvider.User.findOne({role: 'Owner'}).then(function (owner) {
-                        if (contextUser.id !== owner.id) {
+                        if (owner && contextUser.id !== owner.id) {
                             if (editedUserId === owner.id) {
                                 if (owner.related('roles').at(0).id !== roleId) {
                                     return Promise.reject(new errors.NoPermissionError('Cannot change Owner\'s role.'));

@@ -1,7 +1,7 @@
 <div id="user-gate" class="fadedIn">
     <div id="overlay-background"></div>
     <div class="relative">
-    	<form action="/auth/user/new" method="post">
+    	<form name="new_user" action="/auth/user/new" method="post">
 	    	<div id="request-form">
 				<p class="header">Only approved users can contribute
 		content during our beta launch.</p>
@@ -15,7 +15,7 @@
 					<div class="icon email"></div>
 				</div>
 				<textarea name="reason" placeholder="Your reason for wanting to contribute...">{{ssoUser.attributes.reason}}</textarea>
-				<a href="#" onclick="$(this).closest('form').submit();" class="send-request-button">Send Request<div class="icon"></div></a>
+				<a href="#" onclick="document.forms['new_user'].submit(); return false;" class="send-request-button">Send Request<div class="icon"></div></a>
 			</div>
 		</form>
     </div>
