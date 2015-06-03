@@ -14,6 +14,12 @@ adminRoutes = function () {
     		return ;
     	}
     	req.user.getUser().then(function(user){
+            if(!user) {
+                req.user.set("status", "new");
+                req.user.save(null, {context: {internal: true}});
+                res.redirect("/");
+                return ;
+            }
     		user.roles().fetch().then(function(roles){
     			var isReader = false;
     			for(var r in roles.models) {
