@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{{! Document Settings }}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    {{! Page Meta }}
+    <title>{{meta_title}}</title>
+    <meta name="description" content="{{meta_description}}" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
+
+    <link rel="shortcut icon" href="{{asset "favicon.ico"}}">
+
+    {{! Styles'n'Scripts }}
+    <link rel="stylesheet" type="text/css" href="/ghost/ghost.css" />
+
+    {{! Ghost outputs important style and meta data with this tag }}
+    {{ghost_head}}
+    
+    {{>head-includes}}
+</head>
+<body class="{{body_class}} full-bleed">
+    <div id="user-gate" class="fadedIn">
+	    <div id="overlay-background"></div>
+	    <div class="relative">
+	    	<div id="social-sign-in">
+	    		<p class="header">Signing In</p>
+	    	</div>
+	    </div>
+	</div>
+
+	<!--INCLUDE REQUIRE/INIT MAIN SCRIPTS-->
+	<script type="text/javascript" src="{{asset "js/libraries/jquery-1.11.0.min.js" ghost="true"}}"></script>
+	<script type="text/javascript">
+		$.post("/auth/user/signin", {}, function(data){
+			localStorage.setItem("ghost:session", JSON.stringify({
+				"authenticator":"simple-auth-authenticator:oauth2-password-grant",
+				"token_type":data.token_type,
+				"expires_in": data.expires_in,
+				"expires_at": new Date((new Date().getTime() + data.expires_in)),
+				"access_token": data.access_token,
+				"refresh_token":data.refresh_token
+			}));
+			window.location = "/auth/last";
+		});
+	</script>
+
+
+<!--END-->
+</body>
+</html>
+
+
+

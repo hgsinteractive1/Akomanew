@@ -81,6 +81,19 @@
         </div> --}}
     </div>
     <!--END-->
+<!-- mixpanel event context -->
+<script>
+    akEvents.name = "Author View";
+    akEvents.properties.author_name = "{{name}}";
+    {{#if ../ssoUser}}
+        akEvents.properties.reader_id = "{{../../ssoUser.attributes.social_id}}";
+    {{/if}}
+</script>
+<!-- begin usabilla button id -->
+<script>
+    var akUsabilla_id = 'f2f0667ef7bf';
+</script>
+<!-- end usabilla button id -->
 {{/author}}
 
 

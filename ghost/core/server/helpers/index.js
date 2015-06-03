@@ -39,6 +39,7 @@ coreHelpers.url = require('./url');
 coreHelpers.image = require('./image');
 coreHelpers.prev_post = require('./prev_next');
 coreHelpers.next_post = require('./prev_next');
+coreHelpers.debug = require("./debug");
 
 coreHelpers.helperMissing = function (arg) {
     if (arguments.length === 2) {
@@ -94,6 +95,7 @@ registerHelpers = function (adminHbs) {
     registerThemeHelper('excerpt', coreHelpers.excerpt);
     registerThemeHelper('foreach', coreHelpers.foreach);
     registerThemeHelper('is', coreHelpers.is);
+    registerThemeHelper('debug', coreHelpers.debug);
     registerThemeHelper('has', coreHelpers.has);
     registerThemeHelper('navigation', coreHelpers.navigation);
     registerThemeHelper('page_url', coreHelpers.page_url);

@@ -25,6 +25,10 @@ apiRoutes = function (middleware) {
     router.get('/settings/:key', api.http(api.settings.read));
     router.put('/settings', api.http(api.settings.edit));
 
+    // ## SSO Users
+    router.get('/ssousers', api.http(api.ssousers.browse));
+    router.put('/ssousers/:id', api.http(api.ssousers.edit));
+
     // ## Users
     router.get('/users', api.http(api.users.browse));
     router.get('/users/:id', api.http(api.users.read));

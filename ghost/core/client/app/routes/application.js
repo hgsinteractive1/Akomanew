@@ -18,6 +18,7 @@ ApplicationRoute = Ember.Route.extend(SimpleAuth.ApplicationRouteMixin, Shortcut
             transition.send('loadServerNotifications');
         }
 
+
         // Load all the tags so they can be pulled into the menu
         this.store.findAll("tag").then(function(data){ });
     },

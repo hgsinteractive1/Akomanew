@@ -1,0 +1,23 @@
+<div id="user-gate" class="fadedIn">
+    <div id="overlay-background"></div>
+    <div class="relative">
+    	<form name="new_user" action="/auth/user/new" method="post">
+	    	<div id="request-form">
+				<p class="header">Only approved users can contribute
+		content during our beta launch.</p>
+				<p class="subhead">Fill out the form below if you wish to write for aKoma</p>
+				<div class="input-wrapper">
+					<input type="text" name="name" placeholder="Name" value="{{ssoUser.attributes.name}}" />
+					<div class="icon name"></div>
+				</div>
+				<div class="input-wrapper">
+					<input type="text" name="email" placeholder="Email" value="{{ssoUser.attributes.email}}" />
+					<div class="icon email"></div>
+				</div>
+				<textarea name="reason" placeholder="Your reason for wanting to contribute...">{{ssoUser.attributes.reason}}</textarea>
+				<a href="#" onclick="document.forms['new_user'].submit(); return false;" class="send-request-button">Send Request<div class="icon"></div></a>
+			</div>
+		</form>
+    </div>
+</div>
+

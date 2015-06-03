@@ -19,6 +19,7 @@ oauth = {
         // authorization request for verification. If these values are validated, the
         // application issues an access token on behalf of the user who authorized the code.
         oauthServer.exchange(oauth2orize.exchange.password(function (client, username, password, scope, done) {
+            console.log("Exchange", client, username, password);
             // Validate the client
             models.Client.forge({slug: client.slug})
             .fetch()

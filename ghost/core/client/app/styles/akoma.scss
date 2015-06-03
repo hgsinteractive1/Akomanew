@@ -22,6 +22,8 @@
 	$rule-color : #D8D8D8;
 	//$Lato : Lato, helvetica, arial, san-serif;
 	$akoma-fonts : Avenir, Roboto, "Helvetica Neue", Helvetica, Arial, san-serif;
+	$akoma-bodyCopy : Georgia, Times, 'Times New Roman', serif;
+
 	$websafe-fonts : Helvetica, Arial, san-serif;
 	//$akoma-fonts : Avenir, 
 	$assets_path: "./";
@@ -101,7 +103,7 @@
 			background: url(#{$assets_path}images/heart.png) top left no-repeat;
 			float:left;
 
-				/* 1.5 dpr */
+			/* 1.5 dpr */
 			@media(-webkit-min-device-pixel-ratio: 1.5), 
 			(min-resolution: 144dpi){ 
 			    background: url(#{$assets_path}images/heart@2x.png) top left no-repeat;
@@ -480,6 +482,15 @@
 				
 		}
 
+		&.story-detail {
+			margin-bottom: 35px;
+
+			//aspect ratio is 5:3
+			@include respond-to(handhelds) {
+				padding-bottom:60%;	
+			}
+		}
+
 		#fluid-image {
 			img {
 				left: 50%;
@@ -629,6 +640,19 @@
 					margin-bottom: 20px;
 				}
 
+				//aspect ratio is 5:3
+				div.scale-image {
+					width: 100%;
+					padding-bottom:40%;
+					background: #333;
+					margin-bottom: 20px;
+					background-repeat: no-repeat;
+					background-position: center center;
+					-webkit-background-size: cover;
+					-moz-background-size: cover;
+					-o-background-size: cover;
+				}
+
 				h4 {
 					color: $dark;
 					font-size: 32px;
@@ -752,6 +776,7 @@
 			width: 700px;
 			margin: 0 auto;
 			position:relative;
+			margin-bottom: 20px;
 
 			div.edit-icon {
 				top: 9px;
@@ -1036,9 +1061,18 @@
 			p {
 				font-size: 18px;
 				line-height: 34px;
-				margin-bottom: 40px;
-				font-family: $akoma-fonts;
+				margin-bottom: 30px;
+				//font-family: $akoma-fonts;
+				font-family: $akoma-bodyCopy;
 				font-weight: 400;
+			}
+
+			blockquote {
+				font-family: $akoma-bodyCopy;
+				font-size: 25px;
+				line-height: 37px;
+				margin-bottom: 30px;
+				font-weight: bold;
 			}
 
 			div.editable-wrapper {
@@ -2222,7 +2256,15 @@
 						height: 24px;
 						margin-top:4px;
 						display: inline-block;
-						background: url(#{$assets_path}images/on_social_twitter.png) top left no-repeat;
+
+						background: url(../images/on_social_twitter.png) top left no-repeat;
+						/* 1.5 dpr */
+						@media(-webkit-min-device-pixel-ratio: 1.5), 
+						(min-resolution: 144dpi){ 
+						    background: url(#{$assets_path}images/on_social_twitter@2x.png) top left no-repeat;
+						    background-size:100%;
+						}
+
 					}
 
 					&.primary-action {
@@ -2263,11 +2305,8 @@
 									width: 15px;
 									height: 15px;
 									top:0px;
-									left: 10px;
-
-									@include respond-to(handhelds) {
-										left: 100px;
-									}
+									left: 50%;
+									margin-left: -53px;
 
 									div.bar-one {
 										position: absolute;
@@ -2292,27 +2331,36 @@
 								//following icon
 								&.following {
 									top: -4px;
-									left: -2px;
+									left: 50%;
+									margin-left: -66px;
 									width: 22px;
 									height: 22px;
 									background: url(#{$assets_path}images/following_author.png) top left no-repeat;
 
-									@include respond-to(handhelds) {
-										left: 90px;
+									/* 1.5 dpr */
+									@media(-webkit-min-device-pixel-ratio: 1.5), 
+									(min-resolution: 144dpi){ 
+									    background: url(#{$assets_path}images/following_author@2x.png) top left no-repeat;
+									    background-size:100%;
 									}
 								}
 
 								//edit profile icon
 								&.edit-profile {
 									top: 0px;
-									left: -1px;
+									left: 50%;
+									margin-left: -65px;
 									width: 14px;
 									height: 14px;
 									background: url(#{$assets_path}images/edit_profile.png) top left no-repeat;
 
-									@include respond-to(handhelds) {
-										left: 90px;
+									/* 1.5 dpr */
+									@media(-webkit-min-device-pixel-ratio: 1.5), 
+									(min-resolution: 144dpi){ 
+									    background: url(#{$assets_path}images/edit_profile@2x.png) top left no-repeat;
+									    background-size:100%;
 									}
+
 								}
 							}
 
@@ -2324,10 +2372,6 @@
 		}
 
 	}
-
-/************************************************************
-*	SIGN IN OVERLAY STATES
-*/
 
 
 	

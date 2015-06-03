@@ -3,6 +3,7 @@ var frontend    = require('../controllers/frontend'),
     express     = require('express'),
     passport    = require('passport'),
     utils       = require('../utils'),
+    middleware = require("../middleware/middleware"),
 
     frontendRoutes;
 
@@ -11,7 +12,7 @@ frontendRoutes = function () {
         subdir = config.paths.subdir;
 
     router.get('*', function redirect(req, res, next) {
-        if(!/^\/auth\/(twitter|facebook)/ig.test(req.url)) {
+        if(!/^\/auth\/(twitter|facebook|last|user\/new|signout)/ig.test(req.url)) {
             req.session.lastUrl = req.url;
         }
         console.log("LAST URLs: ", req.url, req.session.lastUrl);
@@ -66,15 +67,25 @@ frontendRoutes = function () {
 
     // SSO Social filters
     router.get('/auth/twitter', passport.authenticate('twitter'));
-    router.get('/auth/twitter/callback', passport.authenticate('twitter'),
-      function(req, res) {        
-          res.redirect(req.session.lastUrl);
-      });
+    router.get('/auth/twitter/callback', passport.authenticate('twitter'), frontend.social_callback);
     router.get('/auth/facebook', passport.authenticate('facebook'));
-    router.get('/auth/facebook/callback', passport.authenticate('facebook'),
-      function(req, res) {
-          res.redirect(req.session.lastUrl);
-      });
+    router.get('/auth/facebook/callback', passport.authenticate('facebook'), frontend.social_callback );
+
+    router.post('/auth/user/new', frontend.new_user);
+    router.get('/auth/last', function(req, res) {        
+        res.redirect(req.session.lastUrl);
+    });
+    router.get('/auth/signout', function(req, res) {
+        req.session.destroy();
+        res.redirect("/ghost/signout");
+    });
+    router.post('/auth/user/signin', 
+        frontend.signin,
+        middleware.spamSigninPrevention,
+        middleware.addClientSecret,
+        middleware.authenticateClient,
+        middleware.generateAccessToken
+    );
 
 
     // Default

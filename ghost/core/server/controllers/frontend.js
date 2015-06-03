@@ -9,13 +9,14 @@ var moment      = require('moment'),
     _           = require('lodash'),
     Promise     = require('bluebird'),
     api         = require('../api'),
-    dataProvider         = require('../models'),
+    dataProvider = require('../models'),
     config      = require('../config'),
     filters     = require('../filters'),
     template    = require('../helpers/template'),
     errors      = require('../errors'),
     passport    = require('passport'),
     routeMatch  = require('path-match')(),
+    middleware = require("../middleware/middleware"),
 
     frontendControllers,
     staticPostPermalink;
@@ -141,6 +142,74 @@ function getActiveThemePaths() {
 }
 
 frontendControllers = {
+    // handle the post request fro mthe main site to set up the access token
+    signin: function(req, res, next){
+        if(req.user) {
+            if(!req.body) {
+                req.body = {};
+            }
+            req.body.grant_type = "password";
+            req.body.client_id = "ghost-admin";
+            req.body.username = req.user.get("email");
+            req.body.password = req.user.getPassword();
+        }
+        console.log(req.body);
+        next();
+    },
+
+    // Handle a social callback
+    social_callback: function(req, res, next) {
+        if(req.user.status === "accepted") {
+            res.render("signin");
+        } else {
+            res.redirect(req.session.lastUrl);
+        }
+    },
+
+    // Handle a new SSO user.
+    new_user: function(req, res, next){
+        if(!req.user) {
+            res.redirect(req.session.lastUrl);
+        }
+
+        dataProvider.SSOUser.forge({"email": req.body.email}).fetch().then(function(user){
+            if(user) {
+                // TODO: convey this error to the front end.
+                throw "Email already exists.";
+            }
+
+            // Use the form submission to update the SSO User.
+            req.user.set("name", req.body.name);
+            req.user.set("email", req.body.email);
+            req.user.set("reason", req.body.reason);
+            req.user.set("status", "pending");
+            req.user.set("status_date", new Date());
+            req.user.save(null, {context: {internal: true}});
+
+            // Join the sso user to the users table (create a new one if necessary)
+            dataProvider.User.forge({"email":req.body.email}).fetch().then(function(user){
+                var password = config.salt + req.user.get("social_id") + req.user.get("network");
+                if(user) {
+                    // update the user properties and save and return
+                    user.set("name", req.user.get("name"));
+                    return dataProvider.User.hashPassword(password).then(function(hashedPw) { 
+                        user.set("password", hashedPw);
+                        return user.save(null, {context: {internal: true}}); 
+                    });
+                }
+
+                // Create a new user in the database
+                return dataProvider.User.add({
+                    "name": req.user.get("name"),
+                    "password": password,
+                    "email": req.user.get("email")
+                }, {context: {internal: true}});
+            });
+        });
+
+        
+        res.redirect(req.session.lastUrl);
+    },
 
     // Latest behaves like the old index page...
     latest: function(req, res, next){

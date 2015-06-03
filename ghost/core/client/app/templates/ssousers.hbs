@@ -1,0 +1,73 @@
+<!--BEGIN STORIES AND DRAFTS -->
+<div id="stories-and-drafts">
+	<!--BEGIN TOGGLE-->
+	<ul id="toggle">
+		<li class="left"><a {{action "goToInactive"}} href="#" class="toggle-link {{if currentFilterIsInactive 'active' ''}}">Inactive <span>{{userCounts.inactive}}</span></a></li>
+		<li><a {{action "goToActive"}} href="#" class="toggle-link {{if currentFilterIsActive 'active' ''}}">Active <span>{{userCounts.active}}</span></a></li>
+	</ul>
+	<!--END TOGGLE-->
+	<!--BEGIN STORIES LIST-->
+	<ul id="stories-list">
+	    {{#each ssouser in controller itemController="users/ssouser"}}
+	    	{{#if ssouser.showUnderDraftsFilter}}
+				<li class="story-item">
+					<h3>{{ssouser.model.email}} ({{ssouser.model.role}})</h3>
+					<p>{{ssouser.model.name}}, {{ssouser.model.reason}}</p>
+					<span class="last-edited">Signed in with {{ssouser.model.network}}, <strong>{{ssouser.model.status}}</strong> as of {{ssouser.model.date}}</span>
+					<ul class="stories-actions">
+						{{#if ssouser.model.canBecomeAuthor}}
+						<li class="story-action">
+							<a href="#" class="story-action-button" {{action "approveAuthor" ssouser.model}}>
+								<span class="remove-mobile-text">Approve </span>Author
+								<div class="continue-editing action-icon"></div>
+							</a>
+						</li>
+						{{/if}}
+						{{#if ssouser.model.canBecomeReader}}
+							<li class="story-action">
+								<a href="#" class="story-action-button" {{action "approveReader" ssouser.model}}>
+									<span class="remove-mobile-text">
+										{{#if ssouser.model.isActive}}
+											{{#if ssouser.model.isAuthor}}
+												Downgrade to 
+											{{else}}
+												Approve 
+											{{/if}}
+										{{else}}
+											Approve 
+										{{/if}}
+									</span>Reader
+									{{#if ssouser.model.isAuthor}}
+									{{else}}
+										<div class="continue-editing action-icon"></div>
+									{{/if}}
+								</a>
+							</li>
+						{{/if}}
+						{{#if ssouser.model.isActive}}
+							<li class="story-action">
+								<a href="#" class="story-action-button" {{action "reject" ssouser.model}}>
+									Revoke
+									<div class="delete-draft action-icon"></div>
+								</a>
+							</li>
+						{{else}}
+							{{#if ssouser.model.isRejected}}
+							{{else}}
+								<li class="story-action">
+									<a href="#" class="story-action-button" {{action "reject" ssouser.model}}>
+										Reject
+										<div class="delete-draft action-icon"></div>
+									</a>
+								</li>
+							{{/if}}
+						{{/if}}
+					</ul>
+				</li>
+			{{/if}}
+	    {{/each}}
+	</ul>
+	<!--END STRIES LIST-->
+
+</div>
+<!--END STORIES AND DRAFTS -->

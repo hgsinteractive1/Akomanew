@@ -27,6 +27,7 @@ Router.map(function () {
     });
 
     this.route('drafts', {path: '/drafts'});
+    this.route('ssousers', {path: '/ssousers'});
 
     this.resource('editor', function () {
         this.route('new', {path: ''});

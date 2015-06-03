@@ -41,3 +41,15 @@
 <div id="main-story-feed">
 	{{> "loop"}}
 </div>
+<!-- mixpanel events object -->
+<script>
+	akEvents.name = "Homepage View";
+    {{#if ssoUser}}
+		akEvents.properties.reader = "{{ssoUser.attributes.social_id}}";
+    {{/if}}
+</script>
+<!-- begin usabilla button id -->
+<script>
+	var akUsabilla_id = "51fceb9f7d44";
+</script>
+<!-- end usabilla button id -->

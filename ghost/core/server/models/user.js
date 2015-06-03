@@ -162,6 +162,10 @@ User = ghostBookshelf.Model.extend({
     }
 
 }, {
+    hashPassword: function(password) {
+        return generatePasswordHash(password);
+    },
+
     /**
     * Returns an array of keys permitted in a method's `options` hash, depending on the current method.
     * @param {String} methodName The name of the method to check valid options for.
@@ -485,7 +489,6 @@ User = ghostBookshelf.Model.extend({
         var self = this,
             userData = this.filterData(data),
             roles;
-
         options = this.filterOptions(options, 'add');
         options.withRelated = _.union(options.withRelated, options.include);
 
@@ -509,7 +512,11 @@ User = ghostBookshelf.Model.extend({
 
         return generatePasswordHash(userData.password).then(function (results) {
             // Assign the hashed password
-            userData.password = results[1];
+            if(typeof results === "string") {
+                userData.password = results;
+            } else {
+                userData.password = results[1];
+            }
             // LookupGravatar
             return self.gravatarLookup(userData);
         }).then(function (userData) {

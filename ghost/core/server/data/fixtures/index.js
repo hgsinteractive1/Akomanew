@@ -17,6 +17,7 @@ var Promise     = require('bluebird'),
     // Private
     logInfo,
     to003,
+    too012,
     convertAdminToOwner,
     createOwner,
     options = {context: {internal: true}},
@@ -156,12 +157,45 @@ to003 = function () {
     });
 };
 
+/**
+ * Update fixtures to 012.
+ * We will add a new user role, Guest
+ **/
+to012 = function() {
+  logInfo('Running 012 migration.');
+    var ops = [],
+        upgradeOp,
+        Role = models.Role,
+        Client = models.Client;
+
+    // Add the owner role if missing
+    upgradeOp = Role.findOne({name: fixtures.roles[4].name}).then(function (owner) {
+        if (!owner) {
+            logInfo('Adding Guest role fixture');
+            _.each(fixtures.roles.slice(4), function (role) {
+                return Role.add(role, options);
+            });
+        }
+    });
+    ops.push(upgradeOp);
+
+    return Promise.all(ops).then(function () {
+        return permissions.to003(options);
+    });
+};
+
 update = function (fromVersion, toVersion) {
     logInfo('Updating fixtures');
     // Are we migrating to, or past 003?
     if ((fromVersion < '003' && toVersion >= '003') ||
         fromVersion === '003' && toVersion === '003' && process.env.FORCE_MIGRATION) {
         return to003();
+    }
+
+    // Are we migrating to, or past 003?
+    if ((fromVersion < '012' && toVersion >= '012') ||
+        fromVersion === '012' && toVersion === '012' && process.env.FORCE_MIGRATION) {
+        return to012();
     }
 };
 

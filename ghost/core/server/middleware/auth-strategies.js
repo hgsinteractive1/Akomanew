@@ -12,8 +12,8 @@ var passport = require('passport'),
 // e.g. http://b.akomanet.com
 // e.g. http://127.0.0.1 -- NOT localhost as Twitter barfs at it
 // So it seems FB does not like any localhost variants, including the IP address. have to stick with an alias.
-var APP_HOST_INTEGRATE = "http://b.akomanet.com";
-//var APP_HOST_INTEGRATE = "http://lgr.akomanet.com:2368";
+// var APP_HOST_INTEGRATE = "http://b.akomanet.com";
+var APP_HOST_INTEGRATE = "http://lgr.akomanet.com:2368";
 
 var TWITTER_CONSUMER_KEY = "NRfJBexESA1fGKjXv9OidwLVd";
 var TWITTER_CONSUMER_SECRET = "MAYbbLLoiG2YSA0Tva6h4fPCs9TNAVJMxTeiwmXjIgcGK62A3F";
@@ -31,7 +31,7 @@ passport.serializeUser(function(user, done) {
   done(null, user);
 });
 passport.deserializeUser(function(obj, done) {
-  done(null, obj);
+  models.SSOUser.forge({id:obj.id}).fetch().then(function(user){ done(null, user); });
 });
 
 console.log("*** Passport Strategies initialized in auth-strategies.js");
@@ -44,21 +44,15 @@ passport.use(new TwitterStrategy({
   },
   function(token, tokenSecret, profile, done) {
     process.nextTick(function () {
-
-//      console.log ("Twitter user profile: " + JSON.stringify(profile, null, 2));
       console.log ("Twitter user profile for: " + profile.displayName);
-
-      // MySQL user association logic can tie in with Twitter realm & profile ID
-      // The user's Twitter profile can now be associated with a user database record,
-      // Return complete user profile object instead of Twitter.
-
-      return done(null, profile);
+      return models.SSOUser.getWithNetworkAndSocialId("twitter", profile.id).then(function(sso_user){
+        return done(null, sso_user);
+      });
     });
   }
 ));
 
 // Use the FacebookStrategy within Passport
-// Use the FacebookStrategy within Passport.
 passport.use(new FacebookStrategy({
     clientID: FB_CLIENT_ID,
     clientSecret: FB_CLIENT_SECRET,
@@ -68,7 +62,10 @@ passport.use(new FacebookStrategy({
   function(token, tokenSecret, profile, done) {
     process.nextTick(function () {
       console.log ("Facebook user profile for: " + profile.displayName);
-      return done(null, profile);
+      return models.SSOUser.getWithNetworkAndSocialId("facebook", profile.id).then(function(sso_user){
+        return done(null, sso_user);
+      });
+      
     });
   }  
 ));
@@ -86,15 +83,16 @@ passport.use(new FacebookStrategy({
  */
 passport.use(new ClientPasswordStrategy(
     function (clientId, clientSecret, done) {
+      console.log("CLIENT ID", clientId);
         models.Client.forge({slug: clientId})
         .fetch()
         .then(function (model) {
             if (model) {
                 var client = model.toJSON();
 
-//console.log ("** Client Strategy, Secret: " + clientSecret);
+// console.log ("** Client Strategy, Secret: " + clientSecret);
 //console.trace();
-//console.log ("** Client Strategy, model: " + JSON.stringify(client, null, 2));
+// console.log ("** Client Strategy, model: " + JSON.stringify(client, null, 2));
 
                 if (client.secret === clientSecret) {
                     return done(null, client);

@@ -38,6 +38,13 @@ body {
     }
 }
 
+#user-gate #request-form {
+    background: none!important;
+    div.input-wrapper input {
+        padding:0px!important;
+    }
+}
+
 
 #full-bleed-hero #headline a { 
     color: inherit;
@@ -93,6 +100,11 @@ body {
 }
 
 .hidden {
+    opacity: 0;
+}
+
+.image-uploader .hidden, 
+.display-none {
     display: none;
 }
 
@@ -175,6 +187,9 @@ body.manage, body.settings {
     color:#999;
 }
 
+.last-edited strong {
+    font-weight: bold!important;
+}
 
 /**
  * Grande overrides
@@ -209,4 +224,11 @@ a.load-more {
 a.load-more {
     color:inherit;
     text-decoration: inherit;
+}
+
+[contenteditable=true] {
+    &:focus {
+        border:none;
+        outline:none;
+    }
 }
