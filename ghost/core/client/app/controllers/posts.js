@@ -36,7 +36,7 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
     ],
     selectedFilter: "All",
     selectedFilterIsSortable: false,
-
+    
     actions: {
         unfeature: function(post){
             var filter = this.get("selectedFilter");

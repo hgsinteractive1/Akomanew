@@ -26,11 +26,15 @@
 	<!--END STORY INTRO AREA-->
 
 	<!--BEGIN STORY IMAGE-->
-	<div id="story-image">
-		{{#if image}}
-            <img src="{{image}}" />
-        {{/if}}
+	{{#if image}}
+	<div id="full-bleed-hero" class="story-detail">
+		<!--FLUID IMAGE AREA-->
+		<div id="fluid-image">
+	        <img src="{{image}}" />
+		</div>
+		<!--END FLUID IMAGE AREA-->
 	</div>
+	{{/if}}
 	<!--END STORY IMAGE-->
 	<!--BEGIN STORY BODY-->
 	<div id="story-body">

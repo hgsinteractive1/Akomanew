@@ -20,6 +20,11 @@ var PostController = Ember.Controller.extend({
         return this.get('controllers.posts.selectedFilter') !== "All" && this.get("model.isPublished");
     }),
 
+    canMoveUp: Ember.computed("controllers.posts.selectedFilter", "model.tag_positions", function(){
+        console.log("TEST", this.get("controllers.posts.selectedFilter"));
+        return post.positionInTag(this.get("controllers.posts.selectedFilter")) > 0;
+    }),
+
     isFeaturedInCurrentTag: Ember.computed('model', 'model.tag_positions', 'controllers.posts.selectedFilter', function () {
         return this.get("model").isFeaturedInTag(this.get('controllers.posts.selectedFilter'));
     }),

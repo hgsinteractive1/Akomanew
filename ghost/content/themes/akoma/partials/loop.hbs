@@ -19,7 +19,9 @@
     <!--END STORY BODY-->
     <div class="story-body">
         {{#if image}}
-            <a href="{{url}}"><img src="{{image}}" /></a>
+            <a href="{{url}}">
+                <div class="scale-image" style="background-image: url({{image}});"></div>
+            </a>
         {{/if}}
         <h4><a href="{{url}}">{{{title}}}</a></h4>
         <p>{{{excerpt}}}</p>
