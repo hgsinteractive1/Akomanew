@@ -186,6 +186,13 @@ body.manage, body.settings {
     pointer-events: none;
     color:#999;
 }
+@media only screen and (max-width: 768px) {
+    #story-detail #story-intro h2 {
+        position: relative;
+        margin-left: 30px;
+    }
+}
+
 
 .last-edited strong {
     font-weight: bold!important;
