@@ -1047,10 +1047,10 @@
 			position: relative;
 
 			div.edit-icon {
-				top: -2px;
+				top: -8px;
 
 				@include respond-to(handhelds) {
-					top:5px;
+					top:0px;
 				}
 			}
 
@@ -1359,13 +1359,14 @@
 
 				#content {
 					margin: 0 auto;
-					margin-top:100px;
+					margin-top:170px;
 					width: 590px;
 					margin-bottom: 100px;
+					font-family: $akoma-fonts;
 
 					@include respond-to(handhelds) {
 						width: 90%;
-						margin-top:30px;
+						margin-top:80px;
 						margin-bottom:130px;
 					}
 
@@ -1431,7 +1432,7 @@
 
 								div.edit-icon {
 									left:-50px;
-									top:5px;
+									top:0px;
 									width: 32px;
 									height: 29px;
 									background-size: 50%;
@@ -1442,6 +1443,7 @@
 										height: 23px;
 										background-position: 5px 6px;
 										left:-30px;
+										top:1px;
 									}	
 								}
 
@@ -1473,6 +1475,7 @@
 
 									h4 {
 										font-size: 22px;
+										text-align:left;
 									}
 								}
 

@@ -1,2 +1,5 @@
-<li><a href="#" {{action "saveWithType" "draft"}} class="action-button save-to-drafts">{{view.draftText}}<div class="save-to-drafts-icon"></div></a></li>
-<li class="last"><a {{action "saveWithType" "publish"}} href="#" class="action-button publish">{{view.publishText}}<div class="publish-icon"></div></a></li>
+<ul class="action-list">
+	<li><a href="#" class="action-button continue-editing">Continue Editing<div class="continue-editing-icon"></div></a></li>
+	<li><a href="#" {{action "saveWithType" "draft"}} class="action-button save-to-drafts">{{view.draftText}}<div class="save-to-drafts-icon"></div></a></li>
+	<li class="last"><a {{action "saveWithType" "publish"}} href="#" class="action-button publish">{{view.publishText}}<div class="publish-icon"></div></a></li>
+</ul>

@@ -65,10 +65,7 @@
             <!--END SUMMARY DETAILS-->
             <!--BEGIN ACTION AREA/BUTTONS -->
             <div id="action-area">
-                <ul class="action-list">
-                    <li><a href="#" class="action-button continue-editing">Continue Editing<div class="continue-editing-icon"></div></a></li>
-                    {{view "editor-save-button" id="entry-actions" classNameBindings="model.isNew:unsaved"}}
-                </ul>
+                {{view "editor-save-button" id="entry-actions" classNameBindings="model.isNew:unsaved"}}
             </div>
             <!--END ACTION AREA-->
         </div>
