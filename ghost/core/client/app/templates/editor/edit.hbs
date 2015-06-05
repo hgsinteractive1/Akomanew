@@ -78,37 +78,37 @@
 
 <!-- TODO: Remove this. -->
 <script type="text/javascript">
-
+$(function(){
     // If they edit the abstract, create an input (if there isnt already one) to store it in so that we save the abstract value.
-    $("#abstract-editor").on("keyup", function(){
+    $("body").on("keyup", "#abstract-editor", function(){
         var input = $("input#entity-abstract", $(this).closest(".summary"));
         input.val($("#abstract-editor").html());
         input.change();
     });
 
-    $("#story-detail").on("focus", "[contenteditable=true]", function(){
+    $("body").on("focus", "#story-detail [contenteditable=true]", function(){
         $(".editor-placeholder", $(this).closest(".editor-placeholder-wrapper")).addClass("display-none");
     });
 
-    $("#story-detail").on("blur", "[contenteditable=true]", function(){ 
+    $("body").on("blur", "#story-detail [contenteditable=true]", function(){ 
         if($(this).text().trim().length === 0){
             $(".editor-placeholder", $(this).closest(".editor-placeholder-wrapper")).removeClass("display-none");
         }
     });
 
-    $(".edit-icon").on("click", function(){
+    $("body").on("click", ".edit-icon", function(){
         $("[contenteditable=true]", $(this).closest(".editor-placeholder-wrapper")).focus();
     });
 
     // Update a hidden input with the changes made to the editable div.
     // This is so the header text saves correctly.
-    $("#story-intro h2").on("blur", "#entry-title-visible", function(){ 
+    $("body").on("blur", "#story-intro h2 #entry-title-visible", function(){ 
         $("#entry-title").val($(this).text());
         $("#entry-title").change();
     });
 
     // Bind the finish editing button, this should show the modal
-    $("#finish-writing-story").on("click", function(e){
+    $("body").on("click", "#finish-writing-story", function(e){
         e.preventDefault();
         
         // Copy the title
@@ -118,11 +118,12 @@
     });
 
     // Bind the continue editing button, this just dismisses the modal.
-    $("#finish-overlay #action-area .continue-editing").on("click", function(e){
+    $("body").on("click", "#finish-overlay #action-area .continue-editing", function(e){
         e.preventDefault();
         $("#finish-overlay").fadeOut("fast");
     });
 
     grande.bind($("#body-editor .content"));
+});
 </script>
 
