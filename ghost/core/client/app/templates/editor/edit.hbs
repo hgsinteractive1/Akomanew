@@ -113,14 +113,14 @@ $(function(){
         $("#finish-overlay").fadeIn("fast");
 
         // Hide the menu
-        $("#primary-nav, #menu-icon").fadeOut("fast");
+        // $("#primary-nav, #menu-icon").fadeOut("fast");
     });
 
     // Bind the continue editing button, this just dismisses the modal.
     $("body").on("click", "#finish-overlay #action-area .continue-editing", function(e){
         e.preventDefault();
         $("#finish-overlay").fadeOut("fast");
-        $("#primary-nav, #menu-icon").fadeIn("fast");
+        // $("#primary-nav, #menu-icon").fadeIn("fast");
     });
 
     grande.bind($("#body-editor .content"));
