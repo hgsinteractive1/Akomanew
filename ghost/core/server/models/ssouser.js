@@ -25,7 +25,7 @@ SSOUser = ghostBookshelf.Model.extend({
             if(!self.isAcceptedUser()) {
                 return User.forge({"id":-1}).fetch();
             }
-            return User.forge({"email":self.get("email")}).fetch();
+            return User.forge({"email":self.get("email")}).fetch({"withRelated":["roles"]});
         };
     },
 

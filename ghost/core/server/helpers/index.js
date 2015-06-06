@@ -97,7 +97,7 @@ registerHelpers = function (adminHbs) {
     registerThemeHelper('is', coreHelpers.is);
     registerThemeHelper('debug', coreHelpers.debug);
     registerThemeHelper('has', coreHelpers.has);
-    registerThemeHelper('navigation', coreHelpers.navigation);
+    registerAsyncThemeHelper('navigation', coreHelpers.navigation);
     registerThemeHelper('page_url', coreHelpers.page_url);
     registerThemeHelper('pageUrl', coreHelpers.pageUrl);
     registerThemeHelper('pagination', coreHelpers.pagination);

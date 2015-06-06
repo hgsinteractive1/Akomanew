@@ -52,9 +52,19 @@ navigation = function (options) {
         return out;
     });
 
-    context = _.merge({}, {navigation: output, user:this.ssoUser});
-
-    return template.execute('navigation', context, options);
+    var self = this;
+    return this.ssoUser.getUser().then(function(user) { 
+        var isAuthor = user.hasRole("Author");
+        var isAdmin = user.hasRole("Administrator");
+        var context = _.merge({}, {
+            navigation: output, 
+            sso_user:self.ssoUser, 
+            user: user, 
+            isAuthor: isAuthor || isAdmin, 
+            isAdmin: isAdmin 
+        });
+        return template.execute('navigation', context, options);
+    });
 };
 
 module.exports = navigation;
