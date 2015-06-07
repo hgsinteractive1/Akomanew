@@ -1,0 +1,36 @@
+
+
+<div id="finish-overlay">
+    <div class="relative">
+        <div id="content">
+            <!--TOP DIRECTIONS-->
+            <div id="top-directions">
+                <h4>Done Editing?</h4>
+                <p>Change your story’s title, subtitle and add relevant tags.</p>
+            </div>
+            <!--END TOP DIRECTIONS-->
+            <!--BEGIN SUMMARY DETAILS-->
+            <div id="summary-details">
+                <div class="story-info">
+                    <h4 class='summary-title'>{{model.title}}</h4>
+                    <div class="summary editor-placeholder-wrapper">
+                        {{gh-input name="post-setting-abstract" type="hidden" id="entity-abstract" value=model.abstract action="setAbstract"}}
+                        <div contenteditable="true" id='abstract-editor'>
+                            <p>{{{gh-excerpt model.abstractScratch model.copy}}}<br /></p>
+                        </div>
+                        <div class="edit-icon"></div>
+                    </div>
+                    {{render 'post-tags-input'}}
+                    <div class="clear"></div>
+                    <p class="tag-descrip">Stories may have multiple tags</p>
+                </div>
+            </div>
+            <!--END SUMMARY DETAILS-->
+            <!--BEGIN ACTION AREA/BUTTONS -->
+            <div id="action-area">
+                {{view "editor-save-button" id="entry-actions" classNameBindings="model.isNew:unsaved"}}
+            </div>
+            <!--END ACTION AREA-->
+        </div>
+    </div>
+</div>

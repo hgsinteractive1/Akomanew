@@ -42,7 +42,6 @@ var EditorEditRoute = AuthenticatedRoute.extend(base, {
 
     afterModel: function (post) {
         var self = this;
-
         return self.get('session.user').then(function (user) {
             if (user.get('isAuthor') && !post.isAuthoredByUser(user)) {
                 return self.replaceWith('posts.index');
@@ -53,6 +52,14 @@ var EditorEditRoute = AuthenticatedRoute.extend(base, {
     actions: {
          authorizationFailed: function () {
             this.send('openModal', 'signin');
+        },
+
+        finishEditing: function(){
+            console.log("REND");
+            return this.render("editor/overlay", {
+                into: 'application',
+                outlet: 'modal'
+            });
         }
     }
 });
