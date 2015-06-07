@@ -94,9 +94,7 @@ body {
 
 // BEGIN MENU.css
 @font-face {
-  font-family: icomoon;
-  src: url('icomoon/icomoon.ttf'),
-       url('icomoon/icomoon.eot');
+  font-family: $akoma-fonts;
 }
 
 @-webkit-keyframes pop-upwards {

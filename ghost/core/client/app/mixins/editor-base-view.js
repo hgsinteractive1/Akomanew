@@ -24,8 +24,6 @@ var EditorViewMixin = Ember.Mixin.create({
                 }, 100); 
             }
         });
-
-        console.log("SEND2");
         this.get("controller.target").send("finishEditing");
     },
 

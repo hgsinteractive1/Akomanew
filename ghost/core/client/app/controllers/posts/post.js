@@ -21,7 +21,6 @@ var PostController = Ember.Controller.extend({
     }),
 
     canMoveUp: Ember.computed("controllers.posts.selectedFilter", "model.tag_positions", function(){
-        console.log("TEST", this.get("controllers.posts.selectedFilter"));
         return post.positionInTag(this.get("controllers.posts.selectedFilter")) > 0;
     }),
 

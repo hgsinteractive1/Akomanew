@@ -55,7 +55,6 @@ var EditorEditRoute = AuthenticatedRoute.extend(base, {
         },
 
         finishEditing: function(){
-            console.log("REND");
             return this.render("editor/overlay", {
                 into: 'application',
                 outlet: 'modal'
