@@ -405,7 +405,8 @@ console.log("** in homepage, req.user = ",req.user? req.user.displayName : "who 
                         // Format data for template
                         result = formatPageResponse(posts, page, {
                             author: page.meta.filters.author ? page.meta.filters.author : '',
-                            ssoUser: req.user
+                            ssoUser: req.user,
+                            canEdit: false
                         });
 
                     // If the resulting author is '' then 404.
@@ -414,10 +415,22 @@ console.log("** in homepage, req.user = ",req.user? req.user.displayName : "who 
                     }
 
                     setResponseContext(req, res);
-                    if(req.query.ajax) {
-                        res.render("partials/loop", result);
+                    if(req.user) {
+                        req.user.getUser().then(function(user){
+                            result.user = user;
+                            result.canEdit = user.id === result.author.id;
+                            if(req.query.ajax) {
+                                res.render("partials/loop", result);
+                            } else {
+                                res.render(view, result);
+                            }    
+                        });
                     } else {
-                        res.render(view, result);
+                        if(req.query.ajax) {
+                            res.render("partials/loop", result);
+                        } else {
+                            res.render(view, result);
+                        }
                     }
                 });
             });

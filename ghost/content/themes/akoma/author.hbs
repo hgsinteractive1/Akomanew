@@ -63,14 +63,14 @@
                         <!--END FOLLOWING ICON-->
 
                         <!--BEGIN EDIT PROFILE ICON-->
-                        <a id="author-action" href="/ghost/settings/users/{{slug}}">
-                            <div class="relative">
-                                Edit Profile
-                                <div class="icon edit-profile">
-                                    
+                        {{#if ../canEdit}}
+                            <a id="author-action" href="/ghost/settings/users/{{slug}}">
+                                <div class="relative">
+                                    Edit Profile
+                                    <div class="icon edit-profile"></div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        {{/if}}
                         <!--END EDIT PROFILE ICON-->
 
                 </li>
