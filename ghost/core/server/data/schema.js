@@ -193,6 +193,7 @@ var db = {
             social_id: {type: 'string', nullable: true},
             network: {type: 'string', nullable: true},
             email: {type: 'string', nullable: true},
+            image_url: {type: 'string', nullable: true},
             name: {type: 'string', nullable: true},
             reason: {type: 'string', nullable: true},
             type_requested: {type: 'string', nullable: true},

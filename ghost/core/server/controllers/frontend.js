@@ -153,7 +153,6 @@ frontendControllers = {
             req.body.username = req.user.get("email");
             req.body.password = req.user.getPassword();
         }
-        console.log(req.body);
         next();
     },
 
@@ -186,6 +185,8 @@ frontendControllers = {
             req.user.set("status_date", new Date());
             req.user.save(null, {context: {internal: true}});
 
+            var image_url = user.image_url;
+
             // Join the sso user to the users table (create a new one if necessary)
             dataProvider.User.forge({"email":req.body.email}).fetch().then(function(user){
                 var password = config.salt + req.user.get("social_id") + req.user.get("network");
@@ -194,6 +195,7 @@ frontendControllers = {
                     user.set("name", req.user.get("name"));
                     return dataProvider.User.hashPassword(password).then(function(hashedPw) { 
                         user.set("password", hashedPw);
+                        user.set("image", image_url);
                         return user.save(null, {context: {internal: true}}); 
                     });
                 }
@@ -202,7 +204,8 @@ frontendControllers = {
                 return dataProvider.User.add({
                     "name": req.user.get("name"),
                     "password": password,
-                    "email": req.user.get("email")
+                    "email": req.user.get("email"),
+                    "image": image_url
                 }, {context: {internal: true}});
             });
         });

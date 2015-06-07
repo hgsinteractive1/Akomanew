@@ -44,9 +44,23 @@ passport.use(new TwitterStrategy({
   },
   function(token, tokenSecret, profile, done) {
     process.nextTick(function () {
+      console.log(profile);
       console.log ("Twitter user profile for: " + profile.displayName);
       return models.SSOUser.getWithNetworkAndSocialId("twitter", profile.id).then(function(sso_user){
-        return done(null, sso_user);
+         sso_user.set("image_url", profile.photos[0].value.replace("_normal.png", ".png"));
+          return sso_user.save(null, {context:{internal:true}}).then(function(){
+            // check if the user connected to this sso user has an image
+            sso_user.getUser().then(function(user){
+              if(!user) {
+                return done(null, sso_user);
+              } else {
+                user.set("image", sso_user.get("image_url"));
+                user.save(null, {context:{internal:true}}).then(function(){
+                  return done(null, sso_user);
+                });
+              }
+            });
+          });
       });
     });
   }
@@ -63,7 +77,24 @@ passport.use(new FacebookStrategy({
     process.nextTick(function () {
       console.log ("Facebook user profile for: " + profile.displayName);
       return models.SSOUser.getWithNetworkAndSocialId("facebook", profile.id).then(function(sso_user){
-        return done(null, sso_user);
+        if(!sso_user.get("image_url")) {
+          sso_user.set("image_url", "https://graph.facebook.com/"+profile.id+"/picture?width=180&height=180");
+          return sso_user.save(null, {context:{internal:true}}).then(function(){
+            // check if the user connected to this sso user has an image
+            sso_user.getUser().then(function(user){
+              if(!user) {
+                return done(null, sso_user);
+              } else {
+                user.set("image", sso_user.get("image_url"));
+                user.save(null, {context:{internal:true}}).then(function(){
+                  return done(null, sso_user);
+                });
+              }
+            });
+          });
+        } else {
+          return done(null, sso_user);
+        }
       });
       
     });

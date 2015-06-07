@@ -24,7 +24,11 @@
 	<!--BEGIN ACCOUNT DROPDOWN/LOG IN-->
 		<div id="account-icon-wrapper">
 			<a href="#" id="log-in">
-				<div id="logged-out-icon"></div>
+				{{#if user.attributes.image}}
+					<div id="logged-out-icon" style="background: url({{user.attributes.image}}) no-repeat; background-size:100%;"></div>
+				{{else}}
+					<div id="logged-out-icon"></div>
+				{{/if}}
 			</a>														
 
 			<!--BEGIN LOGEED IN ACTIONS-->

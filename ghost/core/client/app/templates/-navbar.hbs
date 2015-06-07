@@ -36,7 +36,11 @@
 			{{#if session.isAuthenticated}}
 				<div id="account-icon-wrapper">
 					<a href="#" id="log-in">
-						<div id="logged-out-icon"></div>
+						{{#if session.user.image}}
+							<div id="logged-out-icon" style="background: url({{session.user.image}}) no-repeat; background-size:100%;"></div>
+						{{else}}
+							<div id="logged-out-icon"></div>
+						{{/if}}
 					</a>														
 
 					<!--BEGIN LOGEED IN ACTIONS-->
