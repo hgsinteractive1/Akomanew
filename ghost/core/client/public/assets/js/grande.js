@@ -535,11 +535,15 @@
         target = e.target || e.srcElement;
 
     // The selected text is not editable
+    console.log()
     if (!target.isContentEditable || $(target).closest(".content").length === 0) {
-      reloadMenuState();
-      setTextMenuPosition(EDGE, EDGE);
-      textMenu.className = "text-menu hide";
-      return;
+      // Make sure not to close the menu while the user is interacting with the menu...
+      if($(target).closest(".text-menu.active").length === 0) {
+        reloadMenuState();
+        setTextMenuPosition(EDGE, EDGE);
+        textMenu.className = "text-menu hide";
+        return;
+      }
     }
 
     // The selected text is collapsed, push the menu out of the way
