@@ -25,6 +25,15 @@ var EditorNewRoute = AuthenticatedRoute.extend(base, {
         psm.send('resetPubDate');
 
         this._super(controller, model);
+    },
+
+    actions: {
+        finishEditing: function(){
+            return this.render("editor/overlay", {
+                into: 'application',
+                outlet: 'modal'
+            });
+        }
     }
 });
 
