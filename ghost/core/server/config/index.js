@@ -206,7 +206,7 @@ ConfigManager.prototype.set = function (config) {
         },
         routeKeywords: {
             tag: 'tag',
-            author: 'author',
+            author: 'user',
             page: 'page'
         },
         slugs: {

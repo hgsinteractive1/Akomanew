@@ -21,6 +21,15 @@ SSOUser = ghostBookshelf.Model.extend({
         this.isAcceptedUser = function(){ return self.get("status") === "approved"; };
         this.isRejectedUser = function(){ return self.get("status") === "rejected"; };
         this.getPassword = function(){ return config.salt + self.get("social_id") + self.get("network"); };
+        this.getSocialUrl = function(){
+            if(self.get("network") === "facebook") {
+                return "https://facebook.com/" + self.get("social_id");
+            } else if(self.get("network") === "twitter") {
+                return "https://twitter.com/intent/user?user_id=" + self.get("social_id");
+            }
+
+            return "#";
+        };
         this.getUser = function(){
             if(!self.isAcceptedUser()) {
                 return User.forge({"id":-1}).fetch();

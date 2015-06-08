@@ -22,17 +22,18 @@
         </div>
         <div id="profile-stats">
             <ul id="stats-list">
-                <li>
+                {{!-- <li>
                     <h4>Followers</h4>
                     <p class="stat">27</p>
                 </li>
                 <li>
                     <h4>Following</h4>
                     <p class="stat">13</p>
-                </li>
+                </li> --}}
                 <li class="social">
                     <h4>On Social</h4>
-                    <a href="#" id="on-social-twitter"></a>
+
+                    <a href="{{../ssoUser.getSocialUrl}}" id="on-social-{{../ssoUser.attributes.network}}"></a>
                 </li>
                 <li class="primary-action">
 
