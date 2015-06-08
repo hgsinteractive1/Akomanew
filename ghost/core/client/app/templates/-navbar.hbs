@@ -37,7 +37,7 @@
 				<div id="account-icon-wrapper">
 					<a href="#" id="log-in">
 						{{#if session.user.image}}
-							<img class="menu-image" src="{{user.attributes.image}}" />
+							<img class="menu-image" src="{{session.user.image}}" />
 						{{else}}
 							<div id="logged-out-icon"></div>
 						{{/if}}

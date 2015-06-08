@@ -340,7 +340,18 @@ EditorControllerMixin = Ember.Mixin.create({
 
             psmController.set('lastPromise', promise);
 
-            return promise;
+            return promise.then(function(res){
+                if(!autoSaveId) {
+                    if(self.get("willPublish")) {
+                        // redirect them to the story page
+                        window.location = self.get("model.url");
+                    } else {
+                        // redirect them to the drafts and stories page
+                        self.transitionTo("drafts");
+                    }
+                }
+                return res;
+            });
         },
 
         // aKoma: ADDED THIS
