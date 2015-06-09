@@ -10,7 +10,8 @@ config = {
     // When running Ghost in the wild, use the production environment
     // Configure your URL and mail settings here
     production: {
-        url: 'http://my-ghost-blog.com',
+        url: 'http://b.akomanet.com',
+
         mail: {},
         database: {
             client: 'sqlite3',
@@ -41,32 +42,33 @@ config = {
     // ### Development **(default)**
     development: {
 
-        // NOT USED JUST YET
-        // Override the callback HOST value with the host we want SSO provider to call back
-        // e.g. http://b.akomanet.com
-        // e.g. http://127.0.0.1 -- NOT localhost as Twitter barfs at it
-         TWITTER_CONSUMER_KEY: 'NRfJBexESA1fGKjXv9OidwLVd',
-         TWITTER_CONSUMER_SECRET: 'MAYbbLLoiG2YSA0Tva6h4fPCs9TNAVJMxTeiwmXjIgcGK6A3F',
-         TWITTER_CALLBACK: 'http://lgr.akomanet.com:2368/auth/twitter/callback',
-
         // The url to use when providing links to the site, E.g. in RSS and email.
         // Change this to your Ghost blogs published URL.
-        url: 'http://localhost:2368',
+        url: 'http://lgr.akomanet.com:2368',
 
-        // Example mail config
-        // Visit http://support.ghost.org/mail for instructions
-        // ```
-        //  mail: {
-        //      transport: 'SMTP',
-        //      options: {
-        //          service: 'Mailgun',
-        //          auth: {
-        //              user: '', // mailgun username
-        //              pass: ''  // mailgun password
-        //          }
-        //      }
-        //  },
-        // ```
+        social: {
+            twitter: {
+                consumer_key: 'NRfJBexESA1fGKjXv9OidwLVd',
+                consumer_secret: 'MAYbbLLoiG2YSA0Tva6h4fPCs9TNAVJMxTeiwmXjIgcGK62A3F',
+                callback: '/auth/twitter/callback',
+            },
+            facebook: {
+                client_id: '802215216531320',
+                client_secret: 'ff50f138c26dd2992027ca4c506ef0fa',
+                callback: '/auth/facebook/callback',
+            }
+        },
+
+        mail: {
+            transport: 'SMTP',
+            options: {
+                service: 'Mailgun',
+                auth: {
+                    user: 'postmaster@sandbox55531d74d0ee4a9f8bf3e4449866d1d6.mailgun.org', // mailgun username
+                    pass: '8a88aa074e49b70ab5db4fafbd65909d'  // mailgun password
+                }
+            }
+        },
 
         database: {
             client: 'sqlite3',
