@@ -1,30 +1,10 @@
 var passport = require('passport'),
-    config = require('../config'),
+    social = require('../social'),
     BearerStrategy = require('passport-http-bearer').Strategy,
     ClientPasswordStrategy = require('passport-oauth2-client-password').Strategy,
     TwitterStrategy = require('passport-twitter').Strategy,
     FacebookStrategy  = require('passport-facebook').Strategy,
     models  = require('../models');
-
-// THIS NEEDS to be refactored into config.js in ghost root dir and set
-// Depending on environment.
-// Override the HOST value with the host we want SSO provider to call back
-// e.g. http://b.akomanet.com
-// e.g. http://127.0.0.1 -- NOT localhost as Twitter barfs at it
-// So it seems FB does not like any localhost variants, including the IP address. have to stick with an alias.
-// var APP_HOST_INTEGRATE = "http://b.akomanet.com";
-var APP_HOST_INTEGRATE = "http://lgr.akomanet.com:2368";
-
-var TWITTER_CONSUMER_KEY = "NRfJBexESA1fGKjXv9OidwLVd";
-var TWITTER_CONSUMER_SECRET = "MAYbbLLoiG2YSA0Tva6h4fPCs9TNAVJMxTeiwmXjIgcGK62A3F";
-var TWITTER_CALLBACK = APP_HOST_INTEGRATE + "/auth/twitter/callback";
-
-// FB auth API Credentials
-var FB_CLIENT_ID = "802215216531320";
-var FB_CLIENT_SECRET = "ff50f138c26dd2992027ca4c506ef0fa";
-var FB_CALLBACK = APP_HOST_INTEGRATE + "/auth/facebook/callback";
-
-//console.log("********** config = ", config);
 
 // Passport session setup.
 passport.serializeUser(function(user, done) {
@@ -34,72 +14,79 @@ passport.deserializeUser(function(obj, done) {
   models.SSOUser.forge({id:obj.id}).fetch().then(function(user){ done(null, user); });
 });
 
-console.log("*** Passport Strategies initialized in auth-strategies.js");
+function SocialStrategies(opts) {
+    opts = opts || {};
+    this.url = opts.url || null;
+}
 
-// Use the TwitterStrategy within Passport.
-passport.use(new TwitterStrategy({
-    consumerKey: TWITTER_CONSUMER_KEY,
-    consumerSecret: TWITTER_CONSUMER_SECRET,
-    callbackURL: TWITTER_CALLBACK
-  },
-  function(token, tokenSecret, profile, done) {
-    process.nextTick(function () {
-      console.log(profile);
-      console.log ("Twitter user profile for: " + profile.displayName);
-      return models.SSOUser.getWithNetworkAndSocialId("twitter", profile.id).then(function(sso_user){
-         sso_user.set("image_url", profile.photos[0].value.replace("_normal.png", ".png"));
-          return sso_user.save(null, {context:{internal:true}}).then(function(){
-            // check if the user connected to this sso user has an image
-            sso_user.getUser().then(function(user){
-              if(!user) {
-                return done(null, sso_user);
-              } else {
-                user.set("image", sso_user.get("image_url"));
-                user.save(null, {context:{internal:true}}).then(function(){
-                  return done(null, sso_user);
-                });
-              }
-            });
-          });
-      });
-    });
-  }
-));
+SocialStrategies.prototype.init = function () {
 
-// Use the FacebookStrategy within Passport
-passport.use(new FacebookStrategy({
-    clientID: FB_CLIENT_ID,
-    clientSecret: FB_CLIENT_SECRET,
-    callbackURL: FB_CALLBACK,
-    enableProof: false
-  },
-  function(token, tokenSecret, profile, done) {
-    process.nextTick(function () {
-      console.log ("Facebook user profile for: " + profile.displayName);
-      return models.SSOUser.getWithNetworkAndSocialId("facebook", profile.id).then(function(sso_user){
-        if(!sso_user.get("image_url")) {
-          sso_user.set("image_url", "https://graph.facebook.com/"+profile.id+"/picture?width=180&height=180");
-          return sso_user.save(null, {context:{internal:true}}).then(function(){
-            // check if the user connected to this sso user has an image
-            sso_user.getUser().then(function(user){
-              if(!user) {
-                return done(null, sso_user);
-              } else {
-                user.set("image", sso_user.get("image_url"));
-                user.save(null, {context:{internal:true}}).then(function(){
+  // Use the TwitterStrategy within Passport.
+  passport.use(new TwitterStrategy({
+      consumerKey: social.twitter.consumer_key,
+      consumerSecret: social.twitter.consumer_secret,
+      callbackURL: social.twitter.callback
+    },
+    function(token, tokenSecret, profile, done) {
+      process.nextTick(function () {
+        console.log ("Twitter user profile for: " + profile.displayName);
+        return models.SSOUser.getWithNetworkAndSocialId("twitter", profile.id).then(function(sso_user){
+           sso_user.set("image_url", profile.photos[0].value.replace("_normal.png", ".png"));
+            return sso_user.save(null, {context:{internal:true}}).then(function(){
+              // check if the user connected to this sso user has an image
+              sso_user.getUser().then(function(user){
+                if(!user) {
                   return done(null, sso_user);
-                });
-              }
+                } else {
+                  user.set("image", sso_user.get("image_url"));
+                  user.save(null, {context:{internal:true}}).then(function(){
+                    return done(null, sso_user);
+                  });
+                }
+              });
             });
-          });
-        } else {
-          return done(null, sso_user);
-        }
+        });
       });
-      
-    });
-  }  
-));
+    }
+  ));
+
+
+  // Use the FacebookStrategy within Passport
+  passport.use(new FacebookStrategy({
+      clientID: social.facebook.client_id,
+      clientSecret: social.facebook.client_secret,
+      callbackURL: social.facebook.callback,
+      enableProof: false
+    },
+    function(token, tokenSecret, profile, done) {
+      process.nextTick(function () {
+        console.log ("Facebook user profile for: " + profile.displayName);
+        return models.SSOUser.getWithNetworkAndSocialId("facebook", profile.id).then(function(sso_user){
+          if(!sso_user.get("image_url")) {
+            sso_user.set("image_url", "https://graph.facebook.com/"+profile.id+"/picture?width=180&height=180");
+            return sso_user.save(null, {context:{internal:true}}).then(function(){
+              // check if the user connected to this sso user has an image
+              sso_user.getUser().then(function(user){
+                if(!user) {
+                  return done(null, sso_user);
+                } else {
+                  user.set("image", sso_user.get("image_url"));
+                  user.save(null, {context:{internal:true}}).then(function(){
+                    return done(null, sso_user);
+                  });
+                }
+              });
+            });
+          } else {
+            return done(null, sso_user);
+          }
+        });
+        
+      });
+    }  
+  ));
+
+};
 
 
 /**
@@ -120,11 +107,6 @@ passport.use(new ClientPasswordStrategy(
         .then(function (model) {
             if (model) {
                 var client = model.toJSON();
-
-// console.log ("** Client Strategy, Secret: " + clientSecret);
-//console.trace();
-// console.log ("** Client Strategy, model: " + JSON.stringify(client, null, 2));
-
                 if (client.secret === clientSecret) {
                     return done(null, client);
                 }
@@ -169,3 +151,6 @@ passport.use(new BearerStrategy(
         });
     }
 ));
+
+
+module.exports = new SocialStrategies();
