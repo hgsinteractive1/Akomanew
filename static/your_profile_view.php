@@ -13,15 +13,19 @@
 <body class="full-bleed">
 
 <!--BEGIN USER PROFILE-->
-<div id="user-profile-wrapper">
+<div id="user-profile-wrapper" class="is-editable">
 	<div id="profile-overview">
 		<div id="avatar-wrapper">
 			<div id="avatar"></div>
 		</div>
 		<div id="profile-summary">
-			<h3>Timothy Johnson</h3>
+			
+			<h3 id="username">Timothy Johnson</h3>
+			<input type="text" id="username-input" value="Timothy Johnson">
+	
 			<p class="overview">from Nigeria | 231 posts</p>
-			<p class="bio">Hello. I’m Tim, a college student from Nigeria. I enjoy writing about politics and sports.</p>
+			<p id="bio">Hello. I’m Tim, a college student from Nigeria. I enjoy writing about politics and sports.</p>
+			<textarea id="bio-textarea">Hello. I’m Tim, a college student from Nigeria. I enjoy writing about politics and sports.</textarea>
 		</div>
 		<div class="clear"></div>	
 	</div>
@@ -68,7 +72,7 @@
 					<!--END FOLLOWING ICON-->
 
 					<!--BEGIN EDIT PROFILE ICON-->
-					<a id="author-action">
+					<a id="author-action" class="edit-profile-button">
 						<div class="relative">
 							Edit Profile
 							<div class="icon edit-profile">
@@ -77,6 +81,12 @@
 						</div>
 					</a>
 					<!--END EDIT PROFILE ICON-->
+					<!--BEGIN SAVE/EDIT BUTTONS-->
+					<ul id="manage-edits-buttons">
+						<li class="manage-edit-button-list"><a href="#" class="manage-edits-button" id="cancel-edits">Test</a></li>
+						<li class="manage-edit-button-list" class="no-margin"><a href="#" class="manage-edits-button" id="save-edits">Test</a></li>
+					</ul>
+					<!--END SAVE/EDIT BUTTONS-->
 
 			</li>
 		</ul>

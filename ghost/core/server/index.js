@@ -17,6 +17,7 @@ var express     = require('express'),
     models      = require('./models'),
     permissions = require('./permissions'),
     apps        = require('./apps'),
+    ssosocial   = require('./social'),
     sitemap     = require('./data/xml/sitemap'),
     xmlrpc      = require('./data/xml/xmlrpc'),
     GhostServer = require('./ghost-server'),
@@ -175,6 +176,8 @@ function init(options) {
             initDbHashAndFirstRun(),
             // Initialize mail
             mailer.init(),
+            // Initialize social
+            ssosocial.init(),
             // Initialize apps
             apps.init(),
             // Initialize sitemaps

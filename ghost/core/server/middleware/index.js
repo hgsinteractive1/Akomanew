@@ -287,10 +287,9 @@ setupMiddleware = function (blogAppInstance, adminApp) {
     // Note: express session must be initialized before passport session
     // if reliance on passpost sessions is needed
     blogApp.use(session({secret: 'keyboard cat', key: 'sid'}));
+    authStrategies.init();
     blogApp.use(passport.initialize());
     blogApp.use(passport.session());
-
-console.log("*** Passport initialized in index.js");
 
     // ### Caching
     blogApp.use(middleware.cacheControl('public'));
