@@ -16,6 +16,7 @@ var db = {
             meta_keywords: {type: 'text', maxlength: 16777215, nullable: true },
             abstract: {type: 'text', maxlength: 16777215, nullable: true },
             author_id: {type: 'integer', nullable: false},
+            like_count: {type: 'integer', nullable: false, defaultTo: 0},
             created_at: {type: 'dateTime', nullable: false},
             created_by: {type: 'integer', nullable: false},
             updated_at: {type: 'dateTime', nullable: true},
@@ -45,6 +46,11 @@ var db = {
             created_by: {type: 'integer', nullable: false},
             updated_at: {type: 'dateTime', nullable: true},
             updated_by: {type: 'integer', nullable: true}
+        },
+        user_post_likes: {
+            id: {type: 'increments', nullable: false, primary: true},
+            post_id: {type: 'integer', nullable: false, unsigned: true, references: 'posts.id'},
+            user_id: {type: 'integer', nullable: false, unsigned: true, references: 'users.id'},
         },
         roles: {
             id: {type: 'increments', nullable: false, primary: true},
