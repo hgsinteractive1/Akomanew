@@ -12,7 +12,7 @@ frontendRoutes = function () {
         subdir = config.paths.subdir;
 
     router.get('*', function redirect(req, res, next) {
-        if(!/^\/auth\/(twitter|facebook|last|user\/new|signout)/ig.test(req.url)) {
+        if(!/^\/auth\/(twitter|facebook|last|user\/new|signout)/ig.test(req.url) && ! /^user\/update/ig.test(req.url)) {
             req.session.lastUrl = req.url;
         }
         console.log("LAST URLs: ", req.url, req.session.lastUrl);
@@ -87,6 +87,8 @@ frontendRoutes = function () {
         middleware.generateAccessToken
     );
 
+    // Updating user profile info
+    router.post("/user/update", frontend.user_update);
 
     // Default
     router.get('/' + config.routeKeywords.page + '/:page/', frontend.homepage);

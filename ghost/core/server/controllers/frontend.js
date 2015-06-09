@@ -142,6 +142,28 @@ function getActiveThemePaths() {
 }
 
 frontendControllers = {
+
+    user_update: function(req, res, next){
+        if(req.user && (req.body.name || req.body.bio)) {
+            // get the actual user (users table instance)
+            req.user.getUser().then(function(user){
+                if(req.body.name){
+                    user.set("name", req.body.name);
+                }
+
+                if(req.body.bio) {
+                    user.set("bio", req.body.bio);
+                }
+
+                user.save().then(function(){
+                    return res.redirect("/user/" + user.get("slug"));
+                });
+            });
+        } else {
+            next();
+        }
+    },
+
     // handle the post request fro mthe main site to set up the access token
     signin: function(req, res, next){
         if(req.user) {
