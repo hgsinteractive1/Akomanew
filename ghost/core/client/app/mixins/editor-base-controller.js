@@ -341,13 +341,13 @@ EditorControllerMixin = Ember.Mixin.create({
             psmController.set('lastPromise', promise);
 
             return promise.then(function(res){
-                if(!autoSaveId) {
+                if(options.redirect) {
                     if(self.get("willPublish")) {
                         // redirect them to the story page
                         window.location = self.get("model.url");
                     } else {
                         // redirect them to the drafts and stories page
-                        self.transitionTo("drafts");
+                        return self.transitionTo("drafts");
                     }
                 }
                 return res;
@@ -357,7 +357,7 @@ EditorControllerMixin = Ember.Mixin.create({
         // aKoma: ADDED THIS
         saveWithType: function(type) {
             this.send("setSaveType", type);
-            this.send("save");
+            this.send("save", {"redirect":true});
         },
 
         setSaveType: function (newType) {
