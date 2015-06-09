@@ -2165,13 +2165,35 @@
 				float: right;
 				padding-top: 15px;
 
+				input {
+					&:focus{
+						outline:none;
+					}
+				}
+
+				textarea {
+					&:focus{
+						outline:none;
+					}
+       				resize: none;
+				}
+
+				div.editable {
+					border: 1px solid #1B8CD5;
+					padding-top:10px;
+					padding-left: 10px;
+					padding-bottom: 10px;
+					margin-bottom: 10px;
+					border-radius: 6px;
+				}
+
 				@include respond-to(handhelds) {
 		 			float: none;
 		 			width: 100%;
 		 			text-align: center;
 				}
 
-				h3 {
+				h3#username {
 					font-size: 38px;
 					font-weight: 500;
 					margin-bottom: 8px;
@@ -2181,15 +2203,44 @@
 					}
 				}
 
+				input#username-input {
+					width: 94%;
+					border-radius: 6px;
+					border: 1px solid #1B8CD5;
+					height: 50px;
+					font-size: 38px;
+					font-weight: 500;
+					padding-left: 3%;
+					padding-right: 3%;
+					padding-top:2px;
+					padding-bottom:3px;
+					margin-bottom: 10px;
+					display: none;
+				}
+
 				p.overview {
 					font-size: 16px;
 					color: $light-grey;
 					margin-bottom: 15px;
 				}
 
-				p.bio {
+				p#bio {
 					font-size: 15px;
 					line-height: 22px;
+				}
+
+				textarea#bio-textarea {
+					width: 94%;
+					height: 75px;
+					padding-left: 3%;
+					padding-right: 3%;
+					padding-top:5px;
+					padding-bottom:3px;
+					border: 1px solid #1B8CD5;
+					font-size: 15px;
+					line-height: 22px;
+					border-radius: 6px;
+					display: none;
 				}
 
 			}
@@ -2289,11 +2340,57 @@
 
 					&.primary-action {
 						width: 210px;
+						position:relative;
 
 						@include respond-to(handhelds) {
 							//float: none;
 							display: block;
 							width: 100%;
+						}
+
+						ul#manage-edits-buttons {
+							height: 44px;
+							width: 220px;
+							display:none;
+							background: #000;
+							position:absolute;
+							top:16px;
+
+							li.manage-edit-button-list {
+								padding:0px;
+								float:left;
+								margin-right: 5px;
+								font-size: 16px;
+								font-weight: 500;
+								width: 105px;
+
+								&.no-margin {
+									margin-right: 0px;
+								}
+
+								a.manage-edits-button {
+									margin:0px;
+									width: 100%;
+									border-radius: 6px;
+									display: block;
+									background: #222;
+									height: 29px;
+									padding-top:15px;
+									text-decoration: none;
+
+									&#save-edits {
+										background: $aKoma-blue;
+										color: #FFF;
+									}
+
+									&#cancel-edits {
+										background: #EFEFEF;
+										color: #000;
+									}
+
+
+								}
+							}
 						}
 
 						a#author-action {
@@ -2304,17 +2401,20 @@
 							height: 29px;
 							background : #EFEFEF;
 							border-radius: 6px;
-							margin-top: 10px;
 							font-size: 16px;
 							font-weight: 500;
 							padding-top:15px;
 							padding-left:13px;
+							position:absolute;
+							top:16px;
+							left:20px;
 
 							@include respond-to(handhelds) {
 								//float: none;
 								display: block;
 								width: 100%;
 								padding-left: 0px;
+								left:0px;
 							}
 
 							div.icon {
@@ -2389,6 +2489,56 @@
 
 				}
 			}
+		}
+
+		&.is-editable {
+
+			#profile-overview {
+
+				#profile-summary {
+
+					h3#username {
+						display:none;
+					}
+
+					p.overview {
+						//display: none;
+					}
+
+					p#bio {
+						display:none;
+					}
+
+					textarea#bio-textarea {
+						display:block;
+					}
+
+					input#username-input {
+						display:block;
+					}
+
+				
+
+				}
+
+			}
+
+			#profile-stats {
+				
+				ul#stats-list {
+					li.primary-action {
+						a#author-action {
+							display:none;
+						}
+
+						ul#manage-edits-buttons {
+							display:block;
+						}
+					}
+					
+				}
+
+			}	
 		}
 
 	}
