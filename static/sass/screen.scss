@@ -605,6 +605,27 @@
 	#main-story-feed {
 		width: 700px;
 		margin: 0 auto;
+		position:relative;
+
+		#is-editing-profile-overlay {
+			position:absolute;
+			height:100%;
+			width:100%;
+			top:0px;
+			left:0px;
+			background:#FFF;
+			opacity: 0.95;
+			-webkit-transition: opacity 0.2s;
+    		-moz-transition: opacity 0.2s;
+    		-o-transition: opacity 0.2s;
+
+			&.is-hidden {
+				height: 0px;
+				width: 0px;
+				opacity: 0;
+				
+			}
+		}
 
 		@include respond-to(handhelds) {
 			width: 90%;
@@ -2218,10 +2239,14 @@
 					display: none;
 				}
 
-				p.overview {
+				div.overview {
 					font-size: 16px;
 					color: $light-grey;
 					margin-bottom: 15px;
+				}
+
+				select#country {
+					display:none;
 				}
 
 				p#bio {
@@ -2270,6 +2295,9 @@
 					float: left;
 					text-align: center;
 					padding-top:8px;
+					-webkit-transition: width 0.2s ease-out;
+    				-moz-transition: width 0.2s ease-out;
+    				-o-transition: width 0.2s ease-out;
 
 					@include respond-to(handhelds) {
 						width: 33%;
@@ -2352,9 +2380,9 @@
 							height: 44px;
 							width: 220px;
 							display:none;
-							background: #000;
 							position:absolute;
 							top:16px;
+							left: 20px;
 
 							li.manage-edit-button-list {
 								padding:0px;
@@ -2373,7 +2401,6 @@
 									width: 100%;
 									border-radius: 6px;
 									display: block;
-									background: #222;
 									height: 29px;
 									padding-top:15px;
 									text-decoration: none;
@@ -2509,12 +2536,31 @@
 						display:none;
 					}
 
+					span#country-text {
+						display:none;
+					}
+
+					select#country {
+						display:inline-block;
+						width: 150px;
+						margin-left:3px;
+						margin-right: 7px;
+						top:-1px;
+						position:relative;
+					}
+
 					textarea#bio-textarea {
 						display:block;
+						@include respond-to(handhelds) {
+							text-align: center;
+						}
 					}
 
 					input#username-input {
 						display:block;
+						@include respond-to(handhelds) {
+							text-align: center;
+						}
 					}
 
 				
@@ -2526,13 +2572,45 @@
 			#profile-stats {
 				
 				ul#stats-list {
+
+					li {
+						width: 145px;
+
+						@include respond-to(handhelds) {
+							width: 33%;
+						}
+					}
+
 					li.primary-action {
+						width: 154px;
+
+						@include respond-to(handhelds) {
+							width: 100%;
+						}
+
 						a#author-action {
 							display:none;
 						}
 
 						ul#manage-edits-buttons {
 							display:block;
+							@include respond-to(handhelds) {
+								width: 100%;
+								left: 0px;
+							}
+
+							li.manage-edit-button-list {
+								@include respond-to(handhelds) {
+									width: 48%;
+									margin-right:4%;
+								}
+
+								&.no-margin {
+									@include respond-to(handhelds) {
+										margin-right:0px;
+									}
+								}
+							}
 						}
 					}
 					

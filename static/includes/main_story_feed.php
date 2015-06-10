@@ -128,5 +128,5 @@
 			<div class="arrow"></div>
 		</div>
 	</div>
-
+	<div id="is-editing-profile-overlay" class="is-hidden"></div>
 </div>

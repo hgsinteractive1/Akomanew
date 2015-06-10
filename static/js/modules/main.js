@@ -1,5 +1,5 @@
 //configure paths
-akomadefine(['jquery', 'mainNav', 'storyShareTools', 'fullBleedHero', 'pagination'], function($, mainNav, storyShareTools, fullBleedHero, pagination) {
+akomadefine(['jquery', 'mainNav', 'storyShareTools', 'fullBleedHero', 'pagination', 'editProfile'], function($, mainNav, storyShareTools, fullBleedHero, pagination, editProfile) {
 		$ = $ || window.$;
 /**************************************************************************
 * DECLARE SCOPE
@@ -32,6 +32,7 @@ akomadefine(['jquery', 'mainNav', 'storyShareTools', 'fullBleedHero', 'paginatio
 		storyShareTools.init();
 		fullBleedHero.init();
 		pagination.init();
+		editProfile.init();
 	}
 
 

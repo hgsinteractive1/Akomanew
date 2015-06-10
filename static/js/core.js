@@ -11,6 +11,7 @@ akomarequire.config({
     "storyShareTools": "modules/story_share",
     "fullBleedHero": "modules/full_bleed_hero",
     "pagination": "modules/pagination",
+    "editProfile": "modules/edit_profile",
 
     //PRIMARY CONTROLLERS
     // global elements and core application states
