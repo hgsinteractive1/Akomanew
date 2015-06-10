@@ -68,7 +68,9 @@ Post = ghostBookshelf.Model.extend({
         });
 
         this.on('saved', function (model, response, options) {
-            return self.updateTags(model, response, options);
+            if(!options.ignoreTags) {
+                return self.updateTags(model, response, options);
+            }
         });
 
         // Ensures local copy of permalink setting is kept up to date
@@ -204,7 +206,7 @@ Post = ghostBookshelf.Model.extend({
         // Load all the tags we currently have in the DB and compare that to the ones we want to have.
         return this.tags().fetch().then(function(currentTags){ 
             currentTags = currentTags.models;
-            
+
             // tags that are in current and not in myTags need to be removed
             var toRemoveTagIds = [];
             for(var x in currentTags) {
@@ -361,7 +363,7 @@ Post = ghostBookshelf.Model.extend({
             validOptions = {
                 findAll: ['withRelated'],
                 findOne: ['importing', 'withRelated'],
-                findPage: ['page', 'limit', 'status', 'staticPages'],
+                findPage: ['page', 'limit', 'status', 'staticPages', 'popular'],
                 add: ['importing']
             };
 
@@ -528,6 +530,9 @@ Post = ghostBookshelf.Model.extend({
                 // If theres a tag instance, sort by the sort position as a priority.
                 if (tagInstance) {
                     postCollection.query("orderBy", "sort_position", "ASC");
+                }
+                if(options.popular) {
+                    postCollection.query("orderBy", "like_count", "DESC");
                 }
 
                 collectionPromise = postCollection
@@ -710,7 +715,6 @@ Post = ghostBookshelf.Model.extend({
                 var tagOps = [];
 
                 for(var i in tags.models) {
-                    console.log(options.tag_positions);
                     var sort_position_in_tag = options.tag_positions[tags.models[i].attributes.slug];
                     if(!sort_position_in_tag) {
                         sort_position_in_tag = 0;

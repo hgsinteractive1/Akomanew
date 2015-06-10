@@ -51,6 +51,10 @@ var db = {
             id: {type: 'increments', nullable: false, primary: true},
             post_id: {type: 'integer', nullable: false, unsigned: true, references: 'posts.id'},
             user_id: {type: 'integer', nullable: false, unsigned: true, references: 'users.id'},
+            created_at: {type: 'dateTime', nullable: false},
+            created_by: {type: 'integer', nullable: false},
+            updated_at: {type: 'dateTime', nullable: true},
+            updated_by: {type: 'integer', nullable: true}
         },
         roles: {
             id: {type: 'increments', nullable: false, primary: true},

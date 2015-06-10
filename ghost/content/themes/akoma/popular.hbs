@@ -1,0 +1,55 @@
+{{!< featured}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+
+<!--BEGIN CATEGORY HERO AREA-->
+<div id="full-bleed-hero">
+	<!--FLUID IMAGE AREA-->
+	<div id="fluid-image">
+		{{#if featuredPost}}
+			<img src="{{featuredPost.image}}" />
+		{{else}}
+			{{#if @blog.cover}}
+				<img src="{{@blog.cover}}" />
+			{{/if}}
+		{{/if}}
+	</div>
+	<!--END FLUID IMAGE AREA-->
+	<!-- TINT AREA -->
+	{{#if featuredPost}}
+		{{#featuredPost}}
+			<a href="{{url}}">
+				<div id="tint"></div>
+			</a>
+		{{/featuredPost}}
+	{{else}}
+		<div id="tint"></div>
+	{{/if}}
+	<!--END TINT AREA-->
+	<!--HEADLINE AREA-->
+	<div id="headline">
+		{{#if featuredPost}}
+			{{#featuredPost}}
+				<h4><a href="{{url}}">{{title}}</h4>
+			{{/featuredPost}}
+		{{else}}
+			<h4>Popular</h4>
+		{{/if}}
+	</div>
+	<!--END HEADLINE-->
+</div>
+<!--END CATEGORY HERO AREA-->
+<div id="main-story-feed">
+	{{> "loop"}}
+</div>
+<!-- mixpanel events object -->
+<script>
+	akEvents.name = "Popular Page View";
+    {{#if ssoUser}}
+		akEvents.properties.reader = "{{ssoUser.attributes.social_id}}";
+    {{/if}}
+</script>
+<!-- begin usabilla button id -->
+<script>
+	var akUsabilla_id = "51fceb9f7d44";
+</script>
+<!-- end usabilla button id -->

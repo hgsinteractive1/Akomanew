@@ -12,10 +12,13 @@ frontendRoutes = function () {
         subdir = config.paths.subdir;
 
     router.get('*', function redirect(req, res, next) {
-        if(!/^\/auth\/(twitter|facebook|last|user\/new|signout)/ig.test(req.url) && ! /^user\/update/ig.test(req.url)) {
+        if(
+            !/^\/auth\/(twitter|facebook|last|user\/new|signout)/ig.test(req.url) && 
+            !/^\/user\/update/ig.test(req.url) && 
+            !/^\/images/ig.test(req.url)
+        ) {
             req.session.lastUrl = req.url;
         }
-        console.log("LAST URLs: ", req.url, req.session.lastUrl);
         // set seession here
         next();
     });
@@ -64,6 +67,8 @@ frontendRoutes = function () {
     // Dynamic filters
     router.get('/latest', frontend.latest);
     router.get('/latest/' + config.routeKeywords.page + '/:page/', frontend.latest);
+    router.get('/popular', frontend.popular);
+    router.get('/popular/' + config.routeKeywords.page + '/:page/', frontend.popular);
 
     // SSO Social filters
     router.get('/auth/twitter', passport.authenticate('twitter'));
@@ -89,6 +94,9 @@ frontendRoutes = function () {
 
     // Updating user profile info
     router.post("/user/update", frontend.user_update);
+
+    // Liek a post
+    router.get("/post/like/:post_id/", frontend.like_post);
 
     // Default
     router.get('/' + config.routeKeywords.page + '/:page/', frontend.homepage);

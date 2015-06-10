@@ -17,9 +17,14 @@
                 <p>{{author}} <span>{{date timeago=true}}</span></p>
             </div>
         </div>
+
 			<div class="recommend">
-				<div class="heart"></div>
-				<div class="count">23</div>
+        		{{#if current_user_likes}}
+	                <div class="active heart" data-like-post="{{id}}"></div>
+	            {{else}}
+	                <div class="heart" data-like-post="{{id}}"></div>
+	            {{/if}}
+				<div class="count">{{like_count}}</div>
 			</div>
 			<div class="clear"></div>
 	</div>
