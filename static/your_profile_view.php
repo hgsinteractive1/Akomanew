@@ -13,7 +13,7 @@
 <body class="full-bleed">
 
 <!--BEGIN USER PROFILE-->
-<div id="user-profile-wrapper" class="is-editable">
+<div id="user-profile-wrapper">
 	<div id="profile-overview">
 		<div id="avatar-wrapper">
 			<div id="avatar"></div>
@@ -23,7 +23,15 @@
 			<h3 id="username">Timothy Johnson</h3>
 			<input type="text" id="username-input" value="Timothy Johnson">
 	
-			<p class="overview">from Nigeria | 231 posts</p>
+			<div class="overview">from <span id="country-text">Nigeria</span>
+				<select id="country">
+	  				<option value="country">Country</option>
+	  				<option value="country">Country</option>
+	  				<option value="country">Country</option>
+	  				<option value="country">Country</option>
+					</select>
+					| 231 posts
+			</div>
 			<p id="bio">Hello. I’m Tim, a college student from Nigeria. I enjoy writing about politics and sports.</p>
 			<textarea id="bio-textarea">Hello. I’m Tim, a college student from Nigeria. I enjoy writing about politics and sports.</textarea>
 		</div>
@@ -83,8 +91,8 @@
 					<!--END EDIT PROFILE ICON-->
 					<!--BEGIN SAVE/EDIT BUTTONS-->
 					<ul id="manage-edits-buttons">
-						<li class="manage-edit-button-list"><a href="#" class="manage-edits-button" id="cancel-edits">Test</a></li>
-						<li class="manage-edit-button-list" class="no-margin"><a href="#" class="manage-edits-button" id="save-edits">Test</a></li>
+						<li class="manage-edit-button-list"><a href="#" class="manage-edits-button" id="cancel-edits">Cancel</a></li>
+						<li class="manage-edit-button-list no-margin"><a href="#" class="manage-edits-button" id="save-edits">Save</a></li>
 					</ul>
 					<!--END SAVE/EDIT BUTTONS-->
 
