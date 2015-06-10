@@ -29,7 +29,7 @@ SocialStrategies.prototype.init = function () {
     },
     function(token, tokenSecret, profile, done) {
       process.nextTick(function () {
-        console.log ("Twitter user profile for: " + profile.displayName);
+//        console.log ("Twitter user profile for: " + profile.displayName);
         return models.SSOUser.getWithNetworkAndSocialId("twitter", profile.id).then(function(sso_user){
            sso_user.set("image_url", profile.photos[0].value.replace("_normal.png", ".png"));
             return sso_user.save(null, {context:{internal:true}}).then(function(){
@@ -60,7 +60,7 @@ SocialStrategies.prototype.init = function () {
     },
     function(token, tokenSecret, profile, done) {
       process.nextTick(function () {
-        console.log ("Facebook user profile for: " + profile.displayName);
+//        console.log ("Facebook user profile for: " + profile.displayName);
         return models.SSOUser.getWithNetworkAndSocialId("facebook", profile.id).then(function(sso_user){
           if(!sso_user.get("image_url")) {
             sso_user.set("image_url", "https://graph.facebook.com/"+profile.id+"/picture?width=180&height=180");
@@ -101,7 +101,7 @@ SocialStrategies.prototype.init = function () {
  */
 passport.use(new ClientPasswordStrategy(
     function (clientId, clientSecret, done) {
-      console.log("CLIENT ID", clientId);
+//      console.log("CLIENT ID", clientId);
         models.Client.forge({slug: clientId})
         .fetch()
         .then(function (model) {
