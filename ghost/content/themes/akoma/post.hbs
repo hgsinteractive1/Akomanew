@@ -62,7 +62,11 @@
 					<li><a href="#" class="share-button email"></a></li>
 				</ul>
 			</div>
-			<a href="#" class="recommend-button">Fancy This</a>
+			{{#if current_user_likes}}
+				<a href="#" class="recommend-button active" data-like-post="{{id}}"><div class="heart"></div>Fancied</a>
+			{{else}}
+				<a href="#" class="recommend-button" data-like-post="{{id}}"><div class="heart"></div>Fancied</a>
+			{{/if}}
 			<div class="clear"></div>
 		</div>
 		<!--STORY META-->

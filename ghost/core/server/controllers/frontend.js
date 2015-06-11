@@ -224,8 +224,12 @@ frontendControllers = {
                     user.set("bio", req.body.bio);
                 }
 
+                if(req.body.location) {
+                    user.set("location", req.body.location);
+                }
+
                 user.save().then(function(){
-                    return res.redirect("/user/" + user.get("slug"));
+                    return res.json({"updated": true});
                 });
             });
         } else {

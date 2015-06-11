@@ -9,13 +9,25 @@
                 <div id="avatar" {{#if image}}style="background-image:url({{image}})" {{else}} style="background:#ccc;" {{/if}}></div>
             </div>
             <div id="profile-summary">
-                <h3>{{name}}</h3>
+                <h3 id="username">{{name}}</h3>
+                <input type="text" name="name" id="username-input" value="{{name}}">
+
                 <p class="overview">
-                    {{#if location}} from {{location}} | {{/if}}
-                    {{plural ../pagination.total empty='No posts' singular='% post' plural='% posts'}}
+                    <div class="overview">
+                        {{#if location}} from <span id="country-text">{{location}}</span>{{/if}}
+                        <select id="country" name="location">
+                            <option value="">Select a country</option>
+                            <option>Kenya</option>
+                            <option>Nigeria</option>
+                            <option>Rwanda</option>
+                        </select>
+                        {{#if location}} | {{/if}}
+                        {{plural ../pagination.total empty='No posts' singular='% post' plural='% posts'}}
+                    </div>
                 </p>
                 {{#if bio}}
-                    <p class="bio">{{bio}}</p>
+                    <p id="bio" class="bio">{{bio}}</p>
+                    <textarea name="bio" id="bio-textarea">{{bio}}</textarea>
                 {{/if}}
             </div>
             <div class="clear"></div>   
@@ -65,12 +77,22 @@
 
                         <!--BEGIN EDIT PROFILE ICON-->
                         {{#if ../canEdit}}
-                            <a id="author-action" href="#">
+                            <!--BEGIN EDIT PROFILE ICON-->
+                            <a id="author-action" class="edit-profile-button">
                                 <div class="relative">
                                     Edit Profile
-                                    <div class="icon edit-profile"></div>
+                                    <div class="icon edit-profile">
+                                        
+                                    </div>
                                 </div>
                             </a>
+                            <!--END EDIT PROFILE ICON-->
+                            <!--BEGIN SAVE/EDIT BUTTONS-->
+                            <ul id="manage-edits-buttons">
+                                <li class="manage-edit-button-list"><a href="#" class="manage-edits-button" id="cancel-edits">Cancel</a></li>
+                                <li class="manage-edit-button-list no-margin"><a href="#" class="manage-edits-button" id="save-edits">Save</a></li>
+                            </ul>
+                            <!--END SAVE/EDIT BUTTONS-->
                         {{/if}}
                         <!--END EDIT PROFILE ICON-->
                 </li>
@@ -98,12 +120,6 @@
 
 
     <div id="main-story-feed">
-        {{!-- <form action="/user/update" method="post">
-            <input type='text' name='name' />
-            <textarea name="bio" placeholder="Enter a short bio..."></textarea>
-            <input type='submit' />
-        </form> --}}
-
         {{> "loop"}}
     </div>
     
