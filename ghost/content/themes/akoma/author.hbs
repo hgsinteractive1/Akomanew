@@ -65,7 +65,7 @@
 
                         <!--BEGIN EDIT PROFILE ICON-->
                         {{#if ../canEdit}}
-                            <a id="author-action" href="/ghost/settings/users/{{slug}}">
+                            <a id="author-action" href="#">
                                 <div class="relative">
                                     Edit Profile
                                     <div class="icon edit-profile"></div>
@@ -73,7 +73,6 @@
                             </a>
                         {{/if}}
                         <!--END EDIT PROFILE ICON-->
-
                 </li>
             </ul>
         </div>
@@ -99,6 +98,12 @@
 
 
     <div id="main-story-feed">
+        {{!-- <form action="/user/update" method="post">
+            <input type='text' name='name' />
+            <textarea name="bio" placeholder="Enter a short bio..."></textarea>
+            <input type='submit' />
+        </form> --}}
+
         {{> "loop"}}
     </div>
     

@@ -30,14 +30,14 @@ SSOSocial.prototype.initTwitter = function () {
     this.twitter.consumer_key = config.social.twitter.consumer_key || "/t";
     this.twitter.consumer_secret = config.social.twitter.consumer_secret || "/t";
     this.twitter.callback = config.url + config.social.twitter.callback || "/t";
-    console.log("******** ******** twitter.callback = " + this.twitter.callback);
+//    console.log("******** ******** twitter.callback = " + this.twitter.callback);
 };
 
 SSOSocial.prototype.initFacebook = function () {
     this.facebook.client_id = config.social.facebook.client_id || "/f";
     this.facebook.client_secret = config.social.facebook.client_secret || "/f";
     this.facebook.callback = config.url + config.social.facebook.callback || "/f";
-    console.log("******** ******** facebook.callback = " + this.facebook.callback);
+//    console.log("******** ******** facebook.callback = " + this.facebook.callback);
 };
 
 module.exports = new SSOSocial();

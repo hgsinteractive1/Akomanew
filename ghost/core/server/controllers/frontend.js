@@ -25,29 +25,62 @@ var moment      = require('moment'),
 staticPostPermalink = routeMatch('/:slug/:edit?');
 
 function getPostPage(options) {
-    return api.settings.read('postsPerPage').then(function (response) {
-        var postPP = response.settings[0],
-            postsPerPage = parseInt(postPP.value, 10);
+    // Get the list of all posts the current user likes (if there is one)
+    if(options.currentUser) {
+        return options.currentUser.getUser().then(function(user){
+            if(!user) {
+                return next({});
+            }
 
-        // No negative posts per page, must be number
-        if (!isNaN(postsPerPage) && postsPerPage > 0) {
-            options.limit = postsPerPage;
-        }
-        options.include = 'author,tags,fields';
-        return api.posts.browse(options).then(function(results){
-            return dataProvider.Tag.findAll().then(function(data){
-                var tags = {};
-                for(var i in data.models) {
-                    tags[data.models[i].get("name")] = (data.models[i]);
+            // Load everything they like
+            return dataProvider.UserPostLike.fetchAll({user_id: user.id}).then(function(likes){
+                var likes_by_post_id = {};
+                for(var i = 0 ; i < likes.models.length ; i++) {
+                    likes_by_post_id[likes.models[i].attributes.post_id] = true;
                 }
+                return next(likes_by_post_id);
+            });
+        });
 
-                results.allTags = tags;
+    } else {
+        return next({});
+    }
+
+    function next(user_likes) {
+        return api.settings.read('postsPerPage').then(function (response) {
+            var postPP = response.settings[0],
+                postsPerPage = parseInt(postPP.value, 10);
+
+            // No negative posts per page, must be number
+            if (!isNaN(postsPerPage) && postsPerPage > 0) {
+                options.limit = postsPerPage;
+            }
+            options.include = 'author,tags,fields';
+            return api.posts.browse(options).then(function(results){
+                return dataProvider.Tag.findAll().then(function(data){
+                    var tags = {};
+                    for(var i in data.models) {
+                        tags[data.models[i].get("name")] = (data.models[i]);
+                    }
+
+                    results.allTags = tags;
+                    
+                    // if the user likes posts, loop over the posts quickly and flag the ones he likes
+                    for(var i = 0 ; i < results.posts.length ; i++) {
+                        if(user_likes[results.posts[i].id]) {
+                            results.posts[i].current_user_likes = true;
+                        } else {
+                            results.posts[i].current_user_likes = false;
+                        }
+                    }
+
+                    return results;
+                });
+            }).then(function(results){
                 return results;
             });
-        }).then(function(results){
-            return results;
         });
-    });
+    }
 }
 
 /**
@@ -100,6 +133,9 @@ function setResponseContext(req, res, data) {
     } else if (req.route.path.indexOf('/latest') === 0) {
         contexts.push('latest');
         contexts.push('index');
+    } else if (req.route.path.indexOf('/popular') === 0) {
+        contexts.push('popular');
+        contexts.push('index');
     } else if (/\/rss\/(:page\/)?$/.test(req.route.path)) {
         contexts.push('rss');
     } else if (tagPattern.test(req.route.path)) {
@@ -142,6 +178,61 @@ function getActiveThemePaths() {
 }
 
 frontendControllers = {
+
+    // like a post, make sure the current user hasnt already liked it...
+    like_post: function(req, res, next){
+        if(req.user) {
+            // get the actual user (users table instance)
+            req.user.getUser().then(function(user){
+                // Try to load a user post like for this and see if there is one
+                dataProvider.UserPostLike.forge({user_id: user.id, post_id: req.params.post_id}).fetch().then(function(like){
+                    if(like) {
+                        return res.json({"error": "You have already liked this post."});
+                    }
+
+                    // Look up the psot now and make sure it exists
+                    return dataProvider.Post.forge({id: req.params.post_id}).fetch({withRelated: ["tags"]}).then(function(post){
+                        if(!post) {
+                            return res.json({"error": "Post not found."});
+                        }
+
+                        // Create the user post like
+                        return dataProvider.UserPostLike.forge({user_id: user.id, post_id: req.params.post_id}).save(null, {context: {internal: true}}).then(function(){
+                            post.set("like_count", post.get("like_count") + 1);
+                            post.save({"like_count": post.get("like_count")}, {ignoreTags: true, context: {internal: true}}).then(function(post){
+                                return res.json({"like_count": post.get("like_count")});
+                            });
+                        });
+                    });
+                });
+            });
+        } else {
+            next();
+        }
+    },
+
+    // Update the users name and bio
+    user_update: function(req, res, next){
+        if(req.user && (req.body.name || req.body.bio)) {
+            // get the actual user (users table instance)
+            req.user.getUser().then(function(user){
+                if(req.body.name){
+                    user.set("name", req.body.name);
+                }
+
+                if(req.body.bio) {
+                    user.set("bio", req.body.bio);
+                }
+
+                user.save().then(function(){
+                    return res.redirect("/user/" + user.get("slug"));
+                });
+            });
+        } else {
+            next();
+        }
+    },
+
     // handle the post request fro mthe main site to set up the access token
     signin: function(req, res, next){
         if(req.user) {
@@ -185,7 +276,7 @@ frontendControllers = {
             req.user.set("status_date", new Date());
             req.user.save(null, {context: {internal: true}});
 
-            var image_url = user.image_url;
+            var image_url = user ? user.image_url : null;
 
             // Join the sso user to the users table (create a new one if necessary)
             dataProvider.User.forge({"email":req.body.email}).fetch().then(function(user){
@@ -196,7 +287,7 @@ frontendControllers = {
                     return dataProvider.User.hashPassword(password).then(function(hashedPw) { 
                         user.set("password", hashedPw);
                         user.set("image", image_url);
-                        return user.save(null, {context: {internal: true}}); 
+                        return user.save(null, {context: {internal: true}});
                     });
                 }
 
@@ -206,12 +297,51 @@ frontendControllers = {
                     "password": password,
                     "email": req.user.get("email"),
                     "image": image_url
-                }, {context: {internal: true}});
+                }, {context: {internal: true}}).then(function(){
+                });
             });
         });
 
         
         res.redirect(req.session.lastUrl);
+    },
+
+    // Popular sorts by the number of likes in the like_count column
+    popular: function(req, res, next){
+        // Parse the page number
+        var pageParam = req.params.page !== undefined ? parseInt(req.params.page, 10) : 1,
+            options = {
+                page: pageParam,
+                currentUser: req.user,
+                popular: true
+            };
+
+        // No negative pages, or page 1
+        if (isNaN(pageParam) || pageParam < 1 || (pageParam === 1 && req.route.path === '/page/:page/')) {
+            return res.redirect(config.paths.subdir + '/');
+        }
+        return getPostPage(options).then(function (page) {
+            // If page is greater than number of pages we have, redirect to last page
+            if (pageParam > page.meta.pagination.pages) {
+                return res.redirect(page.meta.pagination.pages === 1 ? config.paths.subdir + '/' : (config.paths.subdir + '/page/' + page.meta.pagination.pages + '/'));
+            }
+
+            setReqCtx(req, page.posts);
+
+            // Render the page of posts
+            filters.doFilter('prePostsRender', page.posts).then(function (posts) {
+                getActiveThemePaths().then(function (paths) {
+                    var view = paths.hasOwnProperty('popular.hbs') ? 'popular' : 'index';
+
+                    setResponseContext(req, res);
+                    if(req.query.ajax) {
+                        res.render("partials/loop", formatPageResponse(posts, page, {ssoUser:req.user}));
+                    } else {
+                        res.render(view, formatPageResponse(posts, page, {ssoUser:req.user}));
+                    }
+                });
+            });
+        }).catch(handleError(next));
     },
 
     // Latest behaves like the old index page...
@@ -220,6 +350,7 @@ frontendControllers = {
         var pageParam = req.params.page !== undefined ? parseInt(req.params.page, 10) : 1,
             options = {
                 page: pageParam,
+                currentUser: req.user
             };
 
         // No negative pages, or page 1
@@ -238,13 +369,7 @@ frontendControllers = {
             // Render the page of posts
             filters.doFilter('prePostsRender', page.posts).then(function (posts) {
                 getActiveThemePaths().then(function (paths) {
-                    var view = paths.hasOwnProperty('home.hbs') ? 'home' : 'index';
-
-                    // If we're on a page then we always render the index
-                    // template.
-                    if (pageParam > 1) {
-                        view = 'index';
-                    }
+                    var view = paths.hasOwnProperty('latest.hbs') ? 'latest' : 'index';
 
                     setResponseContext(req, res);
                     if(req.query.ajax) {
@@ -261,10 +386,8 @@ frontendControllers = {
         var pageParam = req.params.page !== undefined ? parseInt(req.params.page, 10) : 1,
             options = {
                 page: pageParam,
+                currentUser: req.user
             };
-
-
-console.log("** in homepage, req.user = ",req.user? req.user.displayName : "who knows?");
 
         if(config.homeTag) {
             options["tag"] = config.homeTag;
@@ -309,7 +432,8 @@ console.log("** in homepage, req.user = ",req.user? req.user.displayName : "who 
         var pageParam = req.params.page !== undefined ? parseInt(req.params.page, 10) : 1,
             options = {
                 page: pageParam,
-                tag: req.params.slug
+                tag: req.params.slug,
+                currentUser: req.user
             };
             
         // Get url for tag page
@@ -368,7 +492,8 @@ console.log("** in homepage, req.user = ",req.user? req.user.displayName : "who 
         var pageParam = req.params.page !== undefined ? parseInt(req.params.page, 10) : 1,
             options = {
                 page: pageParam,
-                author: req.params.slug
+                author: req.params.slug,
+                currentUser: req.user
             };
 
         // Get url for tag page
@@ -475,7 +600,7 @@ console.log("** in homepage, req.user = ",req.user? req.user.displayName : "who 
             // Sanitize params we're going to use to lookup the post.
             postLookup = _.pick(params, 'slug', 'id');
             // Add author, tag and fields
-            postLookup.include = 'author,tags,fields';
+            postLookup.include = 'author,tags,fields,user_likes';
 
             // Query database to find post
             return api.posts.read(postLookup);
@@ -573,7 +698,24 @@ console.log("** in homepage, req.user = ",req.user? req.user.displayName : "who 
                 return next();
             }
 
-            return render();
+            // Look up if the current user has liked this post or not before rendering.
+            post.current_user_likes = false;
+            if(req.user) {
+                return req.user.getUser().then(function(user){
+                    if(!user) {
+                        return render();
+                    }
+
+                    return dataProvider.UserPostLike.forge({post_id: post.id, user_id: user.id}).fetch().then(function(likes){
+                        if(likes) {
+                            post.current_user_likes = true;
+                        }
+                        return render();
+                    });
+                });
+            } else {
+                return render();
+            }
         }).catch(function (err) {
             // If we've thrown an error message
             // of type: 'NotFound' then we found

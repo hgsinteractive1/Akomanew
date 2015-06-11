@@ -29,4 +29,15 @@ akomarequire(['jquery','main','ensure_auth'], function($, main, ensure_auth) {
     $(document).ready(function() {
       main.init();
     });
+
+    $(document).on("click", "[data-like-post]", function(){
+      var post_id = $(this).attr("data-like-post");
+      var self = $(this);
+      $.get("/post/like/" + post_id, {}, function(data){
+        if(data.like_count) {
+          self.addClass("active");
+          $(".count", self.closest(".recommend")).html(data.like_count);
+        }
+      });
+    });
 });
