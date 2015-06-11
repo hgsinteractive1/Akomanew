@@ -2366,22 +2366,27 @@
 
 					}
 
-
 					a#on-social-facebook {
-						width: 32px;
-						height: 24px;
+						width: 16px;
+						height: 26px;
 						margin-top:4px;
+						position:relative;
+						left:-2px;
 						display: inline-block;
 
-						background: url(#{$assets_path}images/on_social_twitter.png) top left no-repeat;
+						background: url(#{$assets_path}images/on_social_facebook.png) top left no-repeat;
 						/* 1.5 dpr */
 						@media(-webkit-min-device-pixel-ratio: 1.5), 
 						(min-resolution: 144dpi){ 
-						    background: url(#{$assets_path}images/on_social_twitter@2x.png) top left no-repeat;
+						    background: url(#{$assets_path}images/on_social_facebook@2x.png) top left no-repeat;
 						    background-size:100%;
 						}
 
 					}
+
+
+
+
 
 					&.primary-action {
 						width: 210px;

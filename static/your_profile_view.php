@@ -49,7 +49,8 @@
 			</li>
 			<li class="social">
 				<h4>On Social</h4>
-				<a href="#" id="on-social-twitter"></a>
+				<!--<a href="#" id="on-social-twitter"></a>-->
+				<a href="#" id="on-social-facebook"></a>
 			</li>
 			<li class="primary-action">
 

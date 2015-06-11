@@ -3695,35 +3695,37 @@ a#menu-icon.menu-is-open div.menu-bar.three {
     background-size: 100%;
   }
 }
-/* line 2370, ../sass/screen.scss */
+/* line 2369, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li a#on-social-facebook {
-  width: 32px;
-  height: 24px;
+  width: 16px;
+  height: 26px;
   margin-top: 4px;
+  position: relative;
+  left: -2px;
   display: inline-block;
-  background: url(../images/on_social_twitter.png) top left no-repeat;
+  background: url(../images/on_social_facebook.png) top left no-repeat;
   /* 1.5 dpr */
 }
 @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
-  /* line 2370, ../sass/screen.scss */
+  /* line 2369, ../sass/screen.scss */
   #user-profile-wrapper #profile-stats ul#stats-list li a#on-social-facebook {
-    background: url(../images/on_social_twitter@2x.png) top left no-repeat;
+    background: url(../images/on_social_facebook@2x.png) top left no-repeat;
     background-size: 100%;
   }
 }
-/* line 2386, ../sass/screen.scss */
+/* line 2391, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action {
   width: 210px;
   position: relative;
 }
 @media only screen and (max-width: 768px) {
-  /* line 2386, ../sass/screen.scss */
+  /* line 2391, ../sass/screen.scss */
   #user-profile-wrapper #profile-stats ul#stats-list li.primary-action {
     display: block;
     width: 100%;
   }
 }
-/* line 2396, ../sass/screen.scss */
+/* line 2401, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action ul#manage-edits-buttons {
   height: 44px;
   width: 220px;
@@ -3732,7 +3734,7 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   top: 16px;
   left: 20px;
 }
-/* line 2404, ../sass/screen.scss */
+/* line 2409, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action ul#manage-edits-buttons li.manage-edit-button-list {
   padding: 0px;
   float: left;
@@ -3741,11 +3743,11 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   font-weight: 500;
   width: 105px;
 }
-/* line 2412, ../sass/screen.scss */
+/* line 2417, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action ul#manage-edits-buttons li.manage-edit-button-list.no-margin {
   margin-right: 0px;
 }
-/* line 2416, ../sass/screen.scss */
+/* line 2421, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action ul#manage-edits-buttons li.manage-edit-button-list a.manage-edits-button {
   margin: 0px;
   width: 100%;
@@ -3755,17 +3757,17 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   padding-top: 15px;
   text-decoration: none;
 }
-/* line 2425, ../sass/screen.scss */
+/* line 2430, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action ul#manage-edits-buttons li.manage-edit-button-list a.manage-edits-button#save-edits {
   background: #1B8CD5;
   color: #FFF;
 }
-/* line 2430, ../sass/screen.scss */
+/* line 2435, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action ul#manage-edits-buttons li.manage-edit-button-list a.manage-edits-button#cancel-edits {
   background: #EFEFEF;
   color: #000;
 }
-/* line 2440, ../sass/screen.scss */
+/* line 2445, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action {
   display: block;
   margin: 0 auto;
@@ -3783,7 +3785,7 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   left: 20px;
 }
 @media only screen and (max-width: 768px) {
-  /* line 2440, ../sass/screen.scss */
+  /* line 2445, ../sass/screen.scss */
   #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action {
     display: block;
     width: 100%;
@@ -3791,11 +3793,11 @@ a#menu-icon.menu-is-open div.menu-bar.three {
     left: 0px;
   }
 }
-/* line 2464, ../sass/screen.scss */
+/* line 2469, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon {
   position: absolute;
 }
-/* line 2468, ../sass/screen.scss */
+/* line 2473, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.follow {
   width: 15px;
   height: 15px;
@@ -3803,7 +3805,7 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   left: 50%;
   margin-left: -53px;
 }
-/* line 2475, ../sass/screen.scss */
+/* line 2480, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.follow div.bar-one {
   position: absolute;
   width: 2px;
@@ -3812,7 +3814,7 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   left: 7px;
   top: 0px;
 }
-/* line 2484, ../sass/screen.scss */
+/* line 2489, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.follow div.bar-two {
   position: absolute;
   width: 16px;
@@ -3821,7 +3823,7 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   left: 0px;
   top: 7px;
 }
-/* line 2496, ../sass/screen.scss */
+/* line 2501, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.following {
   top: -4px;
   left: 50%;
@@ -3832,13 +3834,13 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   /* 1.5 dpr */
 }
 @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
-  /* line 2496, ../sass/screen.scss */
+  /* line 2501, ../sass/screen.scss */
   #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.following {
     background: url(../images/following_author@2x.png) top left no-repeat;
     background-size: 100%;
   }
 }
-/* line 2513, ../sass/screen.scss */
+/* line 2518, ../sass/screen.scss */
 #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.edit-profile {
   top: 0px;
   left: 50%;
@@ -3849,25 +3851,25 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   /* 1.5 dpr */
 }
 @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
-  /* line 2513, ../sass/screen.scss */
+  /* line 2518, ../sass/screen.scss */
   #user-profile-wrapper #profile-stats ul#stats-list li.primary-action a#author-action div.icon.edit-profile {
     background: url(../images/edit_profile@2x.png) top left no-repeat;
     background-size: 100%;
   }
 }
-/* line 2544, ../sass/screen.scss */
+/* line 2549, ../sass/screen.scss */
 #user-profile-wrapper.is-editable #profile-overview #profile-summary h3#username {
   display: none;
 }
-/* line 2552, ../sass/screen.scss */
+/* line 2557, ../sass/screen.scss */
 #user-profile-wrapper.is-editable #profile-overview #profile-summary p#bio {
   display: none;
 }
-/* line 2556, ../sass/screen.scss */
+/* line 2561, ../sass/screen.scss */
 #user-profile-wrapper.is-editable #profile-overview #profile-summary span#country-text {
   display: none;
 }
-/* line 2560, ../sass/screen.scss */
+/* line 2565, ../sass/screen.scss */
 #user-profile-wrapper.is-editable #profile-overview #profile-summary select#country {
   display: inline-block;
   width: 150px;
@@ -3876,70 +3878,70 @@ a#menu-icon.menu-is-open div.menu-bar.three {
   top: -1px;
   position: relative;
 }
-/* line 2569, ../sass/screen.scss */
+/* line 2574, ../sass/screen.scss */
 #user-profile-wrapper.is-editable #profile-overview #profile-summary textarea#bio-textarea {
   display: block;
 }
 @media only screen and (max-width: 768px) {
-  /* line 2569, ../sass/screen.scss */
+  /* line 2574, ../sass/screen.scss */
   #user-profile-wrapper.is-editable #profile-overview #profile-summary textarea#bio-textarea {
     text-align: center;
   }
 }
-/* line 2576, ../sass/screen.scss */
+/* line 2581, ../sass/screen.scss */
 #user-profile-wrapper.is-editable #profile-overview #profile-summary input#username-input {
   display: block;
 }
 @media only screen and (max-width: 768px) {
-  /* line 2576, ../sass/screen.scss */
+  /* line 2581, ../sass/screen.scss */
   #user-profile-wrapper.is-editable #profile-overview #profile-summary input#username-input {
     text-align: center;
   }
 }
-/* line 2593, ../sass/screen.scss */
+/* line 2598, ../sass/screen.scss */
 #user-profile-wrapper.is-editable #profile-stats ul#stats-list li {
   width: 145px;
 }
 @media only screen and (max-width: 768px) {
-  /* line 2593, ../sass/screen.scss */
+  /* line 2598, ../sass/screen.scss */
   #user-profile-wrapper.is-editable #profile-stats ul#stats-list li {
     width: 33%;
   }
 }
-/* line 2601, ../sass/screen.scss */
+/* line 2606, ../sass/screen.scss */
 #user-profile-wrapper.is-editable #profile-stats ul#stats-list li.primary-action {
   width: 154px;
 }
 @media only screen and (max-width: 768px) {
-  /* line 2601, ../sass/screen.scss */
+  /* line 2606, ../sass/screen.scss */
   #user-profile-wrapper.is-editable #profile-stats ul#stats-list li.primary-action {
     width: 100%;
   }
 }
-/* line 2608, ../sass/screen.scss */
+/* line 2613, ../sass/screen.scss */
 #user-profile-wrapper.is-editable #profile-stats ul#stats-list li.primary-action a#author-action {
   display: none;
 }
-/* line 2612, ../sass/screen.scss */
+/* line 2617, ../sass/screen.scss */
 #user-profile-wrapper.is-editable #profile-stats ul#stats-list li.primary-action ul#manage-edits-buttons {
   display: block;
 }
 @media only screen and (max-width: 768px) {
-  /* line 2612, ../sass/screen.scss */
+  /* line 2617, ../sass/screen.scss */
   #user-profile-wrapper.is-editable #profile-stats ul#stats-list li.primary-action ul#manage-edits-buttons {
     width: 100%;
     left: 0px;
   }
 }
 @media only screen and (max-width: 768px) {
-  /* line 2619, ../sass/screen.scss */
+  /* line 2624, ../sass/screen.scss */
   #user-profile-wrapper.is-editable #profile-stats ul#stats-list li.primary-action ul#manage-edits-buttons li.manage-edit-button-list {
     width: 48%;
     margin-right: 4%;
   }
 }
 @media only screen and (max-width: 768px) {
-  /* line 2625, ../sass/screen.scss */
+  /* line 2630, ../sass/screen.scss */
   #user-profile-wrapper.is-editable #profile-stats ul#stats-list li.primary-action ul#manage-edits-buttons li.manage-edit-button-list.no-margin {
     margin-right: 0px;
   }
