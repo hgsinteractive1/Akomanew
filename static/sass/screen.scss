@@ -1321,25 +1321,42 @@
 					display:block;
 					border-radius: 40px;
 					color: $light-grey;
-					font-size: 14px;
+					font-size: 12px;
 					padding-top:14px;
-					padding-left:50px;
 					text-decoration: none;
-					background: url(#{$assets_path}images/heart_recommend.png) no-repeat;
 					background-position: 12px 10px;
+					position:relative;
+					padding-left:50px;
+
+					div.heart {
+						position:absolute;
+						top:10px;
+						left:14px;
+						height: 20px;
+						width: 21px;
+						background-position: 0 0;
+						background: url(#{$assets_path}images/heart_recommend.png) no-repeat;
+
+
+					}
 
 					@include respond-to(handhelds) {
 						float: none;
 						margin-top:6px;
 					}
 
-						/* 1.5 dpr */
-						@media(-webkit-min-device-pixel-ratio: 1.5), 
-						(min-resolution: 144dpi) { 
-						    background: url(#{$assets_path}images/heart_recommend@2x.png) no-repeat;
-						   	background-position: 12px 10px;
-						    background-size:14%;
+
+					&.active {
+						background: $aKoma-blue;
+						border: 2px solid $aKoma-blue;
+						color:#FFF;
+						width: 97px;
+						padding-left:58px;
+
+						div.heart {
+							background-position: 0 -20px;
 						}
+					}
 				}
 
 				&.expanded {

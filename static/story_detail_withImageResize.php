@@ -102,7 +102,12 @@
 					<li><a href="#" class="share-button email"></a></li>
 				</ul>
 			</div>
-			<a href="#" class="recommend-button">Fancy This</a>
+			<!--ACTIVE-->
+			<a href="#" class="recommend-button active"><div class="heart"></div>Fancied</a>
+			<!--END ACTIVE-->
+			<!--INACTIVE-->
+			<!--<a href="#" class="recommend-button"><div class="heart"></div>Fancy This</a>-->
+			<!--END INACTIVE-->
 			<div class="clear"></div>
 		</div>
 		<!--STORY META-->
