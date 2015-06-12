@@ -216,17 +216,9 @@ frontendControllers = {
         if(req.user && (req.body.name || req.body.bio)) {
             // get the actual user (users table instance)
             req.user.getUser().then(function(user){
-                if(req.body.name){
-                    user.set("name", req.body.name);
-                }
-
-                if(req.body.bio) {
-                    user.set("bio", req.body.bio);
-                }
-
-                if(req.body.location) {
-                    user.set("location", req.body.location);
-                }
+                user.set("name", req.body.name);
+                user.set("bio", req.body.bio);
+                user.set("location", req.body.location);
 
                 user.save().then(function(){
                     return res.json({"updated": true});

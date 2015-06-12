@@ -483,7 +483,12 @@ Post = ghostBookshelf.Model.extend({
 
         function fetchAuthorQuery() {
             if (authorInstance) {
-                return authorInstance.fetch();
+                return authorInstance.fetch().then(function(author){
+                    return ghostBookshelf.model("SSOUser").forge({email: author.get("email")}).fetch().then(function(ssoauthor){
+                        author.set("ssoUser",ssoauthor);
+                        return author;
+                    });
+                });
             }
             return false;
         }
