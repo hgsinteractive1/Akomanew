@@ -107,6 +107,11 @@ body {
     height:145px!important;
 }
 
+.editor #story-detail #story-image img {
+    max-height: 200px;
+    width: auto;
+}
+
 .image-uploader .media:before {
     display: block;
 }
