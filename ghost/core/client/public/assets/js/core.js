@@ -30,19 +30,4 @@ akomarequire(['jquery','main','ensure_auth'], function($, main, ensure_auth) {
     $(document).ready(function() {
       main.init();
     });
-
-    $(document).on("click", "[data-like-post].recommend-button", function(e){
-      e.preventDefault();
-      var post_id = $(this).attr("data-like-post");
-      var self = $(this);
-      $.get("/post/like/" + post_id, {}, function(data){
-        if(data.like_count) {
-          $("[data-like-post=" + post_id +"]").addClass("active");
-
-          $("[data-like-post=" + post_id +"]").each(function(i, item){
-            $(".count", item.closest(".recommend")).html(data.like_count);
-          });
-        }
-      });
-    });
 });

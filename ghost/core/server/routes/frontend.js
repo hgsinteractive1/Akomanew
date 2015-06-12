@@ -97,6 +97,7 @@ frontendRoutes = function () {
 
     // Liek a post
     router.get("/post/like/:post_id/", frontend.like_post);
+    router.get("/post/unlike/:post_id/", frontend.unlike_post);
 
     // Default
     router.get('/' + config.routeKeywords.page + '/:page/', frontend.homepage);

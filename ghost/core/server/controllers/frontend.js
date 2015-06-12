@@ -211,6 +211,37 @@ frontendControllers = {
         }
     },
 
+    unlike_post: function(req, res, next){
+        if(req.user) {
+            // get the actual user (users table instance)
+            req.user.getUser().then(function(user){
+                // Try to load a user post like for this and see if there is one
+                dataProvider.UserPostLike.forge({user_id: user.id, post_id: req.params.post_id}).fetch().then(function(like){
+                    if(!like) {
+                        return res.json({"error": "You haven't liked this post yet."});
+                    }
+
+                    // Look up the psot now and make sure it exists
+                    return dataProvider.Post.forge({id: req.params.post_id}).fetch({withRelated: ["tags"]}).then(function(post){
+                        if(!post) {
+                            return res.json({"error": "Post not found."});
+                        }
+
+                        // Create the user post like
+                        return dataProvider.UserPostLike.forge().where({user_id: user.id, post_id: req.params.post_id}).destroy(null, {context: {internal: true}}).then(function(){
+                            post.set("like_count", post.get("like_count") - 1);
+                            post.save({"like_count": post.get("like_count")}, {ignoreTags: true, context: {internal: true}}).then(function(post){
+                                return res.json({"like_count": post.get("like_count")});
+                            });
+                        });
+                    });
+                });
+            });
+        } else {
+            next();
+        }
+    },
+
     // Update the users name and bio
     user_update: function(req, res, next){
         if(req.user && (req.body.name || req.body.bio)) {
