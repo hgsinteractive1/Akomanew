@@ -31,7 +31,7 @@ SocialStrategies.prototype.init = function () {
       process.nextTick(function () {
 //        console.log ("Twitter user profile for: " + profile.displayName);
         return models.SSOUser.getWithNetworkAndSocialId("twitter", profile.id).then(function(sso_user){
-           sso_user.set("image_url", profile.photos[0].value.replace("_normal.png", ".png"));
+           sso_user.set("image_url", profile.photos[0].value.replace("_normal.", "."));
             return sso_user.save(null, {context:{internal:true}}).then(function(){
               // check if the user connected to this sso user has an image
               sso_user.getUser().then(function(user){
