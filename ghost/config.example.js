@@ -21,13 +21,19 @@ config = {
             debug: false
         },
 
-        // NOT USED JUST YET
-        // Override the callback HOST value with the host we want SSO provider to call back
-        // e.g. http://b.akomanet.com
-        // e.g. http://127.0.0.1 -- NOT localhost as Twitter barfs at it
-         TWITTER_CONSUMER_KEY: 'NRfJBexESA1fGKjXv9OidwLVd',
-         TWITTER_CONSUMER_SECRET: 'MAYbbLLoiG2YSA0Tva6h4fPCs9TNAVJMxTeiwmXjIgcGK6A3F',
-         TWITTER_CALLBACK: 'http://b.akomanet.com:/auth/twitter/callback',
+        social: {
+            twitter: {
+                consumer_key: 'fIb6p1ZvVzo0jq9JEC5dMnGol',
+                consumer_secret: 'ipX1rv6n5MZPLZ7Whzex1SeApCo2pGmo6hIit9k21Ro6CZLIBS',
+                callback: '/auth/twitter/callback',
+            },
+            facebook: {
+                client_id: '1676527852575789',
+                client_secret: '89ee80812066b8bb9dca9c8fc7ef27b8',
+                callback: '/auth/facebook/callback',
+            }
+        },
+
 
         server: {
             // Host to be passed to node's `net.Server#listen()`
