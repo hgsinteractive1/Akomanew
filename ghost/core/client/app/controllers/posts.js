@@ -29,8 +29,8 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
     filterOptions: [
         {"name":"All", "slug":"All"}, 
         {"name":"Faves", "slug":"faves"}, 
-        {"name":"Life", "slug":"life"}, 
-        {"name":"Ideas", "slug":"ideas"}, 
+        {"name":"Live", "slug":"live"}, 
+        {"name":"Think", "slug":"think"}, 
         {"name":"Rant", "slug":"rant"}, 
         {"name":"Learn", "slug":"learn"}
     ],
