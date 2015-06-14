@@ -12,7 +12,6 @@ config = {
     production: {
         url: 'http://b.akomanet.com',
 
-        mail: {},
         database: {
             client: 'sqlite3',
             connection: {
@@ -21,6 +20,7 @@ config = {
             debug: false
         },
 
+        // Production Social configuration
         social: {
             twitter: {
                 consumer_key: 'fIb6p1ZvVzo0jq9JEC5dMnGol',
@@ -34,6 +34,17 @@ config = {
             }
         },
 
+        // Production Mailgun configuration
+        mail: {
+            transport: 'SMTP',
+            options: {
+                service: 'Mailgun',
+                auth: {
+                    user: 'postmaster@mail.akomanet.com', // mailgun username
+                    pass: '85fcd18f05e977e4357c5084b805c43e'  // mailgun password
+                }
+            }
+        },
 
         server: {
             // Host to be passed to node's `net.Server#listen()`
@@ -41,6 +52,7 @@ config = {
             // Port to be passed to node's `net.Server#listen()`, for iisnode set this to `process.env.PORT`
             port: '2368'
         },
+
         "homeTag":"faves",
         "salt":"ASDFASDCASFAZDFASGFASEDACS"
     },
@@ -92,6 +104,7 @@ config = {
         paths: {
             contentPath: path.join(__dirname, '/content/')
         },
+        
         "homeTag":"faves",
         "salt":"ASDFASDCASFAZDFASGFASEDACS"
     },
