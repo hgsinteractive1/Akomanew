@@ -6,7 +6,8 @@ akomarequire.config({
     "mainNav": "modules/main_nav",
     "storyShareTools": "modules/story_share",
     "fullBleedHero": "modules/full_bleed_hero",
-    "pagination": "modules/pagination",
+    "pagination": "modules/pagination",    
+    "editProfile": "modules/edit_profile",
 
 
     //PRIMARY CONTROLLERS
