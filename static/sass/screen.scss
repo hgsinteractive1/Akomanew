@@ -12,6 +12,7 @@
 	//COLOR SCHEME
 	$aKoma-yellow : #F0950C;
 	$aKoma-blue : #1B8CD5;
+	$aKoma-hover-blue : #157CCA;
 	$light-grey : #979797;
 	$mid-grey : #666666;
 	$dark : #000;
@@ -206,6 +207,10 @@
 						font-weight: 500;
 						-webkit-border-fit:border !important;
 					 	-webkit-text-size-adjust: none;
+
+					 	&:hover {
+					 		background: $aKoma-hover-blue;
+					 	}
 						
 					}
 
@@ -307,10 +312,18 @@
 					float:left;
 					margin-right:20px;
 
+					@include respond-to(handhelds) {
+						margin-right:16px;
+					}
+
 					a.footer-link {
 						font-size: 14px;
 						color: $light-grey;
 						text-decoration: none;
+
+						&:hover {
+							color: $mid-grey;
+						}
 
 						@include respond-to(handhelds) {
 							font-size: 12px;
@@ -714,6 +727,10 @@
 					text-decoration: none;
 					font-family: $akoma-fonts;
 					font-weight: 500;
+
+					&:hover {
+						color: #0168AB;
+					}
 				}
 			}
 
@@ -1094,6 +1111,7 @@
 				line-height: 37px;
 				margin-bottom: 30px;
 				font-weight: bold;
+				font-style: italic;
 			}
 
 			div.editable-wrapper {
