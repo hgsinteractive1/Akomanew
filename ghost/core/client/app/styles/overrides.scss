@@ -67,7 +67,13 @@ body {
 	.markdown-editor {
         position: relative;
         padding:0px;
+        top:0px;
         font-family: inherit;
+    }
+
+    #story-detail #story-intro h2 div { 
+        min-height:55px;
+        width:100%;
     }
 
     .entry-markdown,
