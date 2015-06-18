@@ -97,17 +97,12 @@
 				</ul>
 				<div class="clear"></div>
 				<ul id="secondary-share">
-					<li><a href="#" class="share-button google-plus"></a></li>
+					<!--<li><a href="#" class="share-button google-plus"></a></li>-->
 					<li><a href="#" class="share-button linkedIn"></a></li>
 					<li><a href="#" class="share-button email"></a></li>
 				</ul>
 			</div>
-			<!--ACTIVE-->
-			<a href="#" class="recommend-button active"><div class="heart"></div>Fancied</a>
-			<!--END ACTIVE-->
-			<!--INACTIVE-->
-			<!--<a href="#" class="recommend-button"><div class="heart"></div>Fancy This</a>-->
-			<!--END INACTIVE-->
+			<a href="#" class="recommend-button"><div class="heart"></div>Fancy This</a>
 			<div class="clear"></div>
 		</div>
 		<!--STORY META-->
@@ -156,3 +151,4 @@
 <!--END-->
 </body>
 </html>
+
