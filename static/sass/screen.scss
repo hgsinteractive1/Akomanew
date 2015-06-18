@@ -633,6 +633,7 @@
 				color: #FFF;
 				letter-spacing: 6px;
 				font-weight: 500;
+				text-transform: uppercase;
 
 				@include respond-to(handhelds) {
 					font-size: 60px;
