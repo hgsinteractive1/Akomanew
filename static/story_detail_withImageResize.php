@@ -98,7 +98,7 @@
 				<div class="clear"></div>
 				<ul id="secondary-share">
 					<!--<li><a href="#" class="share-button google-plus"></a></li>-->
-					<li><a href="#" class="share-button linkedIn"></a></li>
+					<!--<li><a href="#" class="share-button linkedIn"></a></li>-->
 					<li><a href="#" class="share-button email"></a></li>
 				</ul>
 			</div>
