@@ -290,7 +290,7 @@
 					width: 18px;
 					top:11px;
 					left: 20px;
-					background: url(../images/form_name_icon.png) top left no-repeat;
+					background: url(#{$assets_path}images/form_name_icon.png) top left no-repeat;
 
 					@media(-webkit-min-device-pixel-ratio: 1.5), 
 					(min-resolution: 144dpi){ 
@@ -304,7 +304,7 @@
 					width: 24px;
 					top:14px;
 					left: 17px;
-					background: url(../images/form_email_icon.png) top left no-repeat;
+					background: url(#{$assets_path}images/form_email_icon.png) top left no-repeat;
 
 					/* 1.5 dpr */
 					@media(-webkit-min-device-pixel-ratio: 1.5), 

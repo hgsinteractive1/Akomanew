@@ -17,6 +17,7 @@ var moment      = require('moment'),
     passport    = require('passport'),
     routeMatch  = require('path-match')(),
     middleware = require("../middleware/middleware"),
+    mail            = require('../api/mail'),
 
     frontendControllers,
     staticPostPermalink;
@@ -177,6 +178,26 @@ function getActiveThemePaths() {
     });
 }
 
+
+/**
+ * Send an email
+ **/
+function sendEmail(sendTo, subject, message) {
+    var payload = {
+        mail: [{
+            message: {
+                to: sendTo,
+                subject: subject,
+                html: message.replace(/(?:\r\n|\r|\n)/g, '<br />'),
+                text: message
+            },
+            options: {}
+        }]
+    };
+
+    return mail.send(payload, {context: {internal: true}});
+}
+
 frontendControllers = {
 
     // like a post, make sure the current user hasnt already liked it...
@@ -303,7 +324,7 @@ frontendControllers = {
             req.user.set("status_date", new Date());
             req.user.save(null, {context: {internal: true}});
 
-            var image_url = user ? user.image_url : null;
+            var image_url = req.user ? req.user.attributes.image_url : null;
 
             // Join the sso user to the users table (create a new one if necessary)
             dataProvider.User.forge({"email":req.body.email}).fetch().then(function(user){
@@ -314,7 +335,9 @@ frontendControllers = {
                     return dataProvider.User.hashPassword(password).then(function(hashedPw) { 
                         user.set("password", hashedPw);
                         user.set("image", image_url);
-                        return user.save(null, {context: {internal: true}});
+                        return user.save(null, {context: {internal: true}}).then(function(){
+                            sendEmail(user.get("email"), config.notifications.access_requested.subject, config.notifications.access_requested.copy);
+                        });
                     });
                 }
 
@@ -325,6 +348,7 @@ frontendControllers = {
                     "email": req.user.get("email"),
                     "image": image_url
                 }, {context: {internal: true}}).then(function(){
+                    sendEmail(user.get("email"), config.notifications.access_requested.subject, config.notifications.access_requested.copy);
                 });
             });
         });

@@ -20,24 +20,29 @@
 				<div id="tint"></div>
 			</a>
 		{{/featuredPost}}
+		<!--HEADLINE AREA-->
+		<div id="headline">
+			<h3>{{tag.name}}
+			{{#if tag.description}}
+				<span class="circle-decoration"></span>
+				<span class="cat-descrip">{{tag.description}}</span></h3>
+			{{/if}}
+			{{#if featuredPost}}
+				{{#featuredPost}}
+					<h4><a href="{{url}}">{{title}}</h4>
+				{{/featuredPost}}
+			{{/if}}
+		</div>
+		<!--END HEADLINE-->
 	{{else}}
 		<div id="tint"></div>
+
+		<div id="category-description">
+			<h2>{{tag.name}}</h2>
+			<p>{{tag.description}}</p>
+		</div>
 	{{/if}}
 	<!--END TINT AREA-->
-	<!--HEADLINE AREA-->
-	<div id="headline">
-		<h3>{{tag.name}}
-		{{#if tag.description}}
-			<span class="circle-decoration"></span>
-			<span class="cat-descrip">{{tag.description}}</span></h3>
-		{{/if}}
-		{{#if featuredPost}}
-			{{#featuredPost}}
-				<h4><a href="{{url}}">{{title}}</h4>
-			{{/featuredPost}}
-		{{/if}}
-	</div>
-	<!--END HEADLINE-->
 </div>
 <!--END CATEGORY HERO AREA-->
 

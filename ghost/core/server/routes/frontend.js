@@ -74,7 +74,7 @@ frontendRoutes = function () {
     router.get('/auth/twitter', passport.authenticate('twitter'));
     router.get('/auth/twitter/callback', passport.authenticate('twitter'), frontend.social_callback);
     router.get('/auth/facebook', passport.authenticate('facebook'));
-    router.get('/auth/facebook/callback', passport.authenticate('facebook'), frontend.social_callback );
+    router.get('/auth/facebook/callback', passport.authenticate('facebook'), frontend.social_callback);
 
     router.post('/auth/user/new', frontend.new_user);
     router.get('/auth/last', function(req, res) {        
