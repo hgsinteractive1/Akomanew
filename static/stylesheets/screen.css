@@ -1124,7 +1124,8 @@ div.edit-icon {
 /* line 259, ../sass/includes/main_menu.scss */
 #main-menu-wrapper #menu-content ul#primary-menu li a.primary-menu-link span {
   color: #5A5858;
-  font-size: 20px;
+  font-size: 16px;
+  line-height: 18px;
   display: block;
   text-transform: none;
   margin-top: 8px;
