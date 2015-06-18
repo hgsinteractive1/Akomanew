@@ -51,6 +51,7 @@
 
 		#menu-content {
 			height: 0;
+			top: 40%;
 
 			@include respond-to(handhelds) {
 				height: 0;
@@ -75,6 +76,9 @@
 		top:50%;
 		margin-left: -280px;
 		margin-top: -200px;
+		-webkit-transition: top 0.3s ease-out;
+    	-moz-transition: top 0.3s ease-out;
+    	-o-transition: top 0.3s ease-out;
 
 		@include respond-to(handhelds) {
 			width: 300px;
@@ -203,6 +207,12 @@
 
 		ul#primary-menu {
 			width: 100%;
+			position:relative;
+			left:23px;
+
+			@include respond-to(handhelds) {
+				left:0px;
+			}
 
 			li {
 				height: 110px;

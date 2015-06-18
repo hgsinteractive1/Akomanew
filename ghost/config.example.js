@@ -54,10 +54,23 @@ config = {
         },
 
         notifications: {
-            access_requested: 'Hello,\nThank you for requesting access to aKoma. Watch out for a follow up email when your access is activated.\nIf you have any questions, feel free to contact us at hello@akomanet.com\nLater. \nThe aKoma Squad',
-            access_reader: 'Hello,\nThis email is to notify you that you now have reader access to the aKoma private beta.\nPlease contact us at hello@akomanet.com if you have any questions.\naKoma Squad',
-            access_writer: 'Hello,\nThis email is to notify you that you now have author access to the aKoma private beta.\nPlease contact us at hello@akomanet.com if you have any questions.\naKoma Squad',
-            access_revoked: 'Hello,\nThis email is to notify you that your access to the aKoma private beta has been revoked.\nPlease contact us at hello@akomanet.com if you have any questions, or feel that this has been done in error.\naKoma Squad'
+            subject: "A message from aKoma",
+            access_requested: {
+                subject: 'A message from aKoma',
+                copy: 'Hello,\nThank you for requesting access to aKoma. Watch out for a follow up email when your access is activated.\nIf you have any questions, feel free to contact us at hello@akomanet.com\nLater. \nThe aKoma Squad'
+            },
+            access_reader:{
+                subject: 'A message from aKoma',
+                copy: 'Hello,\nThis email is to notify you that you now have reader access to the aKoma private beta.\nPlease contact us at hello@akomanet.com if you have any questions.\naKoma Squad'
+            },
+            access_writer: {
+                subject: 'A message from aKoma',
+                copy: 'Hello,\nThis email is to notify you that you now have author access to the aKoma private beta.\nPlease contact us at hello@akomanet.com if you have any questions.\naKoma Squad'
+            },
+            access_revoked: {
+                subject: 'A message from aKoma',
+                copy: 'Hello,\nThis email is to notify you that your access to the aKoma private beta has been revoked.\nPlease contact us at hello@akomanet.com if you have any questions, or feel that this has been done in error.\naKoma Squad'
+            }
         },
 
         "homeTag":"faves",
@@ -96,10 +109,23 @@ config = {
         },
 
         notifications: {
-            access_requested: 'Hello,\nThank you for requesting access to aKoma. Watch out for a follow up email when your access is activated.\nIf you have any questions, feel free to contact us at hello@akomanet.com\nLater. \nThe aKoma Squad',
-            access_reader: 'Hello,\nThis email is to notify you that you now have reader access to the aKoma private beta.\nPlease contact us at hello@akomanet.com if you have any questions.\naKoma Squad',
-            access_writer: 'Hello,\nThis email is to notify you that you now have author access to the aKoma private beta.\nPlease contact us at hello@akomanet.com if you have any questions.\naKoma Squad',
-            access_revoked: 'Hello,\nThis email is to notify you that your access to the aKoma private beta has been revoked.\nPlease contact us at hello@akomanet.com if you have any questions, or feel that this has been done in error.\naKoma Squad'
+            subject: "A message from aKoma",
+            access_requested: {
+                subject: 'A message from aKoma',
+                copy: 'Hello,\nThank you for requesting access to aKoma. Watch out for a follow up email when your access is activated.\nIf you have any questions, feel free to contact us at hello@akomanet.com\nLater. \nThe aKoma Squad'
+            },
+            access_reader:{
+                subject: 'A message from aKoma',
+                copy: 'Hello,\nThis email is to notify you that you now have reader access to the aKoma private beta.\nPlease contact us at hello@akomanet.com if you have any questions.\naKoma Squad'
+            },
+            access_writer: {
+                subject: 'A message from aKoma',
+                copy: 'Hello,\nThis email is to notify you that you now have author access to the aKoma private beta.\nPlease contact us at hello@akomanet.com if you have any questions.\naKoma Squad'
+            },
+            access_revoked: {
+                subject: 'A message from aKoma',
+                copy: 'Hello,\nThis email is to notify you that your access to the aKoma private beta has been revoked.\nPlease contact us at hello@akomanet.com if you have any questions, or feel that this has been done in error.\naKoma Squad'
+            }
         },
 
         database: {
