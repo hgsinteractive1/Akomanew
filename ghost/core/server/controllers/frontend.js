@@ -281,7 +281,7 @@ frontendControllers = {
         }
     },
 
-    // handle the post request fro mthe main site to set up the access token
+    // handle the post request from the main site to set up the access token
     signin: function(req, res, next){
         if(req.user) {
             if(!req.body) {
@@ -335,8 +335,8 @@ frontendControllers = {
                     return dataProvider.User.hashPassword(password).then(function(hashedPw) { 
                         user.set("password", hashedPw);
                         user.set("image", image_url);
-                        return user.save(null, {context: {internal: true}}).then(function(){
-                            return sendEmail(user.get("email"), config.notifications.access_requested.subject, config.notifications.access_requested.copy);
+                        return user.save(null, {context: {internal: true}}).then(function(user){
+                            sendEmail(user.get("email"), config.notifications.access_requested.subject, config.notifications.access_requested.copy);
                         });
                     });
                 }
@@ -352,7 +352,6 @@ frontendControllers = {
                 });
             });
         });
-
         
         res.redirect(req.session.lastUrl);
     },

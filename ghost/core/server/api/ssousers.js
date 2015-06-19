@@ -98,7 +98,6 @@ users = {
             editOperation = function () {
                 return dataProvider.SSOUser.edit(data.ssoUsers[0], options)
                     .then(function (result) {
-                        console.log("HERE", status, result.get("status"));
                         if (result) {
                             if(putInRole) {
                                 return dataProvider.Role.forge({"name": putInRole}).fetch().then(function(role){
