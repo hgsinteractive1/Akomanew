@@ -336,7 +336,7 @@ frontendControllers = {
                         user.set("password", hashedPw);
                         user.set("image", image_url);
                         return user.save(null, {context: {internal: true}}).then(function(){
-                            sendEmail(user.get("email"), config.notifications.access_requested.subject, config.notifications.access_requested.copy);
+                            return sendEmail(user.get("email"), config.notifications.access_requested.subject, config.notifications.access_requested.copy);
                         });
                     });
                 }
@@ -347,8 +347,8 @@ frontendControllers = {
                     "password": password,
                     "email": req.user.get("email"),
                     "image": image_url
-                }, {context: {internal: true}}).then(function(){
-                    sendEmail(user.get("email"), config.notifications.access_requested.subject, config.notifications.access_requested.copy);
+                }, {context: {internal: true}}).then(function(user){
+                    return sendEmail(user.get("email"), config.notifications.access_requested.subject, config.notifications.access_requested.copy);
                 });
             });
         });

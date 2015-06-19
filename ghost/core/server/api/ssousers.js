@@ -9,6 +9,7 @@ var Promise         = require('bluebird'),
     utils           = require('./utils'),
     globalUtils     = require('../utils'),
     config          = require('../config'),
+    mail            = require('./mail'),
 
     docName         = 'ssoUsers',
     // TODO: implement created_by, updated_by
@@ -21,6 +22,25 @@ function prepareInclude(include) {
     include = include || '';
     include = _.intersection(include.split(','), allowedIncludes);
     return include;
+}
+
+/**
+ * Send an email
+ **/
+function sendEmail(sendTo, subject, message) {
+    var payload = {
+        mail: [{
+            message: {
+                to: sendTo,
+                subject: subject,
+                html: message.replace(/(?:\r\n|\r|\n)/g, '<br />'),
+                text: message
+            },
+            options: {}
+        }]
+    };
+
+    return mail.send(payload, {context: {internal: true}});
 }
 
 /**
@@ -71,12 +91,14 @@ users = {
         if(data.status === "approved" && data.approved_role) {
             putInRole = data.approved_role;
         }
+        var status = data.status;
 
         return utils.checkObject(object, docName, options.id).then(function (data) {
             // Edit operation
             editOperation = function () {
                 return dataProvider.SSOUser.edit(data.ssoUsers[0], options)
                     .then(function (result) {
+                        console.log("HERE", status, result.get("status"));
                         if (result) {
                             if(putInRole) {
                                 return dataProvider.Role.forge({"name": putInRole}).fetch().then(function(role){
@@ -84,12 +106,29 @@ users = {
                                         user = user.toJSON();                                        
                                         user.roles = [role];
                                         return dataProvider.User.edit(user, { include: [ 'roles' ], id: user.id, context: { user: options.context.user } }).then(function(user){
-                                            return {ssoUsers: [result.toJSON(options)], users: user ? [user.toJSON({"withRelated":"roles"})] : null};
+                                            var subject = config.notifications.access_reader.subject;
+                                            var message = config.notifications.access_reader.copy;
+                                            if(putInRole === "Author") {
+                                                subject = config.notifications.access_writer.subject;
+                                                message = config.notifications.access_writer.copy;
+                                            }
+                                            return sendEmail(user.get("email"), subject, message).then(function(){
+                                                return {ssoUsers: [result.toJSON(options)], users: user ? [user.toJSON({"withRelated":"roles"})] : null};
+                                            });
                                         });
                                     });
                                 });
                             }
-                            return {ssoUsers: [result.toJSON(options)]};
+
+                            if(status === "rejected") {
+                                var subject = config.notifications.access_revoked.subject;
+                                var message = config.notifications.access_revoked.copy;
+                                return sendEmail(result.get("email"), subject, message).then(function(){
+                                    return {ssoUsers: [result.toJSON(options)]};
+                                });
+                            } else {
+                                return {ssoUsers: [result.toJSON(options)]};
+                            }
                         }
 
                         return Promise.reject(new errors.NotFoundError('SSOUser not found.'));
