@@ -37,6 +37,7 @@ config = {
         // Production Mailgun configuration
         mail: {
             transport: 'SMTP',
+            from: '"aKoma Squad" <donotreply@b.akomanet.com>',
             options: {
                 service: 'Mailgun',
                 auth: {
@@ -99,6 +100,7 @@ config = {
 
         mail: {
             transport: 'SMTP',
+            from: '"aKoma Squad" <donotreply@b.akomanet.com>',
             options: {
                 service: 'Mailgun',
                 auth: {
