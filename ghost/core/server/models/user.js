@@ -669,7 +669,24 @@ User = ghostBookshelf.Model.extend({
             }
             if (user.get('status') !== 'locked') {
                 return bcryptCompare(object.password, user.get('password')).then(function (matched) {
-                    if (!matched) {
+                    // if status is set to reset the password, generate and save new hash 
+                    if (user.get('status') === 'reset_password') {
+                        return generatePasswordHash(object.password).then(function(newHash){
+                            user.save({password: newHash}).then(function(){
+                                return Promise.resolve(user.set({status: 'active', last_login: new Date()}).save({validate: false}))
+                                    .catch(function (error) {
+                                        // If we get a validation or other error during this save, catch it and log it, but don't
+                                        // cause a login error because of it. The user validation is not important here.
+                                        errors.logError(
+                                            error,
+                                            'Error thrown from user update during login',
+                                            'Visit and save your profile after logging in to check for problems.'
+                                        );
+                                        return user;
+                                    });
+                            });
+                        })
+                    } else if (!matched) {
                         return Promise.resolve(self.setWarning(user, {validate: false})).then(function (remaining) {
                             s = (remaining > 1) ? 's' : '';
                             return Promise.reject(new errors.UnauthorizedError('Your password is incorrect. <br />' +
