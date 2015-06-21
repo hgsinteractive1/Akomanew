@@ -101,20 +101,41 @@ middleware = {
                     if (err) {
                         return next(err); // will generate a 500 error
                     }
-                    // Generate a JSON response reflecting authentication status
-                    if (!user) {
-                        var msg = {
-                            type: 'error',
-                            message: 'Please Sign In',
-                            status: 'passive'
-                        };
-                        res.status(401);
-                        return res.send(msg);
+
+                    // TODO: Fix this its kind of an ugly hack...
+                    // The underlying problem is that sometimes the browser doesnt seem 
+                    // to send the bearer token, theres a potential security risk in this 
+                    // but im not sure exactly how it would play out.
+                    if(path.indexOf("ssousers") >= 0) {
+                        if(!user && req.user) {
+                            return req.user.getUser().then(function(user){
+                                return keepGoing({id: user.get("id")});
+                            });
+
+                        } else {
+                            return keepGoing(user);
+                        }
+                    } else {
+                        return keepGoing(user);
                     }
-                    // TODO: figure out, why user & authInfo is lost
-                    req.authInfo = info;
-                    req.user = user;
-                    return next(null, user, info);
+
+                    function keepGoing(user) {
+                        // Generate a JSON response reflecting authentication status
+                        if (!user) {
+                            var msg = {
+                                type: 'error',
+                                message: 'Please Sign In',
+                                status: 'passive'
+                            };
+                            res.status(401);
+                            return res.send(msg);
+                        }
+
+                        // TODO: figure out, why user & authInfo is lost
+                        req.authInfo = info;
+                        req.user = user;
+                        return next(null, user, info);
+                    }
                 }
             )(req, res, next);
         }

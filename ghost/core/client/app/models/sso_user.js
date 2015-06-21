@@ -1,12 +1,9 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import ValidationEngine from 'ghost/mixins/validation-engine';
 import NProgressSaveMixin from 'ghost/mixins/nprogress-save';
 import SelectiveSaveMixin from 'ghost/mixins/selective-save';
 
-var SSOUser = DS.Model.extend(NProgressSaveMixin, SelectiveSaveMixin, ValidationEngine, {
-    validationType: 'user',
-
+var SSOUser = DS.Model.extend(NProgressSaveMixin, SelectiveSaveMixin, {
     uuid: DS.attr('string'),
     name: DS.attr('string'),
     social_id: DS.attr('string'),

@@ -5,7 +5,7 @@ import loadingIndicator from 'ghost/mixins/loading-indicator';
 import PaginationRouteMixin from 'ghost/mixins/pagination-route';
 
 var paginationSettings,
-    PostsRoute;
+    SSOUserRoute;
 
 paginationSettings = {
     status: 'all',
@@ -14,7 +14,7 @@ paginationSettings = {
 };
 var tagName = "All";
 
-PostsRoute = AuthenticatedRoute.extend(styleBody, loadingIndicator, PaginationRouteMixin, {
+SSOUserRoute = AuthenticatedRoute.extend(styleBody, loadingIndicator, PaginationRouteMixin, {
     titleToken: 'Content',
 
     classNames: ['manage'],
@@ -26,6 +26,7 @@ PostsRoute = AuthenticatedRoute.extend(styleBody, loadingIndicator, PaginationRo
                 return self.transitionTo("drafts");
             }
 
+            // return [];
             return self.store.find('sso_user', {limit: 'all'}).then(function (users) {
                 return users;
             });
@@ -35,8 +36,8 @@ PostsRoute = AuthenticatedRoute.extend(styleBody, loadingIndicator, PaginationRo
     setupController: function (controller, model) {
         this._super(controller, model);
         this.setupPagination(paginationSettings);
-        paginationSettings.limit = 1000;
+        paginationSettings.limit = 10000;
     }
 });
 
-export default PostsRoute;
+export default SSOUserRoute;

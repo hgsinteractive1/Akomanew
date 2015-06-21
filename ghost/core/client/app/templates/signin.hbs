@@ -18,24 +18,20 @@
 </section>
  --}}
 <script type="text/javascript">
-    if(!localStorage["ghost:session"]) {
-        $.post("/auth/user/signin", {}, function(data){
-
-            if(!data.access_token) {
-                window.location = "/";
-                return false;
-            }
-
-            localStorage.setItem("ghost:session", JSON.stringify({
-                "authenticator":"simple-auth-authenticator:oauth2-password-grant",
-                "token_type":data.token_type,
-                "expires_in": data.expires_in,
-                "expires_at": new Date((new Date().getTime() + data.expires_in)),
-                "access_token": data.access_token,
-                "refresh_token":data.refresh_token
-            }));
-
-            window.location = document.referrer ? document.referrer : "/ghost";
-        });
-    }
+    $(function(){
+        if(!localStorage["ghost:session"]) {
+            $.post("/auth/user/signin", {}, function(data){
+                localStorage.setItem("ghost:session", JSON.stringify({
+                    "authenticator":"simple-auth-authenticator:oauth2-password-grant",
+                    "token_type":data.token_type,
+                    "expires_in": data.expires_in,
+                    "expires_at": new Date((new Date().getTime() + data.expires_in)),
+                    "access_token": data.access_token,
+                    "refresh_token":data.refresh_token
+                }));
+                window.location = document.referrer ? document.referrer : "/ghost";
+            }).fail(function(err){
+            });
+        }
+    });
 </script>

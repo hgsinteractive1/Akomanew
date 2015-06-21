@@ -20,7 +20,7 @@ ApplicationRoute = Ember.Route.extend(SimpleAuth.ApplicationRouteMixin, Shortcut
 
 
         // Load all the tags so they can be pulled into the menu
-        this.store.findAll("tag").then(function(data){ });
+        this.store.findAll("tag").then(function(data){ }).catch(function(err){});
     },
 
     title: function (tokens) {
