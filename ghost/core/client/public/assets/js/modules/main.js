@@ -17,7 +17,6 @@ akomadefine(['jquery', 'mainNav', 'storyShareTools', 'fullBleedHero', 'paginatio
 * INIT APPLICATION
 */
 	function initGlobalComponents() {
-		console.log('global components');
 		//init main nav
 		mainNav.init();
 

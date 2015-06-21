@@ -36,7 +36,7 @@ akomadefine(['jquery'], function($) {
 */
 
 	function showLogInOverlay() {
-		console.log('show log in');
+		
 	}
 
 /**************************************************************************
@@ -230,7 +230,6 @@ akomadefine(['jquery'], function($) {
 */
 
 	obj.init = function() {
-		console.log('init nav');
 		lookupElements();
 		checkInitNavState();
 		bindEvents();
