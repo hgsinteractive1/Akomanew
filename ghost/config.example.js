@@ -23,11 +23,13 @@ config = {
         // Production Social configuration
         social: {
             twitter: {
+                // prod tw keys
                 consumer_key: 'fIb6p1ZvVzo0jq9JEC5dMnGol',
                 consumer_secret: 'ipX1rv6n5MZPLZ7Whzex1SeApCo2pGmo6hIit9k21Ro6CZLIBS',
                 callback: '/auth/twitter/callback',
             },
             facebook: {
+                // prod fb keys
                 client_id: '1676527852575789',
                 client_secret: '89ee80812066b8bb9dca9c8fc7ef27b8',
                 callback: '/auth/facebook/callback',
@@ -87,11 +89,13 @@ config = {
 
         social: {
             twitter: {
+                // dev tw keys
                 consumer_key: 'NRfJBexESA1fGKjXv9OidwLVd',
                 consumer_secret: 'MAYbbLLoiG2YSA0Tva6h4fPCs9TNAVJMxTeiwmXjIgcGK62A3F',
                 callback: '/auth/twitter/callback',
             },
             facebook: {
+                // dev fb keys
                 client_id: '802215216531320',
                 client_secret: 'ff50f138c26dd2992027ca4c506ef0fa',
                 callback: '/auth/facebook/callback',
