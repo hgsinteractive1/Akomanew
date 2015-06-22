@@ -193,7 +193,7 @@ middleware = {
         api.settings.read({context: {internal: true}, key: 'activeTheme'}).then(function (response) {
             var activeTheme = response.settings[0];
 
-            express['static'](path.join(config.paths.themePath, activeTheme.value), {maxAge: utils.ONE_YEAR_MS})(req, res, next);
+            express['static'](path.join(config.paths.themePath, activeTheme.value), {maxAge: utils.ONE_HOUR_MS})(req, res, next);
         });
     },
     // ### Spam prevention Middleware

@@ -162,7 +162,7 @@ function uncapitalise(req, res, next) {
     }
 
     if (/[A-Z]/.test(pathToTest)) {
-        res.set('Cache-Control', 'public, max-age=' + utils.ONE_YEAR_S);
+        res.set('Cache-Control', 'public, max-age=' + utils.ONE_HOUR_S);
         res.redirect(301, req.url.replace(pathToTest, pathToTest.toLowerCase()));
     } else {
         next();
@@ -237,13 +237,13 @@ setupMiddleware = function (blogAppInstance, adminApp) {
     }
 
     // Favicon
-    blogApp.use(serveSharedFile('favicon.ico', 'image/x-icon', utils.ONE_DAY_S));
-    blogApp.use(serveSharedFile('sitemap.xsl', 'text/xsl', utils.ONE_DAY_S));
+    blogApp.use(serveSharedFile('favicon.ico', 'image/x-icon', utils.ONE_HOUR_S));
+    blogApp.use(serveSharedFile('sitemap.xsl', 'text/xsl', utils.ONE_HOUR_S));
 
     // Static assets
     blogApp.use('/shared', express['static'](path.join(corePath, '/shared'), {maxAge: utils.ONE_HOUR_MS}));
     blogApp.use('/content/images', storage.getStorage().serve());
-    blogApp.use('/public', express['static'](path.join(corePath, '/built/public'), {maxAge: utils.ONE_YEAR_MS}));
+    blogApp.use('/public', express['static'](path.join(corePath, '/built/public'), {maxAge: utils.ONE_HOUR_MS}));
 
     // First determine whether we're serving admin or theme content
     blogApp.use(decideIsAdmin);
@@ -251,7 +251,7 @@ setupMiddleware = function (blogAppInstance, adminApp) {
     blogApp.use(configHbsForContext);
 
     // Admin only config
-    blogApp.use('/ghost', express['static'](config.paths.clientAssets, {maxAge: utils.ONE_YEAR_MS}));
+    blogApp.use('/ghost', express['static'](config.paths.clientAssets, {maxAge: utils.ONE_HOUR_MS}));
 
     // Force SSL
     // NOTE: Importantly this is _after_ the check above for admin-theme static resources,
@@ -272,7 +272,7 @@ setupMiddleware = function (blogAppInstance, adminApp) {
     // Add in all trailing slashes
     blogApp.use(slashes(true, {
         headers: {
-            'Cache-Control': 'public, max-age=' + utils.ONE_YEAR_S
+            'Cache-Control': 'public, max-age=' + utils.ONE_HOUR_S
         }
     }));
     blogApp.use(uncapitalise);
