@@ -1,4 +1,4 @@
-{{!< default}}
+{{!< postheader}}
 {{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
 
 
@@ -43,6 +43,7 @@
 	<!--END STORY IMAGE-->
 	<!--BEGIN STORY BODY-->
 	<div id="story-body">
+
 		{{{markdown}}}
 	</div>
 	<!--END STORY BODY-->
@@ -72,7 +73,7 @@
 		<!--STORY META-->
 			<div class="story-meta">
 				<div class="tags">
-					<p>Posted in:</p>
+					{{!-- <p>Posted in:</p> --}}
 					<ul>
 						<li>
 							{{tags separator="</li><li>" css_class="tag"}}

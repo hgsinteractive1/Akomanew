@@ -15,6 +15,8 @@ var Router = Ember.Router.extend({
 documentTitle();
 
 Router.map(function () {
+     this.route('termsconditions',{path: '/termsconditions'});
+    //this.route('termsconditions', {path: '/'});
     this.route('setup');
     this.route('signin');
     this.route('signout');
@@ -30,8 +32,9 @@ Router.map(function () {
     this.route('ssousers', {path: '/ssousers'});
 
     this.resource('editor', function () {
-        this.route('new', {path: ''});
-        this.route('edit', {path: ':post_id'});
+      this.route('index');
+       // this.route('new', {path: ''});
+       // this.route('edit', {path: ':post_id'});
     });
 
     this.resource('settings', function () {
@@ -53,6 +56,7 @@ Router.map(function () {
 
     // Redirect legacy content to posts
     this.route('content');
+    
 
     this.route('error404', {path: '/*path'});
 });

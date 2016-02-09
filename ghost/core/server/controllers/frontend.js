@@ -18,6 +18,7 @@ var moment      = require('moment'),
     routeMatch  = require('path-match')(),
     middleware = require("../middleware/middleware"),
     mail            = require('../api/mail'),
+    hbs = require('express-hbs'),
 
     frontendControllers,
     staticPostPermalink;
@@ -393,7 +394,32 @@ frontendControllers = {
             });
         }).catch(handleError(next));
     },
+ privacypolicy: function (req, res, next) {
+  var page = {
 
+           
+        };
+       try {
+     res.render('privacypolicy', page);
+}
+catch(err) {
+    handleError(next)
+}
+  
+    },
+    termsconditions: function (req, res, next) {
+        var page = {
+
+           
+        };
+       try {
+     res.render('termsconditions', page);
+}
+catch(err) {
+    handleError(next)
+}
+     
+    },
     // Latest behaves like the old index page...
     latest: function(req, res, next){
         // Parse the page number

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{{! Document Settings }}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    {{! Page Meta }}
+    <title>{{meta_title}}</title>
+    <meta name="description" content="{{meta_description}}" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset "favicon.ico"}}">
+
+    {{! Styles'n'Scripts }}
+    <link rel="stylesheet" type="text/css" href="/ghost/ghost.css" />
+
+    {{! Ghost outputs important style and meta data with this tag }}
+    {{ghost_head}}
+
+    {{>head-includes}}
+</head>
+<body class="{{body_class}}">
+    {{#if ssoUser.isNewUser}}
+        {{> new_user}}
+        <script type="text/javascript">localStorage.removeItem("ghost:session");</script>
+    {{else if ssoUser.isPendingUser}}
+        {{> pending}}
+        <script type="text/javascript">localStorage.removeItem("ghost:session");</script>
+    {{else if ssoUser.isRejectedUser}}
+        {{> rejected}}
+        <script type="text/javascript">localStorage.removeItem("ghost:session");</script>
+    {{else if ssoUser}}
+
+        {{{body}}}
+
+        <!--MAIN NAVIGATION-->
+        <div id="primary-nav">
+            {{navigation}}
+        </div>
+        {{> menu}}
+        <!--END-->
+
+        {{> footer}}
+
+        <!--INCLUDE REQUIRE/INIT MAIN SCRIPTS-->
+        <script type="text/javascript" src="{{asset "js/require.js" ghost="true"}}" data-main="{{asset "js/core.js" ghost="true"}}"></script>
+    {{else}}
+        {{!-- {{> signin}} --}}
+        {{{body}}}
+        <!--MAIN NAVIGATION-->
+          <div id="primary-nav">
+<div id="relative">
+    <div id="nav-background"></div>
+    <!--LOGO-->
+    <a href="/" id="logo"></a>
+    <!--END LOGO-->
+    <!--MAIN MENU-->
+    <a href="#" id="menu">
+        <div id="relative">
+            <div class="menu-bar one"></div>
+            <div class="menu-bar two"></div>
+            <div class="menu-bar three"></div>
+        </div>
+    </a>
+    <!--END MENU-->
+    <!--WRITE STORY-->
+
+    <!--END ACCOUNT-->
+</div>
+</div>
+        {{> menu}}
+        <!--END-->
+
+        {{> footer}}
+    {{/if}}
+<!--END-->
+     <script type="text/javascript" src="{{asset "js/require.js" ghost="true"}}" data-main="{{asset "js/core.js" ghost="true"}}"></script>
+    {{>bottom-includes}}
+</body>
+</html>

@@ -10,8 +10,15 @@
         <li>
             {{#link-to "editor.edit" model class="post-edit action"}} Edit<div class="edit-story-icon"></div>{{/link-to}}
         </li>
-        <li><a href="#" class="action" {{action "togglePublish"}}>{{if model.isPublished "Hide" "Show"}} <div class="{{if model.isPublished "hide" "show"}}-story-icon"></div></a></li>
-        <li><a href="#" class="action" {{action "openModal" "delete-post" this}}>Delete<div class="delete-story-icon"></div></a></li>
+        <li>
+            <a href="#" class="action" {{action "togglePublish"}}>{{if model.isPublished "Hide" "Show"}}
+                <div class="{{if model.isPublished "hide" "show"}}-story-icon"></div>
+            </a>
+        </li>
+
+      {{!--   <li><a href="#" class="action" {{action "togglePublish"}}>{{if model.isPublished "Hide" "Show"}} Delete 2<div class="{{if model.isPublished "hide" "show"}}-story-icon"></div></a></li> --}}
+
+        <li><a href="#" class="action" {{action "openModal" "delete-post" this}}>Delete 2<div class="delete-story-icon"></div></a></li>
         {{#if canFeature}}
             <li class="last">
                 {{#if isFeaturedInCurrentTag}}

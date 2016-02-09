@@ -10,7 +10,7 @@ var frontend    = require('../controllers/frontend'),
 frontendRoutes = function () {
     var router = express.Router(),
         subdir = config.paths.subdir;
-
+   
     router.get('*', function redirect(req, res, next) {
         if(
             !/^\/auth\/(twitter|facebook|last|user\/new|signout)/ig.test(req.url) && 
@@ -43,6 +43,9 @@ frontendRoutes = function () {
     });
 
     // ### Frontend routes
+     router.get('/termsconditions/', frontend.termsconditions); 
+    router.get('/privacypolicy/', frontend.privacypolicy); 
+
     router.get('/rss/', frontend.rss);
     router.get('/rss/:page/', frontend.rss);
     router.get('/feed/', function redirect(req, res) {
@@ -63,6 +66,7 @@ frontendRoutes = function () {
     router.get('/' + config.routeKeywords.author + '/:slug/rss/:page/', frontend.rss);
     router.get('/' + config.routeKeywords.author + '/:slug/' + config.routeKeywords.page + '/:page/', frontend.author);
     router.get('/' + config.routeKeywords.author + '/:slug/', frontend.author);
+
 
     // Dynamic filters
     router.get('/latest', frontend.latest);

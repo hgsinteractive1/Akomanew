@@ -28,11 +28,11 @@ var PostsController = Ember.ArrayController.extend(PaginationControllerMixin, {
     sortProperties: ['status', 'published_at', 'updated_at', 'tag_positions'],
     filterOptions: [
         {"name":"All", "slug":"All"}, 
-        {"name":"Faves", "slug":"faves"}, 
-        {"name":"Live", "slug":"live"}, 
-        {"name":"Think", "slug":"think"}, 
-        {"name":"Rant", "slug":"rant"}, 
-        {"name":"Learn", "slug":"learn"}
+        {"name":"Faves", "slug":"faves"}
+        // {"name":"Live", "slug":"live"}, 
+        // {"name":"Think", "slug":"think"}, 
+        // {"name":"Rant", "slug":"rant"}, 
+        // {"name":"Learn", "slug":"learn"}
     ],
     selectedFilter: "All",
     selectedFilterIsSortable: false,
