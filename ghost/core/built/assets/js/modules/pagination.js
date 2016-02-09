@@ -1,0 +1,1 @@
+akomadefine(["jquery"],function(a){return a=a||window.$,{init:function(){a("body").on("click","[data-pagination-link]",function(n){n.preventDefault();{var t=a(this);t.parent()}a.get(a(this).attr("href")+"?ajax=true",{},function(n){t.replaceWith("<div class='ajax-wrapper'>"+n+"</div>");var i=a(".ajax-wrapper").last();i.hide(),i.fadeIn()})})}}});

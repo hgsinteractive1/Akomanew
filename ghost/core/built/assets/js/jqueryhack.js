@@ -1,0 +1,1 @@
+akomadefine([],function(){return window.jQuery});

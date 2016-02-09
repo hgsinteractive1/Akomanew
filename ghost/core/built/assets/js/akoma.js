@@ -1,0 +1,1 @@
+akomarequire.config({paths:{mainNav:"modules/main_nav",storyShareTools:"modules/story_share",fullBleedHero:"modules/full_bleed_hero",pagination:"modules/pagination",editProfile:"modules/edit_profile",main:"modules/main",jquery:"./jqueryhack"}}),akomarequire(["jquery","main"],function(e,o){e=e||window.$,e(document).ready(function(){o.init()})});
